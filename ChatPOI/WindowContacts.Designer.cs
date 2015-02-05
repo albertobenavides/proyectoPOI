@@ -135,7 +135,7 @@
             // 
             // WindowContacts
             // 
-            this.ClientSize = new System.Drawing.Size(313, 318);
+            this.ClientSize = new System.Drawing.Size(313, 337);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridViewContacts);
             this.Controls.Add(this.buttonSearch);
