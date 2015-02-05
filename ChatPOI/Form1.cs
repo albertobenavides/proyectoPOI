@@ -16,6 +16,7 @@ namespace ChatPOI
         {
             InitializeComponent();
 			//Nueva línea
+			//Otra línea de desarrollo
         }
     }
 }
