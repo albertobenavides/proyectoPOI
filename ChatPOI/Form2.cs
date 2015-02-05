@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ChatPOI
 {
-    public partial class FormInicio : Form
+    public partial class FormChat : Form
     {
-        public FormInicio()
+        public FormChat()
         {
             InitializeComponent();
         }
