@@ -15,8 +15,9 @@ namespace ChatPOI
         public FormInicio()
         {
             InitializeComponent();
-			//Nueva línea
 			//Otra línea de desarrollo
+			
+			//Otra línea
         }
     }
 }
