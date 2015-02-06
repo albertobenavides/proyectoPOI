@@ -72,7 +72,7 @@
             this.buttonConfiguration.Name = "buttonConfiguration";
             this.buttonConfiguration.Size = new System.Drawing.Size(75, 23);
             this.buttonConfiguration.TabIndex = 3;
-            this.buttonConfiguration.Text = "button1";
+            this.buttonConfiguration.Text = "Configurar";
             this.buttonConfiguration.UseVisualStyleBackColor = true;
             // 
             // textBoxSearch
@@ -88,7 +88,7 @@
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonSearch.TabIndex = 5;
-            this.buttonSearch.Text = "button2";
+            this.buttonSearch.Text = "Buscar";
             this.buttonSearch.UseVisualStyleBackColor = true;
             // 
             // dataGridViewContacts
@@ -126,16 +126,16 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(226, 285);
+            this.buttonAdd.Location = new System.Drawing.Point(207, 285);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(94, 23);
             this.buttonAdd.TabIndex = 7;
-            this.buttonAdd.Text = "button3";
+            this.buttonAdd.Text = "Añadir contacto";
             this.buttonAdd.UseVisualStyleBackColor = true;
             // 
             // WindowContacts
             // 
-            this.ClientSize = new System.Drawing.Size(313, 337);
+            this.ClientSize = new System.Drawing.Size(313, 317);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridViewContacts);
             this.Controls.Add(this.buttonSearch);
