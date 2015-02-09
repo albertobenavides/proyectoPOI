@@ -16,5 +16,14 @@ namespace ChatPOI
         {
             InitializeComponent();
         }
+
+        private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+        }
+
+        private void pictureBoxInicio_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,19 +31,21 @@
             this.pictureBoxInicio = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
-            this.linkLabelEnter = new System.Windows.Forms.LinkLabel();
+            this.linkLabelLogin = new System.Windows.Forms.LinkLabel();
+            this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInicio)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxInicio
             // 
             this.pictureBoxInicio.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBoxInicio.Image = global::ChatPOI.Properties.Resources.cheetah1;
             this.pictureBoxInicio.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxInicio.Name = "pictureBoxInicio";
             this.pictureBoxInicio.Size = new System.Drawing.Size(194, 150);
             this.pictureBoxInicio.TabIndex = 0;
             this.pictureBoxInicio.TabStop = false;
+            this.pictureBoxInicio.Click += new System.EventHandler(this.pictureBoxInicio_Click);
             // 
             // textBoxUser
             // 
@@ -65,23 +67,45 @@
             this.textBoxPass.TabIndex = 2;
             this.textBoxPass.Text = "Contraseña";
             // 
-            // linkLabelEnter
+            // linkLabelLogin
             // 
-            this.linkLabelEnter.AutoSize = true;
-            this.linkLabelEnter.Location = new System.Drawing.Point(83, 219);
-            this.linkLabelEnter.Name = "linkLabelEnter";
-            this.linkLabelEnter.Size = new System.Drawing.Size(35, 13);
-            this.linkLabelEnter.TabIndex = 6;
-            this.linkLabelEnter.TabStop = true;
-            this.linkLabelEnter.Text = "Entrar";
+            this.linkLabelLogin.AutoSize = true;
+            this.linkLabelLogin.Location = new System.Drawing.Point(63, 219);
+            this.linkLabelLogin.Name = "linkLabelLogin";
+            this.linkLabelLogin.Size = new System.Drawing.Size(68, 13);
+            this.linkLabelLogin.TabIndex = 6;
+            this.linkLabelLogin.TabStop = true;
+            this.linkLabelLogin.Text = "Iniciar sesión";
+            this.linkLabelLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEnter_LinkClicked);
+            // 
+            // linkLabelCreateAccount
+            // 
+            this.linkLabelCreateAccount.AutoSize = true;
+            this.linkLabelCreateAccount.Location = new System.Drawing.Point(45, 244);
+            this.linkLabelCreateAccount.Name = "linkLabelCreateAccount";
+            this.linkLabelCreateAccount.Size = new System.Drawing.Size(101, 13);
+            this.linkLabelCreateAccount.TabIndex = 7;
+            this.linkLabelCreateAccount.TabStop = true;
+            this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(45, 245);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(101, 13);
+            this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Crear nueva cuenta";
             // 
             // WindowLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(194, 322);
-            this.Controls.Add(this.linkLabelEnter);
+            this.ClientSize = new System.Drawing.Size(194, 306);
+            this.Controls.Add(this.linkLabelCreateAccount);
+            this.Controls.Add(this.linkLabelLogin);
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxUser);
             this.Controls.Add(this.pictureBoxInicio);
@@ -99,7 +123,9 @@
         private System.Windows.Forms.PictureBox pictureBoxInicio;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPass;
-        private System.Windows.Forms.LinkLabel linkLabelEnter;
+        private System.Windows.Forms.LinkLabel linkLabelLogin;
+        private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
