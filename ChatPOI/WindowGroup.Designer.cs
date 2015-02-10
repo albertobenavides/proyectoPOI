@@ -1,6 +1,6 @@
 ﻿namespace ChatPOI
 {
-    partial class FormChat
+    partial class FormGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -42,6 +42,9 @@
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.panelContact = new System.Windows.Forms.Panel();
+            this.pictureBoxContact4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxContact3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxContact2 = new System.Windows.Forms.PictureBox();
             this.labelContactName = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,6 +54,9 @@
             this.panelUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelContact.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact2)).BeginInit();
             this.panelBottom.SuspendLayout();
             this.flowLayoutPanelComunication.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +74,7 @@
             // buttonSend
             // 
             this.buttonSend.AutoSize = true;
-            this.buttonSend.Location = new System.Drawing.Point(487, 2);
+            this.buttonSend.Location = new System.Drawing.Point(459, 2);
             this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(56, 23);
@@ -78,7 +84,7 @@
             // 
             // buttonEmoticon
             // 
-            this.buttonEmoticon.Location = new System.Drawing.Point(427, 2);
+            this.buttonEmoticon.Location = new System.Drawing.Point(399, 2);
             this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEmoticon.Name = "buttonEmoticon";
             this.buttonEmoticon.Size = new System.Drawing.Size(56, 23);
@@ -88,7 +94,7 @@
             // 
             // buttonBuzz
             // 
-            this.buttonBuzz.Location = new System.Drawing.Point(367, 2);
+            this.buttonBuzz.Location = new System.Drawing.Point(339, 2);
             this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBuzz.Name = "buttonBuzz";
             this.buttonBuzz.Size = new System.Drawing.Size(56, 23);
@@ -129,12 +135,12 @@
             // richTextBoxChat
             // 
             this.richTextBoxChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
+            this.richTextBoxChat.Location = new System.Drawing.Point(150, 0);
             this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxChat.Name = "richTextBoxChat";
             this.richTextBoxChat.ReadOnly = true;
             this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxChat.Size = new System.Drawing.Size(545, 438);
+            this.richTextBoxChat.Size = new System.Drawing.Size(517, 438);
             this.richTextBoxChat.TabIndex = 3;
             this.richTextBoxChat.Text = "";
             // 
@@ -159,7 +165,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(122, 438);
+            this.panelLeft.Size = new System.Drawing.Size(150, 438);
             this.panelLeft.TabIndex = 11;
             // 
             // panelUser
@@ -169,7 +175,7 @@
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelUser.Location = new System.Drawing.Point(0, 288);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(122, 150);
+            this.panelUser.Size = new System.Drawing.Size(150, 150);
             this.panelUser.TabIndex = 12;
             // 
             // labelUserName
@@ -193,13 +199,40 @@
             // 
             // panelContact
             // 
+            this.panelContact.Controls.Add(this.pictureBoxContact4);
+            this.panelContact.Controls.Add(this.pictureBoxContact3);
+            this.panelContact.Controls.Add(this.pictureBoxContact2);
             this.panelContact.Controls.Add(this.labelContactName);
             this.panelContact.Controls.Add(this.pictureBoxContact);
             this.panelContact.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelContact.Location = new System.Drawing.Point(0, 0);
             this.panelContact.Name = "panelContact";
-            this.panelContact.Size = new System.Drawing.Size(122, 150);
+            this.panelContact.Size = new System.Drawing.Size(150, 150);
             this.panelContact.TabIndex = 11;
+            // 
+            // pictureBoxContact4
+            // 
+            this.pictureBoxContact4.Location = new System.Drawing.Point(116, 100);
+            this.pictureBoxContact4.Name = "pictureBoxContact4";
+            this.pictureBoxContact4.Size = new System.Drawing.Size(25, 30);
+            this.pictureBoxContact4.TabIndex = 4;
+            this.pictureBoxContact4.TabStop = false;
+            // 
+            // pictureBoxContact3
+            // 
+            this.pictureBoxContact3.Location = new System.Drawing.Point(116, 55);
+            this.pictureBoxContact3.Name = "pictureBoxContact3";
+            this.pictureBoxContact3.Size = new System.Drawing.Size(25, 30);
+            this.pictureBoxContact3.TabIndex = 3;
+            this.pictureBoxContact3.TabStop = false;
+            // 
+            // pictureBoxContact2
+            // 
+            this.pictureBoxContact2.Location = new System.Drawing.Point(116, 11);
+            this.pictureBoxContact2.Name = "pictureBoxContact2";
+            this.pictureBoxContact2.Size = new System.Drawing.Size(25, 30);
+            this.pictureBoxContact2.TabIndex = 2;
+            this.pictureBoxContact2.TabStop = false;
             // 
             // labelContactName
             // 
@@ -215,9 +248,9 @@
             this.panelBottom.Controls.Add(this.flowLayoutPanelComunication);
             this.panelBottom.Controls.Add(this.textBoxMessage);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(122, 324);
+            this.panelBottom.Location = new System.Drawing.Point(150, 324);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(545, 114);
+            this.panelBottom.Size = new System.Drawing.Size(517, 114);
             this.panelBottom.TabIndex = 12;
             // 
             // flowLayoutPanelComunication
@@ -232,7 +265,7 @@
             this.flowLayoutPanelComunication.Location = new System.Drawing.Point(0, 85);
             this.flowLayoutPanelComunication.Name = "flowLayoutPanelComunication";
             this.flowLayoutPanelComunication.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanelComunication.Size = new System.Drawing.Size(545, 27);
+            this.flowLayoutPanelComunication.Size = new System.Drawing.Size(517, 27);
             this.flowLayoutPanelComunication.TabIndex = 11;
             // 
             // textBoxMessage
@@ -242,10 +275,10 @@
             this.textBoxMessage.Multiline = true;
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMessage.Size = new System.Drawing.Size(545, 85);
+            this.textBoxMessage.Size = new System.Drawing.Size(517, 85);
             this.textBoxMessage.TabIndex = 10;
             // 
-            // FormChat
+            // FormGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -256,7 +289,7 @@
             this.Controls.Add(this.panelLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormChat";
+            this.Name = "FormGroup";
             this.Text = "Usuario";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
             this.panelLeft.ResumeLayout(false);
@@ -265,6 +298,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.panelContact.ResumeLayout(false);
             this.panelContact.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact2)).EndInit();
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.flowLayoutPanelComunication.ResumeLayout(false);
@@ -293,5 +329,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelComunication;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelContactName;
+        private System.Windows.Forms.PictureBox pictureBoxContact4;
+        private System.Windows.Forms.PictureBox pictureBoxContact3;
+        private System.Windows.Forms.PictureBox pictureBoxContact2;
     }
 }

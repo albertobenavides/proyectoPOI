@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace ChatPOI
 {
-    public partial class FormChat : Form
+    public partial class FormChat: Form
     {
         public FormChat()
         {
             InitializeComponent();
-        }
-
-        private void pictureBoxUser_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

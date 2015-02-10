@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace ChatPOI
 {
-    public partial class WindowContacts : Form
+    public partial class FormGroup : Form
     {
-        public WindowContacts()
+        public FormGroup()
         {
             InitializeComponent();
-        }
-
-        private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            WindowLogin f = new WindowLogin();
-            f.Show();
-            this.Close();
-            
         }
     }
 }

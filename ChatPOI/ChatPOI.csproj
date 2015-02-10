@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WindowGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowGroup.Designer.cs">
+      <DependentUpon>WindowGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowContacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="WindowGroup.resx">
+      <DependentUpon>WindowGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowContacts.resx">
       <DependentUpon>WindowContacts.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,7 +106,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cheetah1.bmp" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

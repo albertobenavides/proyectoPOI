@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxInicio = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowLogin));
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.linkLabelLogin = new System.Windows.Forms.LinkLabel();
             this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInicio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBoxInicio
+            // pictureBoxLogo
             // 
-            this.pictureBoxInicio.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBoxInicio.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxInicio.Name = "pictureBoxInicio";
-            this.pictureBoxInicio.Size = new System.Drawing.Size(194, 150);
-            this.pictureBoxInicio.TabIndex = 0;
-            this.pictureBoxInicio.TabStop = false;
-            this.pictureBoxInicio.Click += new System.EventHandler(this.pictureBoxInicio_Click);
+            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+            this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(194, 150);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxLogo.TabIndex = 0;
+            this.pictureBoxLogo.TabStop = false;
             // 
             // textBoxUser
             // 
@@ -88,16 +88,6 @@
             this.linkLabelCreateAccount.TabStop = true;
             this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(45, 245);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(101, 13);
-            this.linkLabel1.TabIndex = 7;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Crear nueva cuenta";
-            // 
             // WindowLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,11 +98,11 @@
             this.Controls.Add(this.linkLabelLogin);
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxUser);
-            this.Controls.Add(this.pictureBoxInicio);
+            this.Controls.Add(this.pictureBoxLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "WindowLogin";
             this.Text = "Cheet-A-Chat";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInicio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,12 +110,11 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxInicio;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPass;
         private System.Windows.Forms.LinkLabel linkLabelLogin;
         private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
