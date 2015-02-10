@@ -70,5 +70,38 @@ namespace ChatPOI
                     dataGridViewContacts.Rows.RemoveAt(oneCell.RowIndex);
             }
         }
+
+        private void textBoxSearch_Enter(object sender, EventArgs e)
+        {
+            textBoxSearch.Text = "";
+            textBoxSearch.Font = new Font(textBoxAddContact.Font, FontStyle.Regular);
+            textBoxSearch.ForeColor = Color.Black;
+        }
+
+        private void textBoxSearch_Leave(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text == "")
+            {
+                textBoxSearch.Font = new Font(textBoxAddContact.Font, FontStyle.Italic);
+                textBoxSearch.ForeColor = Color.Gray;
+                textBoxSearch.Text = "Buscar contacto...";
+            }
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text != "Buscar contacto...")
+            {
+                dataGridViewContacts.ClearSelection(); //this will clear any currently selected cells
+                foreach (DataGridViewRow r in dataGridViewContacts.Rows)
+                {
+                    r.Visible = true;
+                    if (!r.Cells[1].Value.ToString().Contains(textBoxSearch.Text))
+                    {
+                        r.Visible = false;
+                    }
+                }
+            }
+        }
     }
 }
