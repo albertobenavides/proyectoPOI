@@ -1,6 +1,6 @@
 ﻿namespace ChatPOI
 {
-    partial class FormInicio
+    partial class WindowLogin
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -28,80 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxInicio = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowLogin));
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.labelPass = new System.Windows.Forms.Label();
-            this.labelUser = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInicio)).BeginInit();
+            this.linkLabelLogin = new System.Windows.Forms.LinkLabel();
+            this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBoxInicio
+            // pictureBoxLogo
             // 
-            this.pictureBoxInicio.Location = new System.Drawing.Point(41, 37);
-            this.pictureBoxInicio.Name = "pictureBoxInicio";
-            this.pictureBoxInicio.Size = new System.Drawing.Size(152, 141);
-            this.pictureBoxInicio.TabIndex = 0;
-            this.pictureBoxInicio.TabStop = false;
+            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+            this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(194, 150);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxLogo.TabIndex = 0;
+            this.pictureBoxLogo.TabStop = false;
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(94, 211);
+            this.textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUser.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxUser.Location = new System.Drawing.Point(23, 170);
             this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(150, 20);
             this.textBoxUser.TabIndex = 1;
+            this.textBoxUser.Text = "Nombre de usuario";
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(94, 237);
+            this.textBoxPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPass.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxPass.Location = new System.Drawing.Point(23, 196);
             this.textBoxPass.Name = "textBoxPass";
-            this.textBoxPass.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPass.Size = new System.Drawing.Size(150, 20);
             this.textBoxPass.TabIndex = 2;
+            this.textBoxPass.Text = "Contraseña";
             // 
-            // buttonLogin
+            // linkLabelLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(94, 276);
-            this.buttonLogin.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(56, 37);
-            this.buttonLogin.TabIndex = 5;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.linkLabelLogin.AutoSize = true;
+            this.linkLabelLogin.Location = new System.Drawing.Point(63, 219);
+            this.linkLabelLogin.Name = "linkLabelLogin";
+            this.linkLabelLogin.Size = new System.Drawing.Size(68, 13);
+            this.linkLabelLogin.TabIndex = 6;
+            this.linkLabelLogin.TabStop = true;
+            this.linkLabelLogin.Text = "Iniciar sesión";
+            this.linkLabelLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEnter_LinkClicked);
             // 
-            // labelPass
+            // linkLabelCreateAccount
             // 
-            this.labelPass.AutoSize = true;
-            this.labelPass.Location = new System.Drawing.Point(39, 240);
-            this.labelPass.Name = "labelPass";
-            this.labelPass.Size = new System.Drawing.Size(33, 13);
-            this.labelPass.TabIndex = 4;
-            this.labelPass.Text = "Pass:";
+            this.linkLabelCreateAccount.AutoSize = true;
+            this.linkLabelCreateAccount.Location = new System.Drawing.Point(45, 244);
+            this.linkLabelCreateAccount.Name = "linkLabelCreateAccount";
+            this.linkLabelCreateAccount.Size = new System.Drawing.Size(101, 13);
+            this.linkLabelCreateAccount.TabIndex = 7;
+            this.linkLabelCreateAccount.TabStop = true;
+            this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
             // 
-            // labelUser
-            // 
-            this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(39, 214);
-            this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(32, 13);
-            this.labelUser.TabIndex = 3;
-            this.labelUser.Text = "User:";
-            // 
-            // FormInicio
+            // WindowLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 349);
-            this.Controls.Add(this.buttonLogin);
-            this.Controls.Add(this.labelPass);
-            this.Controls.Add(this.labelUser);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(194, 306);
+            this.Controls.Add(this.linkLabelCreateAccount);
+            this.Controls.Add(this.linkLabelLogin);
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxUser);
-            this.Controls.Add(this.pictureBoxInicio);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormInicio";
-            this.Text = "FormInicio";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInicio)).EndInit();
+            this.Controls.Add(this.pictureBoxLogo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "WindowLogin";
+            this.Text = "Cheet-A-Chat";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,12 +110,11 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxInicio;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPass;
-        private System.Windows.Forms.Button buttonLogin;
-        private System.Windows.Forms.Label labelPass;
-        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.LinkLabel linkLabelLogin;
+        private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
     }
 }
 

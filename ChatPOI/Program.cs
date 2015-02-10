@@ -16,7 +16,11 @@ namespace ChatPOI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormInicio());
+            WindowLogin f = new WindowLogin();
+            if (f.ShowDialog() == DialogResult.OK)
+                Application.Run(new WindowContacts());
+            else
+                Application.Exit();
         }
     }
 }

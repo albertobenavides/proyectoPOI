@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ChatPOI
 {
-    public partial class FormChat : Form
+    public partial class FormChat: Form
     {
         public FormChat()
         {

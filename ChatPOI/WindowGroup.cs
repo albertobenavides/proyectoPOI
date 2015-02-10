@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace ChatPOI
 {
-    public partial class WindowLogin : Form
+    public partial class FormGroup : Form
     {
-        public WindowLogin()
+        public FormGroup()
         {
             InitializeComponent();
-        }
-
-        private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

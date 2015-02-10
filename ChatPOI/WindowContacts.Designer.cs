@@ -28,125 +28,260 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowContacts));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
-            this.buttonConfiguration = new System.Windows.Forms.Button();
+            this.panelUserInfo = new System.Windows.Forms.Panel();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
+            this.panelLogout = new System.Windows.Forms.Panel();
+            this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
+            this.flowLayoutPanelAddContact = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonAddContact = new System.Windows.Forms.Button();
+            this.textBoxAddContact = new System.Windows.Forms.TextBox();
+            this.labelAddContact = new System.Windows.Forms.Label();
             this.dataGridViewContacts = new System.Windows.Forms.DataGridView();
             this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonAdd = new System.Windows.Forms.Button();
+            this.contextMenuStripContactOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
+            this.panelUserInfo.SuspendLayout();
+            this.panelLogout.SuspendLayout();
+            this.flowLayoutPanelAddContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacts)).BeginInit();
+            this.contextMenuStripContactOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxUser
             // 
-            this.pictureBoxUser.Location = new System.Drawing.Point(12, 12);
+            this.pictureBoxUser.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxUser.Image")));
+            this.pictureBoxUser.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxUser.Name = "pictureBoxUser";
-            this.pictureBoxUser.Size = new System.Drawing.Size(83, 84);
+            this.pictureBoxUser.Size = new System.Drawing.Size(100, 120);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 0;
             this.pictureBoxUser.TabStop = false;
             // 
             // textBoxUserName
             // 
-            this.textBoxUserName.Location = new System.Drawing.Point(101, 49);
+            this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUserName.Location = new System.Drawing.Point(109, 82);
             this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUserName.Size = new System.Drawing.Size(100, 13);
             this.textBoxUserName.TabIndex = 1;
+            this.textBoxUserName.Text = "Nombre de Usuario";
             // 
             // comboBoxUserStatus
             // 
+            this.comboBoxUserStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUserStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxUserStatus.FormattingEnabled = true;
-            this.comboBoxUserStatus.Location = new System.Drawing.Point(101, 75);
+            this.comboBoxUserStatus.Items.AddRange(new object[] {
+            "Ausente",
+            "Disponible",
+            "Invisible",
+            "Ocupado"});
+            this.comboBoxUserStatus.Location = new System.Drawing.Point(109, 101);
             this.comboBoxUserStatus.Name = "comboBoxUserStatus";
             this.comboBoxUserStatus.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxUserStatus.Sorted = true;
             this.comboBoxUserStatus.TabIndex = 2;
             // 
-            // buttonConfiguration
+            // panelUserInfo
             // 
-            this.buttonConfiguration.Location = new System.Drawing.Point(228, 12);
-            this.buttonConfiguration.Name = "buttonConfiguration";
-            this.buttonConfiguration.Size = new System.Drawing.Size(75, 23);
-            this.buttonConfiguration.TabIndex = 3;
-            this.buttonConfiguration.Text = "Configurar";
-            this.buttonConfiguration.UseVisualStyleBackColor = true;
+            this.panelUserInfo.Controls.Add(this.pictureBoxUser);
+            this.panelUserInfo.Controls.Add(this.textBoxUserName);
+            this.panelUserInfo.Controls.Add(this.comboBoxUserStatus);
+            this.panelUserInfo.Controls.Add(this.panelLogout);
+            this.panelUserInfo.Controls.Add(this.textBoxSearch);
+            this.panelUserInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUserInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelUserInfo.Name = "panelUserInfo";
+            this.panelUserInfo.Size = new System.Drawing.Size(453, 144);
+            this.panelUserInfo.TabIndex = 8;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(12, 102);
+            this.textBoxSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSearch.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxSearch.Location = new System.Drawing.Point(0, 124);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(210, 20);
-            this.textBoxSearch.TabIndex = 4;
+            this.textBoxSearch.Size = new System.Drawing.Size(453, 20);
+            this.textBoxSearch.TabIndex = 3;
+            this.textBoxSearch.Text = "Buscar contacto...";
             // 
-            // buttonSearch
+            // panelLogout
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(228, 100);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 5;
-            this.buttonSearch.Text = "Buscar";
-            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.panelLogout.Controls.Add(this.linkLabelLogout);
+            this.panelLogout.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelLogout.Location = new System.Drawing.Point(379, 0);
+            this.panelLogout.Name = "panelLogout";
+            this.panelLogout.Size = new System.Drawing.Size(74, 124);
+            this.panelLogout.TabIndex = 3;
+            // 
+            // linkLabelLogout
+            // 
+            this.linkLabelLogout.AutoSize = true;
+            this.linkLabelLogout.Location = new System.Drawing.Point(3, 3);
+            this.linkLabelLogout.Name = "linkLabelLogout";
+            this.linkLabelLogout.Size = new System.Drawing.Size(68, 13);
+            this.linkLabelLogout.TabIndex = 8;
+            this.linkLabelLogout.TabStop = true;
+            this.linkLabelLogout.Text = "Cerrar sesión";
+            this.linkLabelLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelLogout_LinkClicked);
+            // 
+            // flowLayoutPanelAddContact
+            // 
+            this.flowLayoutPanelAddContact.AutoSize = true;
+            this.flowLayoutPanelAddContact.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanelAddContact.Controls.Add(this.buttonAddContact);
+            this.flowLayoutPanelAddContact.Controls.Add(this.textBoxAddContact);
+            this.flowLayoutPanelAddContact.Controls.Add(this.labelAddContact);
+            this.flowLayoutPanelAddContact.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanelAddContact.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanelAddContact.Location = new System.Drawing.Point(0, 380);
+            this.flowLayoutPanelAddContact.Name = "flowLayoutPanelAddContact";
+            this.flowLayoutPanelAddContact.Size = new System.Drawing.Size(453, 29);
+            this.flowLayoutPanelAddContact.TabIndex = 9;
+            // 
+            // buttonAddContact
+            // 
+            this.buttonAddContact.Location = new System.Drawing.Point(425, 3);
+            this.buttonAddContact.Name = "buttonAddContact";
+            this.buttonAddContact.Size = new System.Drawing.Size(25, 23);
+            this.buttonAddContact.TabIndex = 7;
+            this.buttonAddContact.Text = "+";
+            this.buttonAddContact.UseVisualStyleBackColor = true;
+            this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
+            // 
+            // textBoxAddContact
+            // 
+            this.textBoxAddContact.AcceptsReturn = true;
+            this.textBoxAddContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAddContact.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxAddContact.Location = new System.Drawing.Point(303, 3);
+            this.textBoxAddContact.Name = "textBoxAddContact";
+            this.textBoxAddContact.Size = new System.Drawing.Size(116, 20);
+            this.textBoxAddContact.TabIndex = 6;
+            this.textBoxAddContact.Text = "Nombre de usuario";
+            this.textBoxAddContact.Enter += new System.EventHandler(this.textBoxAddContact_Enter);
+            this.textBoxAddContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddContact_KeyPress);
+            this.textBoxAddContact.Leave += new System.EventHandler(this.textBoxAddContact_Leave);
+            // 
+            // labelAddContact
+            // 
+            this.labelAddContact.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelAddContact.AutoSize = true;
+            this.labelAddContact.Location = new System.Drawing.Point(212, 8);
+            this.labelAddContact.Name = "labelAddContact";
+            this.labelAddContact.Size = new System.Drawing.Size(85, 13);
+            this.labelAddContact.TabIndex = 2;
+            this.labelAddContact.Text = "Añadir contacto:";
             // 
             // dataGridViewContacts
             // 
             this.dataGridViewContacts.AllowUserToAddRows = false;
-            this.dataGridViewContacts.AllowUserToDeleteRows = false;
+            this.dataGridViewContacts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewContacts.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewContacts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewContacts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContacts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnStatus,
-            this.ColumnContact,
+            this.ColumnContactName,
             this.ColumnMessage});
-            this.dataGridViewContacts.Location = new System.Drawing.Point(12, 129);
+            this.dataGridViewContacts.ContextMenuStrip = this.contextMenuStripContactOptions;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewContacts.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewContacts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewContacts.EnableHeadersVisualStyles = false;
+            this.dataGridViewContacts.Location = new System.Drawing.Point(0, 144);
             this.dataGridViewContacts.Name = "dataGridViewContacts";
             this.dataGridViewContacts.ReadOnly = true;
-            this.dataGridViewContacts.Size = new System.Drawing.Size(289, 150);
-            this.dataGridViewContacts.TabIndex = 6;
+            this.dataGridViewContacts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridViewContacts.RowHeadersVisible = false;
+            this.dataGridViewContacts.Size = new System.Drawing.Size(453, 236);
+            this.dataGridViewContacts.TabIndex = 5;
             // 
             // ColumnStatus
             // 
+            this.ColumnStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColumnStatus.HeaderText = "Estado";
             this.ColumnStatus.Name = "ColumnStatus";
             this.ColumnStatus.ReadOnly = true;
+            this.ColumnStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnStatus.Width = 120;
             // 
-            // ColumnContact
+            // ColumnContactName
             // 
-            this.ColumnContact.HeaderText = "Contacto";
-            this.ColumnContact.Name = "ColumnContact";
-            this.ColumnContact.ReadOnly = true;
+            this.ColumnContactName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnContactName.HeaderText = "Nombre";
+            this.ColumnContactName.Name = "ColumnContactName";
+            this.ColumnContactName.ReadOnly = true;
             // 
             // ColumnMessage
             // 
+            this.ColumnMessage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColumnMessage.HeaderText = "Mensaje";
             this.ColumnMessage.Name = "ColumnMessage";
             this.ColumnMessage.ReadOnly = true;
+            this.ColumnMessage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnMessage.Width = 130;
             // 
-            // buttonAdd
+            // contextMenuStripContactOptions
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(207, 285);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(94, 23);
-            this.buttonAdd.TabIndex = 7;
-            this.buttonAdd.Text = "Añadir contacto";
-            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.contextMenuStripContactOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.contextMenuStripContactOptions.Name = "contextMenuStripContactOptions";
+            this.contextMenuStripContactOptions.Size = new System.Drawing.Size(118, 26);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // WindowContacts
             // 
-            this.ClientSize = new System.Drawing.Size(313, 317);
-            this.Controls.Add(this.buttonAdd);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(453, 409);
             this.Controls.Add(this.dataGridViewContacts);
-            this.Controls.Add(this.buttonSearch);
-            this.Controls.Add(this.textBoxSearch);
-            this.Controls.Add(this.buttonConfiguration);
-            this.Controls.Add(this.comboBoxUserStatus);
-            this.Controls.Add(this.textBoxUserName);
-            this.Controls.Add(this.pictureBoxUser);
+            this.Controls.Add(this.panelUserInfo);
+            this.Controls.Add(this.flowLayoutPanelAddContact);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "WindowContacts";
+            this.Text = "Cheet-A-Chat";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
+            this.panelUserInfo.ResumeLayout(false);
+            this.panelUserInfo.PerformLayout();
+            this.panelLogout.ResumeLayout(false);
+            this.panelLogout.PerformLayout();
+            this.flowLayoutPanelAddContact.ResumeLayout(false);
+            this.flowLayoutPanelAddContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacts)).EndInit();
+            this.contextMenuStripContactOptions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,13 +293,19 @@
         private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.ComboBox comboBoxUserStatus;
-        private System.Windows.Forms.Button buttonConfiguration;
+        private System.Windows.Forms.Panel panelUserInfo;
         private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.LinkLabel linkLabelLogout;
+        private System.Windows.Forms.Panel panelLogout;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAddContact;
+        private System.Windows.Forms.Button buttonAddContact;
+        private System.Windows.Forms.TextBox textBoxAddContact;
+        private System.Windows.Forms.Label labelAddContact;
         private System.Windows.Forms.DataGridView dataGridViewContacts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnContact;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnContactName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
-        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripContactOptions;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }
