@@ -20,7 +20,6 @@ namespace ChatPOI
         private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }

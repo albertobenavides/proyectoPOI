@@ -16,9 +16,8 @@ namespace ChatPOI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            WindowLogin fLogin = new WindowLogin();
-            WindowContacts fContats = new WindowContacts();
-            if (fLogin.ShowDialog() == DialogResult.OK)
+            WindowLogin f = new WindowLogin();
+            if (f.ShowDialog() == DialogResult.OK)
                 Application.Run(new WindowContacts());
             else
                 Application.Exit();
