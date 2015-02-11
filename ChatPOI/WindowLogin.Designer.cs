@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowLogin));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
-            this.textBoxPass = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.linkLabelLogin = new System.Windows.Forms.LinkLabel();
             this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -56,16 +56,20 @@
             this.textBoxUser.Size = new System.Drawing.Size(150, 20);
             this.textBoxUser.TabIndex = 1;
             this.textBoxUser.Text = "Nombre de usuario";
+            this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
+            this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);
             // 
-            // textBoxPass
+            // textBoxPassword
             // 
-            this.textBoxPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPass.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxPass.Location = new System.Drawing.Point(23, 196);
-            this.textBoxPass.Name = "textBoxPass";
-            this.textBoxPass.Size = new System.Drawing.Size(150, 20);
-            this.textBoxPass.TabIndex = 2;
-            this.textBoxPass.Text = "Contraseña";
+            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxPassword.Location = new System.Drawing.Point(23, 196);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(150, 20);
+            this.textBoxPassword.TabIndex = 2;
+            this.textBoxPassword.Text = "Contraseña";
+            this.textBoxPassword.Enter += new System.EventHandler(this.textBoxPass_Enter);
+            this.textBoxPassword.Leave += new System.EventHandler(this.textBoxPassword_Leave);
             // 
             // linkLabelLogin
             // 
@@ -96,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(194, 306);
             this.Controls.Add(this.linkLabelCreateAccount);
             this.Controls.Add(this.linkLabelLogin);
-            this.Controls.Add(this.textBoxPass);
+            this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUser);
             this.Controls.Add(this.pictureBoxLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -112,7 +116,7 @@
 
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.TextBox textBoxUser;
-        private System.Windows.Forms.TextBox textBoxPass;
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.LinkLabel linkLabelLogin;
         private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
     }

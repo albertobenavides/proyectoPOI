@@ -26,23 +26,7 @@ namespace ChatPOI
 
         private void buttonAddContact_Click(object sender, EventArgs e)
         {
-            dataGridViewContacts.Rows.Add(new object[] { "Disponible", textBoxAddContact.Text, "Esperando confirmación" });
-            textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Italic);
-            textBoxAddContact.ForeColor = Color.Gray;
-            textBoxAddContact.Text = "Nombre de usuario";
-            dataGridViewContacts.Focus();
-        }
-
-        private void textBoxAddContact_Enter(object sender, EventArgs e)
-        {
-            textBoxAddContact.Text = "";
-            textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Regular);
-            textBoxAddContact.ForeColor = Color.Black;
-        }
-
-        private void textBoxAddContact_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
+            if ((textBoxAddContact.Text != "" || textBoxAddContact.Text != "Nombre de usuario"))
             {
                 dataGridViewContacts.Rows.Add(new object[] { "Disponible", textBoxAddContact.Text, "Esperando confirmación" });
                 textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Italic);
@@ -52,6 +36,13 @@ namespace ChatPOI
             }
         }
 
+        private void textBoxAddContact_Enter(object sender, EventArgs e)
+        {
+            textBoxAddContact.Text = "";
+            textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Regular);
+            textBoxAddContact.ForeColor = Color.Black;
+        }
+
         private void textBoxAddContact_Leave(object sender, EventArgs e)
         {
             if (textBoxAddContact.Text == "")
@@ -59,6 +50,18 @@ namespace ChatPOI
                 textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Italic);
                 textBoxAddContact.ForeColor = Color.Gray;
                 textBoxAddContact.Text = "Nombre de usuario";
+            }
+        }
+
+        private void textBoxAddContact_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && (textBoxAddContact.Text != "" || textBoxAddContact.Text != "Nombre de usuario"))
+            {
+                dataGridViewContacts.Rows.Add(new object[] { "Disponible", textBoxAddContact.Text, "Esperando confirmación" });
+                textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Italic);
+                textBoxAddContact.ForeColor = Color.Gray;
+                textBoxAddContact.Text = "Nombre de usuario";
+                dataGridViewContacts.Focus();
             }
         }
 
