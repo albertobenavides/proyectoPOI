@@ -65,5 +65,13 @@ namespace ChatPOI
                 textBoxPassword.PasswordChar = temp;
             }
         }
+
+        private void textBoxUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && (textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+        }
     }
 }

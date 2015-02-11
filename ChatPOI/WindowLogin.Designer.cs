@@ -57,6 +57,7 @@
             this.textBoxUser.TabIndex = 1;
             this.textBoxUser.Text = "Nombre de usuario";
             this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
+            this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);
             // 
             // textBoxPassword
@@ -69,6 +70,7 @@
             this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.Text = "Contraseña";
             this.textBoxPassword.Enter += new System.EventHandler(this.textBoxPass_Enter);
+            this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxPassword.Leave += new System.EventHandler(this.textBoxPassword_Leave);
             // 
             // linkLabelLogin

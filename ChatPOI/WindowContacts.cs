@@ -38,9 +38,12 @@ namespace ChatPOI
 
         private void textBoxAddContact_Enter(object sender, EventArgs e)
         {
-            textBoxAddContact.Text = "";
-            textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Regular);
-            textBoxAddContact.ForeColor = Color.Black;
+            if (textBoxAddContact.Text == "Nombre de usuario")
+            {
+                textBoxAddContact.Text = "";
+                textBoxAddContact.Font = new Font(textBoxAddContact.Font, FontStyle.Regular);
+                textBoxAddContact.ForeColor = Color.Black;
+            }
         }
 
         private void textBoxAddContact_Leave(object sender, EventArgs e)
@@ -99,7 +102,7 @@ namespace ChatPOI
                 foreach (DataGridViewRow r in dataGridViewContacts.Rows)
                 {
                     r.Visible = true;
-                    if (!r.Cells[1].Value.ToString().Contains(textBoxSearch.Text))
+                    if (!r.Cells[1].Value.ToString().ToLower().Contains(textBoxSearch.Text.ToLower()))
                     {
                         r.Visible = false;
                     }
