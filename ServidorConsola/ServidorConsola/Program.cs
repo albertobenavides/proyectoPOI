@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,6 @@ namespace ServidorConsola
         public static Hashtable listaclientes = new Hashtable();
         static TcpClient cliente;
         static TcpListener servidor;
-        //static StreamReader str;
-        //static StreamWriter stw;
         static int puerto;
         static int numeroclte;
 
@@ -39,70 +38,26 @@ namespace ServidorConsola
             servidor = new TcpListener(IPAddress.Any, puerto);
             servidor.Start();
             Console.WriteLine("Servidor en linea.");
-            //cliente = servidor.AcceptTcpClient();
-            //str = new StreamReader(cliente.GetStream());
-            //stw = new StreamWriter(cliente.GetStream());
-            //stw.AutoFlush = true;
 
-            while (true) 
-            {
-                try
-                {
-                    byte[] bytesFrom = new byte[10025];
-                    string dataFromClient = null;
+                byte[] bytesFrom = new byte[10025];
+                string dataFromClient = null;
+            
+            while(true){
+                numeroclte += 1;
+                cliente = servidor.AcceptTcpClient();
+                NetworkStream networkStream = cliente.GetStream();
+                networkStream.Read(bytesFrom, 0, (int)cliente.ReceiveBufferSize);
+                dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
+                dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
 
-                    numeroclte += 1;
-                    cliente = servidor.AcceptTcpClient();
-                    NetworkStream networkStream = cliente.GetStream();
-                    networkStream.Read(bytesFrom, 0, (int)cliente.ReceiveBufferSize);
-                    dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                    dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
+                listaclientes.Add(dataFromClient, cliente);
 
-                    listaclientes.Add(dataFromClient, cliente);
+                broadcast(dataFromClient + "se ha conectado", dataFromClient, false);
+                Console.WriteLine(" >> " + "Cliente #" + Convert.ToString(numeroclte) + " - " + dataFromClient +" se ha conectado!");
 
-                    broadcast(dataFromClient + " Joined ", dataFromClient, false);
-
-                    Console.WriteLine(" >> " + "Cliente #" + Convert.ToString(numeroclte) + " se ha conectado!");                
-                    handleClinet client = new handleClinet();
-                    client.startClient(cliente, Convert.ToString(numeroclte),listaclientes);
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    break;
-                }     
-            }
-                //Console.WriteLine("\nUn cliente se ha conectado");
-
-                //while (true)
-                //{
-                //    try
-                //    {
-                //        NetworkStream networkStream = cliente.GetStream();
-                //        byte[] bytesFrom = new byte[10025];
-                //        networkStream.Read(bytesFrom, 0, (int)cliente.ReceiveBufferSize);
-                //        string dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                //        dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
-
-                //        string serverResponse = dataFromClient;
-                //        Byte[] sendBytes = Encoding.ASCII.GetBytes(serverResponse);
-                //        networkStream.Write(sendBytes, 0, sendBytes.Length);
-                //        networkStream.Flush();
-                //        Console.WriteLine(" >> Mensaje Cliente - " + dataFromClient);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Console.WriteLine(ex.ToString());
-                //        break;
-                //    }   
-                //}
-
-            cliente.Close();
-            servidor.Stop();
-            Console.WriteLine(">> Saliendo");
-            Console.ReadLine();
-
+                handleClinet client = new handleClinet();
+                client.startClient(cliente, Convert.ToString(numeroclte), listaclientes);
+            }           
         }
 
         public static void broadcast(string f_mensaje, string f_usuario, bool flag)
@@ -116,7 +71,7 @@ namespace ServidorConsola
 
                 if (flag == true)
                 {
-                    bcbytes = Encoding.ASCII.GetBytes(f_usuario + " says : " + f_mensaje);                    
+                    bcbytes = Encoding.ASCII.GetBytes(f_usuario + ": " + f_mensaje);                    
                 }
                 else
                 {
@@ -147,8 +102,6 @@ namespace ServidorConsola
             {
                 byte[] bytesFrom = new byte[10025];
                 string dataFromClient = null;
-                Byte[] sendBytes = null;
-                string serverResponse = null;
 
                 while ((true))
                 {
@@ -159,10 +112,6 @@ namespace ServidorConsola
                         dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
                         dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
 
-                        serverResponse = dataFromClient;
-                        sendBytes = Encoding.ASCII.GetBytes(serverResponse);
-                        networkStream.Write(sendBytes, 0, sendBytes.Length);
-                        networkStream.Flush();
                         Console.WriteLine(" >> " + "Mensaje Cliente #" + numeroclteinhandle + " - " + dataFromClient);
 
                         Program.broadcast(dataFromClient, numeroclteinhandle, true);
@@ -170,6 +119,7 @@ namespace ServidorConsola
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.ToString());
+                        break;
                     }
                 }
             }
