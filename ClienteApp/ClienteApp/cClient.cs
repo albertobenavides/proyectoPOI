@@ -10,11 +10,15 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Threading;
 
 namespace ClienteApp
 {
     public partial class cClient : Form
     {
+        NetworkStream serverStream = Global.cliente.GetStream();
+        string readData = null;
+
         public cClient()
         {
             InitializeComponent();
@@ -23,26 +27,21 @@ namespace ClienteApp
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            if (Global.cliente.Connected)
-            {
-                try
-                {
-                    NetworkStream serverStream = Global.cliente.GetStream();
-                    byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxToSend.Text + "$");
-                    serverStream.Write(outStream, 0, outStream.Length);
-                    serverStream.Flush();
+            try
+            {            
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxToSend.Text + "$");
+                serverStream.Write(outStream, 0, outStream.Length);
+                serverStream.Flush();
+                
+                Thread ctThread = new Thread(getMessage);
+                ctThread.Start();
 
-                    byte[] inStream = new byte[10025];
-                    serverStream.Read(inStream, 0, (int)Global.cliente.ReceiveBufferSize);
-                    string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-
-                    textBoxChat.Text = textBoxChat.Text + Environment.NewLine + "Me:" + returndata;
-                    textBoxToSend.Clear();
-                    textBoxToSend.Focus();
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                //textBoxChat.Text = textBoxChat.Text + Environment.NewLine + returndata;
+                textBoxToSend.Clear();
+                textBoxToSend.Focus();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -54,30 +53,30 @@ namespace ClienteApp
         private void textBoxToSend_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
-            {
-                if (Global.cliente.Connected)
-                {
-                    try
-                    {
-                        NetworkStream serverStream = Global.cliente.GetStream();
-                        byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxToSend.Text + "$");
-                        serverStream.Write(outStream, 0, outStream.Length);
-                        serverStream.Flush();
-
-                        byte[] inStream = new byte[10025];
-                        serverStream.Read(inStream, 0, (int)Global.cliente.ReceiveBufferSize);
-                        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-
-                        textBoxChat.Text = textBoxChat.Text + Environment.NewLine + "Me:" + returndata;
-                        textBoxToSend.Clear();
-                        textBoxToSend.Focus();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                }
+            {    
             }
         }
+        private void getMessage()
+        {
+            while (true)
+            {
+                serverStream = Global.cliente.GetStream();
+                int buffSize = 0;
+                byte[] inStream = new byte[10025];
+                buffSize = Global.cliente.ReceiveBufferSize;
+                serverStream.Read(inStream, 0, buffSize);
+                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                readData = "" + returndata;
+                msg();
+            }
+        }
+
+        private void msg()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(msg));
+            else
+                textBoxChat.Text = textBoxChat.Text + Environment.NewLine + " >> " + readData;
+        } 
     }
 }

@@ -16,9 +16,6 @@ namespace ClienteApp
     public partial class wCliente : Form
     {
         public cClient wChat;
-        //public static TcpClient cliente;
-        public static StreamReader str;
-        public static StreamWriter stw;
         public static int puerto;
         public static string ipstring;
 
@@ -41,29 +38,22 @@ namespace ClienteApp
         private void buttonConnect_Click(object sender, EventArgs e)
         {
             Global.cliente = new TcpClient();
-            IPEndPoint ip_end = new IPEndPoint(IPAddress.Parse("192.168.0.16"), puerto);
+            IPEndPoint ip_end = new IPEndPoint(IPAddress.Parse(ipstring), puerto);
             
-            try
+            Global.cliente.Connect(ip_end);
+            if (Global.cliente.Connected)
             {
-                Global.cliente.Connect(ip_end);
-                if (Global.cliente.Connected)
-                {
-                    textBoxMessage.Text= "Connected to Server \n";
+                textBoxMessage.Text= "Connected to Server \n";
                     
-                    NetworkStream serverStream = Global.cliente.GetStream();
-                    byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxNickname.Text + "$");
-                    serverStream.Write(outStream, 0, outStream.Length);
-                    serverStream.Flush();
+                NetworkStream serverStream = Global.cliente.GetStream();
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBoxNickname.Text + "$");
+                serverStream.Write(outStream, 0, outStream.Length);
+                serverStream.Flush();
 
-                    Global.nombreUsuario = textBoxNickname.Text;
+                Global.nombreUsuario = textBoxNickname.Text;
 
-                    wChat = new cClient();
-                    wChat.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
+                wChat = new cClient();
+                wChat.Show();
             }
         }
     }
