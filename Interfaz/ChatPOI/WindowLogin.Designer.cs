@@ -93,6 +93,7 @@
             this.linkLabelCreateAccount.TabIndex = 7;
             this.linkLabelCreateAccount.TabStop = true;
             this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
+            this.linkLabelCreateAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCreateAccount_LinkClicked);
             // 
             // WindowLogin
             // 
