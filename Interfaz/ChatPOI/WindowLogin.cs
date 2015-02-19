@@ -14,8 +14,6 @@ namespace ChatPOI
 {
     public partial class WindowLogin : Form
     {
-        public List<string> users;
-        public List<byte> passwords;
         char temp;
 
         
@@ -23,19 +21,11 @@ namespace ChatPOI
         public WindowLogin()
         {
             InitializeComponent();
-            temp = textBoxPassword.PasswordChar;
-            users = new List<string>();
-            passwords = new List<byte>();
-            try
-            {
-                using (StreamReader reader = new StreamReader("users.txt"))
-                {
-                    users.Add(reader.ReadLine());
-                    for (int i = 0; i < 16; i++)
-                        passwords.Add(Convert.ToByte(reader.ReadLine()));
-                }
-            }
-            catch { }
+
+                //using (StreamReader reader = new StreamReader("users.txt"))
+                //{
+                //    users.Add(reader.ReadLine());
+                //}
         }
 
 
@@ -90,17 +80,7 @@ namespace ChatPOI
         {
             if (e.KeyChar == (char)Keys.Return && (textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
             {
-                using (AesManaged myAes = new AesManaged())
-                {
-                    byte[] comparison = new byte[16];
-                    for (int i = 0; i < 16; i++)
-                    {
-                        comparison[i] = passwords[i];
-                    }
-                    string roundtrip = DecryptStringFromBytes_Aes(comparison, myAes.Key, myAes.IV);
-                    if (roundtrip == textBoxPassword.Text)
-                        this.DialogResult = DialogResult.OK;
-                }
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -110,7 +90,9 @@ namespace ChatPOI
                 (textBoxPassword.Text != "" || textBoxPassword.Text != "Contraseña"))
             {
                 using (StreamWriter writer = new StreamWriter("users.txt", true))
+                {
                     writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
+                }
 
                 
             }
