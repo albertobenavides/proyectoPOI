@@ -15,6 +15,7 @@ namespace ChatPOI
         public WindowContacts()
         {
             InitializeComponent();
+            ClientConection.ConnectToServer(globals.username);
             textBoxUserName.Text = globals.username;
             dataGridViewContacts.Rows.Add(new object[] { "Disponible", "Contacto", "Escribiendo..." });
             comboBoxUserStatus.SelectedIndex = 0;
@@ -22,6 +23,7 @@ namespace ChatPOI
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            ClientConection.Exit();
             Application.Restart();
         }
 
@@ -115,6 +117,28 @@ namespace ChatPOI
         {
             FormChat f = new FormChat();
             f.ShowDialog();
+        }
+
+        private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ClientConection.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ClientConection.SendRequest("$$$$");
+            ClientConection.ReceiveResponse();
+            if(globals.receivedText.Substring(0, 4) == "$cl$")
+            {
+                dataGridViewContacts.Rows.Clear();
+                string[] clientsConnected = globals.receivedText.Substring(4, globals.receivedText.Length - 5).Split(',');
+
+                foreach (string s in clientsConnected)
+                {
+                    dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
+                    dataGridViewContacts.Focus();
+                }
+            }
         }
     }
 }

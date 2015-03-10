@@ -18,7 +18,9 @@ namespace ChatPOI
             Application.SetCompatibleTextRenderingDefault(false);
             WindowLogin f = new WindowLogin();
             if (f.ShowDialog() == DialogResult.OK)
+            {
                 Application.Run(new WindowContacts());
+            }
             else
                 Application.Exit();
         }

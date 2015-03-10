@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace ChatPOI
 {
     
-    abstract class globals
+    class globals
     {
         static string _username;
+
+        public static string receivedText;
 
         public static string username
         {

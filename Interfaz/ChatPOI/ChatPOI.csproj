@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientConection.cs" />
     <Compile Include="globals.cs" />
     <Compile Include="WindowGroup.cs">
       <SubType>Form</SubType>
