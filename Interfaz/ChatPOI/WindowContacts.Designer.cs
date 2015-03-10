@@ -82,14 +82,13 @@
             this.comboBoxUserStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxUserStatus.FormattingEnabled = true;
             this.comboBoxUserStatus.Items.AddRange(new object[] {
-            "Ausente",
             "Disponible",
-            "Invisible",
-            "Ocupado"});
+            "Ausente",
+            "Ocupado",
+            "Invisible"});
             this.comboBoxUserStatus.Location = new System.Drawing.Point(109, 101);
             this.comboBoxUserStatus.Name = "comboBoxUserStatus";
             this.comboBoxUserStatus.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxUserStatus.Sorted = true;
             this.comboBoxUserStatus.TabIndex = 2;
             // 
             // panelUserInfo
@@ -224,6 +223,7 @@
             this.dataGridViewContacts.RowHeadersVisible = false;
             this.dataGridViewContacts.Size = new System.Drawing.Size(453, 236);
             this.dataGridViewContacts.TabIndex = 5;
+            this.dataGridViewContacts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContacts_CellDoubleClick);
             // 
             // ColumnStatus
             // 

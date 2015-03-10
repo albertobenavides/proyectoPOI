@@ -15,6 +15,7 @@ namespace ChatPOI
         public WindowContacts()
         {
             InitializeComponent();
+            textBoxUserName.Text = globals.username;
             dataGridViewContacts.Rows.Add(new object[] { "Disponible", "Contacto", "Escribiendo..." });
             comboBoxUserStatus.SelectedIndex = 0;
         }
@@ -108,6 +109,12 @@ namespace ChatPOI
                     }
                 }
             }
+        }
+
+        private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FormChat f = new FormChat();
+            f.ShowDialog();
         }
     }
 }
