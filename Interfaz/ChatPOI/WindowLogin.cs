@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,22 +17,28 @@ namespace ChatPOI
     {
         char temp;
 
-        
+        Dictionary<string, string> users  = new Dictionary<string, string>();
 
         public WindowLogin()
         {
             InitializeComponent();
 
-                //using (StreamReader reader = new StreamReader("users.txt"))
-                //{
-                //    users.Add(reader.ReadLine());
-                //}
-        }
+            users.Add("", "");
 
+            using (StreamWriter writer = new StreamWriter("users.txt", true))
+            {
+                writer.Write("");
+            }
 
-        private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
+            using (StreamReader reader = new StreamReader("users.txt"))
+            {
+                string temp;
+                while ((temp = reader.ReadLine()) != null)
+                {
+                    string[] s = temp.Split(',');
+                    users.Add(s[0], s[1]);
+                }       
+            }
         }
 
         private void textBoxUser_Enter(object sender, EventArgs e)
@@ -80,7 +87,31 @@ namespace ChatPOI
         {
             if (e.KeyChar == (char)Keys.Return && (textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
             {
-                this.DialogResult = DialogResult.OK;
+                if (users.ContainsKey(textBoxUser.Text))
+                {
+                    string s;
+                    if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                    {
+                        globals.username = textBoxUser.Text;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
+            }
+        }
+
+        private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+            {
+                if (users.ContainsKey(textBoxUser.Text))
+                {
+                    string s;
+                    if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                    {
+                        globals.username = textBoxUser.Text;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                }
             }
         }
 
@@ -93,8 +124,7 @@ namespace ChatPOI
                 {
                     writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
                 }
-
-                
+                users.Add(textBoxUser.Text, textBoxPassword.Text);
             }
 
         }
