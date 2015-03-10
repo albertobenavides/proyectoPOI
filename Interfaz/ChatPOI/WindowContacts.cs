@@ -143,14 +143,13 @@ namespace ChatPOI
                     }
                 }
             }
-            else if (globals.receivedText.Substring(0, 4) == "$mr$")
+            if (globals.receivedText.Substring(0, 4) == "$mr$")
             {
                 string userFrom = globals.receivedText.Substring(4);
-                userFrom = userFrom.Substring(0,userFrom.IndexOf("$mr$"));
+                userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
                 string message = globals.receivedText.Substring(4);
                 message = message.Substring(globals.receivedText.IndexOf("$sm$"));
-                dataGridViewContacts.Rows.Add(new object[] { "Disponible", "lol", "Mensaje" }); 
-                //Application.OpenForms[userFrom].Text = "lol";
+                this.Text = message;
             }
         }
     }

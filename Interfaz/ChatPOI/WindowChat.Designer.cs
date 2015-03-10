@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonAddContact = new System.Windows.Forms.Button();
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonEmoticon = new System.Windows.Forms.Button();
@@ -44,8 +45,9 @@
             this.panelContact = new System.Windows.Forms.Panel();
             this.labelContactName = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
-            this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
+            this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -222,6 +224,15 @@
             this.panelBottom.Size = new System.Drawing.Size(545, 114);
             this.panelBottom.TabIndex = 12;
             // 
+            // richTextBoxMessage
+            // 
+            this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
+            this.richTextBoxMessage.Name = "richTextBoxMessage";
+            this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
+            this.richTextBoxMessage.TabIndex = 12;
+            this.richTextBoxMessage.Text = "";
+            // 
             // flowLayoutPanelComunication
             // 
             this.flowLayoutPanelComunication.AutoSize = true;
@@ -236,15 +247,6 @@
             this.flowLayoutPanelComunication.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.flowLayoutPanelComunication.Size = new System.Drawing.Size(545, 27);
             this.flowLayoutPanelComunication.TabIndex = 11;
-            // 
-            // richTextBoxMessage
-            // 
-            this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
-            this.richTextBoxMessage.Name = "richTextBoxMessage";
-            this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
-            this.richTextBoxMessage.TabIndex = 12;
-            this.richTextBoxMessage.Text = "";
             // 
             // FormChat
             // 
@@ -294,5 +296,6 @@
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelContactName;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
+        private System.Windows.Forms.Timer timer1;
     }
 }
