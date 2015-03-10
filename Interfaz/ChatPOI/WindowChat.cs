@@ -12,9 +12,22 @@ namespace ChatPOI
 {
     public partial class FormChat: Form
     {
-        public FormChat()
+        public FormChat(string s)
         {
             InitializeComponent();
+            labelContactName.Text = s;
+            labelUserName.Text = globals.username;
+            this.Text = s;
+        }
+
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+            string s;
+            s = "$sm$";
+            s += labelContactName.Text + ",";
+            s += "$sm$";
+            s += richTextBoxMessage.Text;
+            globals.sendedText = s;
         }
     }
 }

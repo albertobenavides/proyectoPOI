@@ -11,6 +11,8 @@ namespace ChatPOI
     {
         static string _username;
 
+        public static string sendedText;
+
         public static string receivedText;
 
         public static string username

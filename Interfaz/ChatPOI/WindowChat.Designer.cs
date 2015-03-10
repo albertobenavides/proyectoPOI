@@ -45,7 +45,7 @@
             this.labelContactName = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -75,6 +75,7 @@
             this.buttonSend.TabIndex = 9;
             this.buttonSend.Text = "Enviar";
             this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // buttonEmoticon
             // 
@@ -128,13 +129,14 @@
             // 
             // richTextBoxChat
             // 
+            this.richTextBoxChat.BackColor = System.Drawing.Color.White;
             this.richTextBoxChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
             this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxChat.Name = "richTextBoxChat";
             this.richTextBoxChat.ReadOnly = true;
             this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxChat.Size = new System.Drawing.Size(545, 438);
+            this.richTextBoxChat.Size = new System.Drawing.Size(545, 324);
             this.richTextBoxChat.TabIndex = 3;
             this.richTextBoxChat.Text = "";
             // 
@@ -212,8 +214,8 @@
             // 
             // panelBottom
             // 
+            this.panelBottom.Controls.Add(this.richTextBoxMessage);
             this.panelBottom.Controls.Add(this.flowLayoutPanelComunication);
-            this.panelBottom.Controls.Add(this.textBoxMessage);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.Location = new System.Drawing.Point(122, 324);
             this.panelBottom.Name = "panelBottom";
@@ -227,23 +229,22 @@
             this.flowLayoutPanelComunication.Controls.Add(this.buttonSend);
             this.flowLayoutPanelComunication.Controls.Add(this.buttonEmoticon);
             this.flowLayoutPanelComunication.Controls.Add(this.buttonBuzz);
-            this.flowLayoutPanelComunication.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanelComunication.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanelComunication.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanelComunication.Location = new System.Drawing.Point(0, 85);
+            this.flowLayoutPanelComunication.Location = new System.Drawing.Point(0, 87);
             this.flowLayoutPanelComunication.Name = "flowLayoutPanelComunication";
             this.flowLayoutPanelComunication.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.flowLayoutPanelComunication.Size = new System.Drawing.Size(545, 27);
             this.flowLayoutPanelComunication.TabIndex = 11;
             // 
-            // textBoxMessage
+            // richTextBoxMessage
             // 
-            this.textBoxMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxMessage.Location = new System.Drawing.Point(0, 0);
-            this.textBoxMessage.Multiline = true;
-            this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxMessage.Size = new System.Drawing.Size(545, 85);
-            this.textBoxMessage.TabIndex = 10;
+            this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
+            this.richTextBoxMessage.Name = "richTextBoxMessage";
+            this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
+            this.richTextBoxMessage.TabIndex = 12;
+            this.richTextBoxMessage.Text = "";
             // 
             // FormChat
             // 
@@ -251,8 +252,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(667, 438);
-            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.richTextBoxChat);
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -286,12 +287,12 @@
         private System.Windows.Forms.Button buttonAddContact;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelBottom;
-        private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.Panel panelContact;
         private System.Windows.Forms.Panel panelUser;
         private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelComunication;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelContactName;
+        private System.Windows.Forms.RichTextBox richTextBoxMessage;
     }
 }

@@ -17,8 +17,8 @@ namespace ChatPOI
             InitializeComponent();
             ClientConection.ConnectToServer(globals.username);
             textBoxUserName.Text = globals.username;
-            dataGridViewContacts.Rows.Add(new object[] { "Disponible", "Contacto", "Escribiendo..." });
             comboBoxUserStatus.SelectedIndex = 0;
+            globals.sendedText = "$$$$";
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -115,8 +115,8 @@ namespace ChatPOI
 
         private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormChat f = new FormChat();
-            f.ShowDialog();
+            FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
+            f.Show();
         }
 
         private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
@@ -126,7 +126,8 @@ namespace ChatPOI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ClientConection.SendRequest("$$$$");
+            ClientConection.SendRequest(globals.sendedText);
+            globals.sendedText = "$$$$";
             ClientConection.ReceiveResponse();
             if(globals.receivedText.Substring(0, 4) == "$cl$")
             {
@@ -135,9 +136,21 @@ namespace ChatPOI
 
                 foreach (string s in clientsConnected)
                 {
-                    dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
-                    dataGridViewContacts.Focus();
+                    if (s != globals.username)
+                    {
+                        dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
+                        dataGridViewContacts.Focus();
+                    }
                 }
+            }
+            else if (globals.receivedText.Substring(0, 4) == "$mr$")
+            {
+                string userFrom = globals.receivedText.Substring(4);
+                userFrom = userFrom.Substring(0,userFrom.IndexOf("$mr$"));
+                string message = globals.receivedText.Substring(4);
+                message = message.Substring(globals.receivedText.IndexOf("$sm$"));
+                dataGridViewContacts.Rows.Add(new object[] { "Disponible", "lol", "Mensaje" }); 
+                //Application.OpenForms[userFrom].Text = "lol";
             }
         }
     }
