@@ -61,7 +61,7 @@
             this.buttonAddContact.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddContact.Name = "buttonAddContact";
             this.buttonAddContact.Size = new System.Drawing.Size(56, 19);
-            this.buttonAddContact.TabIndex = 10;
+            this.buttonAddContact.TabIndex = 8;
             this.buttonAddContact.Text = "Add ";
             this.buttonAddContact.UseVisualStyleBackColor = true;
             // 
@@ -72,7 +72,7 @@
             this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(56, 23);
-            this.buttonSend.TabIndex = 9;
+            this.buttonSend.TabIndex = 2;
             this.buttonSend.Text = "Enviar";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
@@ -83,7 +83,7 @@
             this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEmoticon.Name = "buttonEmoticon";
             this.buttonEmoticon.Size = new System.Drawing.Size(56, 23);
-            this.buttonEmoticon.TabIndex = 8;
+            this.buttonEmoticon.TabIndex = 4;
             this.buttonEmoticon.Text = "Emoticon";
             this.buttonEmoticon.UseVisualStyleBackColor = true;
             // 
@@ -93,7 +93,7 @@
             this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBuzz.Name = "buttonBuzz";
             this.buttonBuzz.Size = new System.Drawing.Size(56, 23);
-            this.buttonBuzz.TabIndex = 7;
+            this.buttonBuzz.TabIndex = 3;
             this.buttonBuzz.Text = "Buzz";
             this.buttonBuzz.UseVisualStyleBackColor = true;
             // 
@@ -103,7 +103,7 @@
             this.buttonCall.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCall.Name = "buttonCall";
             this.buttonCall.Size = new System.Drawing.Size(56, 19);
-            this.buttonCall.TabIndex = 6;
+            this.buttonCall.TabIndex = 7;
             this.buttonCall.Text = "Call";
             this.buttonCall.UseVisualStyleBackColor = true;
             // 
@@ -113,7 +113,7 @@
             this.buttonCamera.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCamera.Name = "buttonCamera";
             this.buttonCamera.Size = new System.Drawing.Size(56, 19);
-            this.buttonCamera.TabIndex = 5;
+            this.buttonCamera.TabIndex = 6;
             this.buttonCamera.Text = "Cam";
             this.buttonCamera.UseVisualStyleBackColor = true;
             // 
@@ -123,7 +123,7 @@
             this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(56, 19);
-            this.buttonPlay.TabIndex = 4;
+            this.buttonPlay.TabIndex = 5;
             this.buttonPlay.Text = "Play";
             this.buttonPlay.UseVisualStyleBackColor = true;
             // 
@@ -138,6 +138,7 @@
             this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBoxChat.Size = new System.Drawing.Size(545, 324);
             this.richTextBoxChat.TabIndex = 3;
+            this.richTextBoxChat.TabStop = false;
             this.richTextBoxChat.Text = "";
             // 
             // pictureBoxContact
@@ -228,8 +229,9 @@
             this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
             this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
-            this.richTextBoxMessage.TabIndex = 12;
+            this.richTextBoxMessage.TabIndex = 1;
             this.richTextBoxMessage.Text = "";
+            this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
             // 
             // flowLayoutPanelComunication
             // 

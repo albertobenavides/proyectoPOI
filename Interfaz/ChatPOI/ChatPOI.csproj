@@ -110,10 +110,55 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\emoticons02.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoticons16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

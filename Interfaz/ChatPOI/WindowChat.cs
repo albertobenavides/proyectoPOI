@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace ChatPOI
 {
     public partial class FormChat: Form
     {
+        Dictionary<string, Bitmap>  emotions;
+
         public FormChat(string s)
         {
             InitializeComponent();
@@ -20,6 +23,23 @@ namespace ChatPOI
             this.Text = s;
             globals.receivedText = "$$$$";
             globals.sendedText = "$$$$";
+            emotions = new Dictionary<string, Bitmap>(16);
+            emotions.Add(":)", Properties.Resources.emoticons01);
+            emotions.Add(":D", Properties.Resources.emoticons02);
+            emotions.Add(";)", Properties.Resources.emoticons03);
+            emotions.Add(":o", Properties.Resources.emoticons04);
+            emotions.Add(":p", Properties.Resources.emoticons05);
+            emotions.Add("8)", Properties.Resources.emoticons06);
+            emotions.Add(">:(", Properties.Resources.emoticons07);
+            emotions.Add(":s", Properties.Resources.emoticons08);
+            emotions.Add(":$", Properties.Resources.emoticons09);
+            emotions.Add(":(", Properties.Resources.emoticons10);
+            emotions.Add(":'(|", Properties.Resources.emoticons11);
+            emotions.Add(":|", Properties.Resources.emoticons12);
+            emotions.Add("<3", Properties.Resources.emoticons13);
+            emotions.Add("</3", Properties.Resources.emoticons14);
+            emotions.Add(":3", Properties.Resources.emoticons15);
+            emotions.Add(":*", Properties.Resources.emoticons16);
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -28,15 +48,55 @@ namespace ChatPOI
             s = "$sm$";
             s += this.Text + ",";
             s += "$sm$";
-            s += richTextBoxMessage.Text;
+
+            for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
+            {
+                if (richTextBoxMessage.Text[i] == ' ')
+                {
+                    richTextBoxMessage.Select(i, 1);
+                    if ((richTextBoxMessage.SelectionType & RichTextBoxSelectionTypes.Object) == RichTextBoxSelectionTypes.Object)
+                    {
+                        Clipboard.Clear();
+                        richTextBoxMessage.Copy();
+                        Bitmap temp = (Bitmap)Clipboard.GetData("Bitmap");
+                        foreach (Bitmap b in emotions.Values)
+                        {
+                            if (temp.GetPixel(15,15) == b.GetPixel(15,15))
+                            {
+                                s += emotions.FirstOrDefault(x => x.Value == b).Key;
+                            }
+                        }
+                    }
+                    else
+                        s += richTextBoxMessage.Text[i];
+                }
+                else
+                    s += richTextBoxMessage.Text[i];
+            }
             globals.sendedText = s;
-            richTextBoxChat.Text += "\nTú: " + richTextBoxMessage.Text;
+            s = s.Substring(4);
+            s = s.Substring(s.IndexOf("$sm$") + 4);
+            richTextBoxChat.Text += "\nTú: " + s;
             richTextBoxMessage.Text = "";
         }
 
         public void setMessage(string s)
         {
             richTextBoxChat.Text += s;
+        }
+
+        private void richTextBoxMessage_TextChanged(object sender, EventArgs e)
+        {
+            foreach (string emote in emotions.Keys)
+            {
+                while (richTextBoxMessage.Text.Contains(emote))
+                {
+                    int ind = richTextBoxMessage.Text.IndexOf(emote);
+                    richTextBoxMessage.Select(ind, emote.Length);
+                    Clipboard.SetImage((Image)emotions[emote]);
+                    richTextBoxMessage.Paste();
+                }
+            }
         }
     }
 }
