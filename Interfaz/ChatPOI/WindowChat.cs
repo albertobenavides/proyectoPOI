@@ -44,6 +44,47 @@ namespace ChatPOI
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
+            sendMessage();
+        }
+
+        public void setMessage(string s)
+        {
+            richTextBoxChat.AppendText(s);
+            foreach (string emote in emotions.Keys)
+            {
+                while (richTextBoxChat.Text.Contains(emote))
+                {
+                    int ind = richTextBoxChat.Text.IndexOf(emote);
+                    richTextBoxChat.Select(ind, emote.Length);
+                    Clipboard.SetImage((Image)emotions[emote]);
+                    richTextBoxChat.Paste();
+                }
+            }
+            richTextBoxChat.ScrollToCaret();
+        }
+
+        private void richTextBoxMessage_TextChanged(object sender, EventArgs e)
+        {
+            foreach (string emote in emotions.Keys)
+            {
+                while (richTextBoxMessage.Text.Contains(emote))
+                {
+                    int ind = richTextBoxMessage.Text.IndexOf(emote);
+                    richTextBoxMessage.Select(ind, emote.Length);
+                    Clipboard.SetImage((Image)emotions[emote]);
+                    richTextBoxMessage.Paste();
+                }
+            }
+        }
+
+        private void richTextBoxMessage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && richTextBoxMessage.Text != "")
+                sendMessage();
+        }
+
+        private void sendMessage()
+        {
             string s;
             s = "$sm$";
             s += this.Text + ",";
@@ -61,7 +102,7 @@ namespace ChatPOI
                         Bitmap temp = (Bitmap)Clipboard.GetData("Bitmap");
                         foreach (Bitmap b in emotions.Values)
                         {
-                            if (temp.GetPixel(17,19) == b.GetPixel(17,19)
+                            if (temp.GetPixel(17, 19) == b.GetPixel(17, 19)
                                 && temp.GetPixel(6, 12) == b.GetPixel(6, 12))
                             {
                                 s += emotions.FirstOrDefault(x => x.Value == b).Key;
@@ -77,31 +118,7 @@ namespace ChatPOI
             globals.sendedText = s;
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
-            richTextBoxChat.Text += "\nTú: " + s;
-            richTextBoxMessage.Text = "";
-        }
-
-        public void setMessage(string s)
-        {
-            richTextBoxChat.Text += s;
-        }
-
-        private void richTextBoxMessage_TextChanged(object sender, EventArgs e)
-        {
-            foreach (string emote in emotions.Keys)
-            {
-                while (richTextBoxMessage.Text.Contains(emote))
-                {
-                    int ind = richTextBoxMessage.Text.IndexOf(emote);
-                    richTextBoxMessage.Select(ind, emote.Length);
-                    Clipboard.SetImage((Image)emotions[emote]);
-                    richTextBoxMessage.Paste();
-                }
-            }
-        }
-
-        private void buttonBuzz_Click(object sender, EventArgs e)
-        {
+            richTextBoxChat.AppendText("\nTú: " + s);
             foreach (string emote in emotions.Keys)
             {
                 while (richTextBoxChat.Text.Contains(emote))
@@ -112,6 +129,9 @@ namespace ChatPOI
                     richTextBoxChat.Paste();
                 }
             }
+            richTextBoxChat.ScrollToCaret();
+            richTextBoxMessage.Text = "";
+            richTextBoxMessage.Focus();
         }
     }
 }

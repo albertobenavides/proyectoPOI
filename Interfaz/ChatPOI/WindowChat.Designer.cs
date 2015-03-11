@@ -96,7 +96,6 @@
             this.buttonBuzz.TabIndex = 3;
             this.buttonBuzz.Text = "Buzz";
             this.buttonBuzz.UseVisualStyleBackColor = true;
-            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
             // 
             // buttonCall
             // 
@@ -232,6 +231,7 @@
             this.richTextBoxMessage.TabIndex = 0;
             this.richTextBoxMessage.Text = "";
             this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
+            this.richTextBoxMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxMessage_KeyPress);
             // 
             // flowLayoutPanelComunication
             // 
