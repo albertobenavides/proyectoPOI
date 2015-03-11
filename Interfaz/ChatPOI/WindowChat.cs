@@ -24,9 +24,10 @@ namespace ChatPOI
         {
             string s;
             s = "$sm$";
-            s += labelContactName.Text + ",";
+            s += this.Text + ",";
             s += "$sm$";
             s += richTextBoxMessage.Text;
+            globals.sendedText = null;
             globals.sendedText = s;
         }
     }

@@ -126,10 +126,15 @@ namespace ChatPOI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ClientConection.SendRequest(globals.sendedText);
+            ClientConection.SendString(globals.sendedText);
+            globals.sendedText = null;
             globals.sendedText = "$$$$";
             ClientConection.ReceiveResponse();
-            if(globals.receivedText.Substring(0, 4) == "$cl$")
+            if (globals.receivedText.Contains(">>>>"))
+            {
+                return;
+            }
+            else if (globals.receivedText.Substring(0, 4) == "$cl$")
             {
                 dataGridViewContacts.Rows.Clear();
                 string[] clientsConnected = globals.receivedText.Substring(4, globals.receivedText.Length - 5).Split(',');
@@ -143,14 +148,16 @@ namespace ChatPOI
                     }
                 }
             }
-            if (globals.receivedText.Substring(0, 4) == "$mr$")
+            else if (globals.receivedText.Substring(0, 4) == "$mr$")
             {
                 string userFrom = globals.receivedText.Substring(4);
                 userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
                 string message = globals.receivedText.Substring(4);
-                message = message.Substring(globals.receivedText.IndexOf("$sm$"));
+                message = message.Substring(message.IndexOf("$mr$") + 4);
                 this.Text = message;
             }
+            else
+                return;
         }
     }
 }

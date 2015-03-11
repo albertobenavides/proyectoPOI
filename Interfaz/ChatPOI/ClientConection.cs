@@ -23,7 +23,7 @@ namespace ChatPOI
             {
                 IPAddress myIP = IPAddress.Parse("0.0.0.0");
 
-                IPAddress[] localIP = Dns.GetHostAddresses("RAFALAPTOP-PC");
+                IPAddress[] localIP = Dns.GetHostAddresses("Alberto-PC");
                 foreach (IPAddress address in localIP)
                 {
                     if (address.AddressFamily == AddressFamily.InterNetwork)
@@ -44,27 +44,16 @@ namespace ChatPOI
             }
         }
 
-        /// <summary>
-        /// Close socket and exit app
-        /// </summary>
+
         public static void Exit()
         {
-            SendString("exit"); // Tell the server we re exiting
+            SendString("exit");
             _clientSocket.Shutdown(SocketShutdown.Both);
             _clientSocket.Close();
             Environment.Exit(0);
         }
 
-        public static void SendRequest(string s)
-        {
-            string request = s;
-            SendString(request);
-        }
-
-        /// <summary>
-        /// Sends a string to the server with ASCII encoding
-        /// </summary>
-        private static void SendString(string text)
+        public static void SendString(string text)
         {
             byte[] buffer = Encoding.ASCII.GetBytes(text);
             _clientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
@@ -74,9 +63,11 @@ namespace ChatPOI
         {
             var buffer = new byte[2048];
             int received = _clientSocket.Receive(buffer, SocketFlags.None);
-            if (received == 0) return;
+            if (received == 0)
+                globals.receivedText = ">>>>";
             var data = new byte[received];
             Array.Copy(buffer, data, received);
+            globals.receivedText = null;
             globals.receivedText = Encoding.ASCII.GetString(data);
         }
     }
