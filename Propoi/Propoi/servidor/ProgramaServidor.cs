@@ -130,29 +130,54 @@ namespace Servidor
 
             else if (text.Substring(0, 4) == "$sm$")
             {
-                text = text.Substring(4);
-                string clientstring = text.Substring(0, text.IndexOf("$sm$"));
-
-                string[] users = clientstring.Split(',');
-
-                string msgtosend;
-                msgtosend = "$mr$";
-                msgtosend += _clientsockets.FirstOrDefault(x => x.Value == current).Key + "$mr$";
-                text = text.Substring(text.IndexOf("$sm$") + 4);
-                msgtosend += text;
-
-                byte[] data = Encoding.UTF8.GetBytes(msgtosend);
-
-                foreach (string s in users)
+                try
                 {
-                    if (s != "")
+                    text = text.Substring(4);
+                    string clientstring = text.Substring(0, text.IndexOf("$sm$"));
+
+                    string[] users = clientstring.Split(',');
+
+                    string msgtosend;
+                    msgtosend = "$mr$";
+                    msgtosend += _clientsockets.FirstOrDefault(x => x.Value == current).Key + "$mr$";
+                    text = text.Substring(text.IndexOf("$sm$") + 4);
+                    msgtosend += text;
+
+                    byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+
+                    foreach (string s in users)
                     {
-                        _clientsockets[s].Send(data);
-                        Console.WriteLine("@" + s + ": " + msgtosend);
+                        if (s != "")
+                        {
+                            _clientsockets[s].Send(data);
+                            Console.WriteLine("@" + s + ": " + msgtosend);
+                        }
+                    }
+                    Console.WriteLine("");
+                }
+                catch 
+                {
+                    Console.WriteLine("Servidor: Error al enviar el mensaje\n");
+                    byte[] data = Encoding.UTF8.GetBytes("Servidor: Error al enviar el mensaje.");
+                    current.Send(data);
+                }
+            }
+
+            else if (text.Substring(0, 4) == "$cs$")
+            {
+                byte[] data = Encoding.UTF8.GetBytes(text);
+
+                foreach (KeyValuePair<string, Socket> v in _clientsockets)
+                {
+                    if (v.Value != current)
+                    {
+                        v.Value.Send(data);
+                        Console.WriteLine("@" + v.Key + ": " + text);
                     }
                 }
                 Console.WriteLine("");
             }
+
             else if (text.ToLower() == "$exit$")
             {
                 Console.WriteLine("Cliente "
@@ -161,7 +186,26 @@ namespace Servidor
                 current.Shutdown(SocketShutdown.Both);
                 current.Close();
                 _clientsockets.Remove(_clientsockets.FirstOrDefault(x => x.Value == current).Key);
-                
+
+                if (_clientsockets.Count > 0)
+                {
+
+                    string cdata = "$cl$";
+
+                    foreach (KeyValuePair<string, Socket> v in _clientsockets)
+                    {
+                        cdata += v.Key + ",";
+                    }
+
+                    byte[] data = Encoding.UTF8.GetBytes(cdata);
+
+                    foreach (KeyValuePair<string, Socket> v in _clientsockets)
+                    {
+                        v.Value.Send(data);
+                        Console.WriteLine("@" + v.Key + ": " + cdata);
+                    }
+                    Console.WriteLine("");
+                }
                 return;
             }
             else

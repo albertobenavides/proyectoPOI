@@ -55,8 +55,21 @@ namespace ChatPOI
 
         private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
-            f.Show();
+            bool isCreated = false;
+            foreach (FormChat temp in Application.OpenForms.OfType<FormChat>())
+            {
+                if (temp.Text == dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString())
+                {
+                    isCreated = true;
+                    temp.Focus();
+                }
+            }
+            if (!isCreated)
+            {
+                FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
+                f.Show();
+            }
+
         }
 
         private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
@@ -68,7 +81,8 @@ namespace ChatPOI
         {
             ClientConection.SendString(globals.sendedText);
             
-            if (globals.sendedText.Substring(0, 4) != "$sm$")
+            if (globals.sendedText.Substring(0, 4) != "$sm$"
+                && globals.sendedText.Substring(0, 4) != "$cs$")
                 ClientConection.ReceiveResponse();
 
             globals.sendedText = "$$$$";
@@ -94,6 +108,7 @@ namespace ChatPOI
                         }
                     }
                 }
+
                 else if (globals.receivedText.Substring(0, 4) == "$mr$")
                 {
                     string userFrom = globals.receivedText.Substring(4);
@@ -101,16 +116,41 @@ namespace ChatPOI
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$mr$") + 4);
 
+                    foreach(DataGridViewRow dg in dataGridViewContacts.Rows)
+                    {
+                        if (dg.Cells[1].Value.ToString() == userFrom)
+                            dg.Cells[2].Value = message;
+                    }
+
                     foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
                     {
                         if (f.Text == userFrom)
                             f.setMessage("\n" + userFrom + ": " + message);
                     }
                 }
+
+                else if (globals.receivedText.Substring(0, 4) == "$cs$")
+                {
+                    string userFrom = globals.receivedText.Substring(4);
+                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                    string status = globals.receivedText.Substring(4);
+                    status = status.Substring(status.IndexOf("$cs$") + 4);
+
+                    foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                    {
+                        if (dg.Cells[1].Value.ToString() == userFrom)
+                            dg.Cells[0].Value = status;
+                    }
+                }
                 else
                     return;
             }
             globals.receivedText = "$$$$";
+        }
+
+        private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text;
         }
     }
 }
