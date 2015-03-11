@@ -18,6 +18,8 @@ namespace ChatPOI
             labelContactName.Text = s;
             labelUserName.Text = globals.username;
             this.Text = s;
+            globals.receivedText = "$$$$";
+            globals.sendedText = "$$$$";
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -27,8 +29,14 @@ namespace ChatPOI
             s += this.Text + ",";
             s += "$sm$";
             s += richTextBoxMessage.Text;
-            globals.sendedText = null;
             globals.sendedText = s;
+            richTextBoxChat.Text += "\nTú: " + richTextBoxMessage.Text;
+            richTextBoxMessage.Text = "";
+        }
+
+        public void setMessage(string s)
+        {
+            richTextBoxChat.Text += s;
         }
     }
 }

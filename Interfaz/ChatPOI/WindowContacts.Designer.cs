@@ -40,9 +40,7 @@
             this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.flowLayoutPanelAddContact = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonAddContact = new System.Windows.Forms.Button();
-            this.textBoxAddContact = new System.Windows.Forms.TextBox();
-            this.labelAddContact = new System.Windows.Forms.Label();
+            this.labelServerMessage = new System.Windows.Forms.Label();
             this.dataGridViewContacts = new System.Windows.Forms.DataGridView();
             this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -136,56 +134,27 @@
             this.textBoxSearch.TabIndex = 3;
             this.textBoxSearch.Text = "Buscar contacto...";
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
-            this.textBoxSearch.Enter += new System.EventHandler(this.textBoxSearch_Enter);
-            this.textBoxSearch.Leave += new System.EventHandler(this.textBoxSearch_Leave);
             // 
             // flowLayoutPanelAddContact
             // 
             this.flowLayoutPanelAddContact.AutoSize = true;
             this.flowLayoutPanelAddContact.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelAddContact.Controls.Add(this.buttonAddContact);
-            this.flowLayoutPanelAddContact.Controls.Add(this.textBoxAddContact);
-            this.flowLayoutPanelAddContact.Controls.Add(this.labelAddContact);
+            this.flowLayoutPanelAddContact.Controls.Add(this.labelServerMessage);
             this.flowLayoutPanelAddContact.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanelAddContact.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanelAddContact.Location = new System.Drawing.Point(0, 380);
+            this.flowLayoutPanelAddContact.Location = new System.Drawing.Point(0, 396);
             this.flowLayoutPanelAddContact.Name = "flowLayoutPanelAddContact";
-            this.flowLayoutPanelAddContact.Size = new System.Drawing.Size(453, 29);
+            this.flowLayoutPanelAddContact.Size = new System.Drawing.Size(453, 13);
             this.flowLayoutPanelAddContact.TabIndex = 9;
             // 
-            // buttonAddContact
+            // labelServerMessage
             // 
-            this.buttonAddContact.Location = new System.Drawing.Point(425, 3);
-            this.buttonAddContact.Name = "buttonAddContact";
-            this.buttonAddContact.Size = new System.Drawing.Size(25, 23);
-            this.buttonAddContact.TabIndex = 7;
-            this.buttonAddContact.Text = "+";
-            this.buttonAddContact.UseVisualStyleBackColor = true;
-            this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
-            // 
-            // textBoxAddContact
-            // 
-            this.textBoxAddContact.AcceptsReturn = true;
-            this.textBoxAddContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAddContact.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxAddContact.Location = new System.Drawing.Point(303, 3);
-            this.textBoxAddContact.Name = "textBoxAddContact";
-            this.textBoxAddContact.Size = new System.Drawing.Size(116, 20);
-            this.textBoxAddContact.TabIndex = 6;
-            this.textBoxAddContact.Text = "Nombre de usuario";
-            this.textBoxAddContact.Enter += new System.EventHandler(this.textBoxAddContact_Enter);
-            this.textBoxAddContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAddContact_KeyPress);
-            this.textBoxAddContact.Leave += new System.EventHandler(this.textBoxAddContact_Leave);
-            // 
-            // labelAddContact
-            // 
-            this.labelAddContact.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelAddContact.AutoSize = true;
-            this.labelAddContact.Location = new System.Drawing.Point(212, 8);
-            this.labelAddContact.Name = "labelAddContact";
-            this.labelAddContact.Size = new System.Drawing.Size(85, 13);
-            this.labelAddContact.TabIndex = 2;
-            this.labelAddContact.Text = "Añadir contacto:";
+            this.labelServerMessage.AutoSize = true;
+            this.labelServerMessage.Location = new System.Drawing.Point(365, 0);
+            this.labelServerMessage.Name = "labelServerMessage";
+            this.labelServerMessage.Size = new System.Drawing.Size(85, 13);
+            this.labelServerMessage.TabIndex = 2;
+            this.labelServerMessage.Text = "Añadir contacto:";
             // 
             // dataGridViewContacts
             // 
@@ -222,7 +191,7 @@
             this.dataGridViewContacts.ReadOnly = true;
             this.dataGridViewContacts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewContacts.RowHeadersVisible = false;
-            this.dataGridViewContacts.Size = new System.Drawing.Size(453, 236);
+            this.dataGridViewContacts.Size = new System.Drawing.Size(453, 252);
             this.dataGridViewContacts.TabIndex = 5;
             this.dataGridViewContacts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContacts_CellDoubleClick);
             // 
@@ -268,7 +237,6 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // WindowContacts
@@ -309,9 +277,7 @@
         private System.Windows.Forms.LinkLabel linkLabelLogout;
         private System.Windows.Forms.Panel panelLogout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAddContact;
-        private System.Windows.Forms.Button buttonAddContact;
-        private System.Windows.Forms.TextBox textBoxAddContact;
-        private System.Windows.Forms.Label labelAddContact;
+        private System.Windows.Forms.Label labelServerMessage;
         private System.Windows.Forms.DataGridView dataGridViewContacts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnContactName;

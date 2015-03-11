@@ -35,7 +35,7 @@ namespace ChatPOI
                 {
                     attempts++;
                     _clientSocket.Connect(myIP, _PORT);
-                    SendString("$uc$" + username); // $uc$ : (User connected) Nuevo usuario conectado
+                    SendString("$uc$" + username);
                 }
                 catch (SocketException)
                 {
@@ -47,7 +47,7 @@ namespace ChatPOI
 
         public static void Exit()
         {
-            SendString("exit");
+            SendString("$exit$");
             _clientSocket.Shutdown(SocketShutdown.Both);
             _clientSocket.Close();
             Environment.Exit(0);
@@ -55,7 +55,7 @@ namespace ChatPOI
 
         public static void SendString(string text)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(text);
+            byte[] buffer = Encoding.UTF8.GetBytes(text);
             _clientSocket.Send(buffer, 0, buffer.Length, SocketFlags.None);
         }
 
@@ -63,12 +63,10 @@ namespace ChatPOI
         {
             var buffer = new byte[2048];
             int received = _clientSocket.Receive(buffer, SocketFlags.None);
-            if (received == 0)
-                globals.receivedText = ">>>>";
+            if (received == 0) return;
             var data = new byte[received];
             Array.Copy(buffer, data, received);
-            globals.receivedText = null;
-            globals.receivedText = Encoding.ASCII.GetString(data);
+            globals.receivedText = Encoding.UTF8.GetString(data);
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.buttonAddContact = new System.Windows.Forms.Button();
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonEmoticon = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -296,6 +294,5 @@
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelContactName;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
-        private System.Windows.Forms.Timer timer1;
     }
 }
