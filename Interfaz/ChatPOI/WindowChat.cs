@@ -40,10 +40,12 @@ namespace ChatPOI
             emotions.Add("</3", Properties.Resources.emoticons14);
             emotions.Add(":3", Properties.Resources.emoticons15);
             emotions.Add(":*", Properties.Resources.emoticons16);
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
+            if (richTextBoxMessage.Text != "")
             sendMessage();
         }
 
@@ -133,5 +135,106 @@ namespace ChatPOI
             richTextBoxMessage.Text = "";
             richTextBoxMessage.Focus();
         }
+
+        private void buttonEmoticon_Click(object sender, EventArgs e)
+        {
+            groupBoxEmoticons.Visible = true;
+            groupBoxEmoticons.Focus();
+        }
+
+        private void buttonEmoti1_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":)");
+            groupBoxEmoticons.Visible = false;      
+        }
+
+        private void groupBoxEmoticons_Leave(object sender, EventArgs e)
+        {
+            groupBoxEmoticons.Visible = false;
+        }
+
+        private void buttonEmoti2_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":D");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti3_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(";)");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti4_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":o");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti5_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":p");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti6_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText("8)");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti7_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(">:(");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti8_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":s");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti9_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":$");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti11_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":(");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti12_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":'(");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti13_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText("<3");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti14_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText("</3");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti15_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":3");
+            groupBoxEmoticons.Visible = false;   
+        }
+
+        private void buttonEmoti16_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":*");
+            groupBoxEmoticons.Visible = false;   
+        }        
     }
 }
