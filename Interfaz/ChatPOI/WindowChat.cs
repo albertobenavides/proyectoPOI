@@ -34,7 +34,7 @@ namespace ChatPOI
             emotions.Add(":s", Properties.Resources.emoticons08);
             emotions.Add(":$", Properties.Resources.emoticons09);
             emotions.Add(":(", Properties.Resources.emoticons10);
-            emotions.Add(":'(|", Properties.Resources.emoticons11);
+            emotions.Add(":'(", Properties.Resources.emoticons11);
             emotions.Add(":|", Properties.Resources.emoticons12);
             emotions.Add("<3", Properties.Resources.emoticons13);
             emotions.Add("</3", Properties.Resources.emoticons14);
@@ -61,7 +61,8 @@ namespace ChatPOI
                         Bitmap temp = (Bitmap)Clipboard.GetData("Bitmap");
                         foreach (Bitmap b in emotions.Values)
                         {
-                            if (temp.GetPixel(15,15) == b.GetPixel(15,15))
+                            if (temp.GetPixel(17,19) == b.GetPixel(17,19)
+                                && temp.GetPixel(6, 12) == b.GetPixel(6, 12))
                             {
                                 s += emotions.FirstOrDefault(x => x.Value == b).Key;
                             }
@@ -95,6 +96,20 @@ namespace ChatPOI
                     richTextBoxMessage.Select(ind, emote.Length);
                     Clipboard.SetImage((Image)emotions[emote]);
                     richTextBoxMessage.Paste();
+                }
+            }
+        }
+
+        private void buttonBuzz_Click(object sender, EventArgs e)
+        {
+            foreach (string emote in emotions.Keys)
+            {
+                while (richTextBoxChat.Text.Contains(emote))
+                {
+                    int ind = richTextBoxChat.Text.IndexOf(emote);
+                    richTextBoxChat.Select(ind, emote.Length);
+                    Clipboard.SetImage((Image)emotions[emote]);
+                    richTextBoxChat.Paste();
                 }
             }
         }

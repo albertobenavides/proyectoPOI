@@ -96,6 +96,7 @@
             this.buttonBuzz.TabIndex = 3;
             this.buttonBuzz.Text = "Buzz";
             this.buttonBuzz.UseVisualStyleBackColor = true;
+            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
             // 
             // buttonCall
             // 
@@ -134,7 +135,6 @@
             this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
             this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxChat.Name = "richTextBoxChat";
-            this.richTextBoxChat.ReadOnly = true;
             this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBoxChat.Size = new System.Drawing.Size(545, 324);
             this.richTextBoxChat.TabIndex = 3;
@@ -229,7 +229,7 @@
             this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
             this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
-            this.richTextBoxMessage.TabIndex = 1;
+            this.richTextBoxMessage.TabIndex = 0;
             this.richTextBoxMessage.Text = "";
             this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
             // 
