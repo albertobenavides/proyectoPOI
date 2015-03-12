@@ -239,7 +239,7 @@ namespace ChatPOI
 
         private void buttonBuzz_Click(object sender, EventArgs e)
         {
-            zumbido(this);
+            zumbido();
 
             string s;
             s = "$sm$";
@@ -256,17 +256,17 @@ namespace ChatPOI
             richTextBoxMessage.Focus();
         }
 
-        public void zumbido(Form form)
+        public void zumbido()
         {
-            var inicial = form.Location;
+            var inicial = this.Location;
             var rnd = new Random(1500);
             const int t = 10;
             for (int i = 0; i < 10; i++)
             {
-                form.Location = new Point(inicial.X + rnd.Next(-t, t), inicial.Y + rnd.Next(-t, t));
+                this.Location = new Point(inicial.X + rnd.Next(-t, t), inicial.Y + rnd.Next(-t, t));
                 System.Threading.Thread.Sleep(20);
             }
-            form.Location = inicial;
+            this.Location = inicial;
         }
     }
 }

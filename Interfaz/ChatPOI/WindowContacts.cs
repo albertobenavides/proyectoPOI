@@ -116,13 +116,13 @@ namespace ChatPOI
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$mr$") + 4);
 
-                    if (message == "te ha enviado un zumbido")
+                    if (message == "te ha enviado un zumbido.")
                     {
                         foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
                         {
                             if (f.Text == userFrom)
                             {
-                                f.zumbido(f);
+                                f.zumbido();
                                 f.setMessage("\n" + userFrom + " " + message);
                             }
                         }
