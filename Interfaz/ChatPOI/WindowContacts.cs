@@ -116,16 +116,31 @@ namespace ChatPOI
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$mr$") + 4);
 
-                    foreach(DataGridViewRow dg in dataGridViewContacts.Rows)
+                    if (message == "te ha enviado un zumbido")
                     {
-                        if (dg.Cells[1].Value.ToString() == userFrom)
-                            dg.Cells[2].Value = message;
+                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                        {
+                            if (f.Text == userFrom)
+                            {
+                                f.zumbido(f);
+                                f.setMessage("\n" + userFrom + " " + message);
+                            }
+                        }
                     }
-
-                    foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                    else
                     {
-                        if (f.Text == userFrom)
-                            f.setMessage("\n" + userFrom + ": " + message);
+
+                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                        {
+                            if (dg.Cells[1].Value.ToString() == userFrom)
+                                dg.Cells[2].Value = message;
+                        }
+
+                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                        {
+                            if (f.Text == userFrom)
+                                f.setMessage("\n" + userFrom + ": " + message);
+                        }
                     }
                 }
 

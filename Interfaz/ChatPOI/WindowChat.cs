@@ -245,7 +245,7 @@ namespace ChatPOI
             s = "$sm$";
             s += this.Text + ",";
             s += "$sm$";
-            s += "Te ha enviado un zumbido.";
+            s += "te ha enviado un zumbido.";
 
             globals.sendedText = s;
             s = s.Substring(4);
