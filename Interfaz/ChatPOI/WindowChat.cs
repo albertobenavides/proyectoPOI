@@ -235,6 +235,38 @@ namespace ChatPOI
         {
             richTextBoxMessage.AppendText(":*");
             groupBoxEmoticons.Visible = false;   
-        }        
+        }
+
+        private void buttonBuzz_Click(object sender, EventArgs e)
+        {
+            zumbido(this);
+
+            string s;
+            s = "$sm$";
+            s += this.Text + ",";
+            s += "$sm$";
+            s += "Te ha enviado un zumbido.";
+
+            globals.sendedText = s;
+            s = s.Substring(4);
+            s = s.Substring(s.IndexOf("$sm$") + 4);
+            richTextBoxChat.AppendText("\nTú has enviado un zumbido.");
+
+            richTextBoxChat.ScrollToCaret();
+            richTextBoxMessage.Focus();
+        }
+
+        public void zumbido(Form form)
+        {
+            var inicial = form.Location;
+            var rnd = new Random(1500);
+            const int t = 10;
+            for (int i = 0; i < 10; i++)
+            {
+                form.Location = new Point(inicial.X + rnd.Next(-t, t), inicial.Y + rnd.Next(-t, t));
+                System.Threading.Thread.Sleep(20);
+            }
+            form.Location = inicial;
+        }
     }
 }

@@ -116,6 +116,7 @@
             this.buttonBuzz.TabIndex = 3;
             this.buttonBuzz.Text = "Buzz";
             this.buttonBuzz.UseVisualStyleBackColor = true;
+            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
             // 
             // buttonCall
             // 
