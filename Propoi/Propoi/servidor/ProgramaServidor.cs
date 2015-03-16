@@ -109,6 +109,7 @@ namespace Servidor
 
             if (text.Substring(0, 4) == "$uc$")
             {
+
                 _clientsockets.Add(text.Substring(4), current);
                 Console.WriteLine(text.Substring(4) + " se ha conectado!");
                 string cdata = "$cl$";
@@ -117,7 +118,7 @@ namespace Servidor
                 {
                     cdata += v.Key + ",";
                 }
-
+                System.IO.Directory.CreateDirectory("clients\\" + text.Substring(4));
                 byte[] data = Encoding.UTF8.GetBytes(cdata);
 
                 foreach (KeyValuePair<string, Socket> v in _clientsockets)
@@ -144,6 +145,21 @@ namespace Servidor
                     msgtosend += text;
 
                     byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+
+                    if (users.Length == 2)
+                    {
+                        System.IO.Directory.CreateDirectory("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key); // Crear carpeta de quien lo manda
+                        using (StreamWriter writer = new StreamWriter("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + "\\" +users[0] + ".txt", true))
+                        {
+                            writer.Write("\nTú : " + text);
+                        }
+
+                        System.IO.Directory.CreateDirectory("clients\\" + users[0]); // Crear carpeta de quien lo recibe
+                        using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + ".txt", true))
+                        {
+                            writer.Write("\n" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + ": " + text);
+                        }
+                    }
 
                     foreach (string s in users)
                     {
