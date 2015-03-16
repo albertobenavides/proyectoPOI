@@ -90,9 +90,14 @@ namespace ChatPOI
             globals.receivedText = globals.receivedText.Replace("$$$$$", "$");
 
             if (globals.receivedText != "$$$$")
-                            labelServerMessage.Text = globals.receivedText;
+            {
+                globals.receivedText.Substring(globals.receivedText.Length - 4).Replace("$", "");
+                labelServerMessage.Text = globals.receivedText;
+            }
+            
             if (globals.receivedText == "")
                 return;
+            
             else
             {
                 if (globals.receivedText.Substring(0, 4) == "$cl$")
@@ -107,6 +112,7 @@ namespace ChatPOI
                             dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
                         }
                     }
+                    globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',';
                 }
 
                 else if (globals.receivedText.Substring(0, 4) == "$mr$")
@@ -146,15 +152,23 @@ namespace ChatPOI
 
                 else if (globals.receivedText.Substring(0, 4) == "$cs$")
                 {
-                    string userFrom = globals.receivedText.Substring(4);
-                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
-                    string status = globals.receivedText.Substring(4);
-                    status = status.Substring(status.IndexOf("$cs$") + 4);
+                    string[] variousMessages = globals.receivedText.Split(',');
 
-                    foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                    foreach (string s in variousMessages)
                     {
-                        if (dg.Cells[1].Value.ToString() == userFrom)
-                            dg.Cells[0].Value = status;
+                        if (s.Length > 4)
+                        {
+                            string userFrom = s.Substring(4);
+                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                            string status = s.Substring(4);
+                            status = status.Substring(status.IndexOf("$cs$") + 4);
+
+                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                            {
+                                if (dg.Cells[1].Value.ToString() == userFrom)
+                                    dg.Cells[0].Value = status;
+                            }
+                        }
                     }
                 }
                 else
@@ -165,7 +179,7 @@ namespace ChatPOI
 
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text;
+            globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",";
         }
     }
 }
