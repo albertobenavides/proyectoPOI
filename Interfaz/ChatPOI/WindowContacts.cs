@@ -92,7 +92,7 @@ namespace ChatPOI
             if (globals.receivedText != "$$$$")
             {
                 globals.receivedText.Substring(globals.receivedText.Length - 4).Replace("$", "");
-                labelServerMessage.Text = globals.receivedText;
+                //labelServerMessage.Text = globals.receivedText;
             }
             
             if (globals.receivedText == "")
@@ -171,6 +171,21 @@ namespace ChatPOI
                         }
                     }
                 }
+
+                else if (globals.receivedText.Substring(0, 4) == "$gm$")
+                {
+                    string userFrom = globals.receivedText.Substring(4);
+                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$gm$"));
+                    string message = globals.receivedText.Substring(4);
+                    message = message.Substring(message.IndexOf("$gm$") + 4);
+
+                    foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                    {
+                        if (f.Text == userFrom)
+                            f.setMessage(message);
+                    }
+                }
+
                 else
                     return;
             }

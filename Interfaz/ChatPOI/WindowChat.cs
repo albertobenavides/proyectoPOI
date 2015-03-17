@@ -22,7 +22,7 @@ namespace ChatPOI
             labelUserName.Text = globals.username;
             this.Text = s;
             globals.receivedText = "$$$$";
-            globals.sendedText = "$$$$";
+            globals.sendedText = "$gm$" + s;
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);

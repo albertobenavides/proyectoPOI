@@ -127,6 +127,7 @@ namespace Servidor
                     Console.WriteLine("@" + v.Key + ": " + cdata);
                 }
                 Console.WriteLine("");
+
             }
 
             else if (text.Substring(0, 4) == "$sm$")
@@ -192,6 +193,26 @@ namespace Servidor
                     }
                 }
                 Console.WriteLine("");
+            }
+
+            else if (text.Substring(0, 4) == "$gm$")
+            {
+                text = text.Substring(4); // usuario
+
+                string msgtosend;
+                msgtosend = "$gm$" + text + "$gm$";
+                using (StreamReader reader = new StreamReader("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + "\\" + text +  ".txt"))
+                {
+                    string temp;
+                    while ((temp = reader.ReadLine()) != null)
+                    {
+                        msgtosend += temp + "\n";
+                    }
+                }
+
+                byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+
+                current.Send(data);
             }
 
             else if (text.ToLower() == "$exit$")
