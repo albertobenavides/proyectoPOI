@@ -13,24 +13,15 @@ namespace Servidor
 {
     class ProgramaServidor
     {
-        static Socket _serversocket;
-        static Dictionary<string, Socket> _clientsockets = new Dictionary<string, Socket>();
+        static Hashtable _clientList = new Hashtable();
         static int _port = 55555;
         const int _buffersize = 2048;
         static byte[] _buffer = new byte[_buffersize];
         static string _ip;
-        static Socket beginner;
 
         static void Main(string[] args)
         {
-            Console.Title = "MyServidor";
-            SetupServer();
-            Console.ReadLine(); // When we press enter close everything
-            CloseAllSockets();
-        }
-
-        private static void SetupServer()
-        {
+            Console.Title = "Cheet-A-Chat";
             IPAddress[] localip = Dns.GetHostAddresses(Dns.GetHostName());
             foreach (IPAddress address in localip)
             {
@@ -40,218 +31,255 @@ namespace Servidor
                 }
             }
 
-            _serversocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint _ipend = new IPEndPoint(IPAddress.Parse(_ip), _port);
-            _serversocket.Bind(_ipend);
-            _serversocket.Listen(1);
-            _serversocket.BeginAccept(AcceptCallback, null);
+            TcpListener _serversocket = new TcpListener(IPAddress.Parse(_ip), _port);
+            TcpClient _clientSocket = default(TcpClient);
+
+            _serversocket.Start();
+
             Console.WriteLine("///////////////////////////////");
             Console.WriteLine("Servidor Cheet-a-Chat en línea.");
             Console.WriteLine("IP: " + _ip);
             Console.WriteLine("/////////////////////////////// \n");
+            int counter = 0;
+
+            while (Console.ReadLine() != "exit") // Enter Ascii = 13
+            {
+                counter++;
+                _clientSocket = _serversocket.AcceptTcpClient();
+
+                string nickClient = null;
+
+                NetworkStream networkStrem = _clientSocket.GetStream();
+                networkStrem.Read(_buffer, 0, (int)_clientSocket.ReceiveBufferSize);
+                nickClient = System.Text.Encoding.UTF8.GetString(_buffer);
+
+                _clientList.Add(nickClient, _clientSocket);
+
+                sender("$uc$", nickClient); // regresar lista de clientes
+
+                Console.WriteLine("¡" + nickClient + "se ha conectado!");
+                handleClient client = new handleClient();
+                client.startClient(_clientSocket, nickClient, _clientList);
+            }
+
+            foreach (KeyValuePair<string, Socket> v in _clientList)
+            {
+                v.Value.Close();
+            }
+            _serversocket.Stop();
         }
 
-        private static void CloseAllSockets()
+        public static void sender(string message, string userName)
         {
-
-            foreach (KeyValuePair<string, Socket> d in _clientsockets)
+            foreach (DictionaryEntry de in _clientList)
             {
-                d.Value.Shutdown(SocketShutdown.Both);
-                d.Value.Close();
-            }
-            _serversocket.Close();
-        }
+                TcpClient senderSocket;
+                senderSocket = (TcpClient)de.Value;
+                NetworkStream senderStream = senderSocket.GetStream();
+                Byte[] senderBytes = null;
 
-        private static void AcceptCallback(IAsyncResult AR)
-        {
-           
-            try
-            {
-                beginner = _serversocket.EndAccept(AR);
-            }
-            catch (ObjectDisposedException)
-            {
-                return;
-            }
-                     
-            beginner.BeginReceive(_buffer, 0, _buffersize, SocketFlags.None, ReceiveCallback, beginner);
-            _serversocket.BeginAccept(AcceptCallback, null);
-        }
-
-        private static void ReceiveCallback(IAsyncResult AR)
-        {
-            Socket current = (Socket)AR.AsyncState;
-            int received;
-
-            try
-            {
-                received = current.EndReceive(AR);
-            }
-            catch (SocketException)
-            {
-                Console.WriteLine("Cliente " 
-                               + _clientsockets.FirstOrDefault(x => x.Value == current).Key 
-                               + " desconectado\n");
-                current.Close();
-                _clientsockets.Remove(_clientsockets.FirstOrDefault(x => x.Value == current).Key);
-                return;
-            }
-
-            byte[] recBuf = new byte[received];
-            Array.Copy(_buffer, recBuf, received);
-            string text;
-            text = Encoding.UTF8.GetString(recBuf);
-
-            if (!text.Contains("$$$$"))
-            {
-                Console.WriteLine(_clientsockets.FirstOrDefault(x => x.Value == current).Key + ": " + text);
-            }
-
-            if (text.Substring(0, 4) == "$uc$")
-            {
-
-                _clientsockets.Add(text.Substring(4), current);
-                Console.WriteLine(text.Substring(4) + " se ha conectado!");
-                string cdata = "$cl$";
-
-                foreach (KeyValuePair<string, Socket> v in _clientsockets)
+                if (message.Substring(0, 4) == "$uc$") // Cliente conectado
                 {
-                    cdata += v.Key + ",";
+                    Console.WriteLine("¡" + userName + " se ha conectado!");
+                    string dataToSend = "$cl$";
+
+                    foreach (DictionaryEntry client in _clientList)
+                    {
+                        dataToSend += client.Key + ",";
+                    }
+                    
+                    System.IO.Directory.CreateDirectory("clients\\" + userName);
+                    
+                    senderBytes = Encoding.UTF8.GetBytes(dataToSend);
+
+                    foreach (KeyValuePair<string, Socket> v in _clientList)
+                    {
+                        v.Value.Send(senderBytes);
+                        Console.WriteLine("@" + v.Key + ": " + dataToSend);
+                    }
+                    Console.WriteLine("");
                 }
-                System.IO.Directory.CreateDirectory("clients\\" + text.Substring(4));
-                byte[] data = Encoding.UTF8.GetBytes(cdata);
 
-                foreach (KeyValuePair<string, Socket> v in _clientsockets)
+                if (message.Substring(0, 4) == "$sm$")
                 {
-                    v.Value.Send(data);
-                    Console.WriteLine("@" + v.Key + ": " + cdata);
-                }
-                Console.WriteLine("");
+                    message = message.Substring(4);
+                    string clientString = message.Substring(0, message.IndexOf("$sm$"));
 
-            }
+                    string[] users = clientString.Split(',');
 
-            else if (text.Substring(0, 4) == "$sm$")
-            {
-                try
-                {
-                    text = text.Substring(4);
-                    string clientstring = text.Substring(0, text.IndexOf("$sm$"));
+                    string messageToSend;
+                    messageToSend = "$mr$";
+                    messageToSend += userName + "$mr$";
+                    message = message.Substring(message.IndexOf("$sm$") + 4);
+                    messageToSend += message;
 
-                    string[] users = clientstring.Split(',');
-
-                    string msgtosend;
-                    msgtosend = "$mr$";
-                    msgtosend += _clientsockets.FirstOrDefault(x => x.Value == current).Key + "$mr$";
-                    text = text.Substring(text.IndexOf("$sm$") + 4);
-                    msgtosend += text;
-
-                    byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+                    byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
                     if (users.Length == 2)
                     {
-                        System.IO.Directory.CreateDirectory("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key); // Crear carpeta de quien lo manda
-                        using (StreamWriter writer = new StreamWriter("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + "\\" +users[0] + ".txt", true))
+                        System.IO.Directory.CreateDirectory("clients\\" + userName); // Crear carpeta de quien lo manda
+                        using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + users[0] + ".txt", true))
                         {
-                            writer.Write("\nTú : " + text);
+                            writer.Write("\nTú : " + message);
                         }
 
                         System.IO.Directory.CreateDirectory("clients\\" + users[0]); // Crear carpeta de quien lo recibe
-                        using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + ".txt", true))
+                        using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + userName + ".txt", true))
                         {
-                            writer.Write("\n" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + ": " + text);
+                            writer.Write("\n" + userName + ": " + message);
                         }
                     }
 
                     foreach (string s in users)
                     {
-                        if (s != "")
+                        foreach (KeyValuePair<string, Socket> v in _clientList)
                         {
-                            _clientsockets[s].Send(data);
-                            Console.WriteLine("@" + s + ": " + msgtosend);
+                            if (v.Key == s)
+                            {
+                                v.Value.Send(data);
+                                Console.WriteLine("@" + s + ": " + messageToSend);
+                            }
                         }
                     }
                     Console.WriteLine("");
                 }
-                catch 
+
+                if (message.Substring(0, 4) == "$cs$")
                 {
-                    Console.WriteLine("Servidor: Error al enviar el mensaje\n");
-                    byte[] data = Encoding.UTF8.GetBytes("Servidor: Error al enviar el mensaje.");
-                    current.Send(data);
-                }
-            }
+                    byte[] data = Encoding.UTF8.GetBytes(message);
 
-            else if (text.Substring(0, 4) == "$cs$")
-            {
-                byte[] data = Encoding.UTF8.GetBytes(text);
-
-                foreach (KeyValuePair<string, Socket> v in _clientsockets)
-                {
-                    if (v.Value != current)
+                    foreach (KeyValuePair<string, Socket> v in _clientList)
                     {
-                        v.Value.Send(data);
-                        Console.WriteLine("@" + v.Key + ": " + text);
-                    }
-                }
-                Console.WriteLine("");
-            }
-
-            else if (text.Substring(0, 4) == "$gm$")
-            {
-                text = text.Substring(4); // usuario
-
-                string msgtosend;
-                msgtosend = "$gm$" + text + "$gm$";
-                using (StreamReader reader = new StreamReader("clients\\" + _clientsockets.FirstOrDefault(x => x.Value == current).Key + "\\" + text +  ".txt"))
-                {
-                    string temp;
-                    while ((temp = reader.ReadLine()) != null)
-                    {
-                        msgtosend += temp + "\n";
-                    }
-                }
-
-                byte[] data = Encoding.UTF8.GetBytes(msgtosend);
-
-                current.Send(data);
-            }
-
-            else if (text.ToLower() == "$exit$")
-            {
-                Console.WriteLine("Cliente "
-                               + _clientsockets.FirstOrDefault(x => x.Value == current).Key
-                               + " desconectado\n");
-                current.Shutdown(SocketShutdown.Both);
-                current.Close();
-                _clientsockets.Remove(_clientsockets.FirstOrDefault(x => x.Value == current).Key);
-
-                if (_clientsockets.Count > 0)
-                {
-
-                    string cdata = "$cl$";
-
-                    foreach (KeyValuePair<string, Socket> v in _clientsockets)
-                    {
-                        cdata += v.Key + ",";
-                    }
-
-                    byte[] data = Encoding.UTF8.GetBytes(cdata);
-
-                    foreach (KeyValuePair<string, Socket> v in _clientsockets)
-                    {
-                        v.Value.Send(data);
-                        Console.WriteLine("@" + v.Key + ": " + cdata);
+                        if (v.Key != userName)
+                        {
+                            v.Value.Send(data);
+                            Console.WriteLine("@" + v.Key + ": " + message);
+                        }
                     }
                     Console.WriteLine("");
                 }
-                return;
+
+                if (message.Substring(0, 4) == "$gm$")
+                {
+                    message = message.Substring(4); // usuario
+
+                    string msgtosend;
+                    msgtosend = "$gm$" + message + "$gm$";
+                    using (StreamReader reader = new StreamReader("clients\\" + userName + "\\" + message + ".txt"))
+                    {
+                        string temp;
+                        while ((temp = reader.ReadLine()) != null)
+                        {
+                            msgtosend += temp + "\n";
+                        }
+                    }
+
+                    byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+
+                    foreach (KeyValuePair<string, Socket> v in _clientList)
+                    {
+                        if (v.Key == userName)
+                        {
+                            v.Value.Send(data);
+                        }
+                    }
+                    
+                }
+
+                if (message.ToLower() == "$exit$")
+                {
+                    Console.WriteLine("Cliente "
+                                   + userName
+                                   + " desconectado\n");
+                    
+                    foreach (KeyValuePair<string, Socket> v in _clientList)
+                    {
+                        if (v.Key == userName)
+                        {
+                            v.Value.Shutdown(SocketShutdown.Both);
+                            v.Value.Close();
+                            _clientList.Remove(userName);
+                        }
+                    }
+
+                    if (_clientList.Count > 0)
+                    {
+
+                        string cdata = "$cl$";
+
+                        foreach (KeyValuePair<string, Socket> v in _clientList)
+                        {
+                            cdata += v.Key + ",";
+                        }
+
+                        byte[] data = Encoding.UTF8.GetBytes(cdata);
+
+                        foreach (KeyValuePair<string, Socket> v in _clientList)
+                        {
+                            v.Value.Send(data);
+                            Console.WriteLine("@" + v.Key + ": " + cdata);
+                        }
+                        Console.WriteLine("");
+                    }
+                    return;
+                }
+
+                //senderStream.Write(senderBytes, 0, senderBytes.Length);
+                senderStream.Flush();
             }
-            else
+        }            
+
+        //private static void CloseAllSockets()
+        //{
+
+        //    foreach (KeyValuePair<string, Socket> d in _clientList)
+        //    {
+        //        d.Value.Shutdown(SocketShutdown.Both);
+        //        d.Value.Close();
+        //    }
+        //    _serversocket.Close();
+        //}
+    }
+
+    public class handleClient
+    {
+        TcpClient currentClientSocket;
+        string userName;
+        Hashtable clientList;
+
+        public void startClient(TcpClient currentClientSocket, string userName, Hashtable clientList)
+        {
+            this.currentClientSocket = currentClientSocket;
+            this.userName = userName;
+            this.clientList = clientList;
+            Thread thread = new Thread(doChat);
+            thread.Start();
+        }
+
+        private void doChat()
+        {
+            int requestCount = 0;
+            byte[] buffer = new byte[2048];
+            string dataFromClient = null;
+
+            while (true)
             {
-                byte[] data = Encoding.UTF8.GetBytes("$$$$");
-                current.Send(data);
+                try
+                {
+                    requestCount++;
+                    NetworkStream networkStrem = currentClientSocket.GetStream();
+                    networkStrem.Read(buffer, 0, (int)currentClientSocket.ReceiveBufferSize);
+                    dataFromClient = System.Text.Encoding.UTF8.GetString(buffer);
+
+                    Console.WriteLine("Tal Cliente escribió: " + dataFromClient);
+
+                    ProgramaServidor.sender(dataFromClient, userName); // revisar revisar REVISAR!
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Oh oh, spaguetti-O " + ex.ToString());
+                }
             }
-            
-            current.BeginReceive(_buffer, 0, _buffersize, SocketFlags.None, ReceiveCallback, current);
         }
     }
 }
