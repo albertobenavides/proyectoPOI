@@ -18,7 +18,7 @@ namespace ChatPOI
             ClientConection.ConnectToServer(globals.username);
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
-            globals.sendedText = "$$$$";
+            globals.sendedText = null;
             globals.receivedText = "$$$$";
         }
 
@@ -79,116 +79,95 @@ namespace ChatPOI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ClientConection.SendString(globals.sendedText);
-            
-            if (globals.sendedText.Substring(0, 4) != "$sm$"
-                && globals.sendedText.Substring(0, 4) != "$cs$")
-                ClientConection.ReceiveResponse();
-
-            globals.sendedText = "$$$$";
-
-            globals.receivedText = globals.receivedText.Replace("$$$$$", "$");
-
-            if (globals.receivedText != "$$$$")
+            if (globals.receivedText.Substring(0, 4) == "$cl$")
             {
-                globals.receivedText.Substring(globals.receivedText.Length - 4).Replace("$", "");
-                //labelServerMessage.Text = globals.receivedText;
+                dataGridViewContacts.Rows.Clear();
+                string[] clientsConnected = globals.receivedText.Substring(4).Split(',');
+
+                foreach (string s in clientsConnected)
+                {
+                    if (s != globals.username && s != "")
+                    {
+                        dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
+                    }
+                }
+                globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',';
             }
-            
-            if (globals.receivedText == "")
-                return;
-            
-            else
+
+            else if (globals.receivedText.Substring(0, 4) == "$mr$")
             {
-                if (globals.receivedText.Substring(0, 4) == "$cl$")
+                string userFrom = globals.receivedText.Substring(4);
+                userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
+                string message = globals.receivedText.Substring(4);
+                message = message.Substring(message.IndexOf("$mr$") + 4);
+
+                if (message == "te ha enviado un zumbido.")
                 {
-                    dataGridViewContacts.Rows.Clear();
-                    string[] clientsConnected = globals.receivedText.Substring(4).Split(',');
-
-                    foreach (string s in clientsConnected)
+                    foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
                     {
-                        if (s != globals.username && !s.Contains("$$$$") && s != "")
+                        if (f.Text == userFrom)
                         {
-                            dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
-                        }
-                    }
-                    globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',';
-                }
-
-                else if (globals.receivedText.Substring(0, 4) == "$mr$")
-                {
-                    string userFrom = globals.receivedText.Substring(4);
-                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
-                    string message = globals.receivedText.Substring(4);
-                    message = message.Substring(message.IndexOf("$mr$") + 4);
-
-                    if (message == "te ha enviado un zumbido.")
-                    {
-                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
-                        {
-                            if (f.Text == userFrom)
-                            {
-                                f.zumbido();
-                                f.setMessage("\n" + userFrom + " " + message);
-                            }
-                        }
-                    }
-                    else
-                    {
-
-                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
-                        {
-                            if (dg.Cells[1].Value.ToString() == userFrom)
-                                dg.Cells[2].Value = message;
-                        }
-
-                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
-                        {
-                            if (f.Text == userFrom)
-                                f.setMessage("\n" + userFrom + ": " + message);
+                            f.zumbido();
+                            f.setMessage("\n" + userFrom + " " + message);
                         }
                     }
                 }
-
-                else if (globals.receivedText.Substring(0, 4) == "$cs$")
+                else
                 {
-                    string[] variousMessages = globals.receivedText.Split(',');
 
-                    foreach (string s in variousMessages)
+                    foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
                     {
-                        if (s.Length > 4)
-                        {
-                            string userFrom = s.Substring(4);
-                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
-                            string status = s.Substring(4);
-                            status = status.Substring(status.IndexOf("$cs$") + 4);
-
-                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
-                            {
-                                if (dg.Cells[1].Value.ToString() == userFrom)
-                                    dg.Cells[0].Value = status;
-                            }
-                        }
+                        if (dg.Cells[1].Value.ToString() == userFrom)
+                            dg.Cells[2].Value = message;
                     }
-                }
-
-                else if (globals.receivedText.Substring(0, 4) == "$gm$")
-                {
-                    string userFrom = globals.receivedText.Substring(4);
-                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$gm$"));
-                    string message = globals.receivedText.Substring(4);
-                    message = message.Substring(message.IndexOf("$gm$") + 4);
 
                     foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
                     {
                         if (f.Text == userFrom)
-                            f.setMessage(message);
+                            f.setMessage("\n" + userFrom + ": " + message);
                     }
                 }
-
-                else
-                    return;
             }
+
+            else if (globals.receivedText.Substring(0, 4) == "$cs$")
+            {
+                string[] variousMessages = globals.receivedText.Split(',');
+
+                foreach (string s in variousMessages)
+                {
+                    if (s.Length > 4)
+                    {
+                        string userFrom = s.Substring(4);
+                        userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                        string status = s.Substring(4);
+                        status = status.Substring(status.IndexOf("$cs$") + 4);
+
+                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                        {
+                            if (dg.Cells[1].Value.ToString() == userFrom)
+                                dg.Cells[0].Value = status;
+                        }
+                    }
+                }
+            }
+
+            else if (globals.receivedText.Substring(0, 4) == "$gm$")
+            {
+                string userFrom = globals.receivedText.Substring(4);
+                userFrom = userFrom.Substring(0, userFrom.IndexOf("$gm$"));
+                string message = globals.receivedText.Substring(4);
+                message = message.Substring(message.IndexOf("$gm$") + 4);
+
+                foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                {
+                    if (f.Text == userFrom)
+                        f.setMessage(message);
+                }
+            }
+
+            else
+                return;
+
             globals.receivedText = "$$$$";
         }
 
