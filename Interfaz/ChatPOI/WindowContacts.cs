@@ -18,7 +18,6 @@ namespace ChatPOI
             ClientConection.ConnectToServer(globals.username);
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
-            globals.sendedText = null;
             globals.receivedText = "$$$$";
         }
 
@@ -91,7 +90,7 @@ namespace ChatPOI
                         dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
                     }
                 }
-                globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',';
+                ClientConection.SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',');
             }
 
             else if (globals.receivedText.Substring(0, 4) == "$mr$")
@@ -173,7 +172,7 @@ namespace ChatPOI
 
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",";
+            ClientConection.SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",");
         }
     }
 }

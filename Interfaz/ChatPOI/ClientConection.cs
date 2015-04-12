@@ -34,7 +34,7 @@ namespace ChatPOI
                 {
                     _clientSocket.Connect(myIP, _PORT);
                     serverStream = _clientSocket.GetStream();
-                    SendString(username);
+                    SendString(username + "$");
 
                     Thread thread = new Thread(getMessage);
                     thread.Start();
@@ -65,24 +65,16 @@ namespace ChatPOI
         {
             while (true)
             {
-                try
-                {
-                    serverStream = _clientSocket.GetStream();
-                    int bufferSize = 0;
-                    var buffer = new byte[10025];
-                    bufferSize = _clientSocket.ReceiveBufferSize;
-                    var data = new byte[10025];
-                    serverStream.Read(buffer, 0, bufferSize);
+                serverStream = _clientSocket.GetStream();
+                int bufferSize = 0;
+                var buffer = new byte[10025];
+                bufferSize = _clientSocket.ReceiveBufferSize;
+                var data = new byte[10025];
+                serverStream.Read(buffer, 0, bufferSize);
 
-                    Array.Copy(buffer, data, bufferSize);
+                Array.Copy(buffer, data, bufferSize);
 
-                    globals.receivedText = Encoding.UTF8.GetString(data);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-                
+                globals.receivedText = Encoding.UTF8.GetString(data);
             }
              
         }
