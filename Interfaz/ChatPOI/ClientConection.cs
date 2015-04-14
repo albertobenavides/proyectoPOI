@@ -34,7 +34,7 @@ namespace ChatPOI
                 {
                     _clientSocket.Connect(myIP, _PORT);
                     serverStream = _clientSocket.GetStream();
-                    SendString(username + "$");
+                    SendString(username + "$$$$");
 
                     Thread thread = new Thread(getMessage);
                     thread.Start();
