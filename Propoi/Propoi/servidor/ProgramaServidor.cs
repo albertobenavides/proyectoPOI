@@ -206,27 +206,18 @@ namespace Servidor
                             }
                         }
 
-                        foreach (string s in users)
+                        foreach (string user in users)
                         {
-                            foreach (DictionaryEntry client in clientList)
-                            {
-                                if (client.Key.ToString().Contains(s))
-                                {
-                                    TcpClient senderSocket;
-                                    senderSocket = (TcpClient)client.Value;
-                                    NetworkStream senderStream = senderSocket.GetStream();
-
-                                    senderSocket.Client.Send(data);
-                                    Console.WriteLine("@" + s + ": " + messageToSend);
-                                }
-                            }
+                            TcpClient senderSocket = (TcpClient)clientList[user];
+                            senderSocket.Client.Send(data);
+                            Console.WriteLine("@" + user + ": " + messageToSend);
                         }
                         Console.WriteLine("");
                     }
 
                     else if (dataFromClient.Substring(0, 4) == "$gm$")
                     {
-                        dataFromClient = dataFromClient.Substring(4); // usuario
+                        dataFromClient = dataFromClient.Substring(4);
 
                         string msgtosend;
                         msgtosend = "$gm$" + dataFromClient + "$gm$";
@@ -243,12 +234,9 @@ namespace Servidor
 
                         foreach (DictionaryEntry client in clientList)
                         {
-                            if (client.Key.ToString().Contains(userName))
+                            if (client.Key.ToString().Equals(userName))
                             {
-                                TcpClient senderSocket;
-                                senderSocket = (TcpClient)client.Value;
-                                NetworkStream senderStream = senderSocket.GetStream();
-
+                                TcpClient senderSocket = (TcpClient)client.Value;
                                 senderSocket.Client.Send(data);
                             }
                         }
@@ -287,10 +275,7 @@ namespace Servidor
 
                             foreach (DictionaryEntry client in clientList)
                             {
-                                TcpClient senderSocket;
-                                senderSocket = (TcpClient)client.Value;
-                                NetworkStream senderStream = senderSocket.GetStream();
-
+                                TcpClient senderSocket = (TcpClient)client.Value;
                                 senderSocket.Client.Send(data);
                                 Console.WriteLine("@" + client.Key + ": " + cdata);
                             }
@@ -303,7 +288,7 @@ namespace Servidor
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Oh oh, spaguetti-O " + ex.ToString());
+                    Console.WriteLine("Error: " + ex.ToString());
                 }
             }
         }
