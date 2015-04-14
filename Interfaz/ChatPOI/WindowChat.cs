@@ -15,14 +15,23 @@ namespace ChatPOI
     {
         Dictionary<string, Bitmap>  emotions;
 
+
+        WindowContacts wc;
+
         public FormChat(string s)
         {
             InitializeComponent();
+
+            foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
+            {
+                wc = f;
+            }
+
             labelContactName.Text = s;
             labelUserName.Text = globals.username;
             this.Text = s;
-            globals.receivedText = "$$$$";
-            globals.sendedText = "$gm$" + s;
+            globals.receivedText = null;
+            wc.SendString("$gm$" + s + "$$$$");
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -117,7 +126,8 @@ namespace ChatPOI
                 else
                     s += richTextBoxMessage.Text[i];
             }
-            globals.sendedText = s;
+
+            wc.SendString(s + "$$$$");
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
             richTextBoxChat.AppendText("\nTú: " + s);
@@ -247,7 +257,7 @@ namespace ChatPOI
             s += "$sm$";
             s += "te ha enviado un zumbido.";
 
-            globals.sendedText = s;
+            wc.SendString(s + "$$$$");
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
             richTextBoxChat.AppendText("\nTú has enviado un zumbido.");

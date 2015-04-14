@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,107 +15,131 @@ namespace ChatPOI
 {
     public partial class WindowContacts : Form
     {
+        TcpClient clientSocket = new TcpClient();
+        NetworkStream networkStream = default(NetworkStream);
+        int _PORT = 55555;
+        private volatile bool isConected;
+
         public WindowContacts()
         {
             InitializeComponent();
-            ClientConection.ConnectToServer(globals.username);
-            textBoxUserName.Text = globals.username;
-            comboBoxUserStatus.SelectedIndex = 0;
-            globals.sendedText = "$$$$";
-            globals.receivedText = "$$$$";
-        }
 
-        private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ClientConection.Exit();
-            Application.Restart();
-        }
+            isConected = true;
 
-        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewCell oneCell in dataGridViewContacts.SelectedCells)
+            while (!clientSocket.Connected)
             {
-                if (oneCell.Selected)
-                    dataGridViewContacts.Rows.RemoveAt(oneCell.RowIndex);
-            }
-        }
+                IPAddress myIP = IPAddress.Parse("0.0.0.0");
 
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (textBoxSearch.Text != "Buscar contacto...")
-            {
-                dataGridViewContacts.ClearSelection(); //this will clear any currently selected cells
-                foreach (DataGridViewRow r in dataGridViewContacts.Rows)
+                IPAddress[] localIP = Dns.GetHostAddresses("Alberto-PC");
+                foreach (IPAddress address in localIP)
                 {
-                    r.Visible = true;
-                    if (!r.Cells[1].Value.ToString().ToLower().Contains(textBoxSearch.Text.ToLower()))
+                    if (address.AddressFamily == AddressFamily.InterNetwork)
                     {
-                        r.Visible = false;
+                        myIP = address;
                     }
                 }
-            }
-        }
-
-        private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            bool isCreated = false;
-            foreach (FormChat temp in Application.OpenForms.OfType<FormChat>())
-            {
-                if (temp.Text == dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString())
+                try
                 {
-                    isCreated = true;
-                    temp.Focus();
+                    clientSocket.Connect(myIP, _PORT);
+                    networkStream = clientSocket.GetStream();
+                    SendString(globals.username + "$$$$");
+
+                    Thread thread = new Thread(getMessage);
+                    thread.Start();
+                }
+                catch (SocketException)
+                {
+                    return;
                 }
             }
-            if (!isCreated)
-            {
-                FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
-                f.Show();
-            }
 
+            textBoxUserName.Text = globals.username;
+            comboBoxUserStatus.SelectedIndex = 0;
+            globals.receivedText = null;
         }
 
-        private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
+        public void SendString(string text)
         {
-            ClientConection.Exit();
+            byte[] buffer = Encoding.UTF8.GetBytes(text);
+            networkStream.Write(buffer, 0, buffer.Length);
+            networkStream.Flush();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Exit()
         {
-            ClientConection.SendString(globals.sendedText);
-            
-            if (globals.sendedText.Substring(0, 4) != "$sm$"
-                && globals.sendedText.Substring(0, 4) != "$cs$")
-                ClientConection.ReceiveResponse();
+            SendString("$exit$");
+            isConected = false;
+            clientSocket.Client.Shutdown(SocketShutdown.Both);
+            clientSocket.Close();
+            networkStream.Close();
+            Environment.Exit(0);
+        }
 
-            globals.sendedText = "$$$$";
-
-            globals.receivedText = globals.receivedText.Replace("$$$$$", "$");
-
-            if (globals.receivedText != "$$$$")
+        private void getMessage()
+        {
+            while (isConected)
             {
-                globals.receivedText.Substring(globals.receivedText.Length - 4).Replace("$", "");
-                //labelServerMessage.Text = globals.receivedText;
+                networkStream = clientSocket.GetStream();
+                byte [] buffer = new byte[10025];
+                networkStream.Read(buffer, 0, clientSocket.ReceiveBufferSize);
+
+                globals.receivedText = Encoding.UTF8.GetString(buffer);
+                msg();
             }
-            
-            if (globals.receivedText == "")
-                return;
-            
+        }
+
+        private void msg()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(msg));
             else
             {
+                Actions();
+            }
+        }
+
+        public void Actions()
+        {
+            if (globals.receivedText != null)
+            {
+                if (globals.receivedText.Contains("$$$$"))
+                    globals.receivedText = globals.receivedText.Substring(0, globals.receivedText.IndexOf("$$$$"));
+
                 if (globals.receivedText.Substring(0, 4) == "$cl$")
                 {
                     dataGridViewContacts.Rows.Clear();
                     string[] clientsConnected = globals.receivedText.Substring(4).Split(',');
 
-                    foreach (string s in clientsConnected)
+                    foreach (string client in clientsConnected)
                     {
-                        if (s != globals.username && !s.Contains("$$$$") && s != "")
+                        if (client != globals.username && client != "")
                         {
-                            dataGridViewContacts.Rows.Add(new object[] { "Disponible", s, "Mensaje" });
+                            dataGridViewContacts.Rows.Add(new object[] { "Disponible", client, "Mensaje" });
                         }
                     }
-                    globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ',';
+                    SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
+                }
+
+                else if (globals.receivedText.Substring(0, 4) == "$cs$")
+                {
+                    string[] variousMessages = globals.receivedText.Split(',');
+
+                    foreach (string s in variousMessages)
+                    {
+                        if (s.Length > 4)
+                        {
+                            string userFrom = s.Substring(4);
+                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                            string status = s.Substring(4);
+                            status = status.Substring(status.IndexOf("$cs$") + 4);
+
+                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                            {
+                                if (dg.Cells[1].Value.ToString() == userFrom)
+                                    dg.Cells[0].Value = status;
+                            }
+                        }
+                    }
                 }
 
                 else if (globals.receivedText.Substring(0, 4) == "$mr$")
@@ -150,28 +177,6 @@ namespace ChatPOI
                     }
                 }
 
-                else if (globals.receivedText.Substring(0, 4) == "$cs$")
-                {
-                    string[] variousMessages = globals.receivedText.Split(',');
-
-                    foreach (string s in variousMessages)
-                    {
-                        if (s.Length > 4)
-                        {
-                            string userFrom = s.Substring(4);
-                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
-                            string status = s.Substring(4);
-                            status = status.Substring(status.IndexOf("$cs$") + 4);
-
-                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
-                            {
-                                if (dg.Cells[1].Value.ToString() == userFrom)
-                                    dg.Cells[0].Value = status;
-                            }
-                        }
-                    }
-                }
-
                 else if (globals.receivedText.Substring(0, 4) == "$gm$")
                 {
                     string userFrom = globals.receivedText.Substring(4);
@@ -189,12 +194,70 @@ namespace ChatPOI
                 else
                     return;
             }
-            globals.receivedText = "$$$$";
+            else
+            {
+                SendString("$cl$");
+            }
+        }
+
+        private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Exit();
+            Application.Restart();
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell oneCell in dataGridViewContacts.SelectedCells)
+            {
+                if (oneCell.Selected)
+                    dataGridViewContacts.Rows.RemoveAt(oneCell.RowIndex);
+            }
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text != "Buscar contacto...")
+            {
+                dataGridViewContacts.ClearSelection();
+                foreach (DataGridViewRow r in dataGridViewContacts.Rows)
+                {
+                    r.Visible = true;
+                    if (!r.Cells[1].Value.ToString().ToLower().Contains(textBoxSearch.Text.ToLower()))
+                    {
+                        r.Visible = false;
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            bool isCreated = false;
+            foreach (FormChat temp in Application.OpenForms.OfType<FormChat>())
+            {
+                if (temp.Text == dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString())
+                {
+                    isCreated = true;
+                    temp.Focus();
+                }
+            }
+            if (!isCreated)
+            {
+                FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
+                f.Show();
+            }
+
+        }
+
+        private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Exit();
         }
 
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            globals.sendedText = "$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",";
+            SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
         }
     }
 }
