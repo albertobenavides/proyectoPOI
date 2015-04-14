@@ -35,6 +35,7 @@ namespace Servidor
 
             serversocket.Start();
 
+
             Console.WriteLine("///////////////////////////////");
             Console.WriteLine("Servidor Cheet-a-Chat en línea.");
             Console.WriteLine("IP: " + ip);
@@ -96,84 +97,6 @@ namespace Servidor
                 }
                 Console.WriteLine("");
             }
-
-            else if (message.Substring(0, 4) == "$sm$")
-            {
-                message = message.Substring(4);
-                string clientString = message.Substring(0, message.IndexOf("$sm$"));
-
-                string[] users = clientString.Split(',');
-
-                string messageToSend;
-                messageToSend = "$mr$";
-                messageToSend += userName + "$mr$";
-                message = message.Substring(message.IndexOf("$sm$") + 4);
-                messageToSend += message;
-
-                byte[] data = Encoding.UTF8.GetBytes(messageToSend);
-
-                if (users.Length == 2)
-                {
-                    System.IO.Directory.CreateDirectory("clients\\" + userName); // Crear carpeta de quien lo manda
-                    using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + users[0] + ".txt", true))
-                    {
-                        writer.Write("\nTú : " + message);
-                    }
-
-                    System.IO.Directory.CreateDirectory("clients\\" + users[0]); // Crear carpeta de quien lo recibe
-                    using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + userName + ".txt", true))
-                    {
-                        writer.Write("\n" + userName + ": " + message);
-                    }
-                }
-
-                foreach (string s in users)
-                {
-                    foreach (KeyValuePair<string, TcpClient> client in clientList)
-                    {
-                        if (client.Key.Contains(s))
-                        {
-                            TcpClient senderSocket;
-                            senderSocket = (TcpClient)client.Value;
-                            NetworkStream senderStream = senderSocket.GetStream();
-
-                            senderSocket.Client.Send(data);
-                            Console.WriteLine("@" + s + ": " + messageToSend);
-                        }
-                    }
-                }
-                Console.WriteLine("");
-            }
-
-            else if (message.Substring(0, 4) == "$gm$")
-            {
-                message = message.Substring(4); // usuario
-
-                string msgtosend;
-                msgtosend = "$gm$" + message + "$gm$";
-                using (StreamReader reader = new StreamReader("clients\\" + userName + "\\" + message + ".txt"))
-                {
-                    string temp;
-                    while ((temp = reader.ReadLine()) != null)
-                    {
-                        msgtosend += temp + "\n";
-                    }
-                }
-
-                byte[] data = Encoding.UTF8.GetBytes(msgtosend);
-
-                foreach (KeyValuePair<string, TcpClient> client in clientList)
-                {
-                    if (client.Key.Contains(userName))
-                    {
-                        TcpClient senderSocket;
-                        senderSocket = (TcpClient)client.Value;
-                        NetworkStream senderStream = senderSocket.GetStream();
-
-                        senderSocket.Client.Send(data);
-                    }
-                }
-            }
         }
     }
 
@@ -183,11 +106,16 @@ namespace Servidor
         string userName;
         Hashtable clientList;
 
+        private volatile bool isConected;
+
         public void startClient(TcpClient currentClientSocket, string userName, Hashtable clientList)
         {
             this.currentClientSocket = currentClientSocket;
             this.userName = userName;
             this.clientList = clientList;
+
+            isConected = true;
+
             Thread thread = new Thread(doChat);
             thread.Start();
         }
@@ -197,7 +125,7 @@ namespace Servidor
             byte[] buffer = new byte[10025];
             string dataFromClient = null;
 
-            while (true)
+            while (isConected)
             {
                 try
                 {
@@ -225,15 +153,117 @@ namespace Servidor
                         Console.WriteLine("");
                     }
 
+                    else if (dataFromClient.Substring(0, 4) == "$cl$")
+                    {
+                        string dataToSend = "$cl$";
+
+                        foreach (DictionaryEntry client in clientList)
+                        {
+                            dataToSend += client.Key + ",";
+                        }
+
+                        dataToSend += "$$$$";
+
+                        System.IO.Directory.CreateDirectory("clients\\" + userName);
+
+                        Byte[] senderBytes = null;
+                        senderBytes = Encoding.UTF8.GetBytes(dataToSend);
+
+                        TcpClient senderSocket = (TcpClient)clientList[userName];
+                        senderSocket.Client.Send(senderBytes);
+                        Console.WriteLine("@" + userName + ": " + dataToSend);
+
+                        Console.WriteLine("");
+                    }
+
+                    else if (dataFromClient.Substring(0, 4) == "$sm$")
+                    {
+                        dataFromClient = dataFromClient.Substring(4);
+                        string clientString = dataFromClient.Substring(0, dataFromClient.IndexOf("$sm$"));
+
+                        string[] users = clientString.Split(',');
+
+                        string messageToSend;
+                        messageToSend = "$mr$";
+                        messageToSend += userName + "$mr$";
+                        dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sm$") + 4);
+                        messageToSend += dataFromClient;
+
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
+
+                        if (users.Length == 2)
+                        {
+                            System.IO.Directory.CreateDirectory("clients\\" + userName); // Crear carpeta de quien lo manda
+                            using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + users[0] + ".txt", true))
+                            {
+                                writer.Write("\nTú : " + dataFromClient);
+                            }
+
+                            System.IO.Directory.CreateDirectory("clients\\" + users[0]); // Crear carpeta de quien lo recibe
+                            using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + userName + ".txt", true))
+                            {
+                                writer.Write("\n" + userName + ": " + dataFromClient);
+                            }
+                        }
+
+                        foreach (string s in users)
+                        {
+                            foreach (DictionaryEntry client in clientList)
+                            {
+                                if (client.Key.ToString().Contains(s))
+                                {
+                                    TcpClient senderSocket;
+                                    senderSocket = (TcpClient)client.Value;
+                                    NetworkStream senderStream = senderSocket.GetStream();
+
+                                    senderSocket.Client.Send(data);
+                                    Console.WriteLine("@" + s + ": " + messageToSend);
+                                }
+                            }
+                        }
+                        Console.WriteLine("");
+                    }
+
+                    else if (dataFromClient.Substring(0, 4) == "$gm$")
+                    {
+                        dataFromClient = dataFromClient.Substring(4); // usuario
+
+                        string msgtosend;
+                        msgtosend = "$gm$" + dataFromClient + "$gm$";
+                        using (StreamReader reader = new StreamReader("clients\\" + userName + "\\" + dataFromClient + ".txt"))
+                        {
+                            string temp;
+                            while ((temp = reader.ReadLine()) != null)
+                            {
+                                msgtosend += temp + "\n";
+                            }
+                        }
+
+                        byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+
+                        foreach (DictionaryEntry client in clientList)
+                        {
+                            if (client.Key.ToString().Contains(userName))
+                            {
+                                TcpClient senderSocket;
+                                senderSocket = (TcpClient)client.Value;
+                                NetworkStream senderStream = senderSocket.GetStream();
+
+                                senderSocket.Client.Send(data);
+                            }
+                        }
+                    }
+
                     else if (dataFromClient.ToLower() == "$exit$")
                     {
+                        isConected = false;
                         Console.WriteLine("Cliente "
                                        + userName
                                        + " desconectado\n");
 
-                        foreach (KeyValuePair<string, TcpClient> client in clientList)
+                        foreach (DictionaryEntry client in clientList)
                         {
-                            if (client.Key.Contains(userName))
+                            if (client.Key.ToString().Equals(userName))
                             {
                                 TcpClient senderSocket;
                                 senderSocket = (TcpClient)client.Value;

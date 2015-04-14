@@ -18,10 +18,13 @@ namespace ChatPOI
         TcpClient clientSocket = new TcpClient();
         NetworkStream networkStream = default(NetworkStream);
         int _PORT = 55555;
+        private volatile bool isConected;
 
         public WindowContacts()
         {
             InitializeComponent();
+
+            isConected = true;
 
             while (!clientSocket.Connected)
             {
@@ -55,16 +58,26 @@ namespace ChatPOI
             globals.receivedText = null;
         }
 
-        private void SendString(string text)
+        public void SendString(string text)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(text);
             networkStream.Write(buffer, 0, buffer.Length);
             networkStream.Flush();
         }
 
+        private void Exit()
+        {
+            SendString("$exit$");
+            isConected = false;
+            clientSocket.Client.Shutdown(SocketShutdown.Both);
+            clientSocket.Close();
+            networkStream.Close();
+            Environment.Exit(0);
+        }
+
         private void getMessage()
         {
-            while (true)
+            while (isConected)
             {
                 networkStream = clientSocket.GetStream();
                 byte [] buffer = new byte[10025];
@@ -104,7 +117,29 @@ namespace ChatPOI
                             dataGridViewContacts.Rows.Add(new object[] { "Disponible", client, "Mensaje" });
                         }
                     }
-                    //SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",$$$$");
+                    SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
+                }
+
+                else if (globals.receivedText.Substring(0, 4) == "$cs$")
+                {
+                    string[] variousMessages = globals.receivedText.Split(',');
+
+                    foreach (string s in variousMessages)
+                    {
+                        if (s.Length > 4)
+                        {
+                            string userFrom = s.Substring(4);
+                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                            string status = s.Substring(4);
+                            status = status.Substring(status.IndexOf("$cs$") + 4);
+
+                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                            {
+                                if (dg.Cells[1].Value.ToString() == userFrom)
+                                    dg.Cells[0].Value = status;
+                            }
+                        }
+                    }
                 }
 
                 else if (globals.receivedText.Substring(0, 4) == "$mr$")
@@ -142,28 +177,6 @@ namespace ChatPOI
                     }
                 }
 
-                else if (globals.receivedText.Substring(0, 4) == "$cs$")
-                {
-                    string[] variousMessages = globals.receivedText.Split(',');
-
-                    foreach (string s in variousMessages)
-                    {
-                        if (s.Length > 4)
-                        {
-                            string userFrom = s.Substring(4);
-                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
-                            string status = s.Substring(4);
-                            status = status.Substring(status.IndexOf("$cs$") + 4);
-
-                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
-                            {
-                                if (dg.Cells[1].Value.ToString() == userFrom)
-                                    dg.Cells[0].Value = status;
-                            }
-                        }
-                    }
-                }
-
                 else if (globals.receivedText.Substring(0, 4) == "$gm$")
                 {
                     string userFrom = globals.receivedText.Substring(4);
@@ -183,14 +196,8 @@ namespace ChatPOI
             }
             else
             {
-                return;
+                SendString("$cl$");
             }
-        }
-
-        private void Exit()
-        {
-            SendString("$exit$");
-            Environment.Exit(0);
         }
 
         private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -250,7 +257,7 @@ namespace ChatPOI
 
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + ",$$$$");
+            SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
         }
     }
 }
