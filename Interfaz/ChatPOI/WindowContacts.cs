@@ -67,6 +67,7 @@ namespace ChatPOI
 
         private void Exit()
         {
+            networkStream.Flush();
             SendString("$exit$");
             isConected = false;
             clientSocket.Client.Shutdown(SocketShutdown.Both);

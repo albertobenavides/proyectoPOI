@@ -193,13 +193,13 @@ namespace Servidor
 
                         if (users.Length == 2)
                         {
-                            System.IO.Directory.CreateDirectory("clients\\" + userName); // Crear carpeta de quien lo manda
+                            System.IO.Directory.CreateDirectory("clients\\" + userName);
                             using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + users[0] + ".txt", true))
                             {
                                 writer.Write("\nTú : " + dataFromClient);
                             }
 
-                            System.IO.Directory.CreateDirectory("clients\\" + users[0]); // Crear carpeta de quien lo recibe
+                            System.IO.Directory.CreateDirectory("clients\\" + users[0]);
                             using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + userName + ".txt", true))
                             {
                                 writer.Write("\n" + userName + ": " + dataFromClient);
@@ -242,24 +242,17 @@ namespace Servidor
                         }
                     }
 
-                    else if (dataFromClient.ToLower() == "$exit$")
+                    else if (dataFromClient.Substring(0,6).Equals("$exit$"))
                     {
                         isConected = false;
                         Console.WriteLine("Cliente "
                                        + userName
                                        + " desconectado\n");
 
-                        foreach (DictionaryEntry client in clientList)
-                        {
-                            if (client.Key.ToString().Equals(userName))
-                            {
-                                TcpClient senderSocket;
-                                senderSocket = (TcpClient)client.Value;
-                                senderSocket.Client.Shutdown(SocketShutdown.Both);
-                                senderSocket.Close();
-                                clientList.Remove(userName);
-                            }
-                        }
+                        TcpClient senderSocket = (TcpClient)clientList[userName];
+                        senderSocket.Client.Shutdown(SocketShutdown.Both);
+                        senderSocket.Close();
+                        clientList.Remove(userName);
 
                         if (clientList.Count > 0)
                         {
@@ -275,8 +268,8 @@ namespace Servidor
 
                             foreach (DictionaryEntry client in clientList)
                             {
-                                TcpClient senderSocket = (TcpClient)client.Value;
-                                senderSocket.Client.Send(data);
+                                TcpClient tcpSocket = (TcpClient)client.Value;
+                                tcpSocket.Client.Send(data);
                                 Console.WriteLine("@" + client.Key + ": " + cdata);
                             }
                             Console.WriteLine("");
