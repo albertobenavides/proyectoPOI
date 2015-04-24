@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace ChatPOI
 {
@@ -15,12 +16,15 @@ namespace ChatPOI
     {
         Dictionary<string, Bitmap>  emotions;
 
+        SoundPlayer sp;
 
         WindowContacts wc;
 
         public FormChat(string s)
         {
             InitializeComponent();
+
+            sp = new SoundPlayer(Properties.Resources.zumbido);
 
             foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
             {
@@ -276,6 +280,9 @@ namespace ChatPOI
                 this.Location = new Point(inicial.X + rnd.Next(-t, t), inicial.Y + rnd.Next(-t, t));
                 System.Threading.Thread.Sleep(20);
             }
+
+            sp.Play();
+
             this.Location = inicial;
         }
     }

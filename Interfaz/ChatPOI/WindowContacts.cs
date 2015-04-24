@@ -150,7 +150,7 @@ namespace ChatPOI
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$mr$") + 4);
 
-                    if (message == "te ha enviado un zumbido.")
+                    if (message.Contains("te ha enviado un zumbido."))
                     {
                         foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
                         {
