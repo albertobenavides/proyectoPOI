@@ -186,7 +186,7 @@ namespace Servidor
                         messageToSend = "$mr$";
                         messageToSend += userName + "$mr$";
                         dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sm$") + 4);
-                        messageToSend += dataFromClient;
+                        messageToSend += dataFromClient + "$me$";
 
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
@@ -239,9 +239,9 @@ namespace Servidor
                             }
                         }
 
-                        messageToSend += userName + "$gr$";
+                        messageToSend += "," + userName + "$gr$";
                         dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sg$") + 4);
-                        messageToSend += dataFromClient;
+                        messageToSend += dataFromClient + "$me$";
 
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 

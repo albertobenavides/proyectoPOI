@@ -143,10 +143,10 @@
             // 
             // buttonAddContact
             // 
-            this.buttonAddContact.Location = new System.Drawing.Point(33, 301);
+            this.buttonAddContact.Location = new System.Drawing.Point(24, 301);
             this.buttonAddContact.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddContact.Name = "buttonAddContact";
-            this.buttonAddContact.Size = new System.Drawing.Size(56, 19);
+            this.buttonAddContact.Size = new System.Drawing.Size(74, 19);
             this.buttonAddContact.TabIndex = 8;
             this.buttonAddContact.Text = "Añadir";
             this.buttonAddContact.UseVisualStyleBackColor = true;

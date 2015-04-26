@@ -149,6 +149,7 @@ namespace ChatPOI
                     userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$mr$") + 4);
+                    message = message.Substring(0, message.IndexOf("$me$"));
 
                     if (message.Contains("te ha enviado un zumbido."))
                     {
@@ -182,43 +183,35 @@ namespace ChatPOI
                 {
                     string usersFrom = globals.receivedText.Substring(4);
                     usersFrom = usersFrom.Substring(0, usersFrom.IndexOf("$gr$"));
-                    usersFrom.Remove(usersFrom.IndexOf(globals.username) -1);
                     string[] users = usersFrom.Split(',');
-                    string message = globals.receivedText.Substring(4);
+                    string message = globals.receivedText.Substring(4); 
                     message = message.Substring(message.IndexOf("$gr$") + 4);
+                    message = message.Substring(0, message.IndexOf("$me$"));
 
-                    bool isCreated = false;
+                    List<string> participants = new List<string>();
 
-                    GroupChat f = new GroupChat();
+                    foreach (string user in users)
+                        participants.Add(user);
 
-                    f.Text = "Integrantes: " + users; // Falta separar por comas
+                    participants.Sort();
 
-                    f.Show();
+                    bool isOpen = false;
 
-                    if (message.Contains("te ha enviado un zumbido."))
+                    foreach (GroupChat f in Application.OpenForms.OfType<GroupChat>())
                     {
-                        foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
+                        if (f.getParticipants().SequenceEqual(participants))
                         {
-                            if (f.Text == usersFrom)
-                            {
-                                f.zumbido();
-                                f.setMessage("\n" + usersFrom + " " + message);
-                            }
+                            isOpen = true;
+                            f.setMessage("\n" + usersFrom + ": " + message);
                         }
                     }
-                    else
-                    {
-                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
-                        {
-                            if (dg.Cells[1].Value.ToString() == usersFrom)
-                                dg.Cells[2].Value = message;
-                        }
 
-                        foreach (GroupChat f in Application.OpenForms.OfType<GroupChat>())
-                        {
-                            if (f.Text == usersFrom)
-                                f.setMessage("\n" + usersFrom + ": " + message);
-                        }
+                    GroupChat gc;
+                    if (!isOpen)
+                    {
+                        gc = new GroupChat(participants);
+                        gc.Show();
+                        gc.setMessage("\n" + usersFrom + ": " + message);
                     }
                 }
 
@@ -318,7 +311,7 @@ namespace ChatPOI
         private void groupChatButton_Click(object sender, EventArgs e)
         {
             {
-                GroupChat f = new GroupChat();
+                GroupChat f = new GroupChat(null);
                 f.Show();
             }
         }

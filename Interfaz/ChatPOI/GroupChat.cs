@@ -13,13 +13,15 @@ namespace ChatPOI
 {
     public partial class GroupChat : Form
     {
-    Dictionary<string, Bitmap> emotions;
+        Dictionary<string, Bitmap> emotions;
+
+        List<string> participants;
 
         SoundPlayer sp;
 
         WindowContacts wc;
 
-        public GroupChat()
+        public GroupChat(List<string> users)
         {
             InitializeComponent();
 
@@ -31,8 +33,34 @@ namespace ChatPOI
             }
 
             labelContactName.Text = "";
+
             labelUserName.Text = globals.username;
+
+            if (users == null)
+            {
+                participants = new List<string>();
+                participants.Add(globals.username);
+            }
+            else
+                participants = users;
+
+            participants.Sort();
+
             this.Text = "Integrantes: ";
+
+            bool isFrist = true;
+
+            foreach (string user in participants)
+            {
+                if (isFrist)
+                {
+                    isFrist = false;
+                    this.Text += user;
+                }
+                else
+                    this.Text += ", " + user;
+            }
+
             globals.receivedText = null;
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
@@ -52,6 +80,12 @@ namespace ChatPOI
             emotions.Add(":3", Properties.Resources.emoticons15);
             emotions.Add(":*", Properties.Resources.emoticons16);
             groupBoxEmoticons.Visible = false;
+        }
+
+        public List<string> getParticipants()
+        {
+            participants.Sort();
+            return participants;
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -98,20 +132,13 @@ namespace ChatPOI
 
         private void sendMessage()
         {
-            string header = this.Text.Substring(13);
-            string[] usersChating = header.Split(',');
-
-            for (int i = 0; i < usersChating.Length; i++)
-            {
-                usersChating[i] = usersChating[i].Trim();
-            }
-
             string s;
             s = "$sg$";
 
-            foreach (string users in usersChating)
+            foreach (string user in participants)
             {
-                s += users + ",";
+                if (!user.Equals(globals.username))
+                s += user + ",";
             }
             
             s += "$sg$";
@@ -333,11 +360,22 @@ namespace ChatPOI
             }
             else
             {
-                this.Text = "Chateas con: ";
+                this.Text = "Integrantes: ";
 
                 bool isFirst = true;
 
+                participants.Clear();
+
+                participants.Add(globals.username);
+
                 foreach (object user in contactList.CheckedItems)
+                {
+                    participants.Add(user.ToString());
+                }
+
+                participants.Sort();
+
+                foreach (string user in participants)
                 {
                     if (isFirst)
                     {
