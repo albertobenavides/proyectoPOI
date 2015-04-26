@@ -57,7 +57,7 @@ namespace ChatPOI
             // 
             // ww
             // 
-            this.ClientSize = new Size(400, 100);
+            this.ClientSize = new Size(400, 400);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -313,9 +313,9 @@ namespace ChatPOI
 
             //////////
             
-            //myIP = IPAddress.Parse("127.0.0.1");
-            start1Button_Click(sender, e);
-            startLocalButton_Click(sender, e);
+            ////myIP = IPAddress.Parse("127.0.0.1");
+            //start1Button_Click(sender, e);
+            //startLocalButton_Click(sender, e);
 
         }
         #region method start1Button_Click
@@ -325,16 +325,16 @@ namespace ChatPOI
         private void start1Button_Click(object sender, EventArgs e)
         {
 
-            IPAddress myIP = IPAddress.Parse("0.0.0.0");
+            //IPAddress myIP = IPAddress.Parse("0.0.0.0");
 
-            IPAddress[] localIP = Dns.GetHostAddresses("ASUS-PC");
-            foreach (IPAddress address in localIP)
-            {
-                if (address.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    myIP = address;
-                }
-            }
+            //IPAddress[] localIP = Dns.GetHostAddresses("ASUS-PC");
+            //foreach (IPAddress address in localIP)
+            //{
+            //    if (address.AddressFamily == AddressFamily.InterNetwork)
+            //    {
+            //        myIP = address;
+            //    }
+            //}
             if (m_IsRunning)
             {
                 m_IsRunning = false;
@@ -397,7 +397,7 @@ namespace ChatPOI
 
                 /////
                 m_pUdpServer = new UdpServer();
-                m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(myIP, 11000) };
+                m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(m_pLoacalIP.Text), 11000) };
                 m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
                 m_pUdpServer.Start();
 
@@ -423,6 +423,61 @@ namespace ChatPOI
             }
         }
 
+        #endregion
+        #region method startLocalButton_Click
+
+        private void startLocalButton_Click(object sender, EventArgs e)
+        {
+            //IPAddress myIP = IPAddress.Parse("0.0.0.0");
+
+            //IPAddress[] localIP = Dns.GetHostAddresses("Alberto-PC");
+            //foreach (IPAddress address in localIP)
+            //{
+            //    if (address.AddressFamily == AddressFamily.InterNetwork)
+            //    {
+            //        myIP = address;
+            //    }
+            //}
+                if (m_IsSendingMic)
+                {
+                    m_IsSendingMic = false;
+
+                    m_pWaveIn.Dispose();
+                    m_pWaveIn = null;
+
+                    OnAudioStopped();
+                }
+                else
+                {
+                    if (m_pInDevices.SelectedIndex == -1)
+                    {
+                        MessageBox.Show(this, "Please select input device !", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    try
+                    {
+
+
+
+                        m_pTargetEP = new IPEndPoint(IPAddress.Parse(m_pRemoteIP.Text), 11000);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(this, "Invalid target IP address or port !", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    m_IsSendingMic = true;
+
+                    m_pWaveIn = new WaveIn(WaveIn.Devices[m_pInDevices.SelectedIndex], 8000, 16, 1, 400);
+                    m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
+                    m_pWaveIn.Start();
+
+                    startLocalButton.Text = "Stop";
+                    m_pSendTestSound.Enabled = false;
+                }
+            
+        }
         #endregion
 
         #region method m_pRecord_CheckedChanged
@@ -457,61 +512,6 @@ namespace ChatPOI
 
         #endregion
 
-        #region method startLocalButton_Click
-
-        private void startLocalButton_Click(object sender, EventArgs e)
-        {
-            IPAddress myIP = IPAddress.Parse("0.0.0.0");
-
-            IPAddress[] localIP = Dns.GetHostAddresses("ASUS-PC");
-            foreach (IPAddress address in localIP)
-            {
-                if (address.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    myIP = address;
-                }
-
-                if (m_IsSendingMic)
-                {
-                    m_IsSendingMic = false;
-
-                    m_pWaveIn.Dispose();
-                    m_pWaveIn = null;
-
-                    OnAudioStopped();
-                }
-                else
-                {
-                    if (m_pInDevices.SelectedIndex == -1)
-                    {
-                        MessageBox.Show(this, "Please select input device !", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    try
-                    {
-
-
-
-                        m_pTargetEP = new IPEndPoint(myIP, 11000);
-                    }
-                    catch
-                    {
-                        MessageBox.Show(this, "Invalid target IP address or port !", "Error:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    m_IsSendingMic = true;
-
-                    m_pWaveIn = new WaveIn(WaveIn.Devices[m_pInDevices.SelectedIndex], 8000, 16, 1, 400);
-                    m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
-                    m_pWaveIn.Start();
-
-                    startLocalButton.Text = "Stop";
-                    m_pSendTestSound.Enabled = false;
-                }
-            }
-        }
-        #endregion
 
         #region method m_pSendTestSound_Click
 
