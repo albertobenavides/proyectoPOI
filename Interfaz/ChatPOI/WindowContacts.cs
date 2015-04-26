@@ -193,6 +193,7 @@ namespace ChatPOI
                     foreach (string user in users)
                         participants.Add(user);
 
+                    usersFrom = participants.Last();
                     participants.Sort();
 
                     bool isOpen = false;

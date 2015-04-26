@@ -90,7 +90,7 @@ namespace ChatPOI
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            if (richTextBoxMessage.Text != "")
+            if (richTextBoxMessage.Text != "" && participants.Count > 1)
             sendMessage();
         }
 

@@ -184,6 +184,7 @@
             this.richTextBoxMessage.TabIndex = 0;
             this.richTextBoxMessage.Text = "";
             this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
+            this.richTextBoxMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxMessage_KeyPress);
             // 
             // flowLayoutPanel1
             // 
