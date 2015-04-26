@@ -178,6 +178,50 @@ namespace ChatPOI
                     }
                 }
 
+                else if (globals.receivedText.Substring(0, 4) == "$gr$")
+                {
+                    string usersFrom = globals.receivedText.Substring(4);
+                    usersFrom = usersFrom.Substring(0, usersFrom.IndexOf("$gr$"));
+                    usersFrom.Remove(usersFrom.IndexOf(globals.username) -1);
+                    string[] users = usersFrom.Split(',');
+                    string message = globals.receivedText.Substring(4);
+                    message = message.Substring(message.IndexOf("$gr$") + 4);
+
+                    bool isCreated = false;
+
+                    GroupChat f = new GroupChat();
+
+                    f.Text = "Integrantes: " + users; // Falta separar por comas
+
+                    f.Show();
+
+                    if (message.Contains("te ha enviado un zumbido."))
+                    {
+                        foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
+                        {
+                            if (f.Text == usersFrom)
+                            {
+                                f.zumbido();
+                                f.setMessage("\n" + usersFrom + " " + message);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                        {
+                            if (dg.Cells[1].Value.ToString() == usersFrom)
+                                dg.Cells[2].Value = message;
+                        }
+
+                        foreach (GroupChat f in Application.OpenForms.OfType<GroupChat>())
+                        {
+                            if (f.Text == usersFrom)
+                                f.setMessage("\n" + usersFrom + ": " + message);
+                        }
+                    }
+                }
+
                 else if (globals.receivedText.Substring(0, 4) == "$gm$")
                 {
                     string userFrom = globals.receivedText.Substring(4);

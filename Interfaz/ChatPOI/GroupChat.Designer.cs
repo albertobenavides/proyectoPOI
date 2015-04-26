@@ -31,9 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupChat));
             this.panelContact = new System.Windows.Forms.Panel();
             this.labelContactName = new System.Windows.Forms.Label();
+            this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelUserName = new System.Windows.Forms.Label();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.buttonAddContact = new System.Windows.Forms.Button();
             this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
             this.panelBottom = new System.Windows.Forms.Panel();
@@ -59,17 +61,15 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
-            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
-            this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.contactList = new System.Windows.Forms.CheckedListBox();
             this.panelContact.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelBottom.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBoxEmoticons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContact
@@ -90,6 +90,16 @@
             this.labelContactName.Size = new System.Drawing.Size(104, 13);
             this.labelContactName.TabIndex = 1;
             this.labelContactName.Text = "Nombre de contacto";
+            // 
+            // pictureBoxContact
+            // 
+            this.pictureBoxContact.Location = new System.Drawing.Point(11, 11);
+            this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxContact.Name = "pictureBoxContact";
+            this.pictureBoxContact.Size = new System.Drawing.Size(100, 120);
+            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxContact.TabIndex = 0;
+            this.pictureBoxContact.TabStop = false;
             // 
             // panelLeft
             // 
@@ -121,6 +131,16 @@
             this.labelUserName.TabIndex = 2;
             this.labelUserName.Text = "Nombre de usuario";
             // 
+            // pictureBoxUser
+            // 
+            this.pictureBoxUser.Location = new System.Drawing.Point(11, 11);
+            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(100, 120);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxUser.TabIndex = 0;
+            this.pictureBoxUser.TabStop = false;
+            // 
             // buttonAddContact
             // 
             this.buttonAddContact.Location = new System.Drawing.Point(33, 301);
@@ -128,18 +148,19 @@
             this.buttonAddContact.Name = "buttonAddContact";
             this.buttonAddContact.Size = new System.Drawing.Size(56, 19);
             this.buttonAddContact.TabIndex = 8;
-            this.buttonAddContact.Text = "Add ";
+            this.buttonAddContact.Text = "Añadir";
             this.buttonAddContact.UseVisualStyleBackColor = true;
+            this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
             // 
             // richTextBoxChat
             // 
             this.richTextBoxChat.BackColor = System.Drawing.Color.White;
             this.richTextBoxChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxChat.Location = new System.Drawing.Point(0, 0);
+            this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
             this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxChat.Name = "richTextBoxChat";
             this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxChat.Size = new System.Drawing.Size(648, 475);
+            this.richTextBoxChat.Size = new System.Drawing.Size(526, 361);
             this.richTextBoxChat.TabIndex = 12;
             this.richTextBoxChat.TabStop = false;
             this.richTextBoxChat.Text = "";
@@ -162,6 +183,7 @@
             this.richTextBoxMessage.Size = new System.Drawing.Size(526, 84);
             this.richTextBoxMessage.TabIndex = 0;
             this.richTextBoxMessage.Text = "";
+            this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -188,6 +210,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Enviar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // button2
             // 
@@ -198,6 +221,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Emoticon";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonEmoticon_Click);
             // 
             // button3
             // 
@@ -208,6 +232,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Buzz";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonBuzz_Click);
             // 
             // groupBoxEmoticons
             // 
@@ -378,32 +403,12 @@
             this.buttonEmoti1.TabIndex = 0;
             this.buttonEmoti1.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxUser
-            // 
-            this.pictureBoxUser.Location = new System.Drawing.Point(11, 11);
-            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxUser.Name = "pictureBoxUser";
-            this.pictureBoxUser.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxUser.TabIndex = 0;
-            this.pictureBoxUser.TabStop = false;
-            // 
-            // pictureBoxContact
-            // 
-            this.pictureBoxContact.Location = new System.Drawing.Point(11, 11);
-            this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxContact.Name = "pictureBoxContact";
-            this.pictureBoxContact.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxContact.TabIndex = 0;
-            this.pictureBoxContact.TabStop = false;
-            // 
             // contactList
             // 
             this.contactList.FormattingEnabled = true;
             this.contactList.Location = new System.Drawing.Point(122, 0);
             this.contactList.Name = "contactList";
-            this.contactList.Size = new System.Drawing.Size(185, 184);
+            this.contactList.Size = new System.Drawing.Size(166, 364);
             this.contactList.TabIndex = 17;
             this.contactList.Visible = false;
             // 
@@ -414,23 +419,23 @@
             this.ClientSize = new System.Drawing.Size(648, 475);
             this.Controls.Add(this.contactList);
             this.Controls.Add(this.groupBoxEmoticons);
+            this.Controls.Add(this.richTextBoxChat);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.richTextBoxChat);
             this.Name = "GroupChat";
             this.Text = "GroupChat";
             this.panelContact.ResumeLayout(false);
             this.panelContact.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelUser.ResumeLayout(false);
             this.panelUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.groupBoxEmoticons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
             this.ResumeLayout(false);
 
         }

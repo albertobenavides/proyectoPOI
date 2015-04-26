@@ -32,7 +32,7 @@ namespace ChatPOI
 
             labelContactName.Text = "";
             labelUserName.Text = globals.username;
-            this.Text = "Chateas con: ";
+            this.Text = "Integrantes: ";
             globals.receivedText = null;
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
@@ -98,10 +98,23 @@ namespace ChatPOI
 
         private void sendMessage()
         {
+            string header = this.Text.Substring(13);
+            string[] usersChating = header.Split(',');
+
+            for (int i = 0; i < usersChating.Length; i++)
+            {
+                usersChating[i] = usersChating[i].Trim();
+            }
+
             string s;
-            s = "$sm$";
-            s += this.Text + ",";
-            s += "$sm$";
+            s = "$sg$";
+
+            foreach (string users in usersChating)
+            {
+                s += users + ",";
+            }
+            
+            s += "$sg$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
             {
@@ -131,7 +144,7 @@ namespace ChatPOI
 
             wc.SendString(s + "$$$$");
             s = s.Substring(4);
-            s = s.Substring(s.IndexOf("$sm$") + 4);
+            s = s.Substring(s.IndexOf("$sg$") + 4);
             richTextBoxChat.AppendText("\nTú: " + s);
             foreach (string emote in emotions.Keys)
             {
@@ -286,32 +299,59 @@ namespace ChatPOI
 
         private void buttonAddContact_Click(object sender, EventArgs e)
         {
-            contactList.Items.Clear();
-            contactList.Visible = true;
-
-            List<string> users = new List<string>();
-
-            foreach (WindowContacts temp in Application.OpenForms.OfType<WindowContacts>())
+            if (buttonAddContact.Text == "Añadir")
             {
-                users = temp.getContactList();
-            }
-            string header = this.Text;
-            header = header.Trim();
-            string[] usersChating = header.Split(',');
+                contactList.Items.Clear();
+                contactList.Visible = true;
 
-            foreach (string user in users)
-            {
-                if (!usersChating.Contains(user))
+                buttonAddContact.Text = "Confirmar";
+
+                List<string> users = new List<string>();
+
+                foreach (WindowContacts temp in Application.OpenForms.OfType<WindowContacts>())
+                {
+                    users = temp.getContactList();
+                }
+                string header = this.Text;
+                header = header.Substring(13);
+                string[] usersChating = header.Split(',');
+
+                for (int i = 0; i < usersChating.Length; i++)
+                {
+                    usersChating[i] = usersChating[i].Trim();
+                }
+
+                foreach (string user in users)
                 {
                     contactList.Items.Add(user);
+
+                    if (usersChating.Contains(user))
+                    {
+                        contactList.SetItemChecked(contactList.Items.IndexOf(user), true);
+                    }
                 }
-                
             }
-        }
+            else
+            {
+                this.Text = "Chateas con: ";
 
-        private void contactList_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                bool isFirst = true;
 
+                foreach (object user in contactList.CheckedItems)
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        this.Text += user.ToString();
+                    }
+                    else
+                        this.Text += ", " + user.ToString();
+                }
+
+                contactList.Visible = false;
+
+                buttonAddContact.Text = "Añadir";
+            }
         }
     }
 }
