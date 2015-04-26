@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="ClientConection.cs" />
     <Compile Include="globals.cs" />
+    <Compile Include="GroupChat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupChat.Designer.cs">
+      <DependentUpon>GroupChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GroupChat.resx">
+      <DependentUpon>GroupChat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowGroup.resx">
       <DependentUpon>WindowGroup.cs</DependentUpon>
     </EmbeddedResource>

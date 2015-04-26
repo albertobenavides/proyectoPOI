@@ -152,7 +152,7 @@ namespace ChatPOI
 
                     if (message.Contains("te ha enviado un zumbido."))
                     {
-                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                        foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
                         {
                             if (f.Text == userFrom)
                             {
@@ -170,7 +170,7 @@ namespace ChatPOI
                                 dg.Cells[2].Value = message;
                         }
 
-                        foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                        foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
                         {
                             if (f.Text == userFrom)
                                 f.setMessage("\n" + userFrom + ": " + message);
@@ -185,7 +185,7 @@ namespace ChatPOI
                     string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$gm$") + 4);
 
-                    foreach (FormChat f in Application.OpenForms.OfType<FormChat>())
+                    foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
                     {
                         if (f.Text == userFrom)
                             f.setMessage(message);
@@ -235,7 +235,7 @@ namespace ChatPOI
         private void dataGridViewContacts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             bool isCreated = false;
-            foreach (FormChat temp in Application.OpenForms.OfType<FormChat>())
+            foreach (WindowChat temp in Application.OpenForms.OfType<WindowChat>())
             {
                 if (temp.Text == dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString())
                 {
@@ -245,7 +245,7 @@ namespace ChatPOI
             }
             if (!isCreated)
             {
-                FormChat f = new FormChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
+                WindowChat f = new WindowChat(dataGridViewContacts.Rows[e.RowIndex].Cells[1].Value.ToString());
                 f.Show();
             }
 
@@ -259,6 +259,24 @@ namespace ChatPOI
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
+        }
+
+        public List<string> getContactList()
+        {
+            List<string> users = new List<string>();
+            foreach (DataGridViewRow row in dataGridViewContacts.Rows)
+            {
+                users.Add(row.Cells[1].Value.ToString());
+            }
+            return users;
+        }
+
+        private void groupChatButton_Click(object sender, EventArgs e)
+        {
+            {
+                GroupChat f = new GroupChat();
+                f.Show();
+            }
         }
     }
 }

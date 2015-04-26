@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 
 namespace ChatPOI
 {
-    public partial class WindowChat: Form
+    public partial class GroupChat : Form
     {
-        
-        Dictionary<string, Bitmap> emotions;
+    Dictionary<string, Bitmap> emotions;
 
         SoundPlayer sp;
 
         WindowContacts wc;
 
-        public WindowChat(string s)
+        public GroupChat()
         {
             InitializeComponent();
 
@@ -32,11 +30,10 @@ namespace ChatPOI
                 wc = f;
             }
 
-            labelContactName.Text = s;
+            labelContactName.Text = "";
             labelUserName.Text = globals.username;
-            this.Text = s;
+            this.Text = "Chateas con: ";
             globals.receivedText = null;
-            wc.SendString("$gm$" + s + "$$$$");
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -285,6 +282,36 @@ namespace ChatPOI
             sp.Play();
 
             this.Location = inicial;
+        }
+
+        private void buttonAddContact_Click(object sender, EventArgs e)
+        {
+            contactList.Items.Clear();
+            contactList.Visible = true;
+
+            List<string> users = new List<string>();
+
+            foreach (WindowContacts temp in Application.OpenForms.OfType<WindowContacts>())
+            {
+                users = temp.getContactList();
+            }
+            string header = this.Text;
+            header = header.Trim();
+            string[] usersChating = header.Split(',');
+
+            foreach (string user in users)
+            {
+                if (!usersChating.Contains(user))
+                {
+                    contactList.Items.Add(user);
+                }
+                
+            }
+        }
+
+        private void contactList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

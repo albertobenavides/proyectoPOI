@@ -71,7 +71,6 @@ namespace Servidor
 
         public static void sender(string message, string userName)
         {
-
             if (message == "$uc$")
             {
                 Console.WriteLine("¡" + userName + " se ha conectado!");
