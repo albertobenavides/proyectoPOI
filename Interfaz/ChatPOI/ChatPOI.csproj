@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LumiSoft.Net">
+      <HintPath>..\..\..\ProInt\AdvancedWave\AdvancedWave\dep\LumiSoft.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +49,17 @@
   <ItemGroup>
     <Compile Include="ClientConection.cs" />
     <Compile Include="globals.cs" />
+    <Compile Include="Media\Wave\native\MMSYSERR.cs" />
+    <Compile Include="Media\Wave\native\WavConstants.cs" />
+    <Compile Include="Media\Wave\native\WAVEFORMATEX.cs" />
+    <Compile Include="Media\Wave\native\WAVEHDR.cs" />
+    <Compile Include="Media\Wave\native\WAVEOUTCAPS.cs" />
+    <Compile Include="Media\Wave\native\WavFormat.cs" />
+    <Compile Include="Media\Wave\native\WavMethods.cs" />
+    <Compile Include="Media\Wave\WaveIn.cs" />
+    <Compile Include="Media\Wave\WaveOut.cs" />
+    <Compile Include="Media\Wave\WavInDevice.cs" />
+    <Compile Include="Media\Wave\WavOutDevice.cs" />
     <Compile Include="WindowGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +86,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowVoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowVoice.Designer.cs">
+      <DependentUpon>WindowVoice.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="WindowGroup.resx">
       <DependentUpon>WindowGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +103,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowChat.resx">
       <DependentUpon>WindowChat.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

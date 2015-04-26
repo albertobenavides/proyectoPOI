@@ -127,6 +127,7 @@
             this.buttonCall.TabIndex = 7;
             this.buttonCall.Text = "Call";
             this.buttonCall.UseVisualStyleBackColor = true;
+            this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
             // 
             // buttonCamera
             // 

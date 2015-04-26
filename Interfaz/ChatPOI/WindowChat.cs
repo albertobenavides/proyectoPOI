@@ -285,5 +285,11 @@ namespace ChatPOI
 
             this.Location = inicial;
         }
+
+        private void buttonCall_Click(object sender, EventArgs e)
+        {
+            WindowVoice VentanV = new WindowVoice();
+            VentanV.Show();
+        }
     }
 }
