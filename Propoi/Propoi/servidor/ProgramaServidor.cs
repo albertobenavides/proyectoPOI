@@ -71,7 +71,6 @@ namespace Servidor
 
         public static void sender(string message, string userName)
         {
-
             if (message == "$uc$")
             {
                 Console.WriteLine("¡" + userName + " se ha conectado!");
@@ -187,7 +186,7 @@ namespace Servidor
                         messageToSend = "$mr$";
                         messageToSend += userName + "$mr$";
                         dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sm$") + 4);
-                        messageToSend += dataFromClient;
+                        messageToSend += dataFromClient + "$me$";
 
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
@@ -211,6 +210,49 @@ namespace Servidor
                             TcpClient senderSocket = (TcpClient)clientList[user];
                             senderSocket.Client.Send(data);
                             Console.WriteLine("@" + user + ": " + messageToSend);
+                        }
+                        Console.WriteLine("");
+                    }
+
+                    else if (dataFromClient.Substring(0, 4) == "$sg$")
+                    {
+                        dataFromClient = dataFromClient.Substring(4);
+                        string clientString = dataFromClient.Substring(0, dataFromClient.IndexOf("$sg$"));
+
+                        string[] users = clientString.Split(',');
+
+                        string messageToSend;
+                        messageToSend = "$gr$";
+
+                        bool isFirst = true;
+                        foreach (string user in users)
+                        {
+                            if (!user.Equals(""))
+                            {
+                                if (isFirst)
+                                {
+                                    isFirst = false;
+                                    messageToSend += user;
+                                }
+                                else
+                                    messageToSend += "," + user;
+                            }
+                        }
+
+                        messageToSend += "," + userName + "$gr$";
+                        dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sg$") + 4);
+                        messageToSend += dataFromClient + "$me$";
+
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
+
+                        foreach (string user in users)
+                        {
+                            if (!user.Equals(""))
+                            {
+                                TcpClient senderSocket = (TcpClient)clientList[user];
+                                senderSocket.Client.Send(data);
+                                Console.WriteLine("@" + user + ": " + messageToSend);
+                            }
                         }
                         Console.WriteLine("");
                     }

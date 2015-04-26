@@ -1,27 +1,27 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Media;
 
 namespace ChatPOI
 {
-    public partial class WindowChat: Form
+    public partial class GroupChat : Form
     {
-        
         Dictionary<string, Bitmap> emotions;
+
+        List<string> participants;
 
         SoundPlayer sp;
 
         WindowContacts wc;
 
-        public WindowChat(string s)
+        public GroupChat(List<string> users)
         {
             InitializeComponent();
 
@@ -32,11 +32,36 @@ namespace ChatPOI
                 wc = f;
             }
 
-            labelContactName.Text = s;
+            labelContactName.Text = "";
+
             labelUserName.Text = globals.username;
-            this.Text = s;
+
+            if (users == null)
+            {
+                participants = new List<string>();
+                participants.Add(globals.username);
+            }
+            else
+                participants = users;
+
+            participants.Sort();
+
+            this.Text = "Integrantes: ";
+
+            bool isFrist = true;
+
+            foreach (string user in participants)
+            {
+                if (isFrist)
+                {
+                    isFrist = false;
+                    this.Text += user;
+                }
+                else
+                    this.Text += ", " + user;
+            }
+
             globals.receivedText = null;
-            wc.SendString("$gm$" + s + "$$$$");
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -57,9 +82,15 @@ namespace ChatPOI
             groupBoxEmoticons.Visible = false;
         }
 
+        public List<string> getParticipants()
+        {
+            participants.Sort();
+            return participants;
+        }
+
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            if (richTextBoxMessage.Text != "")
+            if (richTextBoxMessage.Text != "" && participants.Count > 1)
             sendMessage();
         }
 
@@ -102,9 +133,15 @@ namespace ChatPOI
         private void sendMessage()
         {
             string s;
-            s = "$sm$";
-            s += this.Text + ",";
-            s += "$sm$";
+            s = "$sg$";
+
+            foreach (string user in participants)
+            {
+                if (!user.Equals(globals.username))
+                s += user + ",";
+            }
+            
+            s += "$sg$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
             {
@@ -134,7 +171,7 @@ namespace ChatPOI
 
             wc.SendString(s + "$$$$");
             s = s.Substring(4);
-            s = s.Substring(s.IndexOf("$sm$") + 4);
+            s = s.Substring(s.IndexOf("$sg$") + 4);
             richTextBoxChat.AppendText("\nTú: " + s);
             foreach (string emote in emotions.Keys)
             {
@@ -285,6 +322,74 @@ namespace ChatPOI
             sp.Play();
 
             this.Location = inicial;
+        }
+
+        private void buttonAddContact_Click(object sender, EventArgs e)
+        {
+            if (buttonAddContact.Text == "Añadir")
+            {
+                contactList.Items.Clear();
+                contactList.Visible = true;
+
+                buttonAddContact.Text = "Confirmar";
+
+                List<string> users = new List<string>();
+
+                foreach (WindowContacts temp in Application.OpenForms.OfType<WindowContacts>())
+                {
+                    users = temp.getContactList();
+                }
+                string header = this.Text;
+                header = header.Substring(13);
+                string[] usersChating = header.Split(',');
+
+                for (int i = 0; i < usersChating.Length; i++)
+                {
+                    usersChating[i] = usersChating[i].Trim();
+                }
+
+                foreach (string user in users)
+                {
+                    contactList.Items.Add(user);
+
+                    if (usersChating.Contains(user))
+                    {
+                        contactList.SetItemChecked(contactList.Items.IndexOf(user), true);
+                    }
+                }
+            }
+            else
+            {
+                this.Text = "Integrantes: ";
+
+                bool isFirst = true;
+
+                participants.Clear();
+
+                participants.Add(globals.username);
+
+                foreach (object user in contactList.CheckedItems)
+                {
+                    participants.Add(user.ToString());
+                }
+
+                participants.Sort();
+
+                foreach (string user in participants)
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        this.Text += user.ToString();
+                    }
+                    else
+                        this.Text += ", " + user.ToString();
+                }
+
+                contactList.Visible = false;
+
+                buttonAddContact.Text = "Añadir";
+            }
         }
     }
 }

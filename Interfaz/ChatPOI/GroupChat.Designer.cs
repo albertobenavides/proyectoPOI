@@ -1,6 +1,6 @@
 ﻿namespace ChatPOI
 {
-    partial class WindowChat
+    partial class GroupChat
     {
         /// <summary>
         /// Required designer variable.
@@ -28,24 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowChat));
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.buttonEmoticon = new System.Windows.Forms.Button();
-            this.buttonBuzz = new System.Windows.Forms.Button();
-            this.buttonCall = new System.Windows.Forms.Button();
-            this.buttonCamera = new System.Windows.Forms.Button();
-            this.buttonPlay = new System.Windows.Forms.Button();
-            this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupChat));
+            this.panelContact = new System.Windows.Forms.Panel();
+            this.labelContactName = new System.Windows.Forms.Label();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
-            this.panelContact = new System.Windows.Forms.Panel();
-            this.labelContactName = new System.Windows.Forms.Label();
+            this.buttonAddContact = new System.Windows.Forms.Button();
+            this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
-            this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBoxEmoticons = new System.Windows.Forms.GroupBox();
             this.buttonEmoti16 = new System.Windows.Forms.Button();
             this.buttonEmoti15 = new System.Windows.Forms.Button();
@@ -63,92 +61,35 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
+            this.contactList = new System.Windows.Forms.CheckedListBox();
+            this.panelContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
-            this.panelContact.SuspendLayout();
             this.panelBottom.SuspendLayout();
-            this.flowLayoutPanelComunication.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.groupBoxEmoticons.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonSend
+            // panelContact
             // 
-            this.buttonSend.AutoSize = true;
-            this.buttonSend.Location = new System.Drawing.Point(487, 2);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(56, 23);
-            this.buttonSend.TabIndex = 2;
-            this.buttonSend.Text = "Enviar";
-            this.buttonSend.UseVisualStyleBackColor = true;
-            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            this.panelContact.Controls.Add(this.labelContactName);
+            this.panelContact.Controls.Add(this.pictureBoxContact);
+            this.panelContact.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelContact.Location = new System.Drawing.Point(0, 0);
+            this.panelContact.Name = "panelContact";
+            this.panelContact.Size = new System.Drawing.Size(122, 150);
+            this.panelContact.TabIndex = 11;
             // 
-            // buttonEmoticon
+            // labelContactName
             // 
-            this.buttonEmoticon.Location = new System.Drawing.Point(427, 2);
-            this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonEmoticon.Name = "buttonEmoticon";
-            this.buttonEmoticon.Size = new System.Drawing.Size(56, 23);
-            this.buttonEmoticon.TabIndex = 4;
-            this.buttonEmoticon.Text = "Emoticon";
-            this.buttonEmoticon.UseVisualStyleBackColor = true;
-            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
-            // 
-            // buttonBuzz
-            // 
-            this.buttonBuzz.Location = new System.Drawing.Point(367, 2);
-            this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonBuzz.Name = "buttonBuzz";
-            this.buttonBuzz.Size = new System.Drawing.Size(56, 23);
-            this.buttonBuzz.TabIndex = 3;
-            this.buttonBuzz.Text = "Buzz";
-            this.buttonBuzz.UseVisualStyleBackColor = true;
-            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
-            // 
-            // buttonCall
-            // 
-            this.buttonCall.Location = new System.Drawing.Point(23, 228);
-            this.buttonCall.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCall.Name = "buttonCall";
-            this.buttonCall.Size = new System.Drawing.Size(56, 19);
-            this.buttonCall.TabIndex = 7;
-            this.buttonCall.Text = "Call";
-            this.buttonCall.UseVisualStyleBackColor = true;
-            // 
-            // buttonCamera
-            // 
-            this.buttonCamera.Location = new System.Drawing.Point(23, 206);
-            this.buttonCamera.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCamera.Name = "buttonCamera";
-            this.buttonCamera.Size = new System.Drawing.Size(56, 19);
-            this.buttonCamera.TabIndex = 6;
-            this.buttonCamera.Text = "Cam";
-            this.buttonCamera.UseVisualStyleBackColor = true;
-            // 
-            // buttonPlay
-            // 
-            this.buttonPlay.Location = new System.Drawing.Point(23, 183);
-            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(56, 19);
-            this.buttonPlay.TabIndex = 5;
-            this.buttonPlay.Text = "Play";
-            this.buttonPlay.UseVisualStyleBackColor = true;
-            // 
-            // richTextBoxChat
-            // 
-            this.richTextBoxChat.BackColor = System.Drawing.Color.White;
-            this.richTextBoxChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
-            this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBoxChat.Name = "richTextBoxChat";
-            this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxChat.Size = new System.Drawing.Size(545, 324);
-            this.richTextBoxChat.TabIndex = 3;
-            this.richTextBoxChat.TabStop = false;
-            this.richTextBoxChat.Text = "";
+            this.labelContactName.AutoSize = true;
+            this.labelContactName.Location = new System.Drawing.Point(11, 133);
+            this.labelContactName.Name = "labelContactName";
+            this.labelContactName.Size = new System.Drawing.Size(104, 13);
+            this.labelContactName.TabIndex = 1;
+            this.labelContactName.Text = "Nombre de contacto";
             // 
             // pictureBoxContact
             // 
@@ -164,21 +105,19 @@
             // 
             this.panelLeft.Controls.Add(this.panelUser);
             this.panelLeft.Controls.Add(this.panelContact);
-            this.panelLeft.Controls.Add(this.buttonPlay);
-            this.panelLeft.Controls.Add(this.buttonCall);
-            this.panelLeft.Controls.Add(this.buttonCamera);
+            this.panelLeft.Controls.Add(this.buttonAddContact);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(122, 438);
-            this.panelLeft.TabIndex = 11;
+            this.panelLeft.Size = new System.Drawing.Size(122, 475);
+            this.panelLeft.TabIndex = 13;
             // 
             // panelUser
             // 
             this.panelUser.Controls.Add(this.labelUserName);
             this.panelUser.Controls.Add(this.pictureBoxUser);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelUser.Location = new System.Drawing.Point(0, 288);
+            this.panelUser.Location = new System.Drawing.Point(0, 325);
             this.panelUser.Name = "panelUser";
             this.panelUser.Size = new System.Drawing.Size(122, 150);
             this.panelUser.TabIndex = 12;
@@ -202,60 +141,99 @@
             this.pictureBoxUser.TabIndex = 0;
             this.pictureBoxUser.TabStop = false;
             // 
-            // panelContact
+            // buttonAddContact
             // 
-            this.panelContact.Controls.Add(this.labelContactName);
-            this.panelContact.Controls.Add(this.pictureBoxContact);
-            this.panelContact.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelContact.Location = new System.Drawing.Point(0, 0);
-            this.panelContact.Name = "panelContact";
-            this.panelContact.Size = new System.Drawing.Size(122, 150);
-            this.panelContact.TabIndex = 11;
+            this.buttonAddContact.Location = new System.Drawing.Point(24, 301);
+            this.buttonAddContact.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddContact.Name = "buttonAddContact";
+            this.buttonAddContact.Size = new System.Drawing.Size(74, 19);
+            this.buttonAddContact.TabIndex = 8;
+            this.buttonAddContact.Text = "Añadir";
+            this.buttonAddContact.UseVisualStyleBackColor = true;
+            this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
             // 
-            // labelContactName
+            // richTextBoxChat
             // 
-            this.labelContactName.AutoSize = true;
-            this.labelContactName.Location = new System.Drawing.Point(11, 133);
-            this.labelContactName.Name = "labelContactName";
-            this.labelContactName.Size = new System.Drawing.Size(104, 13);
-            this.labelContactName.TabIndex = 1;
-            this.labelContactName.Text = "Nombre de contacto";
+            this.richTextBoxChat.BackColor = System.Drawing.Color.White;
+            this.richTextBoxChat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxChat.Location = new System.Drawing.Point(122, 0);
+            this.richTextBoxChat.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxChat.Name = "richTextBoxChat";
+            this.richTextBoxChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBoxChat.Size = new System.Drawing.Size(526, 361);
+            this.richTextBoxChat.TabIndex = 12;
+            this.richTextBoxChat.TabStop = false;
+            this.richTextBoxChat.Text = "";
             // 
             // panelBottom
             // 
             this.panelBottom.Controls.Add(this.richTextBoxMessage);
-            this.panelBottom.Controls.Add(this.flowLayoutPanelComunication);
+            this.panelBottom.Controls.Add(this.flowLayoutPanel1);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(122, 324);
+            this.panelBottom.Location = new System.Drawing.Point(122, 361);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(545, 114);
-            this.panelBottom.TabIndex = 12;
+            this.panelBottom.Size = new System.Drawing.Size(526, 114);
+            this.panelBottom.TabIndex = 15;
             // 
             // richTextBoxMessage
             // 
             this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.richTextBoxMessage.Location = new System.Drawing.Point(0, 3);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
-            this.richTextBoxMessage.Size = new System.Drawing.Size(545, 84);
+            this.richTextBoxMessage.Size = new System.Drawing.Size(526, 84);
             this.richTextBoxMessage.TabIndex = 0;
             this.richTextBoxMessage.Text = "";
             this.richTextBoxMessage.TextChanged += new System.EventHandler(this.richTextBoxMessage_TextChanged);
             this.richTextBoxMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxMessage_KeyPress);
             // 
-            // flowLayoutPanelComunication
+            // flowLayoutPanel1
             // 
-            this.flowLayoutPanelComunication.AutoSize = true;
-            this.flowLayoutPanelComunication.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelComunication.Controls.Add(this.buttonSend);
-            this.flowLayoutPanelComunication.Controls.Add(this.buttonEmoticon);
-            this.flowLayoutPanelComunication.Controls.Add(this.buttonBuzz);
-            this.flowLayoutPanelComunication.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanelComunication.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanelComunication.Location = new System.Drawing.Point(0, 87);
-            this.flowLayoutPanelComunication.Name = "flowLayoutPanelComunication";
-            this.flowLayoutPanelComunication.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanelComunication.Size = new System.Drawing.Size(545, 27);
-            this.flowLayoutPanelComunication.TabIndex = 11;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 87);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(526, 27);
+            this.flowLayoutPanel1.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(468, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Enviar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(408, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(56, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Emoticon";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonEmoticon_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(348, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(56, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Buzz";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonBuzz_Click);
             // 
             // groupBoxEmoticons
             // 
@@ -275,13 +253,12 @@
             this.groupBoxEmoticons.Controls.Add(this.buttonEmoti9);
             this.groupBoxEmoticons.Controls.Add(this.buttonEmoti10);
             this.groupBoxEmoticons.Controls.Add(this.buttonEmoti1);
-            this.groupBoxEmoticons.Location = new System.Drawing.Point(404, 246);
+            this.groupBoxEmoticons.Location = new System.Drawing.Point(485, 280);
             this.groupBoxEmoticons.Name = "groupBoxEmoticons";
             this.groupBoxEmoticons.Size = new System.Drawing.Size(151, 162);
-            this.groupBoxEmoticons.TabIndex = 13;
+            this.groupBoxEmoticons.TabIndex = 16;
             this.groupBoxEmoticons.TabStop = false;
             this.groupBoxEmoticons.Text = "Emoticons";
-            this.groupBoxEmoticons.Leave += new System.EventHandler(this.groupBoxEmoticons_Leave);
             // 
             // buttonEmoti16
             // 
@@ -291,7 +268,6 @@
             this.buttonEmoti16.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti16.TabIndex = 15;
             this.buttonEmoti16.UseVisualStyleBackColor = true;
-            this.buttonEmoti16.Click += new System.EventHandler(this.buttonEmoti16_Click);
             // 
             // buttonEmoti15
             // 
@@ -301,7 +277,6 @@
             this.buttonEmoti15.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti15.TabIndex = 14;
             this.buttonEmoti15.UseVisualStyleBackColor = true;
-            this.buttonEmoti15.Click += new System.EventHandler(this.buttonEmoti15_Click);
             // 
             // buttonEmoti13
             // 
@@ -311,7 +286,6 @@
             this.buttonEmoti13.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti13.TabIndex = 13;
             this.buttonEmoti13.UseVisualStyleBackColor = true;
-            this.buttonEmoti13.Click += new System.EventHandler(this.buttonEmoti13_Click);
             // 
             // buttonEmoti14
             // 
@@ -321,7 +295,6 @@
             this.buttonEmoti14.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti14.TabIndex = 12;
             this.buttonEmoti14.UseVisualStyleBackColor = true;
-            this.buttonEmoti14.Click += new System.EventHandler(this.buttonEmoti14_Click);
             // 
             // buttonEmoti12
             // 
@@ -331,7 +304,6 @@
             this.buttonEmoti12.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti12.TabIndex = 11;
             this.buttonEmoti12.UseVisualStyleBackColor = true;
-            this.buttonEmoti12.Click += new System.EventHandler(this.buttonEmoti12_Click);
             // 
             // buttonEmoti11
             // 
@@ -341,7 +313,6 @@
             this.buttonEmoti11.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti11.TabIndex = 10;
             this.buttonEmoti11.UseVisualStyleBackColor = true;
-            this.buttonEmoti11.Click += new System.EventHandler(this.buttonEmoti11_Click);
             // 
             // buttonEmoti2
             // 
@@ -351,7 +322,6 @@
             this.buttonEmoti2.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti2.TabIndex = 9;
             this.buttonEmoti2.UseVisualStyleBackColor = true;
-            this.buttonEmoti2.Click += new System.EventHandler(this.buttonEmoti2_Click);
             // 
             // buttonEmoti3
             // 
@@ -361,7 +331,6 @@
             this.buttonEmoti3.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti3.TabIndex = 8;
             this.buttonEmoti3.UseVisualStyleBackColor = true;
-            this.buttonEmoti3.Click += new System.EventHandler(this.buttonEmoti3_Click);
             // 
             // buttonEmoti4
             // 
@@ -371,7 +340,6 @@
             this.buttonEmoti4.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti4.TabIndex = 7;
             this.buttonEmoti4.UseVisualStyleBackColor = true;
-            this.buttonEmoti4.Click += new System.EventHandler(this.buttonEmoti4_Click);
             // 
             // buttonEmoti5
             // 
@@ -381,7 +349,6 @@
             this.buttonEmoti5.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti5.TabIndex = 6;
             this.buttonEmoti5.UseVisualStyleBackColor = true;
-            this.buttonEmoti5.Click += new System.EventHandler(this.buttonEmoti5_Click);
             // 
             // buttonEmoti6
             // 
@@ -391,7 +358,6 @@
             this.buttonEmoti6.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti6.TabIndex = 5;
             this.buttonEmoti6.UseVisualStyleBackColor = true;
-            this.buttonEmoti6.Click += new System.EventHandler(this.buttonEmoti6_Click);
             // 
             // buttonEmoti7
             // 
@@ -401,7 +367,6 @@
             this.buttonEmoti7.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti7.TabIndex = 4;
             this.buttonEmoti7.UseVisualStyleBackColor = true;
-            this.buttonEmoti7.Click += new System.EventHandler(this.buttonEmoti7_Click);
             // 
             // buttonEmoti8
             // 
@@ -411,7 +376,6 @@
             this.buttonEmoti8.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti8.TabIndex = 3;
             this.buttonEmoti8.UseVisualStyleBackColor = true;
-            this.buttonEmoti8.Click += new System.EventHandler(this.buttonEmoti8_Click);
             // 
             // buttonEmoti9
             // 
@@ -421,7 +385,6 @@
             this.buttonEmoti9.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti9.TabIndex = 2;
             this.buttonEmoti9.UseVisualStyleBackColor = true;
-            this.buttonEmoti9.Click += new System.EventHandler(this.buttonEmoti9_Click);
             // 
             // buttonEmoti10
             // 
@@ -440,33 +403,39 @@
             this.buttonEmoti1.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti1.TabIndex = 0;
             this.buttonEmoti1.UseVisualStyleBackColor = true;
-            this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
             // 
-            // WindowChat
+            // contactList
+            // 
+            this.contactList.FormattingEnabled = true;
+            this.contactList.Location = new System.Drawing.Point(122, 0);
+            this.contactList.Name = "contactList";
+            this.contactList.Size = new System.Drawing.Size(166, 364);
+            this.contactList.TabIndex = 17;
+            this.contactList.Visible = false;
+            // 
+            // GroupChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(667, 438);
+            this.ClientSize = new System.Drawing.Size(648, 475);
+            this.Controls.Add(this.contactList);
             this.Controls.Add(this.groupBoxEmoticons);
             this.Controls.Add(this.richTextBoxChat);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelLeft);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "WindowChat";
-            this.Text = "Usuario";
+            this.Name = "GroupChat";
+            this.Text = "GroupChat";
+            this.panelContact.ResumeLayout(false);
+            this.panelContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelUser.ResumeLayout(false);
             this.panelUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
-            this.panelContact.ResumeLayout(false);
-            this.panelContact.PerformLayout();
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
-            this.flowLayoutPanelComunication.ResumeLayout(false);
-            this.flowLayoutPanelComunication.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.groupBoxEmoticons.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -474,25 +443,28 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxContact;
-        private System.Windows.Forms.RichTextBox richTextBoxChat;
-        private System.Windows.Forms.Button buttonSend;
-        private System.Windows.Forms.Button buttonEmoticon;
-        private System.Windows.Forms.Button buttonBuzz;
-        private System.Windows.Forms.Button buttonCall;
-        private System.Windows.Forms.Button buttonCamera;
-        private System.Windows.Forms.Button buttonPlay;
-        private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Panel panelContact;
-        private System.Windows.Forms.Panel panelUser;
-        private System.Windows.Forms.PictureBox pictureBoxUser;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelComunication;
-        private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelContactName;
+        private System.Windows.Forms.PictureBox pictureBoxContact;
+        private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.Panel panelUser;
+        private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
+        private System.Windows.Forms.Button buttonAddContact;
+        private System.Windows.Forms.RichTextBox richTextBoxChat;
+        private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBoxEmoticons;
-        private System.Windows.Forms.Button buttonEmoti1;
+        private System.Windows.Forms.Button buttonEmoti16;
+        private System.Windows.Forms.Button buttonEmoti15;
+        private System.Windows.Forms.Button buttonEmoti13;
+        private System.Windows.Forms.Button buttonEmoti14;
+        private System.Windows.Forms.Button buttonEmoti12;
+        private System.Windows.Forms.Button buttonEmoti11;
         private System.Windows.Forms.Button buttonEmoti2;
         private System.Windows.Forms.Button buttonEmoti3;
         private System.Windows.Forms.Button buttonEmoti4;
@@ -502,11 +474,8 @@
         private System.Windows.Forms.Button buttonEmoti8;
         private System.Windows.Forms.Button buttonEmoti9;
         private System.Windows.Forms.Button buttonEmoti10;
-        private System.Windows.Forms.Button buttonEmoti16;
-        private System.Windows.Forms.Button buttonEmoti15;
-        private System.Windows.Forms.Button buttonEmoti13;
-        private System.Windows.Forms.Button buttonEmoti14;
-        private System.Windows.Forms.Button buttonEmoti12;
-        private System.Windows.Forms.Button buttonEmoti11;
+        private System.Windows.Forms.Button buttonEmoti1;
+        private System.Windows.Forms.CheckedListBox contactList;
+
     }
 }
