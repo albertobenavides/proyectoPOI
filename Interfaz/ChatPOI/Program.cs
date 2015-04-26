@@ -25,7 +25,7 @@ namespace ChatPOI
                 WindowLogin f = new WindowLogin();
                 if (f.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new WindowVoice());
+                    Application.Run(new WindowContacts());
                 }
                 else
                     Application.Exit();

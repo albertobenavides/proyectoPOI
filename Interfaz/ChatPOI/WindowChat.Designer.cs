@@ -125,7 +125,7 @@
             this.buttonCall.Name = "buttonCall";
             this.buttonCall.Size = new System.Drawing.Size(56, 19);
             this.buttonCall.TabIndex = 7;
-            this.buttonCall.Text = "Call";
+            this.buttonCall.Text = "Llamar";
             this.buttonCall.UseVisualStyleBackColor = true;
             this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
             // 

@@ -10,6 +10,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
+using System.Net;
+using System.Threading;
+
+using System.Net.Sockets;
+
+using LumiSoft.Net.UDP;
+using LumiSoft.Net.Codec;
+using LumiSoft.Media.Wave;
+
 namespace ChatPOI
 {
     public partial class FormChat: Form
@@ -19,6 +28,16 @@ namespace ChatPOI
         SoundPlayer sp;
 
         WindowContacts wc;
+
+        // Audio
+        
+        string myIP;
+        
+        WaveOut m_pWaveOut;
+        UdpServer m_pUdpServer;
+
+        WaveIn m_pWaveIn;
+        IPEndPoint m_pTargetEP;
 
         public FormChat(string s)
         {
@@ -288,8 +307,84 @@ namespace ChatPOI
 
         private void buttonCall_Click(object sender, EventArgs e)
         {
-            WindowVoice VentanV = new WindowVoice();
-            VentanV.Show();
+            if (buttonCall.Text.Equals("Llamar"))
+            {
+                buttonCall.Text = "Colgar";
+                m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
+
+                IPAddress[] localip = Dns.GetHostAddresses(Dns.GetHostName());
+                foreach (IPAddress address in localip)
+                {
+                    if (address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        myIP = Convert.ToString(address);
+                    }
+                }
+
+                m_pUdpServer = new UdpServer();
+                m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myIP), 11000) };
+                m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
+                m_pUdpServer.Start();
+
+
+                // Hablar con el otro
+                
+                try
+                {
+                    m_pTargetEP = new IPEndPoint(IPAddress.Parse("192.168.0.36"), 11000);
+                }
+                catch
+                {
+                    return;
+                }
+
+                m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
+                m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
+                m_pWaveIn.Start();
+
+                // Hablar con el otro FIN
+
+            }
+            else
+            {
+                m_pUdpServer.Dispose();
+                m_pUdpServer = null;
+
+                m_pWaveOut.Dispose();
+                m_pWaveOut = null;
+
+
+                // Cerrar hablar con el otro
+
+                m_pWaveIn.Dispose();
+                m_pWaveIn = null;
+
+                // Cerrar hablar con el otro FIN
+            }
+        }
+
+
+        private void m_pUdpServer_PacketReceived(UdpPacket_eArgs e)
+        {
+            // Decompress data.
+            byte[] decodedData = null;
+            
+            // Elegir el codec
+            decodedData = G711.Decode_aLaw(e.Data, 0, e.Data.Length);
+
+            // We just play received packet.
+            m_pWaveOut.Play(decodedData, 0, decodedData.Length);
+        }
+
+        private void m_pWaveIn_BufferFull(byte[] buffer)
+        {
+            // Compress data. 
+            byte[] encodedData = null;
+            
+            encodedData = G711.Encode_aLaw(buffer, 0, buffer.Length);
+
+            // We just sent buffer to target end point.
+            m_pUdpServer.SendPacket(encodedData, 0, encodedData.Length, m_pTargetEP);
         }
     }
 }

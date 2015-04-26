@@ -57,6 +57,8 @@ namespace Servidor
 
                 clientList.Add(nickClient, clientSocket);
 
+                // clientSocket.Client.LocalEndPoint.AddressFamily; // Hacer algo así.
+
                 sender("$uc$", nickClient);
 
                 handleClient client = new handleClient();
