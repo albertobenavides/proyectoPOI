@@ -23,7 +23,9 @@ namespace ChatPOI
 
         public UdpServer audioUdpServer;
 
-        public UdpServer videoUdpServer;
+        //public UdpServer videoUdpServer;
+
+        public UdpClient videoUdpServer;
 
         public string myUdpIp;
 
@@ -73,9 +75,12 @@ namespace ChatPOI
             audioUdpServer = new UdpServer();
             audioUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 11000) };
 
-            videoUdpServer = new UdpServer();
-            videoUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 44444) };
+            //videoUdpServer = new UdpServer();
+            //videoUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 44444) };
 
+            IPEndPoint ipepLocal = new IPEndPoint(IPAddress.Parse(myUdpIp), 44444);
+            videoUdpServer = new UdpClient(ipepLocal);
+            
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
             globals.receivedText = null;

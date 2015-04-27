@@ -417,6 +417,7 @@ namespace ChatPOI
 
         private void buttonCamera_Click(object sender, EventArgs e)
         {
+        Thread videoReceiverThread = new Thread(videoPacketReceived);  
         if (buttonCamera.Text.Equals("Video"))
             {
                 buttonCamera.Text = "Finalizar";
@@ -429,8 +430,7 @@ namespace ChatPOI
 
                     try
                     {
-                        wc.videoUdpServer.PacketReceived += new PacketReceivedHandler(videoPacketReceived);
-                        wc.videoUdpServer.Start();
+                        videoReceiverThread.Start();
 
                         videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
                         videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
@@ -457,20 +457,17 @@ namespace ChatPOI
             else
             {
                 buttonCamera.Text = "Video";
-                wc.videoUdpServer.Dispose();
+                videoReceiverThread.Abort();
                 videoCaptureDevice.Stop();
             }
         }
 
-        private void videoPacketReceived(UdpPacket_eArgs e)
+        private void videoPacketReceived()
         {
+            byte[] received_data;
+            received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
 
-            byte[] decodedData = null;
-
-            // Elegir el codec
-            decodedData = G711.Decode_aLaw(e.Data, 0, e.Data.Length);
-
-            MemoryStream ms = new MemoryStream(decodedData);
+            MemoryStream ms = new MemoryStream(received_data);
             Image returnImage = Image.FromStream(ms);
 
             pictureBoxContact.Image = returnImage;
@@ -483,19 +480,11 @@ namespace ChatPOI
             imageToSend = ResizeImage(tempImage, resizer);
             Byte[] sendBytes = imageToByteArray(imageToSend);
 
-            byte[] encodedData = null;
-
-            encodedData = G711.Encode_aLaw(sendBytes, 0, sendBytes.Length);
-
-            //UdpClient tempUdpClient = new UdpClient();
-            //if (sendBytes != null)
-            //{
-            //    tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
-            //}
-            //else {
-            //    return;
-            //}
-            wc.videoUdpServer.SendPacket(encodedData, 0, encodedData.Length, videoTargetEP);
+            UdpClient tempUdpClient = new UdpClient();
+            if (sendBytes != null)
+            {
+                tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
+            }            
         }
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
