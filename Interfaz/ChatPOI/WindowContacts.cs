@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LumiSoft.Net.UDP;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,10 @@ namespace ChatPOI
         NetworkStream networkStream = default(NetworkStream);
         int _PORT = 55555;
         private volatile bool isConected;
+
+        public UdpServer m_pUdpServer;
+
+        public string myUdpIp;
 
         public WindowContacts()
         {
@@ -52,6 +57,19 @@ namespace ChatPOI
                     return;
                 }
             }
+
+            // UPD
+            IPAddress[] localip = Dns.GetHostAddresses(Dns.GetHostName());
+            foreach (IPAddress address in localip)
+            {
+                if (address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    myUdpIp = Convert.ToString(address);
+                }
+            }
+
+            m_pUdpServer = new UdpServer();
+            m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 11000) };
 
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
@@ -190,6 +208,19 @@ namespace ChatPOI
                         if (f.Text == userFrom)
                             f.setMessage(message);
                     }
+                }
+
+                else if (globals.receivedText.Substring(0, 4) == "$ip$")
+                {
+                    string userFrom = globals.receivedText.Substring(4);
+                    userFrom = userFrom.Substring(0, userFrom.IndexOf("$ip$"));
+                    string message = globals.receivedText.Substring(4);
+                    message = message.Substring(message.IndexOf("$ip$") + 4);
+
+                    if (!globals.udpClients.ContainsKey(userFrom))
+                        globals.udpClients.Add(userFrom, message);
+                    else
+                        globals.udpClients[userFrom] = message;
                 }
 
                 else

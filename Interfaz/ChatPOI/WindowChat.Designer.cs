@@ -43,7 +43,7 @@
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.panelContact = new System.Windows.Forms.Panel();
-            this.labelContactName = new System.Windows.Forms.Label();
+            this.labelClientReceiver = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
@@ -217,7 +217,7 @@
             // 
             // panelContact
             // 
-            this.panelContact.Controls.Add(this.labelContactName);
+            this.panelContact.Controls.Add(this.labelClientReceiver);
             this.panelContact.Controls.Add(this.pictureBoxContact);
             this.panelContact.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelContact.Location = new System.Drawing.Point(0, 0);
@@ -227,12 +227,12 @@
             // 
             // labelContactName
             // 
-            this.labelContactName.AutoSize = true;
-            this.labelContactName.Location = new System.Drawing.Point(11, 133);
-            this.labelContactName.Name = "labelContactName";
-            this.labelContactName.Size = new System.Drawing.Size(104, 13);
-            this.labelContactName.TabIndex = 1;
-            this.labelContactName.Text = "Nombre de contacto";
+            this.labelClientReceiver.AutoSize = true;
+            this.labelClientReceiver.Location = new System.Drawing.Point(11, 133);
+            this.labelClientReceiver.Name = "labelContactName";
+            this.labelClientReceiver.Size = new System.Drawing.Size(104, 13);
+            this.labelClientReceiver.TabIndex = 1;
+            this.labelClientReceiver.Text = "Nombre de contacto";
             // 
             // panelBottom
             // 
@@ -503,7 +503,7 @@
         private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelComunication;
         private System.Windows.Forms.Label labelUserName;
-        private System.Windows.Forms.Label labelContactName;
+        private System.Windows.Forms.Label labelClientReceiver;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
         private System.Windows.Forms.GroupBox groupBoxEmoticons;
         private System.Windows.Forms.Button buttonEmoti1;

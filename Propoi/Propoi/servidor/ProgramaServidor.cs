@@ -57,8 +57,6 @@ namespace Servidor
 
                 clientList.Add(nickClient, clientSocket);
 
-                // clientSocket.Client.LocalEndPoint.AddressFamily; // Hacer algo así.
-
                 sender("$uc$", nickClient);
 
                 handleClient client = new handleClient();
@@ -181,9 +179,7 @@ namespace Servidor
                     else if (dataFromClient.Substring(0, 4) == "$sm$")
                     {
                         dataFromClient = dataFromClient.Substring(4);
-                        string clientString = dataFromClient.Substring(0, dataFromClient.IndexOf("$sm$"));
-
-                        string[] users = clientString.Split(',');
+                        string clientReceiver = dataFromClient.Substring(0, dataFromClient.IndexOf("$sm$"));
 
                         string messageToSend;
                         messageToSend = "$mr$";
@@ -193,27 +189,42 @@ namespace Servidor
 
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
-                        if (users.Length == 2)
+                        System.IO.Directory.CreateDirectory("clients\\" + userName);
+                        using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + clientReceiver + ".txt", true))
                         {
-                            System.IO.Directory.CreateDirectory("clients\\" + userName);
-                            using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + users[0] + ".txt", true))
-                            {
-                                writer.Write("\nTú : " + dataFromClient);
-                            }
-
-                            System.IO.Directory.CreateDirectory("clients\\" + users[0]);
-                            using (StreamWriter writer = new StreamWriter("clients\\" + users[0] + "\\" + userName + ".txt", true))
-                            {
-                                writer.Write("\n" + userName + ": " + dataFromClient);
-                            }
+                            writer.Write("\nTú : " + dataFromClient);
                         }
 
-                        foreach (string user in users)
+                        System.IO.Directory.CreateDirectory("clients\\" + clientReceiver);
+                        using (StreamWriter writer = new StreamWriter("clients\\" + clientReceiver + "\\" + userName + ".txt", true))
                         {
-                            TcpClient senderSocket = (TcpClient)clientList[user];
-                            senderSocket.Client.Send(data);
-                            Console.WriteLine("@" + user + ": " + messageToSend);
+                            writer.Write("\n" + userName + ": " + dataFromClient);
                         }
+
+                        TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
+                        senderSocket.Client.Send(data);
+                        Console.WriteLine("> " + userName + "-MESSAGE @ " + clientReceiver);
+
+                        Console.WriteLine("");
+                    }
+
+                    else if (dataFromClient.Substring(0, 4) == "$ip$")
+                    {
+                        dataFromClient = dataFromClient.Substring(4);
+                        string clientReceiver = dataFromClient.Substring(0, dataFromClient.IndexOf("$ip$"));
+
+                        string messageToSend;
+                        messageToSend = "$ip$";
+                        messageToSend += userName + "$ip$";
+                        dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$ip$") + 4);
+                        messageToSend += dataFromClient + "$$$$";
+
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
+
+                        TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
+                        senderSocket.Client.Send(data);
+                        Console.WriteLine("> " + userName + "-IP @ " + clientReceiver);
+
                         Console.WriteLine("");
                     }
 
@@ -221,18 +232,18 @@ namespace Servidor
                     {
                         dataFromClient = dataFromClient.Substring(4);
 
-                        string msgtosend;
-                        msgtosend = "$gm$" + dataFromClient + "$gm$";
+                        string messageToSend;
+                        messageToSend = "$gm$" + dataFromClient + "$gm$";
                         using (StreamReader reader = new StreamReader("clients\\" + userName + "\\" + dataFromClient + ".txt"))
                         {
-                            string temp;
-                            while ((temp = reader.ReadLine()) != null)
+                            string conversationHistory;
+                            while ((conversationHistory = reader.ReadLine()) != null)
                             {
-                                msgtosend += temp + "\n";
+                                messageToSend += conversationHistory + "\n";
                             }
                         }
 
-                        byte[] data = Encoding.UTF8.GetBytes(msgtosend);
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
                         foreach (DictionaryEntry client in clientList)
                         {

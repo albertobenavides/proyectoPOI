@@ -14,5 +14,7 @@ namespace ChatPOI
         public static string receivedText;
 
         public static string username;
+
+        public static Dictionary<string, string> udpClients = new Dictionary<string,string>();
     }
 }

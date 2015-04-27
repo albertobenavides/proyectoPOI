@@ -31,15 +31,12 @@ namespace ChatPOI
 
         // Audio
         
-        string myIP;
-        
         WaveOut m_pWaveOut;
-        UdpServer m_pUdpServer;
 
         WaveIn m_pWaveIn;
         IPEndPoint m_pTargetEP;
 
-        public FormChat(string s)
+        public FormChat(string userReceptor)
         {
             InitializeComponent();
 
@@ -50,11 +47,15 @@ namespace ChatPOI
                 wc = f;
             }
 
-            labelContactName.Text = s;
+            wc.SendString("$ip$" + userReceptor + "$ip$" + wc.myUdpIp + "$$$$");
+
+            labelClientReceiver.Text = userReceptor;
             labelUserName.Text = globals.username;
-            this.Text = s;
+
+            this.Text = userReceptor;
             globals.receivedText = null;
-            wc.SendString("$gm$" + s + "$$$$");
+            wc.SendString("$gm$" + userReceptor + "$$$$");
+            
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -121,7 +122,7 @@ namespace ChatPOI
         {
             string s;
             s = "$sm$";
-            s += this.Text + ",";
+            s += this.Text;
             s += "$sm$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
@@ -312,43 +313,45 @@ namespace ChatPOI
                 buttonCall.Text = "Colgar";
                 m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
 
-                IPAddress[] localip = Dns.GetHostAddresses(Dns.GetHostName());
-                foreach (IPAddress address in localip)
-                {
-                    if (address.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        myIP = Convert.ToString(address);
-                    }
-                }
-
-                m_pUdpServer = new UdpServer();
-                m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myIP), 11000) };
-                m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
-                m_pUdpServer.Start();
-
+                wc.m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
+                wc.m_pUdpServer.Start();
 
                 // Hablar con el otro
-                
-                try
-                {
-                    m_pTargetEP = new IPEndPoint(IPAddress.Parse("192.168.0.36"), 11000);
-                }
-                catch
-                {
-                    return;
-                }
 
-                m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
-                m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
-                m_pWaveIn.Start();
+                string targetIp = "0.0.0.0";
+
+                if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
+                {
+                    targetIp = globals.udpClients[labelClientReceiver.Text];
+
+                    try
+                    {
+                        m_pTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 11000);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
+                    m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
+                    m_pWaveIn.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 // Hablar con el otro FIN
 
             }
             else
             {
-                m_pUdpServer.Dispose();
-                m_pUdpServer = null;
+                buttonCall.Text = "Llamar";
+                wc.m_pUdpServer.Dispose();
 
                 m_pWaveOut.Dispose();
                 m_pWaveOut = null;
@@ -384,7 +387,7 @@ namespace ChatPOI
             encodedData = G711.Encode_aLaw(buffer, 0, buffer.Length);
 
             // We just sent buffer to target end point.
-            m_pUdpServer.SendPacket(encodedData, 0, encodedData.Length, m_pTargetEP);
+            wc.m_pUdpServer.SendPacket(encodedData, 0, encodedData.Length, m_pTargetEP);
         }
     }
 }
