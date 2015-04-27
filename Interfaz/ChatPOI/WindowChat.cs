@@ -311,12 +311,6 @@ namespace ChatPOI
             if (buttonCall.Text.Equals("Llamar"))
             {
                 buttonCall.Text = "Colgar";
-                m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
-
-                wc.m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
-                wc.m_pUdpServer.Start();
-
-                // Hablar con el otro
 
                 string targetIp = "0.0.0.0";
 
@@ -326,28 +320,33 @@ namespace ChatPOI
 
                     try
                     {
+                        m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
+                        wc.m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
+                        wc.m_pUdpServer.Start();
+
                         m_pTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 11000);
+                        m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
+                        m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
+                        m_pWaveIn.Start();
                     }
                     catch
                     {
                         MessageBox.Show("Usuario no disponible.", "Información",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
 
-                    m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
-                    m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
-                    m_pWaveIn.Start();
+                        buttonCall.Text = "Llamar";
+                    }
                 }
+
                 else
                 {
                     MessageBox.Show("Usuario no disponible.", "Información",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    buttonCall.Text = "Llamar";
                 }
-
-                // Hablar con el otro FIN
-
             }
+
             else
             {
                 buttonCall.Text = "Llamar";
@@ -356,13 +355,9 @@ namespace ChatPOI
                 m_pWaveOut.Dispose();
                 m_pWaveOut = null;
 
-
-                // Cerrar hablar con el otro
-
                 m_pWaveIn.Dispose();
                 m_pWaveIn = null;
 
-                // Cerrar hablar con el otro FIN
             }
         }
 
