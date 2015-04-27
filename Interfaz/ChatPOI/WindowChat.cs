@@ -431,7 +431,6 @@ namespace ChatPOI
                     {
                         wc.videoUdpServer.PacketReceived += new PacketReceivedHandler(videoPacketReceived);
                         wc.videoUdpServer.Start();
-                        wc.videoUdpServer.Restart();
 
                         videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
                         videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
@@ -465,7 +464,13 @@ namespace ChatPOI
 
         private void videoPacketReceived(UdpPacket_eArgs e)
         {
-            MemoryStream ms = new MemoryStream(e.Data);
+
+            byte[] decodedData = null;
+
+            // Elegir el codec
+            decodedData = G711.Decode_aLaw(e.Data, 0, e.Data.Length);
+
+            MemoryStream ms = new MemoryStream(decodedData);
             Image returnImage = Image.FromStream(ms);
 
             pictureBoxContact.Image = returnImage;
@@ -477,7 +482,11 @@ namespace ChatPOI
             Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
             imageToSend = ResizeImage(tempImage, resizer);
             Byte[] sendBytes = imageToByteArray(imageToSend);
-           
+
+            byte[] encodedData = null;
+
+            encodedData = G711.Encode_aLaw(sendBytes, 0, sendBytes.Length);
+
             //UdpClient tempUdpClient = new UdpClient();
             //if (sendBytes != null)
             //{
@@ -486,7 +495,7 @@ namespace ChatPOI
             //else {
             //    return;
             //}
-            wc.audioUdpServer.SendPacket(sendBytes, 0, sendBytes.Length, videoTargetEP);
+            wc.videoUdpServer.SendPacket(encodedData, 0, encodedData.Length, videoTargetEP);
         }
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
