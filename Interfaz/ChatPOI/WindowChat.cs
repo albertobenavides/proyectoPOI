@@ -18,6 +18,8 @@ using System.Net.Sockets;
 using LumiSoft.Net.UDP;
 using LumiSoft.Net.Codec;
 using LumiSoft.Media.Wave;
+using System.IO;
+using AForge.Video.DirectShow;
 
 namespace ChatPOI
 {
@@ -34,7 +36,19 @@ namespace ChatPOI
         WaveOut m_pWaveOut;
 
         WaveIn m_pWaveIn;
-        IPEndPoint m_pTargetEP;
+
+        IPEndPoint audioTargetEP;
+
+
+        // Video
+
+        bool isVideoStreaming = false;
+
+        VideoCaptureDevice videoCaptureDevice;
+
+        Bitmap imageToSend;
+
+        IPEndPoint videoTargetEP;
 
         public FormChat(string userReceptor)
         {
@@ -56,6 +70,9 @@ namespace ChatPOI
             globals.receivedText = null;
             wc.SendString("$gm$" + userReceptor + "$$$$");
             
+            BuscarDispositivos();
+
+
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -74,6 +91,19 @@ namespace ChatPOI
             emotions.Add(":3", Properties.Resources.emoticons15);
             emotions.Add(":*", Properties.Resources.emoticons16);
             groupBoxEmoticons.Visible = false;
+        }
+
+        private void BuscarDispositivos()
+        {
+            try
+            {
+                FilterInfoCollection DispositivoDeVideo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                videoCaptureDevice = new VideoCaptureDevice(DispositivoDeVideo[0].MonikerString);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No tienes cámara");
+            }
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -321,10 +351,10 @@ namespace ChatPOI
                     try
                     {
                         m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
-                        wc.m_pUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
-                        wc.m_pUdpServer.Start();
+                        wc.audioUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
+                        wc.audioUdpServer.Start();
 
-                        m_pTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 11000);
+                        audioTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 11000);
                         m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
                         m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
                         m_pWaveIn.Start();
@@ -350,7 +380,7 @@ namespace ChatPOI
             else
             {
                 buttonCall.Text = "Llamar";
-                wc.m_pUdpServer.Dispose();
+                wc.audioUdpServer.Dispose();
 
                 m_pWaveOut.Dispose();
                 m_pWaveOut = null;
@@ -382,7 +412,99 @@ namespace ChatPOI
             encodedData = G711.Encode_aLaw(buffer, 0, buffer.Length);
 
             // We just sent buffer to target end point.
-            wc.m_pUdpServer.SendPacket(encodedData, 0, encodedData.Length, m_pTargetEP);
+            wc.audioUdpServer.SendPacket(encodedData, 0, encodedData.Length, audioTargetEP);
+        }
+
+        private void buttonCamera_Click(object sender, EventArgs e)
+        {
+        if (buttonCamera.Text.Equals("Video"))
+            {
+                buttonCamera.Text = "Finalizar";
+
+                string targetIp = "0.0.0.0";
+
+                if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
+                {
+                    targetIp = globals.udpClients[labelClientReceiver.Text];
+
+                    try
+                    {
+                        wc.videoUdpServer.PacketReceived += new PacketReceivedHandler(videoPacketReceived);
+                        wc.videoUdpServer.Start();
+                        wc.videoUdpServer.Restart();
+
+                        videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
+                        videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
+                        videoCaptureDevice.Start();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        buttonCamera.Text = "Video";
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    buttonCamera.Text = "Video";
+                }
+            }
+
+            else
+            {
+                buttonCamera.Text = "Video";
+                wc.videoUdpServer.Dispose();
+                videoCaptureDevice.Stop();
+            }
+        }
+
+        private void videoPacketReceived(UdpPacket_eArgs e)
+        {
+            MemoryStream ms = new MemoryStream(e.Data);
+            Image returnImage = Image.FromStream(ms);
+
+            pictureBoxContact.Image = returnImage;
+        }
+
+        private void videoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        {
+            Size resizer = new Size(480, 240);
+            Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
+            imageToSend = ResizeImage(tempImage, resizer);
+            Byte[] sendBytes = imageToByteArray(imageToSend);
+           
+            //UdpClient tempUdpClient = new UdpClient();
+            //if (sendBytes != null)
+            //{
+            //    tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
+            //}
+            //else {
+            //    return;
+            //}
+            wc.audioUdpServer.SendPacket(sendBytes, 0, sendBytes.Length, videoTargetEP);
+        }
+
+        private Bitmap ResizeImage(Bitmap imageToResize, Size size)
+        {
+ 	        Bitmap b = new Bitmap(size.Width, size.Height);
+                using (Graphics g = Graphics.FromImage((Image)b))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(imageToResize, 0, 0, size.Width, size.Height);
+                }
+                return b;
+        }
+
+        public Byte[] imageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
         }
     }
 }

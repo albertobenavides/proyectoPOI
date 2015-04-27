@@ -21,7 +21,9 @@ namespace ChatPOI
         int _PORT = 55555;
         private volatile bool isConected;
 
-        public UdpServer m_pUdpServer;
+        public UdpServer audioUdpServer;
+
+        public UdpServer videoUdpServer;
 
         public string myUdpIp;
 
@@ -68,8 +70,11 @@ namespace ChatPOI
                 }
             }
 
-            m_pUdpServer = new UdpServer();
-            m_pUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 11000) };
+            audioUdpServer = new UdpServer();
+            audioUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 11000) };
+
+            videoUdpServer = new UdpServer();
+            videoUdpServer.Bindings = new IPEndPoint[] { new IPEndPoint(IPAddress.Parse(myUdpIp), 44444) };
 
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;

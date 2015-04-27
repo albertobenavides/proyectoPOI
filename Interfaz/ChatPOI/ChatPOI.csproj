@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>dep\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>dep\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>dep\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="LumiSoft.Net">
       <HintPath>dep\LumiSoft.Net.dll</HintPath>
     </Reference>

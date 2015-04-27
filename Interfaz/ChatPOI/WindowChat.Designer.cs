@@ -136,8 +136,9 @@
             this.buttonCamera.Name = "buttonCamera";
             this.buttonCamera.Size = new System.Drawing.Size(56, 19);
             this.buttonCamera.TabIndex = 6;
-            this.buttonCamera.Text = "Cam";
+            this.buttonCamera.Text = "Video";
             this.buttonCamera.UseVisualStyleBackColor = true;
+            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
             // 
             // buttonPlay
             // 
@@ -168,7 +169,7 @@
             this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxContact.Name = "pictureBoxContact";
             this.pictureBoxContact.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxContact.TabIndex = 0;
             this.pictureBoxContact.TabStop = false;
             // 
@@ -211,7 +212,7 @@
             this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxUser.Name = "pictureBoxUser";
             this.pictureBoxUser.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 0;
             this.pictureBoxUser.TabStop = false;
             // 
@@ -225,11 +226,11 @@
             this.panelContact.Size = new System.Drawing.Size(122, 150);
             this.panelContact.TabIndex = 11;
             // 
-            // labelContactName
+            // labelClientReceiver
             // 
             this.labelClientReceiver.AutoSize = true;
             this.labelClientReceiver.Location = new System.Drawing.Point(11, 133);
-            this.labelClientReceiver.Name = "labelContactName";
+            this.labelClientReceiver.Name = "labelClientReceiver";
             this.labelClientReceiver.Size = new System.Drawing.Size(104, 13);
             this.labelClientReceiver.TabIndex = 1;
             this.labelClientReceiver.Text = "Nombre de contacto";
