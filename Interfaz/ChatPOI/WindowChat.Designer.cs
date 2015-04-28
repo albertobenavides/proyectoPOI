@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowChat));
+            this.components = new System.ComponentModel.Container();
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonEmoticon = new System.Windows.Forms.Button();
             this.buttonBuzz = new System.Windows.Forms.Button();
@@ -42,7 +43,7 @@
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.panelContact = new System.Windows.Forms.Panel();
-            this.labelContactName = new System.Windows.Forms.Label();
+            this.labelClientReceiver = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanelComunication = new System.Windows.Forms.FlowLayoutPanel();
@@ -63,6 +64,7 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -114,8 +116,9 @@
             this.buttonCall.Name = "buttonCall";
             this.buttonCall.Size = new System.Drawing.Size(56, 19);
             this.buttonCall.TabIndex = 7;
-            this.buttonCall.Text = "Call";
+            this.buttonCall.Text = "Llamar";
             this.buttonCall.UseVisualStyleBackColor = true;
+            this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
             // 
             // buttonCamera
             // 
@@ -124,8 +127,9 @@
             this.buttonCamera.Name = "buttonCamera";
             this.buttonCamera.Size = new System.Drawing.Size(56, 19);
             this.buttonCamera.TabIndex = 6;
-            this.buttonCamera.Text = "Cam";
+            this.buttonCamera.Text = "Video";
             this.buttonCamera.UseVisualStyleBackColor = true;
+            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
             // 
             // buttonPlay
             // 
@@ -156,7 +160,7 @@
             this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxContact.Name = "pictureBoxContact";
             this.pictureBoxContact.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxContact.TabIndex = 0;
             this.pictureBoxContact.TabStop = false;
             // 
@@ -198,13 +202,13 @@
             this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxUser.Name = "pictureBoxUser";
             this.pictureBoxUser.Size = new System.Drawing.Size(100, 120);
-            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 0;
             this.pictureBoxUser.TabStop = false;
             // 
             // panelContact
             // 
-            this.panelContact.Controls.Add(this.labelContactName);
+            this.panelContact.Controls.Add(this.labelClientReceiver);
             this.panelContact.Controls.Add(this.pictureBoxContact);
             this.panelContact.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelContact.Location = new System.Drawing.Point(0, 0);
@@ -212,14 +216,14 @@
             this.panelContact.Size = new System.Drawing.Size(122, 150);
             this.panelContact.TabIndex = 11;
             // 
-            // labelContactName
+            // labelClientReceiver
             // 
-            this.labelContactName.AutoSize = true;
-            this.labelContactName.Location = new System.Drawing.Point(11, 133);
-            this.labelContactName.Name = "labelContactName";
-            this.labelContactName.Size = new System.Drawing.Size(104, 13);
-            this.labelContactName.TabIndex = 1;
-            this.labelContactName.Text = "Nombre de contacto";
+            this.labelClientReceiver.AutoSize = true;
+            this.labelClientReceiver.Location = new System.Drawing.Point(11, 133);
+            this.labelClientReceiver.Name = "labelClientReceiver";
+            this.labelClientReceiver.Size = new System.Drawing.Size(104, 13);
+            this.labelClientReceiver.TabIndex = 1;
+            this.labelClientReceiver.Text = "Nombre de contacto";
             // 
             // panelBottom
             // 
@@ -442,7 +446,11 @@
             this.buttonEmoti1.UseVisualStyleBackColor = true;
             this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
             // 
-            // WindowChat
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -489,7 +497,7 @@
         private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelComunication;
         private System.Windows.Forms.Label labelUserName;
-        private System.Windows.Forms.Label labelContactName;
+        private System.Windows.Forms.Label labelClientReceiver;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
         private System.Windows.Forms.GroupBox groupBoxEmoticons;
         private System.Windows.Forms.Button buttonEmoti1;
@@ -508,5 +516,6 @@
         private System.Windows.Forms.Button buttonEmoti14;
         private System.Windows.Forms.Button buttonEmoti12;
         private System.Windows.Forms.Button buttonEmoti11;
+        private System.Windows.Forms.Timer timer1;
     }
 }
