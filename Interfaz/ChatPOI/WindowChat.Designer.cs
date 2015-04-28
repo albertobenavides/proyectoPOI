@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             this.buttonAddContact = new System.Windows.Forms.Button();
             this.buttonSend = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -456,6 +458,10 @@
             this.buttonEmoti1.UseVisualStyleBackColor = true;
             this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -523,5 +529,6 @@
         private System.Windows.Forms.Button buttonEmoti14;
         private System.Windows.Forms.Button buttonEmoti12;
         private System.Windows.Forms.Button buttonEmoti11;
+        private System.Windows.Forms.Timer timer1;
     }
 }

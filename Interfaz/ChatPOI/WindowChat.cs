@@ -417,7 +417,7 @@ namespace ChatPOI
 
         private void buttonCamera_Click(object sender, EventArgs e)
         {
-        Thread videoReceiverThread = new Thread(videoPacketReceived);  
+        Thread videoReceiverThread = new Thread(videoPacketReceived);
         if (buttonCamera.Text.Equals("Video"))
             {
                 buttonCamera.Text = "Finalizar";
@@ -435,6 +435,8 @@ namespace ChatPOI
                         videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
                         videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
                         videoCaptureDevice.Start();
+
+                        timer1.Enabled = true;
                     }
                     catch
                     {
@@ -477,15 +479,10 @@ namespace ChatPOI
         {
             Size resizer = new Size(480, 240);
             Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
-            imageToSend = ResizeImage(tempImage, resizer);
-            Byte[] sendBytes = imageToByteArray(imageToSend);
-
-            UdpClient tempUdpClient = new UdpClient();
-            if (sendBytes != null)
-            {
-                tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
-            }            
+            imageToSend = ResizeImage(tempImage, resizer);       
         }
+
+        
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
         {
@@ -503,6 +500,17 @@ namespace ChatPOI
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             return ms.ToArray();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Byte[] sendBytes = imageToByteArray(imageToSend);
+
+            UdpClient tempUdpClient = new UdpClient();
+            if (sendBytes != null)
+            {
+                tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
+            }     
         }
     }
 }
