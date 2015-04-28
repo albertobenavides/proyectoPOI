@@ -10,6 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
+using System.Net;
+using System.Threading;
+
+using System.Net.Sockets;
+
+using LumiSoft.Net.UDP;
+using LumiSoft.Net.Codec;
+using LumiSoft.Media.Wave;
+using System.IO;
+using AForge.Video.DirectShow;
+
 namespace ChatPOI
 {
     public partial class WindowChat: Form
@@ -21,7 +32,26 @@ namespace ChatPOI
 
         WindowContacts wc;
 
-        public WindowChat(string s)
+        // Audio
+        
+        WaveOut m_pWaveOut;
+
+        WaveIn m_pWaveIn;
+
+        IPEndPoint audioTargetEP;
+
+
+        // Video
+
+        bool isVideoStreaming = false;
+
+        VideoCaptureDevice videoCaptureDevice;
+
+        Bitmap imageToSend;
+
+        IPEndPoint videoTargetEP;
+		
+		public WindowChat(string s)
         {
             InitializeComponent();
 
@@ -32,11 +62,18 @@ namespace ChatPOI
                 wc = f;
             }
 
-            labelContactName.Text = s;
+            wc.SendString("$ip$" + s + "$ip$" + wc.myUdpIp + "$$$$");
+
+            labelClientReceiver.Text = s;
             labelUserName.Text = globals.username;
+
             this.Text = s;
             globals.receivedText = null;
             wc.SendString("$gm$" + s + "$$$$");
+            
+            BuscarDispositivos();
+
+
             emotions = new Dictionary<string, Bitmap>(16);
             emotions.Add(":)", Properties.Resources.emoticons01);
             emotions.Add(":D", Properties.Resources.emoticons02);
@@ -55,6 +92,19 @@ namespace ChatPOI
             emotions.Add(":3", Properties.Resources.emoticons15);
             emotions.Add(":*", Properties.Resources.emoticons16);
             groupBoxEmoticons.Visible = false;
+        }
+
+        private void BuscarDispositivos()
+        {
+            try
+            {
+                FilterInfoCollection DispositivoDeVideo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                videoCaptureDevice = new VideoCaptureDevice(DispositivoDeVideo[0].MonikerString);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No tienes cámara");
+            }
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
@@ -103,7 +153,7 @@ namespace ChatPOI
         {
             string s;
             s = "$sm$";
-            s += this.Text + ",";
+            s += this.Text;
             s += "$sm$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
@@ -285,6 +335,183 @@ namespace ChatPOI
             sp.Play();
 
             this.Location = inicial;
+        }
+
+        private void buttonCall_Click(object sender, EventArgs e)
+        {
+            if (buttonCall.Text.Equals("Llamar"))
+            {
+                buttonCall.Text = "Colgar";
+
+                string targetIp = "0.0.0.0";
+
+                if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
+                {
+                    targetIp = globals.udpClients[labelClientReceiver.Text];
+
+                    try
+                    {
+                        m_pWaveOut = new WaveOut(WaveOut.Devices[0], 8000, 16, 1);
+                        wc.audioUdpServer.PacketReceived += new PacketReceivedHandler(m_pUdpServer_PacketReceived);
+                        wc.audioUdpServer.Start();
+
+                        audioTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 11000);
+                        m_pWaveIn = new WaveIn(WaveIn.Devices[0], 8000, 16, 1, 400);
+                        m_pWaveIn.BufferFull += new BufferFullHandler(m_pWaveIn_BufferFull);
+                        m_pWaveIn.Start();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        buttonCall.Text = "Llamar";
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    buttonCall.Text = "Llamar";
+                }
+            }
+
+            else
+            {
+                buttonCall.Text = "Llamar";
+                wc.audioUdpServer.Dispose();
+
+                m_pWaveOut.Dispose();
+                m_pWaveOut = null;
+
+                m_pWaveIn.Dispose();
+                m_pWaveIn = null;
+
+            }
+        }
+
+
+        private void m_pUdpServer_PacketReceived(UdpPacket_eArgs e)
+        {
+            // Decompress data.
+            byte[] decodedData = null;
+            
+            // Elegir el codec
+            decodedData = G711.Decode_aLaw(e.Data, 0, e.Data.Length);
+
+            // We just play received packet.
+            m_pWaveOut.Play(decodedData, 0, decodedData.Length);
+        }
+
+        private void m_pWaveIn_BufferFull(byte[] buffer)
+        {
+            // Compress data. 
+            byte[] encodedData = null;
+            
+            encodedData = G711.Encode_aLaw(buffer, 0, buffer.Length);
+
+            // We just sent buffer to target end point.
+            wc.audioUdpServer.SendPacket(encodedData, 0, encodedData.Length, audioTargetEP);
+        }
+
+        private void buttonCamera_Click(object sender, EventArgs e)
+        {
+        Thread videoReceiverThread = new Thread(videoPacketReceived);
+        if (buttonCamera.Text.Equals("Video"))
+            {
+                buttonCamera.Text = "Finalizar";
+
+                string targetIp = "0.0.0.0";
+
+                if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
+                {
+                    targetIp = globals.udpClients[labelClientReceiver.Text];
+
+                    try
+                    {
+                        videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
+                        videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
+                        videoCaptureDevice.Start();
+
+                        timer1.Enabled = true;
+                        
+                        videoReceiverThread.Start();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Usuario no disponible.", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        buttonCamera.Text = "Video";
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Usuario no disponible.", "Información",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    buttonCamera.Text = "Video";
+                }
+            }
+
+            else
+            {
+                buttonCamera.Text = "Video";
+                videoReceiverThread.Abort();
+                videoCaptureDevice.Stop();
+                timer1.Enabled = false;
+            }
+        }
+
+        private void videoPacketReceived()
+        {
+            while (true)
+            {
+                byte[] received_data;
+                received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
+
+                MemoryStream ms = new MemoryStream(received_data);
+                Image returnImage = Image.FromStream(ms);
+
+                pictureBoxContact.Image = returnImage;
+            }
+        }
+
+        private void videoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        {
+            Size resizer = new Size(480, 240);
+            Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
+            imageToSend = ResizeImage(tempImage, resizer);       
+        }
+
+        private Bitmap ResizeImage(Bitmap imageToResize, Size size)
+        {
+ 	        Bitmap b = new Bitmap(size.Width, size.Height);
+                using (Graphics g = Graphics.FromImage((Image)b))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(imageToResize, 0, 0, size.Width, size.Height);
+                }
+                return b;
+        }
+
+        public Byte[] imageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (imageToSend != null)
+            {
+                Byte[] sendBytes = imageToByteArray(imageToSend);
+
+                wc.videoUdpServer.Send(sendBytes, sendBytes.Length, videoTargetEP);
+            }     
         }
     }
 }
