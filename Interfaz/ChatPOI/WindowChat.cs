@@ -430,13 +430,13 @@ namespace ChatPOI
 
                     try
                     {
-                        videoReceiverThread.Start();
-
                         videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
                         videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
                         videoCaptureDevice.Start();
 
                         timer1.Enabled = true;
+                        
+                        videoReceiverThread.Start();
                     }
                     catch
                     {
@@ -450,8 +450,7 @@ namespace ChatPOI
                 else
                 {
                     MessageBox.Show("Usuario no disponible.", "Información",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                     buttonCamera.Text = "Video";
                 }
             }
@@ -461,18 +460,22 @@ namespace ChatPOI
                 buttonCamera.Text = "Video";
                 videoReceiverThread.Abort();
                 videoCaptureDevice.Stop();
+                timer1.Enabled = false;
             }
         }
 
         private void videoPacketReceived()
         {
-            byte[] received_data;
-            received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
+            while (true)
+            {
+                byte[] received_data;
+                received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
 
-            MemoryStream ms = new MemoryStream(received_data);
-            Image returnImage = Image.FromStream(ms);
+                MemoryStream ms = new MemoryStream(received_data);
+                Image returnImage = Image.FromStream(ms);
 
-            pictureBoxContact.Image = returnImage;
+                pictureBoxContact.Image = returnImage;
+            }
         }
 
         private void videoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
@@ -481,8 +484,6 @@ namespace ChatPOI
             Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
             imageToSend = ResizeImage(tempImage, resizer);       
         }
-
-        
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
         {
@@ -504,11 +505,12 @@ namespace ChatPOI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Byte[] sendBytes = imageToByteArray(imageToSend);
-
-            UdpClient tempUdpClient = new UdpClient();
-            if (sendBytes != null)
+            if (imageToSend != null)
             {
+                Byte[] sendBytes = imageToByteArray(imageToSend);
+
+                UdpClient tempUdpClient = new UdpClient();
+
                 tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
             }     
         }
