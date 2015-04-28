@@ -509,9 +509,7 @@ namespace ChatPOI
             {
                 Byte[] sendBytes = imageToByteArray(imageToSend);
 
-                UdpClient tempUdpClient = new UdpClient();
-
-                tempUdpClient.Send(sendBytes, sendBytes.Length, videoTargetEP);
+                wc.videoUdpServer.Send(sendBytes, sendBytes.Length, videoTargetEP);
             }     
         }
     }
