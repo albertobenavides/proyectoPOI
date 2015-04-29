@@ -50,6 +50,8 @@ namespace ChatPOI
         Bitmap imageToSend;
 
         IPEndPoint videoTargetEP;
+
+        Bitmap tempImage;
 		
 		public WindowChat(string s)
         {
@@ -482,8 +484,24 @@ namespace ChatPOI
         private void videoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
             Size resizer = new Size(480, 240);
-            Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
-            imageToSend = ResizeImage(tempImage, resizer);       
+            tempImage = (Bitmap)eventArgs.Frame.Clone();
+            imageToSend = ResizeImage(tempImage, resizer);
+            video();
+        }
+
+        private void video()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(video));
+            else
+            {
+                updateImage();
+            }
+        }
+
+        void updateImage()
+        {
+            pictureBoxUser.Image = tempImage;
         }
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
