@@ -494,7 +494,7 @@ namespace ChatPOI
 
         private void video()
         {
-            if (this.InvokeRequired)
+            if (this.InvokeRequired && isVideoStreaming)
                 this.Invoke(new MethodInvoker(video));
             else
             {
