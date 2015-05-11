@@ -427,6 +427,8 @@ namespace ChatPOI
 
                 string targetIp = "0.0.0.0";
 
+                isVideoStreaming = true;
+
                 if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
                 {
                     targetIp = globals.udpClients[labelClientReceiver.Text];
@@ -460,6 +462,7 @@ namespace ChatPOI
 
             else
             {
+                isVideoStreaming = false;
                 buttonCamera.Text = "Video";
                 videoReceiverThread.Abort();
                 videoCaptureDevice.Stop();
@@ -469,7 +472,7 @@ namespace ChatPOI
 
         private void videoPacketReceived()
         {
-            while (true)
+            while (isVideoStreaming)
             {
                 byte[] received_data;
                 received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
