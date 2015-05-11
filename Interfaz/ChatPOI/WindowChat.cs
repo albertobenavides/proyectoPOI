@@ -50,6 +50,8 @@ namespace ChatPOI
         Bitmap imageToSend;
 
         IPEndPoint videoTargetEP;
+
+        Bitmap tempImage;
 		
 		public WindowChat(string s)
         {
@@ -425,6 +427,8 @@ namespace ChatPOI
 
                 string targetIp = "0.0.0.0";
 
+                isVideoStreaming = true;
+
                 if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
                 {
                     targetIp = globals.udpClients[labelClientReceiver.Text];
@@ -458,6 +462,7 @@ namespace ChatPOI
 
             else
             {
+                isVideoStreaming = false;
                 buttonCamera.Text = "Video";
                 videoReceiverThread.Abort();
                 videoCaptureDevice.Stop();
@@ -467,7 +472,7 @@ namespace ChatPOI
 
         private void videoPacketReceived()
         {
-            while (true)
+            while (isVideoStreaming)
             {
                 byte[] received_data;
                 received_data = wc.videoUdpServer.Receive(ref videoTargetEP);
@@ -482,8 +487,24 @@ namespace ChatPOI
         private void videoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
             Size resizer = new Size(480, 240);
-            Bitmap tempImage = (Bitmap)eventArgs.Frame.Clone();
-            imageToSend = ResizeImage(tempImage, resizer);       
+            tempImage = (Bitmap)eventArgs.Frame.Clone();
+            imageToSend = ResizeImage(tempImage, resizer);
+            video();
+        }
+
+        private void video()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(video));
+            else
+            {
+                updateImage();
+            }
+        }
+
+        void updateImage()
+        {
+            pictureBoxUser.Image = tempImage;
         }
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)

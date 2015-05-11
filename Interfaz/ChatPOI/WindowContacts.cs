@@ -114,12 +114,16 @@ namespace ChatPOI
 
         private void msg()
         {
-            if (this.InvokeRequired)
-                this.Invoke(new MethodInvoker(msg));
-            else
+            try
             {
-                Actions();
+                if (this.InvokeRequired)
+                    this.Invoke(new MethodInvoker(msg));
+                else
+                {
+                    Actions();
+                }
             }
+            catch { }
         }
 
         public void Actions()
