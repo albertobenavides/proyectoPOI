@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Timbiriche.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Timbiriche.Designer.cs">
+      <DependentUpon>Timbiriche.cs</DependentUpon>
     </Compile>
     <Compile Include="globals.cs" />
     <Compile Include="Media\Wave\native\MMSYSERR.cs" />
@@ -107,8 +107,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Timbiriche.resx">
+      <DependentUpon>Timbiriche.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GroupChat.resx">
       <DependentUpon>GroupChat.cs</DependentUpon>
