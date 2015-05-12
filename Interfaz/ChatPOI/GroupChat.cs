@@ -17,15 +17,11 @@ namespace ChatPOI
 
         List<string> participants;
 
-        SoundPlayer sp;
-
         WindowContacts wc;
 
         public GroupChat(List<string> users)
         {
             InitializeComponent();
-
-            sp = new SoundPlayer(Properties.Resources.zumbido);
 
             foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
             {
@@ -361,6 +357,47 @@ namespace ChatPOI
 
                 buttonAddContact.Text = "Añadir";
             }
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            participants.Clear();
+            participants.Add(globals.username);
+
+            foreach (object user in contactList.CheckedItems)
+            {
+                participants.Add(user.ToString());
+            }
+
+            if (participants.Count == 0)
+            {
+                MessageBox.Show("Elige al menos otro participante.");
+            }
+            else if (participants.Count > 3)
+            {
+                MessageBox.Show("No puedes jugar con más de dos contrincantes.");
+            }
+            else
+            {
+                GameBoard t =
+                    new GameBoard(participants, globals.username);
+                t.Show();
+
+                string s;
+                s = "$pg$"; // play game
+
+                foreach (string user in participants)
+                {
+                    s += user + ",";
+                }
+
+                s += "$pg$ $$$$";
+
+                wc.SendString(s);
+
+                this.Close();
+            }
+            participants.Sort();
         }
     }
 }

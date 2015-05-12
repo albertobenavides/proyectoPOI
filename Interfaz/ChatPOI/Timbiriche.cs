@@ -30,6 +30,8 @@ namespace ChatPOI
         IPEndPoint videoGameTargetEP;
         IPEndPoint videoGameTargetEP1;
 
+        bool streaming = true;
+
         string targetIp;
 
         string messageReceived;
@@ -157,15 +159,15 @@ namespace ChatPOI
             {
                 if (player1Points > player2Points && player1Points > player3Points)
                 {
-                    MessageBox.Show("El jugador" + playerNames[0] + " ha ganado");
+                    MessageBox.Show("El jugador " + playerNames[0] + " ha ganado");
                 }
                 else if (player2Points > player1Points && player2Points > player3Points)
                 {
-                    MessageBox.Show("El jugador" + playerNames[1] + " ha ganado");
+                    MessageBox.Show("El jugador " + playerNames[1] + " ha ganado");
                 }
                 else 
                 {
-                    MessageBox.Show("El jugador" + playerNames[2] + " ha ganado");
+                    MessageBox.Show("El jugador " + playerNames[2] + " ha ganado");
                 }
             }
         }
@@ -433,7 +435,7 @@ namespace ChatPOI
 
         private void videoGameGetMessage()
         {
-            while (true)
+            while (streaming)
             {
                 byte[] buffer;
                 buffer = wc.videoGameUdpServer.Receive(ref videoGameTargetEP);
@@ -711,6 +713,7 @@ namespace ChatPOI
 
         private void GameBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            streaming = false;
             OI.Abort();
         }
 

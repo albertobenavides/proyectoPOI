@@ -66,6 +66,7 @@
             this.buttonEmoti1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonJugar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -168,6 +169,7 @@
             // 
             // panelLeft
             // 
+            this.panelLeft.Controls.Add(this.buttonJugar);
             this.panelLeft.Controls.Add(this.panelUser);
             this.panelLeft.Controls.Add(this.panelContact);
             this.panelLeft.Controls.Add(this.buttonFile);
@@ -456,6 +458,17 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonJugar
+            // 
+            this.buttonJugar.Location = new System.Drawing.Point(23, 251);
+            this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonJugar.Name = "buttonJugar";
+            this.buttonJugar.Size = new System.Drawing.Size(56, 19);
+            this.buttonJugar.TabIndex = 13;
+            this.buttonJugar.Text = "Jugar";
+            this.buttonJugar.UseVisualStyleBackColor = true;
+            this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
+            // 
             // WindowChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -524,5 +537,6 @@
         private System.Windows.Forms.Button buttonEmoti11;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonJugar;
     }
 }

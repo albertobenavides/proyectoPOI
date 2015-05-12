@@ -24,7 +24,7 @@ using AForge.Video.DirectShow;
 
 namespace ChatPOI
 {
-    public partial class WindowChat: Form
+    public partial class WindowChat : Form
     {
 
         MailMessage mail = new MailMessage();
@@ -38,7 +38,7 @@ namespace ChatPOI
         WindowContacts wc;
 
         // Audio
-        
+
         WaveOut m_pWaveOut;
 
         WaveIn m_pWaveIn;
@@ -56,8 +56,8 @@ namespace ChatPOI
         IPEndPoint videoTargetEP;
 
         Bitmap tempImage;
-		
-		public WindowChat(string s)
+
+        public WindowChat(string s)
         {
             InitializeComponent();
 
@@ -82,7 +82,7 @@ namespace ChatPOI
 
             globals.receivedText = null;
             wc.SendString("$gm$" + s + "$$$$");
-            
+
             BuscarDispositivos();
 
 
@@ -122,7 +122,7 @@ namespace ChatPOI
         private void buttonSend_Click(object sender, EventArgs e)
         {
             if (richTextBoxMessage.Text != "")
-            sendMessage();
+                sendMessage();
         }
 
         public void setMessage(string s)
@@ -222,7 +222,7 @@ namespace ChatPOI
         private void buttonEmoti1_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":)");
-            groupBoxEmoticons.Visible = false;      
+            groupBoxEmoticons.Visible = false;
         }
 
         private void groupBoxEmoticons_Leave(object sender, EventArgs e)
@@ -233,85 +233,85 @@ namespace ChatPOI
         private void buttonEmoti2_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":D");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti3_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(";)");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti4_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":o");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti5_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":p");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti6_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("8)");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti7_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(">:(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti8_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":s");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti9_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":$");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti11_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti12_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":'(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti13_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("<3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti14_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("</3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti15_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti16_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":*");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonBuzz_Click(object sender, EventArgs e)
@@ -409,7 +409,7 @@ namespace ChatPOI
         {
             // Decompress data.
             byte[] decodedData = null;
-            
+
             // Elegir el codec
             decodedData = G711.Decode_aLaw(e.Data, 0, e.Data.Length);
 
@@ -421,7 +421,7 @@ namespace ChatPOI
         {
             // Compress data. 
             byte[] encodedData = null;
-            
+
             encodedData = G711.Encode_aLaw(buffer, 0, buffer.Length);
 
             // We just sent buffer to target end point.
@@ -430,8 +430,8 @@ namespace ChatPOI
 
         private void buttonCamera_Click(object sender, EventArgs e)
         {
-        Thread videoReceiverThread = new Thread(videoPacketReceived);
-        if (buttonCamera.Text.Equals("Video"))
+            Thread videoReceiverThread = new Thread(videoPacketReceived);
+            if (buttonCamera.Text.Equals("Video"))
             {
                 buttonCamera.Text = "Finalizar";
 
@@ -450,7 +450,7 @@ namespace ChatPOI
                         videoCaptureDevice.Start();
 
                         timer1.Enabled = true;
-                        
+
                         videoReceiverThread.Start();
                     }
                     catch
@@ -519,13 +519,13 @@ namespace ChatPOI
 
         private Bitmap ResizeImage(Bitmap imageToResize, Size size)
         {
- 	        Bitmap b = new Bitmap(size.Width, size.Height);
-                using (Graphics g = Graphics.FromImage((Image)b))
-                {
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(imageToResize, 0, 0, size.Width, size.Height);
-                }
-                return b;
+            Bitmap b = new Bitmap(size.Width, size.Height);
+            using (Graphics g = Graphics.FromImage((Image)b))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(imageToResize, 0, 0, size.Width, size.Height);
+            }
+            return b;
         }
 
         public Byte[] imageToByteArray(Image imageIn)
@@ -542,13 +542,13 @@ namespace ChatPOI
                 Byte[] sendBytes = imageToByteArray(imageToSend);
 
                 wc.videoUdpServer.Send(sendBytes, sendBytes.Length, videoTargetEP);
-            }     
+            }
         }
 
         private void buttonFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-           // mailform.ShowDialog();
+            // mailform.ShowDialog();
             try
             {
                 MailAddress vmail = new MailAddress(mailRemote);
@@ -573,8 +573,38 @@ namespace ChatPOI
             catch
             {
                 MessageBox.Show("Error");
-            } 
+            }
 
+        }
+
+        private void buttonJugar_Click(object sender, EventArgs e)
+        {
+            List<string> temp = new List<string>();
+            temp.Add(labelUserName.Text);
+            temp.Add(labelClientReceiver.Text);
+            try
+            {
+                GameBoard t =
+                        new GameBoard(temp, globals.username);
+                t.Show();
+
+                string s;
+                s = "$pg$"; // play game
+
+                foreach (string user in temp)
+                {
+                    s += user + ",";
+                }
+
+                s += "$pg$ $$$$";
+
+                wc.SendString(s);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Usuario no disponible. \n " + ex.ToString(), "Información",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -61,6 +61,7 @@
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
             this.contactList = new System.Windows.Forms.CheckedListBox();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.panelContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             // panelLeft
             // 
+            this.panelLeft.Controls.Add(this.buttonPlay);
             this.panelLeft.Controls.Add(this.panelUser);
             this.panelLeft.Controls.Add(this.panelContact);
             this.panelLeft.Controls.Add(this.buttonAddContact);
@@ -416,6 +418,17 @@
             this.contactList.TabIndex = 17;
             this.contactList.Visible = false;
             // 
+            // buttonPlay
+            // 
+            this.buttonPlay.Location = new System.Drawing.Point(24, 278);
+            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(74, 19);
+            this.buttonPlay.TabIndex = 13;
+            this.buttonPlay.Text = "Jugar";
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            // 
             // GroupChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,6 +491,7 @@
         private System.Windows.Forms.Button buttonEmoti10;
         private System.Windows.Forms.Button buttonEmoti1;
         private System.Windows.Forms.CheckedListBox contactList;
+        private System.Windows.Forms.Button buttonPlay;
 
     }
 }
