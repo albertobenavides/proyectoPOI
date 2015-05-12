@@ -15,6 +15,7 @@ namespace ChatPOI
 {
     public partial class GameBoard : Form
     {
+        int puntajeTotal;
         int globalX, globalY, globalC;
         string totalLineSelecter;
         int playersCount;
@@ -23,7 +24,7 @@ namespace ChatPOI
         int player1Points, player2Points, player3Points;
         int contadorTurno;
         List<string> playerNames;
-
+        Thread OI;
         WindowContacts wc;
 
         IPEndPoint videoGameTargetEP;
@@ -77,7 +78,7 @@ namespace ChatPOI
             {
                 if (participantNames[i].Equals(playerName))
                 {
-                    playerTurn = i;
+                    playerTurn = i + 1;
                     break;
                 }
             }
@@ -87,10 +88,10 @@ namespace ChatPOI
             player1Points = 0;
             player2Points = 0;
             player3Points = 0;
-            contadorTurno = 0;
+            contadorTurno = 1;
             linea = new int[11, 11];
 
-            Thread OI = new Thread(videoGameGetMessage);
+            OI = new Thread(videoGameGetMessage);
             OI.Start();
         }
 
@@ -110,16 +111,16 @@ namespace ChatPOI
                 newbutton.Location = new Point(globalX, globalY);
                 newbutton.FlatAppearance.BorderSize = 3;
                 newbutton.Enabled = false;
-                if (globalC == 1)
+                if (contadorTurno == 1)
                 {
                     newbutton.BackColor = Color.Red;
                 }
-                if (globalC == 2)
+                if (contadorTurno == 2)
                 {
                     newbutton.BackColor = Color.Green;
 
                 }
-                if (globalC == 3)
+                if (contadorTurno == 3)
                 {
                     newbutton.BackColor = Color.Blue;
 
@@ -147,9 +148,26 @@ namespace ChatPOI
             if (turno == 1)
                 player1Points = player1Points + 1;
             else if (turno == 2)
-                player3Points = player3Points + 1;
-            else if (turno == 3)
                 player2Points = player2Points + 1;
+            else if (turno == 3)
+                player3Points = player3Points + 1;
+
+            puntajeTotal++;
+            if (puntajeTotal == 25)
+            {
+                if (player1Points > player2Points && player1Points > player3Points)
+                {
+                    MessageBox.Show("El jugador" + playerNames[0] + " ha ganado");
+                }
+                else if (player2Points > player1Points && player2Points > player3Points)
+                {
+                    MessageBox.Show("El jugador" + playerNames[1] + " ha ganado");
+                }
+                else 
+                {
+                    MessageBox.Show("El jugador" + playerNames[2] + " ha ganado");
+                }
+            }
         }
 
         private void tryTurno()
@@ -208,12 +226,11 @@ namespace ChatPOI
 
                 changeTextbox(player1Points, player2Points);
 
-                if (contadorTurno == 1)
+                if (contadorTurno == playersCount)
                 {
                     contadorTurno = 0;
                 }
-                else
-                    contadorTurno++;
+                contadorTurno++;
             }
         }
 
@@ -231,11 +248,11 @@ namespace ChatPOI
         {
             Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
             ls.BorderColor = System.Drawing.Color.Black;
-            if (contadorTurno == 1)
+            
+            if (contadorTurno == playersCount)
             {
                 contadorTurno = 0;
             }
-            else
             contadorTurno++;
         }
 
@@ -245,7 +262,6 @@ namespace ChatPOI
 
             totalLineSelecter = lineSelected;
 
-            tryColor();
             int A;
             int B;
             if (y1 == y2)
@@ -272,6 +288,8 @@ namespace ChatPOI
                     tryTurno();
 
                 }
+
+                tryColor();
             }
         }
 
@@ -690,6 +708,11 @@ namespace ChatPOI
         private void lineShape53_MouseLeave(object sender, EventArgs e) { if (lineShape53.BorderColor != System.Drawing.Color.Black) { lineShape53.BorderColor = System.Drawing.SystemColors.Control; } }
 
         private void lineShape50_MouseLeave(object sender, EventArgs e) { if (lineShape50.BorderColor != System.Drawing.Color.Black) { lineShape50.BorderColor = System.Drawing.SystemColors.Control; } }
+
+        private void GameBoard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            OI.Abort();
+        }
 
     }
 

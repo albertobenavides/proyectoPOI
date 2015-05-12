@@ -1434,7 +1434,7 @@ namespace ChatPOI
             this.thisTurn.Size = new System.Drawing.Size(14, 17);
             this.thisTurn.Text = "#";
             // 
-            // Timbiriche
+            // GameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1447,8 +1447,9 @@ namespace ChatPOI
             this.Controls.Add(this.player2Score);
             this.Controls.Add(this.player1Score);
             this.Controls.Add(this.shapeContainer1);
-            this.Name = "Timbiriche";
+            this.Name = "GameBoard";
             this.Text = "Timbiriche";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameBoard_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
