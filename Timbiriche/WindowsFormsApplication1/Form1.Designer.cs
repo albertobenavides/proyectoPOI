@@ -1478,7 +1478,7 @@ namespace Timbiriche
             this.Controls.Add(this.player1Score);
             this.Controls.Add(this.shapeContainer1);
             this.Name = "Timbiriche";
-            this.Text = "Form1";
+            this.Text = "Timbiriche";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
