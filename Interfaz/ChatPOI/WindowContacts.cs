@@ -286,7 +286,7 @@ namespace ChatPOI
 
                     bool isOpen = false;
 
-                    foreach (Timbiriche.Timbiriche f in Application.OpenForms.OfType<Timbiriche.Timbiriche>())
+                    foreach (GameBoard f in Application.OpenForms.OfType<GameBoard>())
                     {
                         if (f.getParticipants().SequenceEqual(participants))
                         {
@@ -294,10 +294,10 @@ namespace ChatPOI
                         }
                     }
 
-                    Timbiriche.Timbiriche t;
+                    GameBoard t;
                     if (!isOpen)
                     {
-                        t = new Timbiriche.Timbiriche(participants, globals.username);
+                        t = new GameBoard(participants, globals.username);
                         t.Show();
                     }
                 }

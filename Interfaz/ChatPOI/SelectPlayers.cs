@@ -62,8 +62,8 @@ namespace ChatPOI
             }
             else
             {
-                Timbiriche.Timbiriche t =
-                    new Timbiriche.Timbiriche(participants, globals.username);
+                GameBoard t =
+                    new GameBoard(participants, globals.username);
                 t.Show();
 
                 string s;

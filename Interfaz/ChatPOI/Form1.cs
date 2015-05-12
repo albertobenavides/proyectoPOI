@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Timbiriche
+namespace ChatPOI
 {
-    public partial class Timbiriche : Form
+    public partial class GameBoard : Form
     {
 
         int playersCount;
@@ -23,31 +23,9 @@ namespace Timbiriche
 
         string targetIp;
 
-        public Timbiriche(List<string> participantNames, string playerName)
+        public GameBoard(List<string> participantNames, string playerName)
         {
             InitializeComponent();
-
-            IPEndPoint videoGameTargetEP;
-
-            Chat
-
-            targetIp = globals.udpClients[labelClientReceiver.Text];
-
-            try
-            {
-                videoTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 44444);
-                videoCaptureDevice.NewFrame += new AForge.Video.NewFrameEventHandler(videoCaptureDevice_NewFrame);
-                videoCaptureDevice.Start();
-
-                timer1.Enabled = true;
-
-                videoReceiverThread.Start();
-            }
-            catch
-            {
-                MessageBox.Show("Usuario no disponible.", "Información",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
 
             playersCount = participantNames.Count;
 
