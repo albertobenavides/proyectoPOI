@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Net.Mail;
 
 using System.Net;
 using System.Threading;
@@ -25,7 +26,11 @@ namespace ChatPOI
 {
     public partial class WindowChat: Form
     {
-        
+
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        String mailRemote;
+
         Dictionary<string, Bitmap> emotions;
 
         SoundPlayer sp;
@@ -40,6 +45,7 @@ namespace ChatPOI
 
         IPEndPoint audioTargetEP;
 
+        MailForm mailform;
 
         // Video
 
@@ -57,19 +63,27 @@ namespace ChatPOI
         {
             InitializeComponent();
 
+            //mailform = new MailForm();
+
             sp = new SoundPlayer(Properties.Resources.zumbido);
+
 
             foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
             {
                 wc = f;
             }
 
+            mail.From = new MailAddress("proyectopapw@gmail.com");
+            mailRemote = s;
+
             wc.SendString("$ip$" + s + "$ip$" + wc.myUdpIp + "$$$$");
 
-            labelClientReceiver.Text = s;
-            labelUserName.Text = globals.username;
 
-            this.Text = s;
+            labelClientReceiver.Text = s.Substring(0, s.IndexOf("@"));
+            labelUserName.Text = globals.username.Substring(0,globals.username.IndexOf("@"));
+
+            this.Text = s.Substring(0, s.IndexOf("@"));
+
             globals.receivedText = null;
             wc.SendString("$gm$" + s + "$$$$");
             
@@ -533,6 +547,38 @@ namespace ChatPOI
 
                 wc.videoUdpServer.Send(sendBytes, sendBytes.Length, videoTargetEP);
             }     
+        }
+
+        private void buttonFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+           // mailform.ShowDialog();
+            try
+            {
+                MailAddress vmail = new MailAddress(mailRemote);
+                mail.To.Clear();
+                mail.Attachments.Clear();
+                mail.To.Add(vmail);
+                mail.Subject = "Correo archivo Cheet-A-Chat";
+                mail.Body = "El usuario " + globals.username + " ha enviado un archivo adjunto desde Cheet-A-Chat";
+
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(openFileDialog1.FileName);
+                mail.Attachments.Add(attachment);
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("proyectopapw", "m4rquitos");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("mail Send");
+            }
+
+            catch
+            {
+                MessageBox.Show("Error");
+            } 
+
         }
     }
 }

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowChat));
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowChat));
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonEmoticon = new System.Windows.Forms.Button();
             this.buttonBuzz = new System.Windows.Forms.Button();
             this.buttonCall = new System.Windows.Forms.Button();
             this.buttonCamera = new System.Windows.Forms.Button();
-            this.buttonPlay = new System.Windows.Forms.Button();
+            this.buttonFile = new System.Windows.Forms.Button();
             this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
@@ -65,6 +65,7 @@
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -131,15 +132,16 @@
             this.buttonCamera.UseVisualStyleBackColor = true;
             this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
             // 
-            // buttonPlay
+            // buttonFile
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(23, 183);
-            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(56, 19);
-            this.buttonPlay.TabIndex = 5;
-            this.buttonPlay.Text = "Play";
-            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonFile.Location = new System.Drawing.Point(23, 183);
+            this.buttonFile.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonFile.Name = "buttonFile";
+            this.buttonFile.Size = new System.Drawing.Size(56, 19);
+            this.buttonFile.TabIndex = 5;
+            this.buttonFile.Text = "Archivo";
+            this.buttonFile.UseVisualStyleBackColor = true;
+            this.buttonFile.Click += new System.EventHandler(this.buttonFile_Click);
             // 
             // richTextBoxChat
             // 
@@ -168,7 +170,7 @@
             // 
             this.panelLeft.Controls.Add(this.panelUser);
             this.panelLeft.Controls.Add(this.panelContact);
-            this.panelLeft.Controls.Add(this.buttonPlay);
+            this.panelLeft.Controls.Add(this.buttonFile);
             this.panelLeft.Controls.Add(this.buttonCall);
             this.panelLeft.Controls.Add(this.buttonCamera);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
@@ -450,7 +452,11 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FormChat
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // WindowChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -489,7 +495,7 @@
         private System.Windows.Forms.Button buttonBuzz;
         private System.Windows.Forms.Button buttonCall;
         private System.Windows.Forms.Button buttonCamera;
-        private System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.Button buttonFile;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Panel panelContact;
@@ -517,5 +523,6 @@
         private System.Windows.Forms.Button buttonEmoti12;
         private System.Windows.Forms.Button buttonEmoti11;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
