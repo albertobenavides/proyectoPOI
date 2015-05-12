@@ -36,6 +36,7 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
             this.panelUserInfo = new System.Windows.Forms.Panel();
+            this.groupChatButton = new System.Windows.Forms.Button();
             this.panelLogout = new System.Windows.Forms.Panel();
             this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -45,7 +46,7 @@
             this.ColumnContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupChatButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelUserInfo.SuspendLayout();
             this.panelLogout.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // panelUserInfo
             // 
+            this.panelUserInfo.Controls.Add(this.button1);
             this.panelUserInfo.Controls.Add(this.groupChatButton);
             this.panelUserInfo.Controls.Add(this.pictureBoxUser);
             this.panelUserInfo.Controls.Add(this.textBoxUserName);
@@ -100,6 +102,16 @@
             this.panelUserInfo.Name = "panelUserInfo";
             this.panelUserInfo.Size = new System.Drawing.Size(453, 144);
             this.panelUserInfo.TabIndex = 8;
+            // 
+            // groupChatButton
+            // 
+            this.groupChatButton.Location = new System.Drawing.Point(298, 99);
+            this.groupChatButton.Name = "groupChatButton";
+            this.groupChatButton.Size = new System.Drawing.Size(75, 23);
+            this.groupChatButton.TabIndex = 4;
+            this.groupChatButton.Text = "Chat grupal";
+            this.groupChatButton.UseVisualStyleBackColor = true;
+            this.groupChatButton.Click += new System.EventHandler(this.groupChatButton_Click);
             // 
             // panelLogout
             // 
@@ -208,15 +220,15 @@
             this.ColumnMessage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnMessage.Width = 130;
             // 
-            // groupChatButton
+            // button1
             // 
-            this.groupChatButton.Location = new System.Drawing.Point(298, 99);
-            this.groupChatButton.Name = "groupChatButton";
-            this.groupChatButton.Size = new System.Drawing.Size(75, 23);
-            this.groupChatButton.TabIndex = 4;
-            this.groupChatButton.Text = "Chat grupal";
-            this.groupChatButton.UseVisualStyleBackColor = true;
-            this.groupChatButton.Click += new System.EventHandler(this.groupChatButton_Click);
+            this.button1.Location = new System.Drawing.Point(298, 70);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Jugar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // WindowContacts
             // 
@@ -259,5 +271,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button groupChatButton;
+        private System.Windows.Forms.Button button1;
     }
 }

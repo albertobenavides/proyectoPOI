@@ -356,5 +356,11 @@ namespace ChatPOI
                 f.Show();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Timbiriche.Form1 f = new Timbiriche.Form1(1);
+            f.Show();
+        }
     }
 }
