@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Net.Mail;
 
 namespace ChatPOI
 {
     public partial class WindowLogin : Form
     {
         char temp;
+
+        MailAddress vmail;
 
         Dictionary<string, string> users  = new Dictionary<string, string>();
 
@@ -100,32 +103,46 @@ namespace ChatPOI
 
         private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+            try
             {
-                if (users.ContainsKey(textBoxUser.Text))
+                vmail = new MailAddress(textBoxUser.Text);
+
+                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
                 {
-                    string s;
-                    if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                    if (users.ContainsKey(textBoxUser.Text))
                     {
-                        globals.username = textBoxUser.Text;
-                        this.DialogResult = DialogResult.OK;
+                        string s;
+                        if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                        {
+                            globals.username = textBoxUser.Text;
+                            this.DialogResult = DialogResult.OK;
+                        }
                     }
                 }
+            }
+            catch {
+                MessageBox.Show("Formato de correo no válido.");
             }
         }
 
         private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario") &&
-                (textBoxPassword.Text != "" || textBoxPassword.Text != "Contraseña"))
+            try
             {
-                using (StreamWriter writer = new StreamWriter("users.txt", true))
+                vmail = new MailAddress(textBoxUser.Text);
+                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario") &&
+                    (textBoxPassword.Text != "" || textBoxPassword.Text != "Contraseña"))
                 {
-                    writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
+                    using (StreamWriter writer = new StreamWriter("users.txt", true))
+                    {
+                        writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
+                    }
+                    users.Add(textBoxUser.Text, textBoxPassword.Text);
                 }
-                users.Add(textBoxUser.Text, textBoxPassword.Text);
             }
-
+            catch {
+                MessageBox.Show("Formato de correo no válido.");
+            }
         }
     }
 }

@@ -83,9 +83,13 @@ namespace ChatPOI
 
         public void SendString(string text)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(text);
-            networkStream.Write(buffer, 0, buffer.Length);
-            networkStream.Flush();
+            try
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes(text);
+                networkStream.Write(buffer, 0, buffer.Length);
+                networkStream.Flush();
+            }
+            catch { }
         }
 
         private void Exit()
@@ -103,12 +107,19 @@ namespace ChatPOI
         {
             while (isConected)
             {
-                networkStream = clientSocket.GetStream();
-                byte [] buffer = new byte[10025];
-                networkStream.Read(buffer, 0, clientSocket.ReceiveBufferSize);
+                try
+                {
+                    networkStream = clientSocket.GetStream();
+                    byte[] buffer = new byte[10025];
+                    networkStream.Read(buffer, 0, clientSocket.ReceiveBufferSize);
 
-                globals.receivedText = Encoding.UTF8.GetString(buffer);
-                msg();
+                    globals.receivedText = Encoding.UTF8.GetString(buffer);
+                    msg();
+                }
+                catch {
+                    MessageBox.Show("Error", "Servidor fuera de linea.");
+                    Exit();
+                }
             }
         }
 
@@ -329,11 +340,6 @@ namespace ChatPOI
 
         }
 
-        private void WindowContacts_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Exit();
-        }
-
         private void comboBoxUserStatus_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
@@ -361,6 +367,11 @@ namespace ChatPOI
         {
             Timbiriche.Form1 f = new Timbiriche.Form1(1);
             f.Show();
+		}
+		
+        private void WindowContacts_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Exit();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelUserInfo.SuspendLayout();
             this.panelLogout.SuspendLayout();
@@ -242,7 +243,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "WindowContacts";
             this.Text = "Cheet-A-Chat";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WindowContacts_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowContacts_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.panelUserInfo.ResumeLayout(false);
             this.panelUserInfo.PerformLayout();
