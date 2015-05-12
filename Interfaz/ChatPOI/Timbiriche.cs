@@ -21,11 +21,35 @@ namespace ChatPOI
         int contadorTurno;
         List<string> playerNames;
 
+        WindowContacts wc;
+
+        IPEndPoint videoGameTargetEP;
+        IPEndPoint videoGameTargetEP1;
+
         string targetIp;
+
+        string messageReceived;
 
         public GameBoard(List<string> participantNames, string playerName)
         {
             InitializeComponent();
+
+            foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
+            {
+                wc = f;
+            }
+
+            targetIp = globals.udpClients[participantNames[0]];
+
+            try
+            {
+                videoGameTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 33333);
+            }
+            catch
+            {
+                MessageBox.Show("Usuario no disponible.", "Información",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             playersCount = participantNames.Count;
 
@@ -79,6 +103,18 @@ namespace ChatPOI
 
         public void turno(int x1, int x2, int y1, int y2)
         {
+            string message = "$pg$";
+            foreach (string user in playerNames)
+            {
+                message += user + ",";
+            }
+            message = message.Substring(0, message.Length-1);
+            message += "$pg$";
+            message += x1.ToString() + "," + x2.ToString() + "," + y1.ToString() + "," + y2.ToString();
+            message += "$pg$";
+            byte[] buffer = Encoding.UTF8.GetBytes(message);
+            wc.videoGameUdpServer.Send(buffer, buffer.Length, videoGameTargetEP);
+
             thisTurn.Text = contadorTurno.ToString();
             int A;
             int B;
@@ -254,6 +290,38 @@ namespace ChatPOI
         {
             return playerNames;
         }
+
+        private void videoGameGetMessage()
+        {
+            while (true)
+            {
+                byte[] buffer;
+                buffer = wc.videoGameUdpServer.Receive(ref videoGameTargetEP);
+                messageReceived = Encoding.UTF8.GetString(buffer);
+
+                string[] users;
+                string[] moves;
+                if (messageReceived.Substring(0,4).Equals("$pg$"))
+                {
+                    messageReceived = messageReceived.Substring(4);
+                    string temp = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    users = temp.Split(',');
+                    messageReceived = messageReceived.Substring(messageReceived.IndexOf("$pg$") + 4);
+                    temp = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    moves = temp.Split(',');
+                    List<string> tempList = new List<string>();
+                    foreach(string user in users)
+                        tempList.Add(user);
+                    if (playerNames.SequenceEqual(tempList))
+                        turno(Convert.ToInt16(moves[0]), 
+                            Convert.ToInt16(moves[1]), 
+                            Convert.ToInt16(moves[2]), 
+                            Convert.ToInt16(moves[3]));
+                }                    
+
+            }
+        }
+
 
         private void lineShape1_MouseEnter(object sender, EventArgs e) { if (lineShape1.BorderColor != System.Drawing.Color.Black) { lineShape1.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape2_MouseEnter(object sender, EventArgs e) { if (lineShape2.BorderColor != System.Drawing.Color.Black) { lineShape2.BorderColor = System.Drawing.SystemColors.Highlight; } }
