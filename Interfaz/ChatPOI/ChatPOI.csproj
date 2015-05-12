@@ -201,6 +201,12 @@
   <ItemGroup>
     <None Include="Resources\zumbido.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Timbiriche\WindowsFormsApplication1\Timbiriche.csproj">
+      <Project>{ce3f5e32-da94-430a-8af6-0a6657ca656f}</Project>
+      <Name>Timbiriche</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
