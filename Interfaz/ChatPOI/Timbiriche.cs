@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace ChatPOI
 {
     public partial class GameBoard : Form
     {
-
+        string totalLineSelecter;
         int playersCount;
         int playerTurn;
         int[,] linea;
@@ -131,7 +132,7 @@ namespace ChatPOI
             message += "$pg$";
             message += x1.ToString() + "," + x2.ToString() + "," + y1.ToString() + "," + y2.ToString();
             message += "$pg$";
-            message += lineSelected + "$pg";
+            message += lineSelected + "$pg$";
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             wc.videoGameUdpServer.Send(buffer, buffer.Length, videoGameTargetEP);
 
@@ -173,14 +174,34 @@ namespace ChatPOI
             }
         }
 
+        private void tryColor()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(tryColor));
+            else
+            {
+                caca();
+            }
+        }
+
+        void caca()
+        {
+            Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
+            ls.BorderColor = System.Drawing.Color.Black;
+            if (this.contadorTurno == playersCount)
+            {
+                this.contadorTurno = 0;
+            }
+            this.contadorTurno++;
+        }
+
         public void turnoExterno(int x1, int x2, int y1, int y2, string lineSelected)
         {
             thisTurn.Text = contadorTurno.ToString();
 
+            totalLineSelecter = lineSelected;
 
-            Object c = this.Controls[lineSelected];
-            Microsoft.VisualBasic.PowerPacks.LineShape ls = (Microsoft.VisualBasic.PowerPacks.LineShape)c;
-            ls.BorderColor = System.Drawing.Color.Black;
+            tryColor();
             int A;
             int B;
             if (y1 == y2)
@@ -207,12 +228,6 @@ namespace ChatPOI
                     tryTurno();
 
                 }
-
-                if (this.contadorTurno == playersCount)
-                {
-                    this.contadorTurno = 0;
-                }
-                this.contadorTurno++;
             }
         }
 
