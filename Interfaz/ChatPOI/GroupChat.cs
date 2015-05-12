@@ -55,6 +55,9 @@ namespace ChatPOI
                 }
                 else
                     this.Text += ", " + user;
+
+                if (!user.Equals(globals.username))
+                    wc.SendString("$ip$" + user +"$ip$" + wc.myUdpIp + "$$$$");
             }
 
             globals.receivedText = null;
@@ -338,6 +341,7 @@ namespace ChatPOI
                 foreach (object user in contactList.CheckedItems)
                 {
                     participants.Add(user.ToString());
+                    wc.SendString("$ip$" + user +"$ip$" + wc.myUdpIp + "$$$$");
                 }
 
                 participants.Sort();
