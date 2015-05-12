@@ -84,7 +84,7 @@ namespace Servidor
                 dataToSend += "$$$$";
 
                 System.IO.Directory.CreateDirectory("clients\\" + userName);
-                    
+
                 Byte[] senderBytes = null;
                 senderBytes = Encoding.UTF8.GetBytes(dataToSend);
 
@@ -270,6 +270,45 @@ namespace Servidor
                         Console.WriteLine("");
                     }
 
+                    else if (dataFromClient.Substring(0, 4) == "$pg$") // play game
+                    {
+                        dataFromClient = dataFromClient.Substring(4);
+                        string clientString = dataFromClient.Substring(0, dataFromClient.IndexOf("$pg$"));
+
+                        string[] users = clientString.Split(',');
+
+                        string messageToSend;
+                        messageToSend = "$pg$";
+
+                        bool isFirst = true;
+                        foreach (string user in users)
+                        {
+                            if (!user.Equals(""))
+                            {
+                                if (isFirst)
+                                {
+                                    isFirst = false;
+                                    messageToSend += user;
+                                }
+                                else
+                                    messageToSend += "," + user;
+                            }
+                        }
+
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
+
+                        foreach (string user in users)
+                        {
+                            if (!user.Equals("") && !user.Equals(userName))
+                            {
+                                TcpClient senderSocket = (TcpClient)clientList[user];
+                                senderSocket.Client.Send(data);
+                                Console.WriteLine("@" + user + ": " + messageToSend);
+                            }
+                        }
+                        Console.WriteLine("");
+                    }
+
                     else if (dataFromClient.Substring(0, 4) == "$gm$")
                     {
                         dataFromClient = dataFromClient.Substring(4);
@@ -297,7 +336,7 @@ namespace Servidor
                         }
                     }
 
-                    else if (dataFromClient.Substring(0,6).Equals("$exit$"))
+                    else if (dataFromClient.Substring(0, 6).Equals("$exit$"))
                     {
                         isConected = false;
                         Console.WriteLine("Cliente "

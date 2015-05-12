@@ -168,6 +168,10 @@ namespace Timbiriche
             this.player1Name = new System.Windows.Forms.Label();
             this.player2Name = new System.Windows.Forms.Label();
             this.player3Name = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelTurno = new System.Windows.Forms.ToolStripStatusLabel();
+            this.thisTurn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -272,7 +276,7 @@ namespace Timbiriche
             this.lineShape50,
             this.lineShape49,
             this.lineShape48});
-            this.shapeContainer1.Size = new System.Drawing.Size(306, 200);
+            this.shapeContainer1.Size = new System.Drawing.Size(306, 215);
             this.shapeContainer1.TabIndex = 0;
             this.shapeContainer1.TabStop = false;
             // 
@@ -1437,11 +1441,35 @@ namespace Timbiriche
             this.player3Name.TabIndex = 6;
             this.player3Name.Text = "label3";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelTurno,
+            this.thisTurn});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 193);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(306, 22);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelTurno
+            // 
+            this.labelTurno.Name = "labelTurno";
+            this.labelTurno.Size = new System.Drawing.Size(45, 17);
+            this.labelTurno.Text = "Turno: ";
+            // 
+            // thisTurn
+            // 
+            this.thisTurn.Name = "thisTurn";
+            this.thisTurn.Size = new System.Drawing.Size(14, 17);
+            this.thisTurn.Text = "#";
+            // 
             // Timbiriche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 200);
+            this.ClientSize = new System.Drawing.Size(306, 215);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.player3Name);
             this.Controls.Add(this.player2Name);
             this.Controls.Add(this.player1Name);
@@ -1451,7 +1479,8 @@ namespace Timbiriche
             this.Controls.Add(this.shapeContainer1);
             this.Name = "Timbiriche";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1597,6 +1626,9 @@ namespace Timbiriche
         private System.Windows.Forms.Label player1Name;
         private System.Windows.Forms.Label player2Name;
         private System.Windows.Forms.Label player3Name;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelTurno;
+        private System.Windows.Forms.ToolStripStatusLabel thisTurn;
     }
 }
 

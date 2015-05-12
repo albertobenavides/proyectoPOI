@@ -273,6 +273,35 @@ namespace ChatPOI
                     }
                 }
 
+                else if (globals.receivedText.Substring(0, 4) == "$pm$")
+                {
+                    string messageReceived = globals.receivedText.Substring(4);
+                    messageReceived = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    string[] users = messageReceived.Split(',');
+
+                    List<string> participants = new List<string>();
+
+                    foreach (string user in users)
+                        participants.Add(user);
+
+                    bool isOpen = false;
+
+                    foreach (Timbiriche.Timbiriche f in Application.OpenForms.OfType<Timbiriche.Timbiriche>())
+                    {
+                        if (f.getParticipants().SequenceEqual(participants))
+                        {
+                            isOpen = true;
+                        }
+                    }
+
+                    Timbiriche.Timbiriche t;
+                    if (!isOpen)
+                    {
+                        t = new Timbiriche.Timbiriche(participants, globals.username);
+                        t.Show();
+                    }
+                }
+
                 else if (globals.receivedText.Substring(0, 4) == "$ip$")
                 {
                     string userFrom = globals.receivedText.Substring(4);

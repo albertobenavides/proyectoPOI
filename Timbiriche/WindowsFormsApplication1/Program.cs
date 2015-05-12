@@ -16,7 +16,7 @@ namespace Timbiriche
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Timbiriche(0));
+            Application.Run(new Timbiriche(null, null));
         }
     }
 }

@@ -14,9 +14,10 @@ namespace ChatPOI
     {
         List<string> participants;
 
+        WindowContacts wc;
+
         public SelectPlayers()
         {
-
             participants = new List<string>();
             participants.Add(globals.username);
 
@@ -35,10 +36,17 @@ namespace ChatPOI
             {
                 contactList.Items.Add(user);
             }
+
+            foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
+            {
+                wc = f;
+            }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            participants.Clear();
+            participants.Add(globals.username);
             foreach (object user in contactList.CheckedItems)
             {
                 participants.Add(user.ToString());
@@ -54,8 +62,21 @@ namespace ChatPOI
             }
             else
             {
-                Timbiriche.Timbiriche f = new Timbiriche.Timbiriche(1);
-                f.Show();
+                Timbiriche.Timbiriche t =
+                    new Timbiriche.Timbiriche(participants, globals.username);
+                t.Show();
+
+                string s;
+                s = "$pg$"; // play game
+
+                foreach (string user in participants)
+                {
+                    s += user + ",";
+                }
+
+                s += "$pg$";
+
+                wc.SendString(s);
 
                 this.Close();
             }
