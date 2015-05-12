@@ -33,36 +33,6 @@ namespace ChatPOI
 
         #region Windows Form Designer generated code
 
-
-        private void generador(int x, int y, int c) {
-
-                System.Windows.Forms.Button newbutton = new System.Windows.Forms.Button();
-                
-                newbutton.Height = 31;
-                newbutton.Width = 31;
-                newbutton.ForeColor = Color.Black;
-                newbutton.BackColor = Color.DarkRed;
-                newbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                newbutton.Location = new Point(x, y);
-                newbutton.FlatAppearance.BorderSize = 3;
-                newbutton.Enabled = false;
-                if (c == 1) {
-                    newbutton.BackColor = Color.Red;
-                }
-                if (c == 2)
-                {
-                    newbutton.BackColor = Color.Green;
-
-                }
-                if (c == 3)
-                {
-                    newbutton.BackColor = Color.Blue;
-
-                }
-                Controls.Add(newbutton);
-            
-        }
-
         private void InitializeComponent()
         {
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
@@ -1485,41 +1455,6 @@ namespace ChatPOI
             this.PerformLayout();
 
         }
-
-        //private void pointConstructor(int size)
-        //{
-        //    for (int i = 1; i <= size; i++)
-        //    {
-        //        Microsoft.VisualBasic.PowerPacks.OvalShape circulo = new Microsoft.VisualBasic.PowerPacks.OvalShape();
-
-        //        System.Windows.Forms.Button asdasd = new System.Windows.Forms.Button();
-
-        //        //Initialize label's property
-        //        circulo.BackColor = System.Drawing.SystemColors.Control;
-        //        circulo.Cursor = System.Windows.Forms.Cursors.Default;
-        //        circulo.Location = new System.Drawing.Point(20*i, 20);
-        //        circulo.Name = "circulo" + i;
-        //        circulo.Size = new System.Drawing.Size(6, 6);
-
-        //        circulosLista.Add(circulo);
-
-
-        //        //Initialize textBoxes Property
-        //        textBoxNewInput.Location = new Point(labelInput.Width, labelInput.Top - 3);
-
-        //        //Add the newly created text box to the list of input text boxes
-        //        inputTextBoxes.Add(textBoxNewInput);
-
-        //        //Add the labels and text box to the form
-                
-        //        this.Controls.Add(circulo);
-        //    }
-
-        //    for (int i = 0; i < size; i++)
-        //    {
-
-        //    }
-        //}
 
         #endregion
 

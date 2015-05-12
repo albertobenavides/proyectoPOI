@@ -15,6 +15,7 @@ namespace ChatPOI
 {
     public partial class GameBoard : Form
     {
+        int globalX, globalY, globalC;
         string totalLineSelecter;
         int playersCount;
         int playerTurn;
@@ -93,11 +94,52 @@ namespace ChatPOI
             OI.Start();
         }
 
-        public void changeTextbox(int r, int g, int b)
+        void tryGenerador()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(tryGenerador));
+            else
+            {
+                System.Windows.Forms.Button newbutton = new System.Windows.Forms.Button();
+
+                newbutton.Height = 31;
+                newbutton.Width = 31;
+                newbutton.ForeColor = Color.Black;
+                newbutton.BackColor = Color.DarkRed;
+                newbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                newbutton.Location = new Point(globalX, globalY);
+                newbutton.FlatAppearance.BorderSize = 3;
+                newbutton.Enabled = false;
+                if (globalC == 1)
+                {
+                    newbutton.BackColor = Color.Red;
+                }
+                if (globalC == 2)
+                {
+                    newbutton.BackColor = Color.Green;
+
+                }
+                if (globalC == 3)
+                {
+                    newbutton.BackColor = Color.Blue;
+
+                }
+                Controls.Add(newbutton);
+            }
+        }
+
+        private void generador(int x, int y, int c)
+        {
+            globalX = x;
+            globalY = y;
+            globalC = c;
+            tryGenerador();
+        }
+
+        public void changeTextbox(int r, int g)
         {
             this.player1Score.Text = Convert.ToString(r);
             this.player2Score.Text = Convert.ToString(g);
-            this.player3Score.Text = Convert.ToString(b);
         }
 
         public void puntuaje(int turno)
@@ -117,7 +159,7 @@ namespace ChatPOI
             else
             {
                 puntuaje(contadorTurno);
-                changeTextbox(player1Points, player3Points, player2Points);
+                changeTextbox(player1Points, player2Points);
             }
         }
 
@@ -128,7 +170,7 @@ namespace ChatPOI
             {
                 message += user + ",";
             }
-            message = message.Substring(0, message.Length-1);
+            message = message.Substring(0, message.Length - 1);
             message += "$pg$";
             message += x1.ToString() + "," + x2.ToString() + "," + y1.ToString() + "," + y2.ToString();
             message += "$pg$";
@@ -151,7 +193,7 @@ namespace ChatPOI
             }
             if (linea[A, B] != 3 && linea[A, B] != 2 && linea[A, B] != 1)
             {
-                linea[A, B] = this.contadorTurno;
+                linea[A, B] = contadorTurno;
 
                 if (checarCuadrosIzq(A, B, x1, y1))
                 {
@@ -164,13 +206,14 @@ namespace ChatPOI
 
                 }
 
-                changeTextbox(player1Points, player3Points, player2Points);
+                changeTextbox(player1Points, player2Points);
 
-                if (this.contadorTurno == playersCount)
+                if (contadorTurno == 1)
                 {
-                    this.contadorTurno = 0;
+                    contadorTurno = 0;
                 }
-                this.contadorTurno++;
+                else
+                    contadorTurno++;
             }
         }
 
@@ -180,19 +223,20 @@ namespace ChatPOI
                 this.Invoke(new MethodInvoker(tryColor));
             else
             {
-                caca();
+                paintLine();
             }
         }
 
-        void caca()
+        void paintLine()
         {
             Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
             ls.BorderColor = System.Drawing.Color.Black;
-            if (this.contadorTurno == playersCount)
+            if (contadorTurno == 1)
             {
-                this.contadorTurno = 0;
+                contadorTurno = 0;
             }
-            this.contadorTurno++;
+            else
+            contadorTurno++;
         }
 
         public void turnoExterno(int x1, int x2, int y1, int y2, string lineSelected)
@@ -216,7 +260,7 @@ namespace ChatPOI
             }
             if (linea[A, B] != 3 && linea[A, B] != 2 && linea[A, B] != 1)
             {
-                linea[A, B] = this.contadorTurno;
+                linea[A, B] = contadorTurno;
 
                 if (checarCuadrosIzq(A, B, x1, y1))
                 {
@@ -379,7 +423,7 @@ namespace ChatPOI
 
                 string[] users;
                 string[] moves;
-                if (messageReceived.Substring(0,4).Equals("$pg$"))
+                if (messageReceived.Substring(0, 4).Equals("$pg$"))
                 {
                     messageReceived = messageReceived.Substring(4);
                     string temp = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
@@ -390,15 +434,15 @@ namespace ChatPOI
                     messageReceived = messageReceived.Substring(messageReceived.IndexOf("$pg$") + 4);
                     string lineSelected = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
                     List<string> tempList = new List<string>();
-                    foreach(string user in users)
+                    foreach (string user in users)
                         tempList.Add(user);
                     if (playerNames.SequenceEqual(tempList))
-                        turnoExterno(Convert.ToInt16(moves[0]), 
-                            Convert.ToInt16(moves[1]), 
-                            Convert.ToInt16(moves[2]), 
-                            Convert.ToInt16(moves[3]), 
+                        turnoExterno(Convert.ToInt16(moves[0]),
+                            Convert.ToInt16(moves[1]),
+                            Convert.ToInt16(moves[2]),
+                            Convert.ToInt16(moves[3]),
                             lineSelected);
-                }                    
+                }
 
             }
         }
