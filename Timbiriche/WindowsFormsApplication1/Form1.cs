@@ -10,56 +10,69 @@ using System.Windows.Forms;
 
 namespace Timbiriche
 {
-    public partial class Form1 : Form
+    public partial class Timbiriche : Form
     {
-        public Form1(int totalPlayers)
+
+        int playersCount;
+        int playerTurn;
+        int[,] linea;
+        int player1Points, player2Points, player3Points;
+        int contadorTurno;
+
+        public Timbiriche(List<string> playerNames, string playerName)
         {
             InitializeComponent();
-            //cuad = new cuadros() ;
 
-            redPoints = 0;
-            bluePoints = 0;
-            greenPoints = 0;
+            playersCount = playerNames.Count;
+
+            player1Name.Text = playerNames[0];
+            player2Name.Text = playerNames[1];
+
+            if (playersCount < 3)
+            {
+                player3Name.Visible = false;
+                player3Score.Visible = false;
+            }
+            else
+            {
+                player3Name.Text = playerNames[2];
+            }
+
+            for (int i = 0; i < playerNames.Count; i++)
+            {
+                if (playerNames[i].Equals(playerName))
+                {
+                    playerTurn = i;
+                    break;
+                }
+            }
+
+            player1Points = 0;
+            player2Points = 0;
+            player3Points = 0;
             contadorTurno = 1;
             linea = new int[11,11];
         }
-
-        private int[ ,  ] linea;
-        private int redPoints, bluePoints, greenPoints;
-        private int contadorTurno;
             
-
-
-        public void changeTextbox(int r, int g, int b) {
-            this.textBox1.Text = Convert.ToString(r);
-            this.textBox2.Text = Convert.ToString(g);
-            this.textBox3.Text = Convert.ToString(b);
+        public void changeTextbox(int r, int g, int b) 
+        {
+            this.player1Score.Text = Convert.ToString(r);
+            this.player2Score.Text = Convert.ToString(g);
+            this.player3Score.Text = Convert.ToString(b);
         }
-        public void changeColor(int color) { 
-        }
-        public void puntuaje(int turno) {
+
+        public void puntuaje(int turno) 
+        {
             if (turno == 1)
-            {
-                redPoints = redPoints + 1;
-
-            }
+                player1Points = player1Points + 1;
             else if (turno == 2)
-            {
-                greenPoints = greenPoints + 1;
-
-            }
+                player3Points = player3Points + 1;
             else if (turno == 3)
-            {
-                bluePoints = bluePoints + 1;
-
-            }
+                player2Points = player2Points + 1;
         }
 
         public void turno(int x1, int x2, int y1, int y2)
         {
-
-            changeColor(contadorTurno);
-
             int A;
             int B;
             if (y1 == y2)
@@ -87,9 +100,9 @@ namespace Timbiriche
 
                 }
              
-                changeTextbox(redPoints, greenPoints, bluePoints);
+                changeTextbox(player1Points, player3Points, player2Points);
 
-                if (this.contadorTurno == 3)
+                if (this.contadorTurno == playersCount)
                 {
                     this.contadorTurno = 0;
                 }
@@ -99,8 +112,6 @@ namespace Timbiriche
 
         public bool checarCuadrosIzq(int a, int b, int x, int y)//cuadro a la izq y cuadro superior
         {
-
-            
                 if (a % 2 == 0)
                 { //horizontal
                     if (a - 2 >= 0 && b + 1 < 11)
@@ -164,6 +175,7 @@ namespace Timbiriche
             }
 
         }
+        
         public bool checarCuadrosDer(int a, int b, int x, int y)
         {
             if (a % 2 == 0)
@@ -232,20 +244,13 @@ namespace Timbiriche
 
         }
 
-
-        private void lineShape1_MouseEnter(object sender, EventArgs e)  
-        { 
-            if (lineShape1.BorderColor != System.Drawing.Color.Black) 
-            { 
-                lineShape1.BorderColor = System.Drawing.SystemColors.Highlight; 
-            } 
-        }
+        private void lineShape1_MouseEnter(object sender, EventArgs e)  { if (lineShape1.BorderColor != System.Drawing.Color.Black) { lineShape1.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape2_MouseEnter(object sender, EventArgs e)  { if (lineShape2.BorderColor != System.Drawing.Color.Black) { lineShape2.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape3_MouseEnter(object sender, EventArgs e)  { if (lineShape3.BorderColor != System.Drawing.Color.Black) { lineShape3.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape4_MouseEnter(object sender, EventArgs e)  { if (lineShape4.BorderColor != System.Drawing.Color.Black) { lineShape4.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape5_MouseEnter(object sender, EventArgs e)  { if (lineShape5.BorderColor != System.Drawing.Color.Black) { lineShape5.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape6_MouseEnter(object sender, EventArgs e)  { if (lineShape6.BorderColor != System.Drawing.Color.Black) { lineShape6.BorderColor = System.Drawing.SystemColors.Highlight; } }
-        private void lineShape7_MouseEnter(object sender, EventArgs e) {  if (lineShape7.BorderColor != System.Drawing.Color.Black) { lineShape7.BorderColor = System.Drawing.SystemColors.Highlight; } }
+        private void lineShape7_MouseEnter(object sender, EventArgs e)  { if (lineShape7.BorderColor != System.Drawing.Color.Black) { lineShape7.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape8_MouseEnter(object sender, EventArgs e)  { if (lineShape8.BorderColor != System.Drawing.Color.Black) { lineShape8.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape9_MouseEnter(object sender, EventArgs e)  { if (lineShape9.BorderColor != System.Drawing.Color.Black) { lineShape9.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape10_MouseEnter(object sender, EventArgs e) { if (lineShape10.BorderColor != System.Drawing.Color.Black) { lineShape10.BorderColor = System.Drawing.SystemColors.Highlight; } }
@@ -361,10 +366,6 @@ namespace Timbiriche
         private void lineShape52_Click(object sender, EventArgs e) { this.turno(lineShape52.X1, lineShape52.X2, lineShape52.Y1, lineShape52.Y2); lineShape52.BorderColor = System.Drawing.Color.Black; }
         private void lineShape53_Click(object sender, EventArgs e) { this.turno(lineShape53.X1, lineShape53.X2, lineShape53.Y1, lineShape53.Y2); lineShape53.BorderColor = System.Drawing.Color.Black; }
         private void lineShape50_Click(object sender, EventArgs e) { this.turno(lineShape50.X1, lineShape50.X2, lineShape50.Y1, lineShape50.Y2); lineShape50.BorderColor = System.Drawing.Color.Black; }
-
-
-
-        private void Form1_Load(object sender, EventArgs e){}
 
         private void lineShape1_MouseLeave(object sender, EventArgs e){if (lineShape1.BorderColor != System.Drawing.Color.Black){lineShape1.BorderColor = System.Drawing.SystemColors.Control;}}
 

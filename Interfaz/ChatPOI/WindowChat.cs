@@ -45,8 +45,6 @@ namespace ChatPOI
 
         IPEndPoint audioTargetEP;
 
-        MailForm mailform;
-
         // Video
 
         bool isVideoStreaming = false;

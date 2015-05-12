@@ -57,12 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="globals.cs" />
-    <Compile Include="MailForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MailForm.Designer.cs">
-      <DependentUpon>MailForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Media\Wave\native\MMSYSERR.cs" />
     <Compile Include="Media\Wave\native\WavConstants.cs" />
     <Compile Include="Media\Wave\native\WAVEFORMATEX.cs" />
@@ -79,6 +73,12 @@
     </Compile>
     <Compile Include="GroupChat.Designer.cs">
       <DependentUpon>GroupChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPlayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectPlayers.Designer.cs">
+      <DependentUpon>SelectPlayers.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowContacts.cs">
       <SubType>Form</SubType>
@@ -109,8 +109,8 @@
     <Compile Include="WindowVoice.Designer.cs">
       <DependentUpon>WindowVoice.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MailForm.resx">
-      <DependentUpon>MailForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectPlayers.resx">
+      <DependentUpon>SelectPlayers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowContacts.resx">
       <DependentUpon>WindowContacts.cs</DependentUpon>

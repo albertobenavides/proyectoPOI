@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Timbiriche
 {
-    partial class Form1
+    partial class Timbiriche
     {
         /// <summary>
         /// Required designer variable.
@@ -162,9 +162,12 @@ namespace Timbiriche
             this.lineShape50 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.lineShape49 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.lineShape48 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.player1Score = new System.Windows.Forms.TextBox();
+            this.player2Score = new System.Windows.Forms.TextBox();
+            this.player3Score = new System.Windows.Forms.TextBox();
+            this.player1Name = new System.Windows.Forms.Label();
+            this.player2Name = new System.Windows.Forms.Label();
+            this.player3Name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -1386,37 +1389,67 @@ namespace Timbiriche
             this.lineShape48.MouseEnter += new System.EventHandler(this.lineShape48_MouseEnter);
             this.lineShape48.MouseLeave += new System.EventHandler(this.lineShape48_MouseLeave);
             // 
-            // textBox1
+            // player1Score
             // 
-            this.textBox1.Location = new System.Drawing.Point(227, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(67, 20);
-            this.textBox1.TabIndex = 3;
+            this.player1Score.Location = new System.Drawing.Point(227, 24);
+            this.player1Score.Name = "player1Score";
+            this.player1Score.Size = new System.Drawing.Size(67, 20);
+            this.player1Score.TabIndex = 3;
             // 
-            // textBox2
+            // player2Score
             // 
-            this.textBox2.Location = new System.Drawing.Point(227, 84);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(67, 20);
-            this.textBox2.TabIndex = 3;
+            this.player2Score.Location = new System.Drawing.Point(227, 84);
+            this.player2Score.Name = "player2Score";
+            this.player2Score.Size = new System.Drawing.Size(67, 20);
+            this.player2Score.TabIndex = 3;
             // 
-            // textBox3
+            // player3Score
             // 
-            this.textBox3.Location = new System.Drawing.Point(227, 144);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(67, 20);
-            this.textBox3.TabIndex = 3;
+            this.player3Score.Location = new System.Drawing.Point(227, 144);
+            this.player3Score.Name = "player3Score";
+            this.player3Score.Size = new System.Drawing.Size(67, 20);
+            this.player3Score.TabIndex = 3;
             // 
-            // Form1
+            // player1Name
+            // 
+            this.player1Name.AutoSize = true;
+            this.player1Name.Location = new System.Drawing.Point(245, 8);
+            this.player1Name.Name = "player1Name";
+            this.player1Name.Size = new System.Drawing.Size(35, 13);
+            this.player1Name.TabIndex = 4;
+            this.player1Name.Text = "label1";
+            // 
+            // player2Name
+            // 
+            this.player2Name.AutoSize = true;
+            this.player2Name.Location = new System.Drawing.Point(245, 68);
+            this.player2Name.Name = "player2Name";
+            this.player2Name.Size = new System.Drawing.Size(35, 13);
+            this.player2Name.TabIndex = 5;
+            this.player2Name.Text = "label2";
+            // 
+            // player3Name
+            // 
+            this.player3Name.AutoSize = true;
+            this.player3Name.Location = new System.Drawing.Point(245, 128);
+            this.player3Name.Name = "player3Name";
+            this.player3Name.Size = new System.Drawing.Size(35, 13);
+            this.player3Name.TabIndex = 6;
+            this.player3Name.Text = "label3";
+            // 
+            // Timbiriche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 200);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.player3Name);
+            this.Controls.Add(this.player2Name);
+            this.Controls.Add(this.player1Name);
+            this.Controls.Add(this.player3Score);
+            this.Controls.Add(this.player2Score);
+            this.Controls.Add(this.player1Score);
             this.Controls.Add(this.shapeContainer1);
-            this.Name = "Form1";
+            this.Name = "Timbiriche";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -1558,9 +1591,12 @@ namespace Timbiriche
         private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape7;
         private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape6;
         private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox player1Score;
+        private System.Windows.Forms.TextBox player2Score;
+        private System.Windows.Forms.TextBox player3Score;
+        private System.Windows.Forms.Label player1Name;
+        private System.Windows.Forms.Label player2Name;
+        private System.Windows.Forms.Label player3Name;
     }
 }
 

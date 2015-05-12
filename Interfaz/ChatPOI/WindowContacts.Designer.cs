@@ -36,6 +36,7 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
             this.panelUserInfo = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupChatButton = new System.Windows.Forms.Button();
             this.panelLogout = new System.Windows.Forms.Panel();
             this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
@@ -46,8 +47,6 @@
             this.ColumnContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelUserInfo.SuspendLayout();
             this.panelLogout.SuspendLayout();
@@ -103,6 +102,16 @@
             this.panelUserInfo.Name = "panelUserInfo";
             this.panelUserInfo.Size = new System.Drawing.Size(453, 144);
             this.panelUserInfo.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(298, 70);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Jugar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupChatButton
             // 
@@ -220,16 +229,6 @@
             this.ColumnMessage.ReadOnly = true;
             this.ColumnMessage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnMessage.Width = 130;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(298, 70);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Jugar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // WindowContacts
             // 
