@@ -36,6 +36,7 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
             this.panelUserInfo = new System.Windows.Forms.Panel();
+            this.groupChatButton = new System.Windows.Forms.Button();
             this.panelLogout = new System.Windows.Forms.Panel();
             this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
             this.ColumnContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupChatButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.panelUserInfo.SuspendLayout();
             this.panelLogout.SuspendLayout();
@@ -100,6 +100,16 @@
             this.panelUserInfo.Name = "panelUserInfo";
             this.panelUserInfo.Size = new System.Drawing.Size(453, 144);
             this.panelUserInfo.TabIndex = 8;
+            // 
+            // groupChatButton
+            // 
+            this.groupChatButton.Location = new System.Drawing.Point(298, 99);
+            this.groupChatButton.Name = "groupChatButton";
+            this.groupChatButton.Size = new System.Drawing.Size(75, 23);
+            this.groupChatButton.TabIndex = 4;
+            this.groupChatButton.Text = "Chat grupal";
+            this.groupChatButton.UseVisualStyleBackColor = true;
+            this.groupChatButton.Click += new System.EventHandler(this.groupChatButton_Click);
             // 
             // panelLogout
             // 
@@ -208,16 +218,6 @@
             this.ColumnMessage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnMessage.Width = 130;
             // 
-            // groupChatButton
-            // 
-            this.groupChatButton.Location = new System.Drawing.Point(298, 99);
-            this.groupChatButton.Name = "groupChatButton";
-            this.groupChatButton.Size = new System.Drawing.Size(75, 23);
-            this.groupChatButton.TabIndex = 4;
-            this.groupChatButton.Text = "Chat grupal";
-            this.groupChatButton.UseVisualStyleBackColor = true;
-            this.groupChatButton.Click += new System.EventHandler(this.groupChatButton_Click);
-            // 
             // WindowContacts
             // 
             this.AutoScroll = true;
@@ -230,7 +230,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "WindowContacts";
             this.Text = "Cheet-A-Chat";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WindowContacts_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowContacts_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.panelUserInfo.ResumeLayout(false);
             this.panelUserInfo.PerformLayout();

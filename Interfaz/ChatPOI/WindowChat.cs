@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Net.Mail;
 
 using System.Net;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace ChatPOI
 {
     public partial class WindowChat: Form
     {
-        
+
         Dictionary<string, Bitmap> emotions;
 
         SoundPlayer sp;
@@ -40,6 +41,7 @@ namespace ChatPOI
 
         IPEndPoint audioTargetEP;
 
+        MailForm mailform;
 
         // Video
 
@@ -57,7 +59,10 @@ namespace ChatPOI
         {
             InitializeComponent();
 
+            mailform = new MailForm();
+
             sp = new SoundPlayer(Properties.Resources.zumbido);
+
 
             foreach (WindowContacts f in Application.OpenForms.OfType<WindowContacts>())
             {
@@ -533,6 +538,11 @@ namespace ChatPOI
 
                 wc.videoUdpServer.Send(sendBytes, sendBytes.Length, videoTargetEP);
             }     
+        }
+
+        private void buttonFile_Click(object sender, EventArgs e)
+        {
+            mailform.ShowDialog();
         }
     }
 }
