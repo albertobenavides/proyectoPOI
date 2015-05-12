@@ -74,7 +74,7 @@ namespace ChatPOI
                     s += user + ",";
                 }
 
-                s += "$pg$";
+                s += "$pg$ $$$$";
 
                 wc.SendString(s);
 

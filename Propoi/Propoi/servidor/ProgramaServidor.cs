@@ -295,6 +295,8 @@ namespace Servidor
                             }
                         }
 
+                        messageToSend += "$pg$";
+
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
                         foreach (string user in users)

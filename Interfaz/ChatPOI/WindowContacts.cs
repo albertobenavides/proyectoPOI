@@ -273,7 +273,7 @@ namespace ChatPOI
                     }
                 }
 
-                else if (globals.receivedText.Substring(0, 4) == "$pm$")
+                else if (globals.receivedText.Substring(0, 4) == "$pg$")
                 {
                     string messageReceived = globals.receivedText.Substring(4);
                     messageReceived = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
