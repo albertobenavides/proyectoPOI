@@ -295,41 +295,6 @@ namespace ChatPOI
             groupBoxEmoticons.Visible = false;   
         }
 
-        private void buttonBuzz_Click(object sender, EventArgs e)
-        {
-            zumbido();
-
-            string s;
-            s = "$sm$";
-            s += this.Text + ",";
-            s += "$sm$";
-            s += "te ha enviado un zumbido.";
-
-            wc.SendString(s + "$$$$");
-            s = s.Substring(4);
-            s = s.Substring(s.IndexOf("$sm$") + 4);
-            richTextBoxChat.AppendText("\nTú has enviado un zumbido.");
-
-            richTextBoxChat.ScrollToCaret();
-            richTextBoxMessage.Focus();
-        }
-
-        public void zumbido()
-        {
-            var inicial = this.Location;
-            var rnd = new Random(1500);
-            const int t = 10;
-            for (int i = 0; i < 10; i++)
-            {
-                this.Location = new Point(inicial.X + rnd.Next(-t, t), inicial.Y + rnd.Next(-t, t));
-                System.Threading.Thread.Sleep(20);
-            }
-
-            sp.Play();
-
-            this.Location = inicial;
-        }
-
         private void buttonAddContact_Click(object sender, EventArgs e)
         {
             if (buttonAddContact.Text == "Añadir")

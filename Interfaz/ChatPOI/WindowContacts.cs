@@ -25,6 +25,8 @@ namespace ChatPOI
 
         public UdpClient videoUdpServer;
 
+        public UdpClient videoGameUdpServer;
+
         public string myUdpIp;
 
         public WindowContacts()
@@ -75,6 +77,9 @@ namespace ChatPOI
 
             IPEndPoint ipepLocal = new IPEndPoint(IPAddress.Parse(myUdpIp), 44444);
             videoUdpServer = new UdpClient(ipepLocal);
+
+            IPEndPoint ipEPVideoGame = new IPEndPoint(IPAddress.Parse(myUdpIp), 33333);
+            videoGameUdpServer = new UdpClient(ipEPVideoGame);
             
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
@@ -268,6 +273,35 @@ namespace ChatPOI
                     }
                 }
 
+                else if (globals.receivedText.Substring(0, 4) == "$pm$")
+                {
+                    string messageReceived = globals.receivedText.Substring(4);
+                    messageReceived = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    string[] users = messageReceived.Split(',');
+
+                    List<string> participants = new List<string>();
+
+                    foreach (string user in users)
+                        participants.Add(user);
+
+                    bool isOpen = false;
+
+                    foreach (Timbiriche.Timbiriche f in Application.OpenForms.OfType<Timbiriche.Timbiriche>())
+                    {
+                        if (f.getParticipants().SequenceEqual(participants))
+                        {
+                            isOpen = true;
+                        }
+                    }
+
+                    Timbiriche.Timbiriche t;
+                    if (!isOpen)
+                    {
+                        t = new Timbiriche.Timbiriche(participants, globals.username);
+                        t.Show();
+                    }
+                }
+
                 else if (globals.receivedText.Substring(0, 4) == "$ip$")
                 {
                     string userFrom = globals.receivedText.Substring(4);
@@ -365,8 +399,8 @@ namespace ChatPOI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Timbiriche.Form1 f = new Timbiriche.Form1(1);
-            f.Show();
+            SelectPlayers sp = new SelectPlayers();
+            sp.Show();
 		}
 		
         private void WindowContacts_FormClosing(object sender, FormClosingEventArgs e)
