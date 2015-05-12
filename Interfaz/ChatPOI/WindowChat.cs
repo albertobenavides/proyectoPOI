@@ -63,8 +63,6 @@ namespace ChatPOI
         {
             InitializeComponent();
 
-            //mailform = new MailForm();
-
             sp = new SoundPlayer(Properties.Resources.zumbido);
 
 
@@ -79,10 +77,10 @@ namespace ChatPOI
             wc.SendString("$ip$" + s + "$ip$" + wc.myUdpIp + "$$$$");
 
 
-            labelClientReceiver.Text = s.Substring(0, s.IndexOf("@"));
-            labelUserName.Text = globals.username.Substring(0,globals.username.IndexOf("@"));
+            labelClientReceiver.Text = s;
+            labelUserName.Text = globals.username;
 
-            this.Text = s.Substring(0, s.IndexOf("@"));
+            this.Text = s;
 
             globals.receivedText = null;
             wc.SendString("$gm$" + s + "$$$$");
@@ -169,7 +167,7 @@ namespace ChatPOI
         {
             string s;
             s = "$sm$";
-            s += this.Text;
+            s += mailRemote;
             s += "$sm$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
@@ -324,7 +322,7 @@ namespace ChatPOI
 
             string s;
             s = "$sm$";
-            s += this.Text + ",";
+            s += this.Text;
             s += "$sm$";
             s += "te ha enviado un zumbido.";
 

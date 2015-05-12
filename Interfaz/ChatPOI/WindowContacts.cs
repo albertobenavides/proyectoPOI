@@ -193,7 +193,7 @@ namespace ChatPOI
                     {
                         foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
                         {
-                            if (f.Text == userFrom)
+                            if (f.Text.Contains(userFrom))
                             {
                                 f.zumbido();
                                 f.setMessage("\n" + userFrom + " " + message);
@@ -205,13 +205,13 @@ namespace ChatPOI
 
                         foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
                         {
-                            if (dg.Cells[1].Value.ToString() == userFrom)
+                            if (dg.Cells[1].Value.ToString().Contains(userFrom))
                                 dg.Cells[2].Value = message;
                         }
 
                         foreach (WindowChat f in Application.OpenForms.OfType<WindowChat>())
                         {
-                            if (f.Text == userFrom)
+                            if (f.Text.Contains(userFrom))
                                 f.setMessage("\n" + userFrom + ": " + message);
                         }
                     }
@@ -363,6 +363,12 @@ namespace ChatPOI
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Timbiriche.Form1 f = new Timbiriche.Form1(1);
+            f.Show();
+		}
+		
         private void WindowContacts_FormClosing(object sender, FormClosingEventArgs e)
         {
             Exit();
