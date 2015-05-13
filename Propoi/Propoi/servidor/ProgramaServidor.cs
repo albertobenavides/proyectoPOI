@@ -148,7 +148,6 @@ namespace Servidor
                             {
                                 TcpClient senderSocket = (TcpClient)client.Value;
                                 senderSocket.Client.Send(data);
-                                Console.WriteLine("@" + client.Key + ": " + dataFromClient);
                             }
                         }
                         Console.WriteLine("");
@@ -357,21 +356,26 @@ namespace Servidor
 
                         if (clientList.Count > 0)
                         {
+                            string dataToSend = "$cl$";
 
-                            string cdata = "$cl$";
+                            System.IO.Directory.CreateDirectory("clients\\" + userName);
 
-                            foreach (DictionaryEntry client in clientList)
+                            List<string> users = new List<string>(System.IO.Directory.GetDirectories("clients\\"));
+
+                            for (int i = 0; i < users.Count; i++)
                             {
-                                cdata += client.Key + ",";
+                                users[i] = users[i].Remove(0, 8);
+                                dataToSend += users[i] + ",";
                             }
 
-                            byte[] data = Encoding.UTF8.GetBytes(cdata);
+                            dataToSend += "$$$$";
+
+                            byte[] data = Encoding.UTF8.GetBytes(dataToSend);
 
                             foreach (DictionaryEntry client in clientList)
                             {
                                 TcpClient tcpSocket = (TcpClient)client.Value;
                                 tcpSocket.Client.Send(data);
-                                Console.WriteLine("@" + client.Key + ": " + cdata);
                             }
                             Console.WriteLine("");
                         }
@@ -382,7 +386,7 @@ namespace Servidor
                 }
                 catch (Exception ex)
                 {
-                    // Console.WriteLine("Error: " + ex.ToString());
+                    
                 }
             }
         }

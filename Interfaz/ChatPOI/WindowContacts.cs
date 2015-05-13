@@ -83,7 +83,7 @@ namespace ChatPOI
 
             IPEndPoint ipEPVideoGame = new IPEndPoint(IPAddress.Parse(myUdpIp), 33333);
             videoGameUdpServer = new UdpClient(ipEPVideoGame);
-            
+
             textBoxUserName.Text = globals.username;
             comboBoxUserStatus.SelectedIndex = 0;
             globals.receivedText = null;
@@ -124,7 +124,8 @@ namespace ChatPOI
                     globals.receivedText = Encoding.UTF8.GetString(buffer);
                     msg();
                 }
-                catch {
+                catch
+                {
                     MessageBox.Show("Error", "Servidor fuera de linea.");
                     Exit();
                 }
@@ -169,21 +170,22 @@ namespace ChatPOI
 
                 else if (globals.receivedText.Substring(0, 4) == "$cs$")
                 {
-                    string[] variousMessages = globals.receivedText.Split(',');
+                    string statusMessage = globals.receivedText;
 
-                    foreach (string s in variousMessages)
+
+                    if (statusMessage.Length > 4)
                     {
-                        if (s.Length > 4)
-                        {
-                            string userFrom = s.Substring(4);
-                            userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
-                            string status = s.Substring(4);
-                            status = status.Substring(status.IndexOf("$cs$") + 4);
+                        string userFrom = statusMessage.Substring(4);
+                        userFrom = userFrom.Substring(0, userFrom.IndexOf("$cs$"));
+                        string status = statusMessage.Substring(4);
+                        status = status.Substring(status.IndexOf("$cs$") + 4);
 
-                            foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                        foreach (DataGridViewRow dg in dataGridViewContacts.Rows)
+                        {
+                            if (dg.Cells[1].Value.ToString().Equals(userFrom))
                             {
-                                if (dg.Cells[1].Value.ToString() == userFrom)
-                                    dg.Cells[0].Value = status;
+                                dg.Cells[0].Value = status;
+                                break;
                             }
                         }
                     }
@@ -230,7 +232,7 @@ namespace ChatPOI
                     string usersFrom = globals.receivedText.Substring(4);
                     usersFrom = usersFrom.Substring(0, usersFrom.IndexOf("$gr$"));
                     string[] users = usersFrom.Split(',');
-                    string message = globals.receivedText.Substring(4); 
+                    string message = globals.receivedText.Substring(4);
                     message = message.Substring(message.IndexOf("$gr$") + 4);
                     message = message.Substring(0, message.IndexOf("$me$"));
 
@@ -387,7 +389,8 @@ namespace ChatPOI
             List<string> users = new List<string>();
             foreach (DataGridViewRow row in dataGridViewContacts.Rows)
             {
-                users.Add(row.Cells[1].Value.ToString());
+                if (!row.Cells[0].Value.ToString().Equals("Desconectado"))
+                    users.Add(row.Cells[1].Value.ToString());
             }
             return users;
         }
@@ -400,12 +403,6 @@ namespace ChatPOI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SelectPlayers sp = new SelectPlayers();
-            sp.Show();
-		}
-		
         private void WindowContacts_FormClosing(object sender, FormClosingEventArgs e)
         {
             Exit();

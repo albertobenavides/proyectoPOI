@@ -136,12 +136,10 @@ namespace ChatPOI
                 if (contadorTurno == 2)
                 {
                     newbutton.BackColor = Color.Green;
-
                 }
                 if (contadorTurno == 3)
                 {
                     newbutton.BackColor = Color.Blue;
-
                 }
                 Controls.Add(newbutton);
             }
@@ -159,7 +157,7 @@ namespace ChatPOI
         {
             this.player1Score.Text = Convert.ToString(r);
             this.player2Score.Text = Convert.ToString(g);
-            this.player3Score.Text = Convert.ToString(g);
+            this.player3Score.Text = Convert.ToString(b);
         }
 
         public void puntuaje(int turno)
@@ -222,6 +220,7 @@ namespace ChatPOI
                 wc.videoGameUdpServer.Send(buffer, buffer.Length, videoGameTargetEP1);
 
             thisTurn.Text = contadorTurno.ToString();
+
             int A;
             int B;
             if (y1 == y2)
@@ -279,6 +278,11 @@ namespace ChatPOI
                 contadorTurno = 0;
             }
             contadorTurno++;
+            
+            if (contadorTurno == playerTurn)
+                this.Text = "Timbiriche - Tu turno";
+            else
+                this.Text = "Timbiriche";
         }
 
         public void turnoExterno(int x1, int x2, int y1, int y2, string lineSelected)

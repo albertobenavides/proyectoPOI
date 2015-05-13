@@ -81,12 +81,6 @@
     <Compile Include="GroupChat.Designer.cs">
       <DependentUpon>GroupChat.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectPlayers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectPlayers.Designer.cs">
-      <DependentUpon>SelectPlayers.cs</DependentUpon>
-    </Compile>
     <Compile Include="WindowContacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,9 +113,6 @@
     <Compile Include="WindowVoice.Designer.cs">
       <DependentUpon>WindowVoice.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SelectPlayers.resx">
-      <DependentUpon>SelectPlayers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="WindowContacts.resx">
       <DependentUpon>WindowContacts.cs</DependentUpon>
     </EmbeddedResource>
