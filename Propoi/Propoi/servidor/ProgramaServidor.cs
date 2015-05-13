@@ -160,8 +160,6 @@ namespace Servidor
                     networkStrem.Read(buffer, 0, (int)currentClientSocket.ReceiveBufferSize);
                     dataFromClient = System.Text.Encoding.UTF8.GetString(buffer);
 
-                    dataFromClient = ProgramaServidor.descifrado(dataFromClient);
-
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$$$$"));
 
                     if (dataFromClient.Substring(0, 4) == "$cs$")
@@ -207,8 +205,9 @@ namespace Servidor
                         Console.WriteLine("");
                     }
 
-                    else if (dataFromClient.Substring(0, 4) == "$sm$")
+                    else if (ProgramaServidor.descifrado(dataFromClient.Substring(0, 4)) == "$sm$")
                     {
+                        dataFromClient = ProgramaServidor.descifrado(dataFromClient);
                         dataFromClient = dataFromClient.Substring(4);
                         string clientReceiver = dataFromClient.Substring(0, dataFromClient.IndexOf("$sm$"));
 
@@ -218,7 +217,7 @@ namespace Servidor
                         dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sm$") + 4);
                         messageToSend += dataFromClient + "$me$";
 
-                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
+                        byte[] data = Encoding.UTF8.GetBytes(ProgramaServidor.cifrado(messageToSend));
 
                         System.IO.Directory.CreateDirectory("clients\\" + userName);
                         using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + clientReceiver + ".txt", true))

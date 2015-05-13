@@ -191,11 +191,11 @@ namespace ChatPOI
                     }
                 }
 
-                else if (globals.receivedText.Substring(0, 4) == "$mr$")
+                else if (globals.descifrado(globals.receivedText.Substring(0, 4)) == "$mr$")
                 {
-                    string userFrom = globals.receivedText.Substring(4);
+                    string userFrom = globals.descifrado(globals.receivedText.Substring(4));
                     userFrom = userFrom.Substring(0, userFrom.IndexOf("$mr$"));
-                    string message = globals.receivedText.Substring(4);
+                    string message = globals.descifrado(globals.receivedText.Substring(4));
                     message = message.Substring(message.IndexOf("$mr$") + 4);
                     message = message.Substring(0, message.IndexOf("$me$"));
 

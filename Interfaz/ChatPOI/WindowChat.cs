@@ -198,7 +198,7 @@ namespace ChatPOI
                     s += richTextBoxMessage.Text[i];
             }
 
-            wc.SendString(s + "$$$$");
+            wc.SendString(globals.cifrado(s + "$$$$"));
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
             richTextBoxChat.AppendText("\nTú: " + s);
