@@ -407,5 +407,15 @@ namespace ChatPOI
         {
             Exit();
         }
+
+        private void WindowContacts_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBoxUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

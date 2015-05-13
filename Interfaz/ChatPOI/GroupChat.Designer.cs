@@ -33,6 +33,7 @@
             this.labelContactName = new System.Windows.Forms.Label();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
@@ -61,7 +62,6 @@
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
             this.contactList = new System.Windows.Forms.CheckedListBox();
-            this.buttonPlay = new System.Windows.Forms.Button();
             this.panelContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -112,6 +112,21 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(122, 475);
             this.panelLeft.TabIndex = 13;
+            this.panelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLeft_Paint);
+            // 
+            // buttonPlay
+            // 
+            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPlay.Image = ((System.Drawing.Image)(resources.GetObject("buttonPlay.Image")));
+            this.buttonPlay.Location = new System.Drawing.Point(39, 175);
+            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(45, 45);
+            this.buttonPlay.TabIndex = 13;
+            this.buttonPlay.Text = "Jugar";
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Visible = false;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // panelUser
             // 
@@ -144,12 +159,13 @@
             // 
             // buttonAddContact
             // 
-            this.buttonAddContact.Location = new System.Drawing.Point(24, 301);
+            this.buttonAddContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddContact.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddContact.Image")));
+            this.buttonAddContact.Location = new System.Drawing.Point(39, 249);
             this.buttonAddContact.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddContact.Name = "buttonAddContact";
-            this.buttonAddContact.Size = new System.Drawing.Size(74, 19);
+            this.buttonAddContact.Size = new System.Drawing.Size(45, 45);
             this.buttonAddContact.TabIndex = 8;
-            this.buttonAddContact.Text = "Añadir";
             this.buttonAddContact.UseVisualStyleBackColor = true;
             this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
             // 
@@ -417,18 +433,6 @@
             this.contactList.Size = new System.Drawing.Size(166, 364);
             this.contactList.TabIndex = 17;
             this.contactList.Visible = false;
-            // 
-            // buttonPlay
-            // 
-            this.buttonPlay.Location = new System.Drawing.Point(24, 278);
-            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(74, 19);
-            this.buttonPlay.TabIndex = 13;
-            this.buttonPlay.Text = "Jugar";
-            this.buttonPlay.UseVisualStyleBackColor = true;
-            this.buttonPlay.Visible = false;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // GroupChat
             // 

@@ -28,30 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowLogin));
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.linkLabelLogin = new System.Windows.Forms.LinkLabel();
             this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
-            this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(194, 150);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxLogo.TabIndex = 0;
-            this.pictureBoxLogo.TabStop = false;
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUser.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxUser.Location = new System.Drawing.Point(23, 170);
+            this.textBoxUser.BackColor = System.Drawing.Color.Azure;
+            this.textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUser.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUser.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.textBoxUser.Location = new System.Drawing.Point(33, 168);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(150, 20);
             this.textBoxUser.TabIndex = 1;
@@ -62,9 +51,11 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPassword.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxPassword.Location = new System.Drawing.Point(23, 196);
+            this.textBoxPassword.BackColor = System.Drawing.Color.Azure;
+            this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPassword.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.textBoxPassword.Location = new System.Drawing.Point(33, 200);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(150, 20);
             this.textBoxPassword.TabIndex = 2;
@@ -73,21 +64,12 @@
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxPassword.Leave += new System.EventHandler(this.textBoxPassword_Leave);
             // 
-            // linkLabelLogin
-            // 
-            this.linkLabelLogin.AutoSize = true;
-            this.linkLabelLogin.Location = new System.Drawing.Point(63, 219);
-            this.linkLabelLogin.Name = "linkLabelLogin";
-            this.linkLabelLogin.Size = new System.Drawing.Size(68, 13);
-            this.linkLabelLogin.TabIndex = 6;
-            this.linkLabelLogin.TabStop = true;
-            this.linkLabelLogin.Text = "Iniciar sesión";
-            this.linkLabelLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEnter_LinkClicked);
-            // 
             // linkLabelCreateAccount
             // 
             this.linkLabelCreateAccount.AutoSize = true;
-            this.linkLabelCreateAccount.Location = new System.Drawing.Point(45, 244);
+            this.linkLabelCreateAccount.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.linkLabelCreateAccount.LinkColor = System.Drawing.Color.CornflowerBlue;
+            this.linkLabelCreateAccount.Location = new System.Drawing.Point(59, 275);
             this.linkLabelCreateAccount.Name = "linkLabelCreateAccount";
             this.linkLabelCreateAccount.Size = new System.Drawing.Size(101, 13);
             this.linkLabelCreateAccount.TabIndex = 7;
@@ -95,21 +77,36 @@
             this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
             this.linkLabelCreateAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCreateAccount_LinkClicked);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Azure;
+            this.button1.Location = new System.Drawing.Point(50, 237);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 24);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Iniciar Sesión";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // WindowLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(194, 306);
+            this.BackgroundImage = global::ChatPOI.Properties.Resources.bg_page;
+            this.ClientSize = new System.Drawing.Size(218, 306);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabelCreateAccount);
-            this.Controls.Add(this.linkLabelLogin);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUser);
-            this.Controls.Add(this.pictureBoxLogo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WindowLogin";
             this.Text = "Cheet-A-Chat";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,11 +114,10 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.LinkLabel linkLabelLogin;
         private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
+        private System.Windows.Forms.Button button1;
     }
 }
 
