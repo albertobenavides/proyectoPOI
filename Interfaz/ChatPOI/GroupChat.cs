@@ -372,12 +372,18 @@ namespace ChatPOI
             header = header.Substring(13);
             string[] usersChating = header.Split(',');
 
+            List<string> temp = new List<string>();
+
+            temp.Add(globals.username);
+
             for (int i = 0; i < usersChating.Length; i++)
             {
                 usersChating[i] = usersChating[i].Trim();
+                if (!usersChating[i].Equals(globals.username))
+                    temp.Add(usersChating[i]);
             }
 
-            if (usersChating.Length > 3)
+            if (temp.Count > 3)
             {
                 MessageBox.Show("No puedes jugar con más de dos contrincantes.");
             }
@@ -389,7 +395,7 @@ namespace ChatPOI
 
                 string s = "$pg$"; // play game
 
-                foreach (string user in usersChating)
+                foreach (string user in temp)
                 {
                     if (!user.Equals(globals.username))
                         s += user + ",";
