@@ -45,22 +45,22 @@ namespace Servidor
             {
                 clientSocket = serversocket.AcceptTcpClient();
 
-                string nickClient = null;
+                string userName = null;
 
                 byte[] buffer = new byte[10025];
 
                 NetworkStream networkStrem = clientSocket.GetStream();
                 networkStrem.Read(buffer, 0, (int)clientSocket.ReceiveBufferSize);
-                nickClient = System.Text.Encoding.UTF8.GetString(buffer);
+                userName = System.Text.Encoding.UTF8.GetString(buffer);
 
-                nickClient = nickClient.Substring(0, nickClient.IndexOf("$$$$"));
+                userName = userName.Substring(0, userName.IndexOf("$$$$"));
 
-                clientList.Add(nickClient, clientSocket);
+                clientList.Add(userName, clientSocket);
 
-                sender("$uc$", nickClient);
+                sender("$uc$", userName);
 
                 handleClient client = new handleClient();
-                client.startClient(clientSocket, nickClient, clientList);
+                client.startClient(clientSocket, userName, clientList);
             }
 
             clientSocket.Close();
@@ -76,9 +76,12 @@ namespace Servidor
                 Console.WriteLine("¡" + userName + " se ha conectado!");
                 string dataToSend = "$cl$";
 
-                foreach (DictionaryEntry client in clientList)
+                List<string> users = new List<string>(System.IO.Directory.GetDirectories("clients\\"));
+
+                for (int i = 0; i < users.Count; i++)
                 {
-                    dataToSend += client.Key + ",";
+                    users[i] = users[i].Remove(0, 8);
+                    dataToSend += users[i] + ",";
                 }
 
                 dataToSend += "$$$$";
@@ -92,7 +95,6 @@ namespace Servidor
                 {
                     TcpClient senderSocket = (TcpClient)client.Value;
                     senderSocket.Client.Send(senderBytes);
-                    Console.WriteLine("@" + client.Key + ": " + dataToSend);
                 }
                 Console.WriteLine("");
             }
@@ -156,9 +158,12 @@ namespace Servidor
                     {
                         string dataToSend = "$cl$";
 
-                        foreach (DictionaryEntry client in clientList)
+                        List<string> users = new List<string>(System.IO.Directory.GetDirectories("clients\\"));
+
+                        for (int i = 0; i < users.Count; i++ )
                         {
-                            dataToSend += client.Key + ",";
+                            users[i] = users[i].Remove(0, 8);
+                            dataToSend += users[i] + ",";
                         }
 
                         dataToSend += "$$$$";

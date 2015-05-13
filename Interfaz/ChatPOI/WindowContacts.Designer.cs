@@ -36,7 +36,6 @@
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
             this.panelUserInfo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupChatButton = new System.Windows.Forms.Button();
             this.panelLogout = new System.Windows.Forms.Panel();
             this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
@@ -68,7 +67,7 @@
             this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUserName.Location = new System.Drawing.Point(109, 82);
             this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(100, 13);
+            this.textBoxUserName.Size = new System.Drawing.Size(121, 13);
             this.textBoxUserName.TabIndex = 1;
             this.textBoxUserName.Text = "Nombre de Usuario";
             // 
@@ -81,7 +80,7 @@
             "Disponible",
             "Ausente",
             "Ocupado",
-            "Invisible"});
+            "Desconectado"});
             this.comboBoxUserStatus.Location = new System.Drawing.Point(109, 101);
             this.comboBoxUserStatus.Name = "comboBoxUserStatus";
             this.comboBoxUserStatus.Size = new System.Drawing.Size(121, 21);
@@ -90,7 +89,6 @@
             // 
             // panelUserInfo
             // 
-            this.panelUserInfo.Controls.Add(this.button1);
             this.panelUserInfo.Controls.Add(this.groupChatButton);
             this.panelUserInfo.Controls.Add(this.pictureBoxUser);
             this.panelUserInfo.Controls.Add(this.textBoxUserName);
@@ -102,16 +100,6 @@
             this.panelUserInfo.Name = "panelUserInfo";
             this.panelUserInfo.Size = new System.Drawing.Size(453, 144);
             this.panelUserInfo.TabIndex = 8;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(298, 70);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Jugar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupChatButton
             // 
@@ -271,6 +259,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button groupChatButton;
-        private System.Windows.Forms.Button button1;
     }
 }
