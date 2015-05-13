@@ -57,7 +57,7 @@ namespace ChatPOI
                     this.Text += ", " + user;
 
                 if (!user.Equals(globals.username))
-                    wc.SendString("$ip$" + user +"$ip$" + wc.myUdpIp + "$$$$");
+                    wc.SendString("$ip$" + user + "$ip$" + wc.myUdpIp + "$$$$");
             }
 
             globals.receivedText = null;
@@ -90,7 +90,7 @@ namespace ChatPOI
         private void buttonSend_Click(object sender, EventArgs e)
         {
             if (richTextBoxMessage.Text != "" && participants.Count > 1)
-            sendMessage();
+                sendMessage();
         }
 
         public void setMessage(string s)
@@ -137,9 +137,9 @@ namespace ChatPOI
             foreach (string user in participants)
             {
                 if (!user.Equals(globals.username))
-                s += user + ",";
+                    s += user + ",";
             }
-            
+
             s += "$sg$";
 
             for (int i = 0; i < richTextBoxMessage.Text.Length; i++)
@@ -197,7 +197,7 @@ namespace ChatPOI
         private void buttonEmoti1_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":)");
-            groupBoxEmoticons.Visible = false;      
+            groupBoxEmoticons.Visible = false;
         }
 
         private void groupBoxEmoticons_Leave(object sender, EventArgs e)
@@ -208,49 +208,49 @@ namespace ChatPOI
         private void buttonEmoti2_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":D");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti3_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(";)");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti4_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":o");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti5_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":p");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti6_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("8)");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti7_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(">:(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti8_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":s");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti9_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":$");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti10_Click(object sender, EventArgs e)
@@ -262,37 +262,37 @@ namespace ChatPOI
         private void buttonEmoti11_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti12_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":'(");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti13_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("<3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti14_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText("</3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti15_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":3");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti16_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":*");
-            groupBoxEmoticons.Visible = false;   
+            groupBoxEmoticons.Visible = false;
         }
 
         private void buttonAddContact_Click(object sender, EventArgs e)
@@ -342,7 +342,7 @@ namespace ChatPOI
                 foreach (object user in contactList.CheckedItems)
                 {
                     participants.Add(user.ToString());
-                    wc.SendString("$ip$" + user.ToString() +"$ip$" + wc.myUdpIp + "$$$$");
+                    wc.SendString("$ip$" + user.ToString() + "$ip$" + wc.myUdpIp + "$$$$");
                 }
 
                 participants.Sort();
@@ -390,22 +390,20 @@ namespace ChatPOI
             else
             {
                 GameBoard t =
-                    new GameBoard(participants, globals.username);
+                    new GameBoard(temp, globals.username);
                 t.Show();
 
                 string s = "$pg$"; // play game
 
                 foreach (string user in temp)
                 {
-                    if (!user.Equals(globals.username))
-                        s += user + ",";
+                    s += user + ",";
                 }
 
                 s += "$pg$ $$$$";
 
                 wc.SendString(s);
             }
-            participants.Sort();
         }
     }
 }

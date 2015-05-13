@@ -72,7 +72,8 @@ namespace ChatPOI
             mail.From = new MailAddress("proyectopapw@gmail.com");
             mailRemote = s;
 
-            wc.SendString("$ip$" + s + "$ip$" + wc.myUdpIp + "$$$$");
+            wc.SendString("$ip$" + s
+                + "$ip$" + wc.myUdpIp + "$$$$");
 
 
             labelClientReceiver.Text = s;
