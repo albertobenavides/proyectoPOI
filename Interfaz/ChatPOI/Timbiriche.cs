@@ -61,7 +61,8 @@ namespace ChatPOI
             try
             {
                 videoGameTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 33333);
-                videoGameTargetEP1 = new IPEndPoint(IPAddress.Parse(targetIp1), 33333);
+                if (participantNames.Count == 3)
+                    videoGameTargetEP1 = new IPEndPoint(IPAddress.Parse(targetIp1), 33333);
             }
             catch
             {
@@ -217,6 +218,8 @@ namespace ChatPOI
             message += lineSelected + "$pg$";
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             wc.videoGameUdpServer.Send(buffer, buffer.Length, videoGameTargetEP);
+            if (playerNames.Count == 3)
+                wc.videoGameUdpServer.Send(buffer, buffer.Length, videoGameTargetEP1);
 
             thisTurn.Text = contadorTurno.ToString();
             int A;
