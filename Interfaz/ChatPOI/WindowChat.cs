@@ -334,7 +334,7 @@ namespace ChatPOI
             s += "$sm$";
             s += "te ha enviado un zumbido.";
 
-            wc.SendString(s + "$$$$");
+            wc.SendString(globals.cifrado(s + "$$$$"));
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
             richTextBoxChat.AppendText("\nTú has enviado un zumbido.\n");

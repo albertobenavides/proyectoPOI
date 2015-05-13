@@ -73,7 +73,7 @@ namespace Servidor
         {
             if (message == "$uc$")
             {
-                Console.WriteLine("¡" + userName + " se ha conectado!");
+                Console.WriteLine("¡" + userName + " se ha conectado!\n");
                 string dataToSend = "$cl$";
 
                 System.IO.Directory.CreateDirectory("clients\\" + userName);
@@ -96,7 +96,6 @@ namespace Servidor
                     TcpClient senderSocket = (TcpClient)client.Value;
                     senderSocket.Client.Send(senderBytes);
                 }
-                Console.WriteLine("");
             }
         }
 
@@ -160,7 +159,8 @@ namespace Servidor
                     networkStrem.Read(buffer, 0, (int)currentClientSocket.ReceiveBufferSize);
                     dataFromClient = System.Text.Encoding.UTF8.GetString(buffer);
 
-                    dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$$$$"));
+                    if (dataFromClient.Contains("$$$$"))
+                        dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$$$$"));
 
                     if (dataFromClient.Substring(0, 4) == "$cs$")
                     {
@@ -170,13 +170,12 @@ namespace Servidor
 
                         foreach (DictionaryEntry client in clientList)
                         {
-                            if (!client.Key.ToString().Contains(userName))
+                            if (!client.Key.ToString().Equals(userName))
                             {
                                 TcpClient senderSocket = (TcpClient)client.Value;
                                 senderSocket.Client.Send(data);
                             }
                         }
-                        Console.WriteLine("");
                     }
 
                     else if (dataFromClient.Substring(0, 4) == "$cl$")
@@ -200,14 +199,13 @@ namespace Servidor
 
                         TcpClient senderSocket = (TcpClient)clientList[userName];
                         senderSocket.Client.Send(senderBytes);
-                        Console.WriteLine("@" + userName + ": " + dataToSend);
-
-                        Console.WriteLine("");
                     }
 
                     else if (ProgramaServidor.descifrado(dataFromClient.Substring(0, 4)) == "$sm$")
                     {
+
                         dataFromClient = ProgramaServidor.descifrado(dataFromClient);
+                        dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$$$$")); 
                         dataFromClient = dataFromClient.Substring(4);
                         string clientReceiver = dataFromClient.Substring(0, dataFromClient.IndexOf("$sm$"));
 
@@ -216,8 +214,9 @@ namespace Servidor
                         messageToSend += userName + "$mr$";
                         dataFromClient = dataFromClient.Substring(dataFromClient.IndexOf("$sm$") + 4);
                         messageToSend += dataFromClient + "$me$";
+                        messageToSend = ProgramaServidor.cifrado(messageToSend);
 
-                        byte[] data = Encoding.UTF8.GetBytes(ProgramaServidor.cifrado(messageToSend));
+                        byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
                         System.IO.Directory.CreateDirectory("clients\\" + userName);
                         using (StreamWriter writer = new StreamWriter("clients\\" + userName + "\\" + clientReceiver + ".txt", true))
@@ -233,7 +232,7 @@ namespace Servidor
 
                         TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
                         senderSocket.Client.Send(data);
-                        Console.WriteLine("> " + userName + "-MESSAGE @ " + clientReceiver);
+                        Console.WriteLine("> " + userName + "-MESSAGE @ " + clientReceiver + ": " + messageToSend);
 
                         Console.WriteLine("");
                     }
@@ -371,7 +370,7 @@ namespace Servidor
                         isConected = false;
                         Console.WriteLine("Cliente "
                                        + userName
-                                       + " desconectado\n");
+                                       + " desconectado");
 
                         TcpClient senderSocket = (TcpClient)clientList[userName];
                         senderSocket.Client.Shutdown(SocketShutdown.Both);
@@ -405,8 +404,6 @@ namespace Servidor
                         }
                         return;
                     }
-
-                    Console.WriteLine(userName + ": " + dataFromClient);
                 }
                 catch (Exception ex)
                 {
