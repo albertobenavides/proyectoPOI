@@ -76,6 +76,8 @@ namespace Servidor
                 Console.WriteLine("¡" + userName + " se ha conectado!");
                 string dataToSend = "$cl$";
 
+                System.IO.Directory.CreateDirectory("clients\\" + userName);
+
                 List<string> users = new List<string>(System.IO.Directory.GetDirectories("clients\\"));
 
                 for (int i = 0; i < users.Count; i++)
@@ -85,8 +87,6 @@ namespace Servidor
                 }
 
                 dataToSend += "$$$$";
-
-                System.IO.Directory.CreateDirectory("clients\\" + userName);
 
                 Byte[] senderBytes = null;
                 senderBytes = Encoding.UTF8.GetBytes(dataToSend);
@@ -158,6 +158,8 @@ namespace Servidor
                     {
                         string dataToSend = "$cl$";
 
+                        System.IO.Directory.CreateDirectory("clients\\" + userName);
+
                         List<string> users = new List<string>(System.IO.Directory.GetDirectories("clients\\"));
 
                         for (int i = 0; i < users.Count; i++ )
@@ -167,8 +169,6 @@ namespace Servidor
                         }
 
                         dataToSend += "$$$$";
-
-                        System.IO.Directory.CreateDirectory("clients\\" + userName);
 
                         Byte[] senderBytes = null;
                         senderBytes = Encoding.UTF8.GetBytes(dataToSend);

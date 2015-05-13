@@ -24,7 +24,8 @@ namespace ChatPOI
         int player1Points, player2Points, player3Points;
         int contadorTurno;
         List<string> playerNames;
-        Thread OI;
+        Thread enemy1Thread;
+        Thread enemy2Thread;
         WindowContacts wc;
 
         IPEndPoint videoGameTargetEP;
@@ -32,7 +33,8 @@ namespace ChatPOI
 
         bool streaming = true;
 
-        string targetIp;
+        string targetIp = null;
+        string targetIp1 = null;
 
         string messageReceived;
 
@@ -48,12 +50,18 @@ namespace ChatPOI
             foreach (string user in participantNames)
             {
                 if (!user.Equals(globals.username))
-                    targetIp = globals.udpClients[user];
+                {
+                    if (targetIp == null)
+                        targetIp = globals.udpClients[user];
+                    else
+                        targetIp1 = globals.udpClients[user];
+                }
             }
 
             try
             {
                 videoGameTargetEP = new IPEndPoint(IPAddress.Parse(targetIp), 33333);
+                videoGameTargetEP1 = new IPEndPoint(IPAddress.Parse(targetIp1), 33333);
             }
             catch
             {
@@ -93,8 +101,15 @@ namespace ChatPOI
             contadorTurno = 1;
             linea = new int[11, 11];
 
-            OI = new Thread(videoGameGetMessage);
-            OI.Start();
+            enemy1Thread = new Thread(videoGameGetMessage);
+            enemy1Thread.Start();
+
+
+            if (playersCount == 3)
+            {
+                enemy2Thread = new Thread(videoGameGetMessage1);
+                enemy2Thread.Start();
+            }
         }
 
         void tryGenerador()
@@ -139,10 +154,11 @@ namespace ChatPOI
             tryGenerador();
         }
 
-        public void changeTextbox(int r, int g)
+        public void changeTextbox(int r, int g, int b)
         {
             this.player1Score.Text = Convert.ToString(r);
             this.player2Score.Text = Convert.ToString(g);
+            this.player3Score.Text = Convert.ToString(g);
         }
 
         public void puntuaje(int turno)
@@ -165,9 +181,13 @@ namespace ChatPOI
                 {
                     MessageBox.Show("El jugador " + playerNames[1] + " ha ganado");
                 }
-                else 
+                else if (player3Points > player1Points && player3Points > player2Points)
                 {
                     MessageBox.Show("El jugador " + playerNames[2] + " ha ganado");
+                }
+                else
+                {
+                    MessageBox.Show("Empate");
                 }
             }
         }
@@ -179,7 +199,7 @@ namespace ChatPOI
             else
             {
                 puntuaje(contadorTurno);
-                changeTextbox(player1Points, player2Points);
+                changeTextbox(player1Points, player2Points, player3Points);
             }
         }
 
@@ -226,7 +246,7 @@ namespace ChatPOI
 
                 }
 
-                changeTextbox(player1Points, player2Points);
+                changeTextbox(player1Points, player2Points, player3Points);
 
                 if (contadorTurno == playersCount)
                 {
@@ -250,7 +270,7 @@ namespace ChatPOI
         {
             Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
             ls.BorderColor = System.Drawing.Color.Black;
-            
+
             if (contadorTurno == playersCount)
             {
                 contadorTurno = 0;
@@ -467,6 +487,38 @@ namespace ChatPOI
             }
         }
 
+        private void videoGameGetMessage1()
+        {
+            while (streaming)
+            {
+                byte[] buffer;
+                buffer = wc.videoGameUdpServer.Receive(ref videoGameTargetEP1);
+                messageReceived = Encoding.UTF8.GetString(buffer);
+
+                string[] users;
+                string[] moves;
+                if (messageReceived.Substring(0, 4).Equals("$pg$"))
+                {
+                    messageReceived = messageReceived.Substring(4);
+                    string temp = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    users = temp.Split(',');
+                    messageReceived = messageReceived.Substring(messageReceived.IndexOf("$pg$") + 4);
+                    temp = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    moves = temp.Split(',');
+                    messageReceived = messageReceived.Substring(messageReceived.IndexOf("$pg$") + 4);
+                    string lineSelected = messageReceived.Substring(0, messageReceived.IndexOf("$pg$"));
+                    List<string> tempList = new List<string>();
+                    foreach (string user in users)
+                        tempList.Add(user);
+                    if (playerNames.SequenceEqual(tempList))
+                        turnoExterno(Convert.ToInt16(moves[0]),
+                            Convert.ToInt16(moves[1]),
+                            Convert.ToInt16(moves[2]),
+                            Convert.ToInt16(moves[3]),
+                            lineSelected);
+                }
+            }
+        }
 
         private void lineShape1_MouseEnter(object sender, EventArgs e) { if (lineShape1.BorderColor != System.Drawing.Color.Black) { lineShape1.BorderColor = System.Drawing.SystemColors.Highlight; } }
         private void lineShape2_MouseEnter(object sender, EventArgs e) { if (lineShape2.BorderColor != System.Drawing.Color.Black) { lineShape2.BorderColor = System.Drawing.SystemColors.Highlight; } }
@@ -714,7 +766,6 @@ namespace ChatPOI
         private void GameBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
             streaming = false;
-            OI.Abort();
         }
 
     }
