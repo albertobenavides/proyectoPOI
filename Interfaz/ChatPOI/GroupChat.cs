@@ -405,5 +405,10 @@ namespace ChatPOI
                 wc.SendString(s);
             }
         }
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

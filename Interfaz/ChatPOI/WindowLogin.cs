@@ -103,26 +103,7 @@ namespace ChatPOI
 
         private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
-            {
-                vmail = new MailAddress(textBoxUser.Text);
-
-                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
-                {
-                    if (users.ContainsKey(textBoxUser.Text))
-                    {
-                        string s;
-                        if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
-                        {
-                            globals.username = textBoxUser.Text;
-                            this.DialogResult = DialogResult.OK;
-                        }
-                    }
-                }
-            }
-            catch {
-                MessageBox.Show("Formato de correo no válido.");
-            }
+            
         }
 
         private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -141,6 +122,31 @@ namespace ChatPOI
                 }
             }
             catch {
+                MessageBox.Show("Formato de correo no válido.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                vmail = new MailAddress(textBoxUser.Text);
+
+                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+                {
+                    if (users.ContainsKey(textBoxUser.Text))
+                    {
+                        string s;
+                        if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                        {
+                            globals.username = textBoxUser.Text;
+                            this.DialogResult = DialogResult.OK;
+                        }
+                    }
+                }
+            }
+            catch
+            {
                 MessageBox.Show("Formato de correo no válido.");
             }
         }

@@ -44,7 +44,7 @@
     <Reference Include="LumiSoft.Net">
       <HintPath>dep\LumiSoft.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -201,6 +201,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zumbido.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg-page.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
