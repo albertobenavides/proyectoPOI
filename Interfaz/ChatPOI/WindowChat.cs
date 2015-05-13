@@ -116,14 +116,17 @@ namespace ChatPOI
             }
             catch (Exception)
             {
-                MessageBox.Show("No tienes cámara");
+                MessageBox.Show("No se ha detectado ninguna cámara en tu equipo.");
             }
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
             if (richTextBoxMessage.Text != "")
+            {
+                richTextBoxMessage.AppendText("\n");
                 sendMessage();
+            }
         }
 
         public void setMessage(string s)
@@ -279,15 +282,21 @@ namespace ChatPOI
             groupBoxEmoticons.Visible = false;
         }
 
-        private void buttonEmoti11_Click(object sender, EventArgs e)
+        private void buttonEmoti10_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":(");
             groupBoxEmoticons.Visible = false;
         }
 
-        private void buttonEmoti12_Click(object sender, EventArgs e)
+        private void buttonEmoti11_Click(object sender, EventArgs e)
         {
             richTextBoxMessage.AppendText(":'(");
+            groupBoxEmoticons.Visible = false;
+        }
+
+        private void buttonEmoti12_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.AppendText(":|");
             groupBoxEmoticons.Visible = false;
         }
 
@@ -328,7 +337,7 @@ namespace ChatPOI
             wc.SendString(s + "$$$$");
             s = s.Substring(4);
             s = s.Substring(s.IndexOf("$sm$") + 4);
-            richTextBoxChat.AppendText("\nTú has enviado un zumbido.");
+            richTextBoxChat.AppendText("\nTú has enviado un zumbido.\n");
 
             richTextBoxChat.ScrollToCaret();
             richTextBoxMessage.Focus();

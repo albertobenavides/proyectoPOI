@@ -39,6 +39,7 @@
             this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.buttonJugar = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelUserName = new System.Windows.Forms.Label();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
@@ -66,7 +67,6 @@
             this.buttonEmoti1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.buttonJugar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.panelUser.SuspendLayout();
@@ -180,6 +180,17 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(122, 438);
             this.panelLeft.TabIndex = 11;
+            // 
+            // buttonJugar
+            // 
+            this.buttonJugar.Location = new System.Drawing.Point(23, 251);
+            this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonJugar.Name = "buttonJugar";
+            this.buttonJugar.Size = new System.Drawing.Size(56, 19);
+            this.buttonJugar.TabIndex = 13;
+            this.buttonJugar.Text = "Jugar";
+            this.buttonJugar.UseVisualStyleBackColor = true;
+            this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
             // 
             // panelUser
             // 
@@ -439,6 +450,7 @@
             this.buttonEmoti10.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti10.TabIndex = 1;
             this.buttonEmoti10.UseVisualStyleBackColor = true;
+            this.buttonEmoti10.Click += new System.EventHandler(this.buttonEmoti10_Click);
             // 
             // buttonEmoti1
             // 
@@ -457,17 +469,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // buttonJugar
-            // 
-            this.buttonJugar.Location = new System.Drawing.Point(23, 251);
-            this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonJugar.Name = "buttonJugar";
-            this.buttonJugar.Size = new System.Drawing.Size(56, 19);
-            this.buttonJugar.TabIndex = 13;
-            this.buttonJugar.Text = "Jugar";
-            this.buttonJugar.UseVisualStyleBackColor = true;
-            this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
             // 
             // WindowChat
             // 
