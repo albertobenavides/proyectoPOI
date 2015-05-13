@@ -182,6 +182,7 @@ namespace ChatPOI
                     richTextBoxChat.Paste();
                 }
             }
+            buttonPlay.Visible = true;
             richTextBoxChat.ScrollToCaret();
             richTextBoxMessage.Text = "";
             richTextBoxMessage.Focus();
@@ -341,7 +342,7 @@ namespace ChatPOI
                 foreach (object user in contactList.CheckedItems)
                 {
                     participants.Add(user.ToString());
-                    wc.SendString("$ip$" + user +"$ip$" + wc.myUdpIp + "$$$$");
+                    wc.SendString("$ip$" + user.ToString() +"$ip$" + wc.myUdpIp + "$$$$");
                 }
 
                 participants.Sort();
@@ -360,24 +361,23 @@ namespace ChatPOI
                 contactList.Visible = false;
 
                 buttonAddContact.Text = "Añadir";
+
+                buttonPlay.Visible = false;
             }
         }
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            participants.Clear();
-            participants.Add(globals.username);
+            string header = this.Text;
+            header = header.Substring(13);
+            string[] usersChating = header.Split(',');
 
-            foreach (object user in contactList.CheckedItems)
+            for (int i = 0; i < usersChating.Length; i++)
             {
-                participants.Add(user.ToString());
+                usersChating[i] = usersChating[i].Trim();
             }
 
-            if (participants.Count == 0)
-            {
-                MessageBox.Show("Elige al menos otro participante.");
-            }
-            else if (participants.Count > 3)
+            if (usersChating.Length > 3)
             {
                 MessageBox.Show("No puedes jugar con más de dos contrincantes.");
             }
@@ -387,19 +387,17 @@ namespace ChatPOI
                     new GameBoard(participants, globals.username);
                 t.Show();
 
-                string s;
-                s = "$pg$"; // play game
+                string s = "$pg$"; // play game
 
-                foreach (string user in participants)
+                foreach (string user in usersChating)
                 {
-                    s += user + ",";
+                    if (!user.Equals(globals.username))
+                        s += user + ",";
                 }
 
                 s += "$pg$ $$$$";
 
                 wc.SendString(s);
-
-                this.Close();
             }
             participants.Sort();
         }

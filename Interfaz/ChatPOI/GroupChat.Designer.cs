@@ -427,6 +427,7 @@
             this.buttonPlay.TabIndex = 13;
             this.buttonPlay.Text = "Jugar";
             this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Visible = false;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // GroupChat
