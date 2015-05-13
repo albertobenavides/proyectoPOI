@@ -16,5 +16,31 @@ namespace ChatPOI
         public static string username;
 
         public static Dictionary<string, string> udpClients = new Dictionary<string,string>();
+
+        public static string cifrado(string cadena)
+        {
+
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+
+            for (int i = 0; i < asciiBytes.Length; i++)
+            {
+                asciiBytes[i]++;
+            }
+
+            return Encoding.ASCII.GetString(asciiBytes);
+        }
+
+        public static string descifrado(string cadena)
+        {
+
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+
+            for (int i = 0; i < asciiBytes.Length; i++)
+            {
+                asciiBytes[i]--;
+            }
+
+            return Encoding.ASCII.GetString(asciiBytes);
+        }
     }
 }
