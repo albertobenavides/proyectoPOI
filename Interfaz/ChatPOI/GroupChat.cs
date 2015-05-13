@@ -261,13 +261,13 @@ namespace ChatPOI
 
         private void buttonEmoti11_Click(object sender, EventArgs e)
         {
-            richTextBoxMessage.AppendText(":(");
+            richTextBoxMessage.AppendText(":'(");
             groupBoxEmoticons.Visible = false;
         }
 
         private void buttonEmoti12_Click(object sender, EventArgs e)
         {
-            richTextBoxMessage.AppendText(":'(");
+            richTextBoxMessage.AppendText(":|");
             groupBoxEmoticons.Visible = false;
         }
 
