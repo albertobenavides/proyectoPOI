@@ -616,5 +616,10 @@ namespace ChatPOI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

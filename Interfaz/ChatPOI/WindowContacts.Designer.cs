@@ -230,7 +230,7 @@
             this.Controls.Add(this.comboBoxUserStatus);
             this.Controls.Add(this.dataGridViewContacts);
             this.Controls.Add(this.flowLayoutPanelAddContact);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WindowContacts";
             this.Text = "Cheet-A-Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowContacts_FormClosing);
