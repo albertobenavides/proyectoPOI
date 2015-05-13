@@ -254,7 +254,6 @@ namespace Servidor
 
                         TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
                         senderSocket.Client.Send(data);
-                        Console.WriteLine("> " + userName + "-IP @ " + clientReceiver);
 
                         Console.WriteLine("");
                     }
@@ -296,7 +295,6 @@ namespace Servidor
                             {
                                 TcpClient senderSocket = (TcpClient)clientList[user];
                                 senderSocket.Client.Send(data);
-                                Console.WriteLine("@" + user + ": " + messageToSend);
                             }
                         }
                         Console.WriteLine("");
@@ -337,7 +335,6 @@ namespace Servidor
                             {
                                 TcpClient senderSocket = (TcpClient)clientList[user];
                                 senderSocket.Client.Send(data);
-                                Console.WriteLine("@" + user + ": " + messageToSend);
                             }
                         }
                         Console.WriteLine("");
