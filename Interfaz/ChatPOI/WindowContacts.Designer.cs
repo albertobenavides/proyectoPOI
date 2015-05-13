@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowContacts));
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.comboBoxUserStatus = new System.Windows.Forms.ComboBox();
             this.groupChatButton = new System.Windows.Forms.Button();
-            this.linkLabelLogout = new System.Windows.Forms.LinkLabel();
             this.flowLayoutPanelAddContact = new System.Windows.Forms.FlowLayoutPanel();
             this.dataGridViewContacts = new System.Windows.Forms.DataGridView();
             this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,13 +48,15 @@
             // 
             // textBoxUserName
             // 
-            this.textBoxUserName.BackColor = System.Drawing.Color.AliceBlue;
+            this.textBoxUserName.BackColor = System.Drawing.Color.LightBlue;
             this.textBoxUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxUserName.Enabled = false;
             this.textBoxUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUserName.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.textBoxUserName.Location = new System.Drawing.Point(164, 65);
+            this.textBoxUserName.Location = new System.Drawing.Point(207, 86);
             this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(164, 19);
+            this.textBoxUserName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxUserName.Size = new System.Drawing.Size(230, 19);
             this.textBoxUserName.TabIndex = 1;
             this.textBoxUserName.Text = "Nombre de Usuario";
             // 
@@ -71,7 +72,7 @@
             "Ausente",
             "Ocupado",
             "Desconectado"});
-            this.comboBoxUserStatus.Location = new System.Drawing.Point(219, 102);
+            this.comboBoxUserStatus.Location = new System.Drawing.Point(328, 129);
             this.comboBoxUserStatus.Name = "comboBoxUserStatus";
             this.comboBoxUserStatus.Size = new System.Drawing.Size(109, 21);
             this.comboBoxUserStatus.TabIndex = 2;
@@ -90,19 +91,6 @@
             this.groupChatButton.Text = "Chat grupal";
             this.groupChatButton.UseVisualStyleBackColor = false;
             this.groupChatButton.Click += new System.EventHandler(this.groupChatButton_Click);
-            // 
-            // linkLabelLogout
-            // 
-            this.linkLabelLogout.AutoSize = true;
-            this.linkLabelLogout.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelLogout.LinkColor = System.Drawing.Color.CornflowerBlue;
-            this.linkLabelLogout.Location = new System.Drawing.Point(257, 137);
-            this.linkLabelLogout.Name = "linkLabelLogout";
-            this.linkLabelLogout.Size = new System.Drawing.Size(71, 13);
-            this.linkLabelLogout.TabIndex = 8;
-            this.linkLabelLogout.TabStop = true;
-            this.linkLabelLogout.Text = "Cerrar sesión";
-            this.linkLabelLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelLogout_LinkClicked);
             // 
             // flowLayoutPanelAddContact
             // 
@@ -123,27 +111,27 @@
             this.dataGridViewContacts.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewContacts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewContacts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuBar;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewContacts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewContacts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContacts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnStatus,
             this.ColumnContactName,
             this.ColumnMessage});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewContacts.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewContacts.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewContacts.EnableHeadersVisualStyles = false;
             this.dataGridViewContacts.GridColor = System.Drawing.Color.White;
             this.dataGridViewContacts.Location = new System.Drawing.Point(12, 211);
@@ -185,7 +173,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.label1.Location = new System.Drawing.Point(161, 106);
+            this.label1.Location = new System.Drawing.Point(270, 133);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 5;
@@ -221,7 +209,6 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(449, 408);
-            this.Controls.Add(this.linkLabelLogout);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxUser);
@@ -247,7 +234,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.ComboBox comboBoxUserStatus;
-        private System.Windows.Forms.LinkLabel linkLabelLogout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAddContact;
         private System.Windows.Forms.DataGridView dataGridViewContacts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;

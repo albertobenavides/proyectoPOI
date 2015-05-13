@@ -38,11 +38,11 @@
             // 
             this.textBoxUser.BackColor = System.Drawing.Color.Azure;
             this.textBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxUser.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUser.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUser.ForeColor = System.Drawing.Color.LightSlateGray;
             this.textBoxUser.Location = new System.Drawing.Point(33, 168);
             this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(150, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(150, 17);
             this.textBoxUser.TabIndex = 1;
             this.textBoxUser.Text = "Nombre de usuario";
             this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
@@ -53,11 +53,11 @@
             // 
             this.textBoxPassword.BackColor = System.Drawing.Color.Azure;
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPassword.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPassword.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPassword.ForeColor = System.Drawing.Color.LightSlateGray;
             this.textBoxPassword.Location = new System.Drawing.Point(33, 200);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(150, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(150, 17);
             this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.Text = "Contraseña";
             this.textBoxPassword.Enter += new System.EventHandler(this.textBoxPass_Enter);

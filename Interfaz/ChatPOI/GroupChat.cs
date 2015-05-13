@@ -28,10 +28,6 @@ namespace ChatPOI
                 wc = f;
             }
 
-            labelContactName.Text = "";
-
-            labelUserName.Text = globals.username;
-
             if (users == null)
             {
                 participants = new List<string>();

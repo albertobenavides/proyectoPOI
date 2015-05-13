@@ -564,7 +564,7 @@ namespace ChatPOI
             // 
             // lineShape55
             // 
-            this.lineShape55.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape55.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape55.BorderWidth = 4;
             this.lineShape55.Name = "lineShape55";
             this.lineShape55.X1 = 54;
@@ -577,7 +577,7 @@ namespace ChatPOI
             // 
             // lineShape51
             // 
-            this.lineShape51.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape51.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape51.BorderWidth = 4;
             this.lineShape51.Name = "lineShape51";
             this.lineShape51.X1 = 24;
@@ -590,7 +590,7 @@ namespace ChatPOI
             // 
             // lineShape47
             // 
-            this.lineShape47.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape47.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape47.BorderWidth = 4;
             this.lineShape47.Name = "lineShape47";
             this.lineShape47.X1 = 144;
@@ -603,7 +603,7 @@ namespace ChatPOI
             // 
             // lineShape46
             // 
-            this.lineShape46.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape46.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape46.BorderWidth = 4;
             this.lineShape46.Name = "lineShape46";
             this.lineShape46.X1 = 84;
@@ -616,7 +616,7 @@ namespace ChatPOI
             // 
             // lineShape45
             // 
-            this.lineShape45.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape45.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape45.BorderWidth = 4;
             this.lineShape45.Name = "lineShape45";
             this.lineShape45.X1 = 114;
@@ -629,7 +629,7 @@ namespace ChatPOI
             // 
             // lineShape44
             // 
-            this.lineShape44.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape44.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape44.BorderWidth = 4;
             this.lineShape44.Name = "lineShape44";
             this.lineShape44.X1 = 54;
@@ -642,7 +642,7 @@ namespace ChatPOI
             // 
             // lineShape43
             // 
-            this.lineShape43.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape43.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape43.BorderWidth = 4;
             this.lineShape43.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape43.Name = "lineShape43";
@@ -656,7 +656,7 @@ namespace ChatPOI
             // 
             // lineShape42
             // 
-            this.lineShape42.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape42.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape42.BorderWidth = 4;
             this.lineShape42.Name = "lineShape42";
             this.lineShape42.X1 = 54;
@@ -669,7 +669,7 @@ namespace ChatPOI
             // 
             // lineShape41
             // 
-            this.lineShape41.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape41.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape41.BorderWidth = 4;
             this.lineShape41.Name = "lineShape41";
             this.lineShape41.X1 = 24;
@@ -682,7 +682,7 @@ namespace ChatPOI
             // 
             // lineShape40
             // 
-            this.lineShape40.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape40.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape40.BorderWidth = 4;
             this.lineShape40.Name = "lineShape40";
             this.lineShape40.X1 = 24;
@@ -695,7 +695,7 @@ namespace ChatPOI
             // 
             // lineShape39
             // 
-            this.lineShape39.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape39.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape39.BorderWidth = 4;
             this.lineShape39.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape39.Name = "lineShape39";
@@ -709,7 +709,7 @@ namespace ChatPOI
             // 
             // lineShape38
             // 
-            this.lineShape38.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape38.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape38.BorderWidth = 4;
             this.lineShape38.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape38.Name = "lineShape38";
@@ -723,7 +723,7 @@ namespace ChatPOI
             // 
             // lineShape37
             // 
-            this.lineShape37.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape37.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape37.BorderWidth = 4;
             this.lineShape37.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape37.Name = "lineShape37";
@@ -737,7 +737,7 @@ namespace ChatPOI
             // 
             // lineShape36
             // 
-            this.lineShape36.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape36.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape36.BorderWidth = 4;
             this.lineShape36.Name = "lineShape36";
             this.lineShape36.X1 = 144;
@@ -750,7 +750,7 @@ namespace ChatPOI
             // 
             // lineShape35
             // 
-            this.lineShape35.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape35.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape35.BorderWidth = 4;
             this.lineShape35.Name = "lineShape35";
             this.lineShape35.X1 = 84;
@@ -763,7 +763,7 @@ namespace ChatPOI
             // 
             // lineShape34
             // 
-            this.lineShape34.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape34.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape34.BorderWidth = 4;
             this.lineShape34.Name = "lineShape34";
             this.lineShape34.X1 = 114;
@@ -776,7 +776,7 @@ namespace ChatPOI
             // 
             // lineShape33
             // 
-            this.lineShape33.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape33.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape33.BorderWidth = 4;
             this.lineShape33.Name = "lineShape33";
             this.lineShape33.X1 = 54;
@@ -789,7 +789,7 @@ namespace ChatPOI
             // 
             // lineShape32
             // 
-            this.lineShape32.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape32.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape32.BorderWidth = 4;
             this.lineShape32.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape32.Name = "lineShape32";
@@ -803,7 +803,7 @@ namespace ChatPOI
             // 
             // lineShape31
             // 
-            this.lineShape31.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape31.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape31.BorderWidth = 4;
             this.lineShape31.Name = "lineShape31";
             this.lineShape31.X1 = 54;
@@ -816,7 +816,7 @@ namespace ChatPOI
             // 
             // lineShape30
             // 
-            this.lineShape30.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape30.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape30.BorderWidth = 4;
             this.lineShape30.Name = "lineShape30";
             this.lineShape30.X1 = 24;
@@ -829,7 +829,7 @@ namespace ChatPOI
             // 
             // lineShape29
             // 
-            this.lineShape29.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape29.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape29.BorderWidth = 4;
             this.lineShape29.Name = "lineShape29";
             this.lineShape29.X1 = 24;
@@ -842,7 +842,7 @@ namespace ChatPOI
             // 
             // lineShape28
             // 
-            this.lineShape28.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape28.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape28.BorderWidth = 4;
             this.lineShape28.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape28.Name = "lineShape28";
@@ -856,7 +856,7 @@ namespace ChatPOI
             // 
             // lineShape27
             // 
-            this.lineShape27.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape27.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape27.BorderWidth = 4;
             this.lineShape27.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape27.Name = "lineShape27";
@@ -870,7 +870,7 @@ namespace ChatPOI
             // 
             // lineShape26
             // 
-            this.lineShape26.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape26.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape26.BorderWidth = 4;
             this.lineShape26.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape26.Name = "lineShape26";
@@ -884,7 +884,7 @@ namespace ChatPOI
             // 
             // lineShape25
             // 
-            this.lineShape25.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape25.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape25.BorderWidth = 4;
             this.lineShape25.Name = "lineShape25";
             this.lineShape25.X1 = 144;
@@ -897,7 +897,7 @@ namespace ChatPOI
             // 
             // lineShape24
             // 
-            this.lineShape24.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape24.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape24.BorderWidth = 4;
             this.lineShape24.Name = "lineShape24";
             this.lineShape24.X1 = 84;
@@ -910,7 +910,7 @@ namespace ChatPOI
             // 
             // lineShape23
             // 
-            this.lineShape23.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape23.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape23.BorderWidth = 4;
             this.lineShape23.Name = "lineShape23";
             this.lineShape23.X1 = 114;
@@ -923,7 +923,7 @@ namespace ChatPOI
             // 
             // lineShape22
             // 
-            this.lineShape22.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape22.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape22.BorderWidth = 4;
             this.lineShape22.Name = "lineShape22";
             this.lineShape22.X1 = 54;
@@ -936,7 +936,7 @@ namespace ChatPOI
             // 
             // lineShape21
             // 
-            this.lineShape21.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape21.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape21.BorderWidth = 4;
             this.lineShape21.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape21.Name = "lineShape21";
@@ -950,7 +950,7 @@ namespace ChatPOI
             // 
             // lineShape20
             // 
-            this.lineShape20.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape20.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape20.BorderWidth = 4;
             this.lineShape20.Name = "lineShape20";
             this.lineShape20.X1 = 54;
@@ -963,7 +963,7 @@ namespace ChatPOI
             // 
             // lineShape19
             // 
-            this.lineShape19.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape19.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape19.BorderWidth = 4;
             this.lineShape19.Name = "lineShape19";
             this.lineShape19.X1 = 24;
@@ -976,7 +976,7 @@ namespace ChatPOI
             // 
             // lineShape18
             // 
-            this.lineShape18.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape18.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape18.BorderWidth = 4;
             this.lineShape18.Name = "lineShape18";
             this.lineShape18.X1 = 24;
@@ -989,7 +989,7 @@ namespace ChatPOI
             // 
             // lineShape17
             // 
-            this.lineShape17.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape17.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape17.BorderWidth = 4;
             this.lineShape17.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape17.Name = "lineShape17";
@@ -1003,7 +1003,7 @@ namespace ChatPOI
             // 
             // lineShape16
             // 
-            this.lineShape16.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape16.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape16.BorderWidth = 4;
             this.lineShape16.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape16.Name = "lineShape16";
@@ -1017,7 +1017,7 @@ namespace ChatPOI
             // 
             // lineShape15
             // 
-            this.lineShape15.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape15.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape15.BorderWidth = 4;
             this.lineShape15.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape15.Name = "lineShape15";
@@ -1031,7 +1031,7 @@ namespace ChatPOI
             // 
             // lineShape14
             // 
-            this.lineShape14.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape14.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape14.BorderWidth = 4;
             this.lineShape14.Name = "lineShape14";
             this.lineShape14.X1 = 144;
@@ -1044,7 +1044,7 @@ namespace ChatPOI
             // 
             // lineShape13
             // 
-            this.lineShape13.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape13.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape13.BorderWidth = 4;
             this.lineShape13.Name = "lineShape13";
             this.lineShape13.X1 = 84;
@@ -1057,7 +1057,7 @@ namespace ChatPOI
             // 
             // lineShape8
             // 
-            this.lineShape8.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape8.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape8.BorderWidth = 4;
             this.lineShape8.Name = "lineShape8";
             this.lineShape8.X1 = 114;
@@ -1070,7 +1070,7 @@ namespace ChatPOI
             // 
             // lineShape12
             // 
-            this.lineShape12.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape12.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape12.BorderWidth = 4;
             this.lineShape12.Name = "lineShape12";
             this.lineShape12.X1 = 144;
@@ -1083,7 +1083,7 @@ namespace ChatPOI
             // 
             // lineShape11
             // 
-            this.lineShape11.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape11.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape11.BorderWidth = 4;
             this.lineShape11.Name = "lineShape11";
             this.lineShape11.X1 = 114;
@@ -1096,7 +1096,7 @@ namespace ChatPOI
             // 
             // lineShape10
             // 
-            this.lineShape10.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape10.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape10.BorderWidth = 4;
             this.lineShape10.Name = "lineShape10";
             this.lineShape10.X1 = 84;
@@ -1109,7 +1109,7 @@ namespace ChatPOI
             // 
             // lineShape9
             // 
-            this.lineShape9.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape9.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape9.BorderWidth = 4;
             this.lineShape9.Name = "lineShape9";
             this.lineShape9.X1 = 54;
@@ -1122,7 +1122,7 @@ namespace ChatPOI
             // 
             // lineShape7
             // 
-            this.lineShape7.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape7.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape7.BorderWidth = 4;
             this.lineShape7.Name = "lineShape7";
             this.lineShape7.X1 = 24;
@@ -1135,7 +1135,7 @@ namespace ChatPOI
             // 
             // lineShape6
             // 
-            this.lineShape6.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape6.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape6.BorderWidth = 4;
             this.lineShape6.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape6.Name = "lineShape6";
@@ -1150,7 +1150,7 @@ namespace ChatPOI
             // 
             // lineShape5
             // 
-            this.lineShape5.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape5.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape5.BorderWidth = 4;
             this.lineShape5.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape5.Name = "lineShape2";
@@ -1164,7 +1164,7 @@ namespace ChatPOI
             // 
             // lineShape4
             // 
-            this.lineShape4.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape4.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape4.BorderWidth = 4;
             this.lineShape4.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape4.Name = "lineShape2";
@@ -1178,7 +1178,7 @@ namespace ChatPOI
             // 
             // lineShape3
             // 
-            this.lineShape3.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape3.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape3.BorderWidth = 4;
             this.lineShape3.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape3.Name = "lineShape2";
@@ -1192,7 +1192,7 @@ namespace ChatPOI
             // 
             // lineShape2
             // 
-            this.lineShape2.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape2.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape2.BorderWidth = 4;
             this.lineShape2.Name = "lineShape2";
             this.lineShape2.X1 = 54;
@@ -1205,7 +1205,7 @@ namespace ChatPOI
             // 
             // lineShape1
             // 
-            this.lineShape1.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape1.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape1.BorderWidth = 4;
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.X1 = 24;
@@ -1218,7 +1218,7 @@ namespace ChatPOI
             // 
             // lineShape60
             // 
-            this.lineShape60.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape60.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape60.BorderWidth = 4;
             this.lineShape60.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape60.Name = "lineShape60";
@@ -1232,7 +1232,7 @@ namespace ChatPOI
             // 
             // lineShape59
             // 
-            this.lineShape59.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape59.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape59.BorderWidth = 4;
             this.lineShape59.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape59.Name = "lineShape59";
@@ -1246,7 +1246,7 @@ namespace ChatPOI
             // 
             // lineShape58
             // 
-            this.lineShape58.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape58.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape58.BorderWidth = 4;
             this.lineShape58.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape58.Name = "lineShape58";
@@ -1260,7 +1260,7 @@ namespace ChatPOI
             // 
             // lineShape57
             // 
-            this.lineShape57.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape57.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape57.BorderWidth = 4;
             this.lineShape57.Name = "lineShape57";
             this.lineShape57.X1 = 24;
@@ -1273,7 +1273,7 @@ namespace ChatPOI
             // 
             // lineShape56
             // 
-            this.lineShape56.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape56.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape56.BorderWidth = 4;
             this.lineShape56.Name = "lineShape56";
             this.lineShape56.X1 = 54;
@@ -1286,7 +1286,7 @@ namespace ChatPOI
             // 
             // lineShape54
             // 
-            this.lineShape54.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape54.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape54.BorderWidth = 4;
             this.lineShape54.Cursor = System.Windows.Forms.Cursors.Default;
             this.lineShape54.Name = "lineShape54";
@@ -1300,7 +1300,7 @@ namespace ChatPOI
             // 
             // lineShape53
             // 
-            this.lineShape53.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape53.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape53.BorderWidth = 4;
             this.lineShape53.Name = "lineShape53";
             this.lineShape53.X1 = 114;
@@ -1313,7 +1313,7 @@ namespace ChatPOI
             // 
             // lineShape52
             // 
-            this.lineShape52.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape52.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape52.BorderWidth = 4;
             this.lineShape52.Name = "lineShape52";
             this.lineShape52.X1 = 84;
@@ -1326,7 +1326,7 @@ namespace ChatPOI
             // 
             // lineShape50
             // 
-            this.lineShape50.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape50.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape50.BorderWidth = 4;
             this.lineShape50.Name = "lineShape50";
             this.lineShape50.X1 = 144;
@@ -1339,7 +1339,7 @@ namespace ChatPOI
             // 
             // lineShape49
             // 
-            this.lineShape49.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape49.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape49.BorderWidth = 4;
             this.lineShape49.Name = "lineShape49";
             this.lineShape49.X1 = 24;
@@ -1352,7 +1352,7 @@ namespace ChatPOI
             // 
             // lineShape48
             // 
-            this.lineShape48.BorderColor = System.Drawing.SystemColors.Control;
+            this.lineShape48.BorderColor = System.Drawing.Color.Transparent;
             this.lineShape48.BorderWidth = 4;
             this.lineShape48.Name = "lineShape48";
             this.lineShape48.X1 = 54;
@@ -1438,7 +1438,7 @@ namespace ChatPOI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(306, 215);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.player3Name);

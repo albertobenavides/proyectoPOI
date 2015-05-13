@@ -330,12 +330,6 @@ namespace ChatPOI
             }
         }
 
-        private void linkLabelLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Exit();
-            Application.Restart();
-        }
-
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewCell oneCell in dataGridViewContacts.SelectedCells)
