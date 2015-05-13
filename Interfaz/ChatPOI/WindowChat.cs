@@ -601,9 +601,9 @@ namespace ChatPOI
 
                 wc.SendString(s);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario no disponible. \n " + ex.ToString(), "Información",
+                MessageBox.Show("Usuario no disponible.", "Información",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

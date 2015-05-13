@@ -80,7 +80,7 @@
             "Disponible",
             "Ausente",
             "Ocupado",
-            "Invisible"});
+            "Desconectado"});
             this.comboBoxUserStatus.Location = new System.Drawing.Point(109, 101);
             this.comboBoxUserStatus.Name = "comboBoxUserStatus";
             this.comboBoxUserStatus.Size = new System.Drawing.Size(121, 21);

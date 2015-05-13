@@ -161,7 +161,7 @@ namespace ChatPOI
                     {
                         if (client != globals.username && client != "")
                         {
-                            dataGridViewContacts.Rows.Add(new object[] { "Disponible", client, "Mensaje" });
+                            dataGridViewContacts.Rows.Add(new object[] { "Desconectado", client, "Mensaje" });
                         }
                     }
                     SendString("$cs$" + globals.username + "$cs$" + comboBoxUserStatus.Text + "$$$$");
