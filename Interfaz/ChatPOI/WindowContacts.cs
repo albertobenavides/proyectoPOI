@@ -56,9 +56,12 @@ namespace ChatPOI
                     Thread thread = new Thread(getMessage);
                     thread.Start();
                 }
-                catch (SocketException)
+                catch
                 {
-                    return;
+                    MessageBox.Show("Servidor fuera de línea.", "Error", MessageBoxButtons.OK);
+
+                    Application.Restart();
+                    Environment.Exit(0);
                 }
             }
 
