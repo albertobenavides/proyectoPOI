@@ -81,7 +81,7 @@
             this.richTextBoxChat.TabIndex = 3;
             this.richTextBoxChat.TabStop = false;
             this.richTextBoxChat.Text = "";
-            this.richTextBoxChat.Click += new System.EventHandler(this.richTextBoxChat_Click);
+            this.richTextBoxChat.Enter += new System.EventHandler(this.richTextBoxChat_Click);
             // 
             // richTextBoxMessage
             // 
@@ -123,7 +123,7 @@
             // 
             // buttonEmoti16
             // 
-            this.buttonEmoti16.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti16.Image")));
+            this.buttonEmoti16.Image = global::ChatPOI.Properties.Resources.emoticons16;
             this.buttonEmoti16.Location = new System.Drawing.Point(114, 126);
             this.buttonEmoti16.Name = "buttonEmoti16";
             this.buttonEmoti16.Size = new System.Drawing.Size(30, 30);
@@ -133,7 +133,7 @@
             // 
             // buttonEmoti15
             // 
-            this.buttonEmoti15.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti15.Image")));
+            this.buttonEmoti15.Image = global::ChatPOI.Properties.Resources.emoticons15;
             this.buttonEmoti15.Location = new System.Drawing.Point(78, 126);
             this.buttonEmoti15.Name = "buttonEmoti15";
             this.buttonEmoti15.Size = new System.Drawing.Size(30, 30);
@@ -143,7 +143,7 @@
             // 
             // buttonEmoti13
             // 
-            this.buttonEmoti13.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti13.Image")));
+            this.buttonEmoti13.Image = global::ChatPOI.Properties.Resources.emoticons13;
             this.buttonEmoti13.Location = new System.Drawing.Point(6, 126);
             this.buttonEmoti13.Name = "buttonEmoti13";
             this.buttonEmoti13.Size = new System.Drawing.Size(30, 30);
@@ -153,7 +153,7 @@
             // 
             // buttonEmoti14
             // 
-            this.buttonEmoti14.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti14.Image")));
+            this.buttonEmoti14.Image = global::ChatPOI.Properties.Resources.emoticons14;
             this.buttonEmoti14.Location = new System.Drawing.Point(42, 126);
             this.buttonEmoti14.Name = "buttonEmoti14";
             this.buttonEmoti14.Size = new System.Drawing.Size(30, 30);
@@ -163,7 +163,7 @@
             // 
             // buttonEmoti12
             // 
-            this.buttonEmoti12.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti12.Image")));
+            this.buttonEmoti12.Image = global::ChatPOI.Properties.Resources.emoticons12;
             this.buttonEmoti12.Location = new System.Drawing.Point(114, 91);
             this.buttonEmoti12.Name = "buttonEmoti12";
             this.buttonEmoti12.Size = new System.Drawing.Size(30, 30);
@@ -173,7 +173,7 @@
             // 
             // buttonEmoti11
             // 
-            this.buttonEmoti11.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti11.Image")));
+            this.buttonEmoti11.Image = global::ChatPOI.Properties.Resources.emoticons11;
             this.buttonEmoti11.Location = new System.Drawing.Point(78, 91);
             this.buttonEmoti11.Name = "buttonEmoti11";
             this.buttonEmoti11.Size = new System.Drawing.Size(30, 30);
@@ -183,7 +183,7 @@
             // 
             // buttonEmoti2
             // 
-            this.buttonEmoti2.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti2.Image")));
+            this.buttonEmoti2.Image = global::ChatPOI.Properties.Resources.emoticons02;
             this.buttonEmoti2.Location = new System.Drawing.Point(42, 19);
             this.buttonEmoti2.Name = "buttonEmoti2";
             this.buttonEmoti2.Size = new System.Drawing.Size(30, 30);
@@ -193,7 +193,7 @@
             // 
             // buttonEmoti3
             // 
-            this.buttonEmoti3.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti3.Image")));
+            this.buttonEmoti3.Image = global::ChatPOI.Properties.Resources.emoticons03;
             this.buttonEmoti3.Location = new System.Drawing.Point(78, 19);
             this.buttonEmoti3.Name = "buttonEmoti3";
             this.buttonEmoti3.Size = new System.Drawing.Size(30, 30);
@@ -203,7 +203,7 @@
             // 
             // buttonEmoti4
             // 
-            this.buttonEmoti4.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti4.Image")));
+            this.buttonEmoti4.Image = global::ChatPOI.Properties.Resources.emoticons04;
             this.buttonEmoti4.Location = new System.Drawing.Point(114, 19);
             this.buttonEmoti4.Name = "buttonEmoti4";
             this.buttonEmoti4.Size = new System.Drawing.Size(30, 30);
@@ -213,7 +213,7 @@
             // 
             // buttonEmoti5
             // 
-            this.buttonEmoti5.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti5.Image")));
+            this.buttonEmoti5.Image = global::ChatPOI.Properties.Resources.emoticons05;
             this.buttonEmoti5.Location = new System.Drawing.Point(6, 55);
             this.buttonEmoti5.Name = "buttonEmoti5";
             this.buttonEmoti5.Size = new System.Drawing.Size(30, 30);
@@ -223,7 +223,7 @@
             // 
             // buttonEmoti6
             // 
-            this.buttonEmoti6.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti6.Image")));
+            this.buttonEmoti6.Image = global::ChatPOI.Properties.Resources.emoticons06;
             this.buttonEmoti6.Location = new System.Drawing.Point(42, 55);
             this.buttonEmoti6.Name = "buttonEmoti6";
             this.buttonEmoti6.Size = new System.Drawing.Size(30, 30);
@@ -233,7 +233,7 @@
             // 
             // buttonEmoti7
             // 
-            this.buttonEmoti7.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti7.Image")));
+            this.buttonEmoti7.Image = global::ChatPOI.Properties.Resources.emoticons07;
             this.buttonEmoti7.Location = new System.Drawing.Point(78, 55);
             this.buttonEmoti7.Name = "buttonEmoti7";
             this.buttonEmoti7.Size = new System.Drawing.Size(30, 30);
@@ -243,7 +243,7 @@
             // 
             // buttonEmoti8
             // 
-            this.buttonEmoti8.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti8.Image")));
+            this.buttonEmoti8.Image = global::ChatPOI.Properties.Resources.emoticons08;
             this.buttonEmoti8.Location = new System.Drawing.Point(114, 55);
             this.buttonEmoti8.Name = "buttonEmoti8";
             this.buttonEmoti8.Size = new System.Drawing.Size(30, 30);
@@ -253,7 +253,7 @@
             // 
             // buttonEmoti9
             // 
-            this.buttonEmoti9.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti9.Image")));
+            this.buttonEmoti9.Image = global::ChatPOI.Properties.Resources.emoticons09;
             this.buttonEmoti9.Location = new System.Drawing.Point(6, 91);
             this.buttonEmoti9.Name = "buttonEmoti9";
             this.buttonEmoti9.Size = new System.Drawing.Size(30, 30);
@@ -263,7 +263,7 @@
             // 
             // buttonEmoti10
             // 
-            this.buttonEmoti10.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti10.Image")));
+            this.buttonEmoti10.Image = global::ChatPOI.Properties.Resources.emoticons10;
             this.buttonEmoti10.Location = new System.Drawing.Point(42, 91);
             this.buttonEmoti10.Name = "buttonEmoti10";
             this.buttonEmoti10.Size = new System.Drawing.Size(30, 30);
@@ -273,7 +273,7 @@
             // 
             // buttonEmoti1
             // 
-            this.buttonEmoti1.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoti1.Image")));
+            this.buttonEmoti1.Image = global::ChatPOI.Properties.Resources.emoticons01;
             this.buttonEmoti1.Location = new System.Drawing.Point(6, 19);
             this.buttonEmoti1.Name = "buttonEmoti1";
             this.buttonEmoti1.Size = new System.Drawing.Size(30, 30);

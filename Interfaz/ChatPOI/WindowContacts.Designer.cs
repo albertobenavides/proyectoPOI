@@ -188,7 +188,6 @@
             this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 0;
             this.pictureBoxUser.TabStop = false;
-            this.pictureBoxUser.Click += new System.EventHandler(this.pictureBoxUser_Click);
             // 
             // textBoxSearch
             // 
@@ -221,7 +220,6 @@
             this.Name = "WindowContacts";
             this.Text = "Cheet-A-Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowContacts_FormClosing);
-            this.Load += new System.EventHandler(this.WindowContacts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContacts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.ResumeLayout(false);

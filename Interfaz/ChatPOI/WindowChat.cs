@@ -184,10 +184,19 @@ namespace ChatPOI
                         Bitmap temp = (Bitmap)Clipboard.GetData("Bitmap");
                         foreach (Bitmap b in emotions.Values)
                         {
-                            if (temp.GetPixel(17, 19) == b.GetPixel(17, 19)
-                                && temp.GetPixel(6, 12) == b.GetPixel(6, 12))
+                            int count = 0;
+                            for (int x = 0; x < 20; x++)
+                            {
+                                for (int y = 0; y < 20; y++)
+                                {
+                                    if (temp.GetPixel(x, y) == b.GetPixel(x, y))
+                                        count++;
+                                }
+                            }
+                            if (count == 400)
                             {
                                 s += emotions.FirstOrDefault(x => x.Value == b).Key;
+                                break;
                             }
                         }
                     }
