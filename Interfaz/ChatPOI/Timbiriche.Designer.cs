@@ -1392,6 +1392,7 @@ namespace ChatPOI
             this.player1Name.Size = new System.Drawing.Size(35, 13);
             this.player1Name.TabIndex = 4;
             this.player1Name.Text = "label1";
+            this.player1Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // player2Name
             // 
@@ -1401,6 +1402,7 @@ namespace ChatPOI
             this.player2Name.Size = new System.Drawing.Size(35, 13);
             this.player2Name.TabIndex = 5;
             this.player2Name.Text = "label2";
+            this.player2Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // player3Name
             // 
@@ -1410,6 +1412,7 @@ namespace ChatPOI
             this.player3Name.Size = new System.Drawing.Size(35, 13);
             this.player3Name.TabIndex = 6;
             this.player3Name.Text = "label3";
+            this.player3Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // statusStrip1
             // 

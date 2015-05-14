@@ -30,21 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowChat));
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.buttonEmoticon = new System.Windows.Forms.Button();
-            this.buttonBuzz = new System.Windows.Forms.Button();
-            this.buttonCall = new System.Windows.Forms.Button();
-            this.buttonCamera = new System.Windows.Forms.Button();
-            this.buttonFile = new System.Windows.Forms.Button();
             this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
-            this.pictureBoxContact = new System.Windows.Forms.PictureBox();
-            this.panelLeft = new System.Windows.Forms.Panel();
-            this.buttonJugar = new System.Windows.Forms.Button();
-            this.labelUserName = new System.Windows.Forms.Label();
-            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
-            this.labelClientReceiver = new System.Windows.Forms.Label();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.groupBoxEmoticons = new System.Windows.Forms.GroupBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.labelClientReceiver = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.panelLeft = new System.Windows.Forms.Panel();
+            this.buttonBuzz = new System.Windows.Forms.Button();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.buttonEmoticon = new System.Windows.Forms.Button();
             this.buttonEmoti16 = new System.Windows.Forms.Button();
             this.buttonEmoti15 = new System.Windows.Forms.Button();
             this.buttonEmoti13 = new System.Windows.Forms.Button();
@@ -61,84 +57,17 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
+            this.buttonJugar = new System.Windows.Forms.Button();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
+            this.pictureBoxContact = new System.Windows.Forms.PictureBox();
+            this.buttonFile = new System.Windows.Forms.Button();
+            this.buttonCall = new System.Windows.Forms.Button();
+            this.buttonCamera = new System.Windows.Forms.Button();
+            this.groupBoxEmoticons.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
-            this.groupBoxEmoticons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonSend
-            // 
-            this.buttonSend.AutoSize = true;
-            this.buttonSend.ForeColor = System.Drawing.Color.LightBlue;
-            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
-            this.buttonSend.Location = new System.Drawing.Point(545, 335);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(118, 91);
-            this.buttonSend.TabIndex = 2;
-            this.buttonSend.UseVisualStyleBackColor = true;
-            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
-            // 
-            // buttonEmoticon
-            // 
-            this.buttonEmoticon.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoticon.Image")));
-            this.buttonEmoticon.Location = new System.Drawing.Point(501, 335);
-            this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonEmoticon.Name = "buttonEmoticon";
-            this.buttonEmoticon.Size = new System.Drawing.Size(40, 40);
-            this.buttonEmoticon.TabIndex = 4;
-            this.buttonEmoticon.UseVisualStyleBackColor = true;
-            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
-            // 
-            // buttonBuzz
-            // 
-            this.buttonBuzz.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuzz.Image")));
-            this.buttonBuzz.Location = new System.Drawing.Point(501, 379);
-            this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonBuzz.Name = "buttonBuzz";
-            this.buttonBuzz.Size = new System.Drawing.Size(40, 40);
-            this.buttonBuzz.TabIndex = 3;
-            this.buttonBuzz.UseVisualStyleBackColor = true;
-            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
-            // 
-            // buttonCall
-            // 
-            this.buttonCall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCall.Image = ((System.Drawing.Image)(resources.GetObject("buttonCall.Image")));
-            this.buttonCall.Location = new System.Drawing.Point(83, 157);
-            this.buttonCall.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCall.Name = "buttonCall";
-            this.buttonCall.Size = new System.Drawing.Size(45, 45);
-            this.buttonCall.TabIndex = 7;
-            this.buttonCall.UseVisualStyleBackColor = true;
-            this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
-            // 
-            // buttonCamera
-            // 
-            this.buttonCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCamera.Image = ((System.Drawing.Image)(resources.GetObject("buttonCamera.Image")));
-            this.buttonCamera.Location = new System.Drawing.Point(83, 227);
-            this.buttonCamera.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCamera.Name = "buttonCamera";
-            this.buttonCamera.Size = new System.Drawing.Size(45, 45);
-            this.buttonCamera.TabIndex = 6;
-            this.buttonCamera.UseVisualStyleBackColor = true;
-            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
-            // 
-            // buttonFile
-            // 
-            this.buttonFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonFile.Image")));
-            this.buttonFile.Location = new System.Drawing.Point(18, 157);
-            this.buttonFile.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonFile.Name = "buttonFile";
-            this.buttonFile.Size = new System.Drawing.Size(45, 45);
-            this.buttonFile.TabIndex = 5;
-            this.buttonFile.UseVisualStyleBackColor = true;
-            this.buttonFile.Click += new System.EventHandler(this.buttonFile_Click);
             // 
             // richTextBoxChat
             // 
@@ -152,76 +81,6 @@
             this.richTextBoxChat.TabIndex = 3;
             this.richTextBoxChat.TabStop = false;
             this.richTextBoxChat.Text = "";
-            // 
-            // pictureBoxContact
-            // 
-            this.pictureBoxContact.Location = new System.Drawing.Point(18, 11);
-            this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxContact.Name = "pictureBoxContact";
-            this.pictureBoxContact.Size = new System.Drawing.Size(110, 120);
-            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxContact.TabIndex = 0;
-            this.pictureBoxContact.TabStop = false;
-            // 
-            // panelLeft
-            // 
-            this.panelLeft.Controls.Add(this.labelUserName);
-            this.panelLeft.Controls.Add(this.labelClientReceiver);
-            this.panelLeft.Controls.Add(this.buttonJugar);
-            this.panelLeft.Controls.Add(this.pictureBoxUser);
-            this.panelLeft.Controls.Add(this.pictureBoxContact);
-            this.panelLeft.Controls.Add(this.buttonFile);
-            this.panelLeft.Controls.Add(this.buttonCall);
-            this.panelLeft.Controls.Add(this.buttonCamera);
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(177, 438);
-            this.panelLeft.TabIndex = 11;
-            this.panelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLeft_Paint);
-            // 
-            // buttonJugar
-            // 
-            this.buttonJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonJugar.Image = ((System.Drawing.Image)(resources.GetObject("buttonJugar.Image")));
-            this.buttonJugar.Location = new System.Drawing.Point(18, 227);
-            this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonJugar.Name = "buttonJugar";
-            this.buttonJugar.Size = new System.Drawing.Size(45, 45);
-            this.buttonJugar.TabIndex = 13;
-            this.buttonJugar.UseVisualStyleBackColor = true;
-            this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
-            // 
-            // labelUserName
-            // 
-            this.labelUserName.AutoSize = true;
-            this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUserName.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.labelUserName.Location = new System.Drawing.Point(15, 416);
-            this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(113, 15);
-            this.labelUserName.TabIndex = 2;
-            this.labelUserName.Text = "Nombre de usuario";
-            // 
-            // pictureBoxUser
-            // 
-            this.pictureBoxUser.Location = new System.Drawing.Point(18, 294);
-            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxUser.Name = "pictureBoxUser";
-            this.pictureBoxUser.Size = new System.Drawing.Size(110, 120);
-            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxUser.TabIndex = 0;
-            this.pictureBoxUser.TabStop = false;
-            // 
-            // labelClientReceiver
-            // 
-            this.labelClientReceiver.AutoSize = true;
-            this.labelClientReceiver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClientReceiver.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.labelClientReceiver.Location = new System.Drawing.Point(15, 133);
-            this.labelClientReceiver.Name = "labelClientReceiver";
-            this.labelClientReceiver.Size = new System.Drawing.Size(118, 15);
-            this.labelClientReceiver.TabIndex = 1;
-            this.labelClientReceiver.Text = "Nombre de contacto";
             // 
             // richTextBoxMessage
             // 
@@ -260,6 +119,86 @@
             this.groupBoxEmoticons.TabStop = false;
             this.groupBoxEmoticons.Text = "Emoticons";
             this.groupBoxEmoticons.Leave += new System.EventHandler(this.groupBoxEmoticons_Leave);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // labelClientReceiver
+            // 
+            this.labelClientReceiver.AutoSize = true;
+            this.labelClientReceiver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClientReceiver.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.labelClientReceiver.Location = new System.Drawing.Point(15, 133);
+            this.labelClientReceiver.Name = "labelClientReceiver";
+            this.labelClientReceiver.Size = new System.Drawing.Size(118, 15);
+            this.labelClientReceiver.TabIndex = 1;
+            this.labelClientReceiver.Text = "Nombre de contacto";
+            // 
+            // labelUserName
+            // 
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserName.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.labelUserName.Location = new System.Drawing.Point(15, 416);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(113, 15);
+            this.labelUserName.TabIndex = 2;
+            this.labelUserName.Text = "Nombre de usuario";
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.Controls.Add(this.labelUserName);
+            this.panelLeft.Controls.Add(this.labelClientReceiver);
+            this.panelLeft.Controls.Add(this.buttonJugar);
+            this.panelLeft.Controls.Add(this.pictureBoxUser);
+            this.panelLeft.Controls.Add(this.pictureBoxContact);
+            this.panelLeft.Controls.Add(this.buttonFile);
+            this.panelLeft.Controls.Add(this.buttonCall);
+            this.panelLeft.Controls.Add(this.buttonCamera);
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(162, 438);
+            this.panelLeft.TabIndex = 11;
+            // 
+            // buttonBuzz
+            // 
+            this.buttonBuzz.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuzz.Image")));
+            this.buttonBuzz.Location = new System.Drawing.Point(501, 379);
+            this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonBuzz.Name = "buttonBuzz";
+            this.buttonBuzz.Size = new System.Drawing.Size(40, 40);
+            this.buttonBuzz.TabIndex = 3;
+            this.buttonBuzz.UseVisualStyleBackColor = true;
+            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
+            // 
+            // buttonSend
+            // 
+            this.buttonSend.AutoSize = true;
+            this.buttonSend.ForeColor = System.Drawing.Color.LightBlue;
+            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
+            this.buttonSend.Location = new System.Drawing.Point(545, 335);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(118, 91);
+            this.buttonSend.TabIndex = 2;
+            this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // buttonEmoticon
+            // 
+            this.buttonEmoticon.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoticon.Image")));
+            this.buttonEmoticon.Location = new System.Drawing.Point(501, 335);
+            this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEmoticon.Name = "buttonEmoticon";
+            this.buttonEmoticon.Size = new System.Drawing.Size(40, 40);
+            this.buttonEmoticon.TabIndex = 4;
+            this.buttonEmoticon.UseVisualStyleBackColor = true;
+            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
             // 
             // buttonEmoti16
             // 
@@ -421,13 +360,79 @@
             this.buttonEmoti1.UseVisualStyleBackColor = true;
             this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
             // 
-            // timer1
+            // buttonJugar
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.buttonJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonJugar.Image = ((System.Drawing.Image)(resources.GetObject("buttonJugar.Image")));
+            this.buttonJugar.Location = new System.Drawing.Point(18, 227);
+            this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonJugar.Name = "buttonJugar";
+            this.buttonJugar.Size = new System.Drawing.Size(45, 45);
+            this.buttonJugar.TabIndex = 13;
+            this.buttonJugar.UseVisualStyleBackColor = true;
+            this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
             // 
-            // openFileDialog1
+            // pictureBoxUser
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.pictureBoxUser.Location = new System.Drawing.Point(18, 294);
+            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(110, 120);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxUser.TabIndex = 0;
+            this.pictureBoxUser.TabStop = false;
+            // 
+            // pictureBoxContact
+            // 
+            this.pictureBoxContact.Location = new System.Drawing.Point(18, 11);
+            this.pictureBoxContact.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxContact.Name = "pictureBoxContact";
+            this.pictureBoxContact.Size = new System.Drawing.Size(110, 120);
+            this.pictureBoxContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxContact.TabIndex = 0;
+            this.pictureBoxContact.TabStop = false;
+            // 
+            // buttonFile
+            // 
+            this.buttonFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonFile.Image")));
+            this.buttonFile.Location = new System.Drawing.Point(18, 157);
+            this.buttonFile.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonFile.Name = "buttonFile";
+            this.buttonFile.Size = new System.Drawing.Size(45, 45);
+            this.buttonFile.TabIndex = 5;
+            this.buttonFile.UseVisualStyleBackColor = true;
+            this.buttonFile.Click += new System.EventHandler(this.buttonFile_Click);
+            // 
+            // buttonCall
+            // 
+            this.buttonCall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCall.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonCall.Image = ((System.Drawing.Image)(resources.GetObject("buttonCall.Image")));
+            this.buttonCall.Location = new System.Drawing.Point(83, 157);
+            this.buttonCall.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCall.Name = "buttonCall";
+            this.buttonCall.Size = new System.Drawing.Size(45, 45);
+            this.buttonCall.TabIndex = 7;
+            this.buttonCall.Text = "Llamar";
+            this.buttonCall.UseVisualStyleBackColor = true;
+            this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
+            // 
+            // buttonCamera
+            // 
+            this.buttonCamera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCamera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.buttonCamera.Image = ((System.Drawing.Image)(resources.GetObject("buttonCamera.Image")));
+            this.buttonCamera.Location = new System.Drawing.Point(83, 227);
+            this.buttonCamera.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCamera.Name = "buttonCamera";
+            this.buttonCamera.Size = new System.Drawing.Size(45, 45);
+            this.buttonCamera.TabIndex = 6;
+            this.buttonCamera.Text = "Video";
+            this.buttonCamera.UseVisualStyleBackColor = true;
+            this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
             // 
             // WindowChat
             // 
@@ -446,11 +451,11 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WindowChat";
             this.Text = "Usuario";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
+            this.groupBoxEmoticons.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
-            this.groupBoxEmoticons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxContact)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,18 +463,10 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxContact;
         private System.Windows.Forms.RichTextBox richTextBoxChat;
         private System.Windows.Forms.Button buttonSend;
         private System.Windows.Forms.Button buttonEmoticon;
         private System.Windows.Forms.Button buttonBuzz;
-        private System.Windows.Forms.Button buttonCall;
-        private System.Windows.Forms.Button buttonCamera;
-        private System.Windows.Forms.Button buttonFile;
-        private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.PictureBox pictureBoxUser;
-        private System.Windows.Forms.Label labelUserName;
-        private System.Windows.Forms.Label labelClientReceiver;
         private System.Windows.Forms.RichTextBox richTextBoxMessage;
         private System.Windows.Forms.GroupBox groupBoxEmoticons;
         private System.Windows.Forms.Button buttonEmoti1;
@@ -490,6 +487,14 @@
         private System.Windows.Forms.Button buttonEmoti11;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonCamera;
+        private System.Windows.Forms.Button buttonCall;
+        private System.Windows.Forms.Button buttonFile;
+        private System.Windows.Forms.PictureBox pictureBoxContact;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
         private System.Windows.Forms.Button buttonJugar;
+        private System.Windows.Forms.Label labelClientReceiver;
+        private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.Panel panelLeft;
     }
 }
