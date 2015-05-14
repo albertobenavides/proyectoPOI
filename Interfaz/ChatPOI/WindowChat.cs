@@ -376,6 +376,8 @@ namespace ChatPOI
 
                 string targetIp = "0.0.0.0";
 
+                buttonCall.Image = Properties.Resources.phone2;
+
                 if (globals.udpClients.ContainsKey(labelClientReceiver.Text))
                 {
                     targetIp = globals.udpClients[labelClientReceiver.Text];
@@ -397,6 +399,7 @@ namespace ChatPOI
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         buttonCall.Text = "Llamar";
+                        buttonCall.Image = Properties.Resources.phone1;
                     }
                 }
 
@@ -406,12 +409,14 @@ namespace ChatPOI
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     buttonCall.Text = "Llamar";
+                    buttonCall.Image = Properties.Resources.phone1;
                 }
             }
 
             else
             {
                 buttonCall.Text = "Llamar";
+                buttonCall.Image = Properties.Resources.phone1;
                 wc.audioUdpServer.Dispose();
 
                 m_pWaveOut.Dispose();
@@ -585,12 +590,12 @@ namespace ChatPOI
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                MessageBox.Show("mail Send");
+                MessageBox.Show("Archivo enviado con éxito.");
             }
 
             catch
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("No se pudo enviar el archivo.", "Error");
             }
 
         }

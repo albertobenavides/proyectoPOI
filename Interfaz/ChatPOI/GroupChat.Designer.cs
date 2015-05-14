@@ -64,7 +64,7 @@
             this.buttonPlay.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(75, 75);
-            this.buttonPlay.TabIndex = 13;
+            this.buttonPlay.TabIndex = 4;
             this.buttonPlay.Text = "Jugar";
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Visible = false;
@@ -80,7 +80,7 @@
             this.buttonAddContact.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddContact.Name = "buttonAddContact";
             this.buttonAddContact.Size = new System.Drawing.Size(45, 45);
-            this.buttonAddContact.TabIndex = 8;
+            this.buttonAddContact.TabIndex = 2;
             this.buttonAddContact.Text = "Añadir";
             this.buttonAddContact.UseVisualStyleBackColor = true;
             this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
@@ -106,7 +106,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(45, 45);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 3;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.buttonEmoticon_Click);
             // 
@@ -142,6 +142,7 @@
             this.buttonEmoti16.Name = "buttonEmoti16";
             this.buttonEmoti16.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti16.TabIndex = 15;
+            this.buttonEmoti16.TabStop = false;
             this.buttonEmoti16.UseVisualStyleBackColor = true;
             this.buttonEmoti16.Click += new System.EventHandler(this.buttonEmoti16_Click);
             // 
@@ -152,6 +153,7 @@
             this.buttonEmoti15.Name = "buttonEmoti15";
             this.buttonEmoti15.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti15.TabIndex = 14;
+            this.buttonEmoti15.TabStop = false;
             this.buttonEmoti15.UseVisualStyleBackColor = true;
             this.buttonEmoti15.Click += new System.EventHandler(this.buttonEmoti15_Click);
             // 
@@ -162,6 +164,7 @@
             this.buttonEmoti13.Name = "buttonEmoti13";
             this.buttonEmoti13.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti13.TabIndex = 13;
+            this.buttonEmoti13.TabStop = false;
             this.buttonEmoti13.UseVisualStyleBackColor = true;
             this.buttonEmoti13.Click += new System.EventHandler(this.buttonEmoti13_Click);
             // 
@@ -172,6 +175,7 @@
             this.buttonEmoti14.Name = "buttonEmoti14";
             this.buttonEmoti14.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti14.TabIndex = 12;
+            this.buttonEmoti14.TabStop = false;
             this.buttonEmoti14.UseVisualStyleBackColor = true;
             this.buttonEmoti14.Click += new System.EventHandler(this.buttonEmoti14_Click);
             // 
@@ -182,6 +186,7 @@
             this.buttonEmoti12.Name = "buttonEmoti12";
             this.buttonEmoti12.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti12.TabIndex = 11;
+            this.buttonEmoti12.TabStop = false;
             this.buttonEmoti12.UseVisualStyleBackColor = true;
             this.buttonEmoti12.Click += new System.EventHandler(this.buttonEmoti12_Click);
             // 
@@ -192,6 +197,7 @@
             this.buttonEmoti11.Name = "buttonEmoti11";
             this.buttonEmoti11.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti11.TabIndex = 10;
+            this.buttonEmoti11.TabStop = false;
             this.buttonEmoti11.UseVisualStyleBackColor = true;
             this.buttonEmoti11.Click += new System.EventHandler(this.buttonEmoti11_Click);
             // 
@@ -202,6 +208,7 @@
             this.buttonEmoti2.Name = "buttonEmoti2";
             this.buttonEmoti2.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti2.TabIndex = 9;
+            this.buttonEmoti2.TabStop = false;
             this.buttonEmoti2.UseVisualStyleBackColor = true;
             this.buttonEmoti2.Click += new System.EventHandler(this.buttonEmoti2_Click);
             // 
@@ -212,6 +219,7 @@
             this.buttonEmoti3.Name = "buttonEmoti3";
             this.buttonEmoti3.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti3.TabIndex = 8;
+            this.buttonEmoti3.TabStop = false;
             this.buttonEmoti3.UseVisualStyleBackColor = true;
             this.buttonEmoti3.Click += new System.EventHandler(this.buttonEmoti3_Click);
             // 
@@ -222,6 +230,7 @@
             this.buttonEmoti4.Name = "buttonEmoti4";
             this.buttonEmoti4.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti4.TabIndex = 7;
+            this.buttonEmoti4.TabStop = false;
             this.buttonEmoti4.UseVisualStyleBackColor = true;
             this.buttonEmoti4.Click += new System.EventHandler(this.buttonEmoti4_Click);
             // 
@@ -232,6 +241,7 @@
             this.buttonEmoti5.Name = "buttonEmoti5";
             this.buttonEmoti5.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti5.TabIndex = 6;
+            this.buttonEmoti5.TabStop = false;
             this.buttonEmoti5.UseVisualStyleBackColor = true;
             this.buttonEmoti5.Click += new System.EventHandler(this.buttonEmoti5_Click);
             // 
@@ -242,6 +252,7 @@
             this.buttonEmoti6.Name = "buttonEmoti6";
             this.buttonEmoti6.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti6.TabIndex = 5;
+            this.buttonEmoti6.TabStop = false;
             this.buttonEmoti6.UseVisualStyleBackColor = true;
             this.buttonEmoti6.Click += new System.EventHandler(this.buttonEmoti6_Click);
             // 
@@ -252,6 +263,7 @@
             this.buttonEmoti7.Name = "buttonEmoti7";
             this.buttonEmoti7.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti7.TabIndex = 4;
+            this.buttonEmoti7.TabStop = false;
             this.buttonEmoti7.UseVisualStyleBackColor = true;
             this.buttonEmoti7.Click += new System.EventHandler(this.buttonEmoti7_Click);
             // 
@@ -262,6 +274,7 @@
             this.buttonEmoti8.Name = "buttonEmoti8";
             this.buttonEmoti8.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti8.TabIndex = 3;
+            this.buttonEmoti8.TabStop = false;
             this.buttonEmoti8.UseVisualStyleBackColor = true;
             this.buttonEmoti8.Click += new System.EventHandler(this.buttonEmoti8_Click);
             // 
@@ -272,6 +285,7 @@
             this.buttonEmoti9.Name = "buttonEmoti9";
             this.buttonEmoti9.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti9.TabIndex = 2;
+            this.buttonEmoti9.TabStop = false;
             this.buttonEmoti9.UseVisualStyleBackColor = true;
             this.buttonEmoti9.Click += new System.EventHandler(this.buttonEmoti9_Click);
             // 
@@ -282,6 +296,7 @@
             this.buttonEmoti10.Name = "buttonEmoti10";
             this.buttonEmoti10.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti10.TabIndex = 1;
+            this.buttonEmoti10.TabStop = false;
             this.buttonEmoti10.UseVisualStyleBackColor = true;
             this.buttonEmoti10.Click += new System.EventHandler(this.buttonEmoti10_Click);
             // 
@@ -292,6 +307,7 @@
             this.buttonEmoti1.Name = "buttonEmoti1";
             this.buttonEmoti1.Size = new System.Drawing.Size(30, 30);
             this.buttonEmoti1.TabIndex = 0;
+            this.buttonEmoti1.TabStop = false;
             this.buttonEmoti1.UseVisualStyleBackColor = true;
             this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
             // 
@@ -302,6 +318,8 @@
             this.contactList.Name = "contactList";
             this.contactList.Size = new System.Drawing.Size(142, 349);
             this.contactList.TabIndex = 17;
+            this.contactList.TabStop = false;
+            this.contactList.Visible = false;
             this.contactList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.contactList_ItemCheck);
             // 
             // richTextBoxMessage
@@ -323,7 +341,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 91);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Enviar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonSend_Click);
@@ -342,7 +360,7 @@
             this.Controls.Add(this.contactList);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.richTextBoxChat);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "GroupChat";
             this.Text = "GroupChat";
             this.groupBoxEmoticons.ResumeLayout(false);

@@ -127,7 +127,7 @@ namespace ChatPOI
                 }
                 catch
                 {
-                    MessageBox.Show("Error", "Servidor fuera de linea.");
+                    MessageBox.Show("Servidor fuera de linea.", "Error");
                     Exit();
                 }
             }

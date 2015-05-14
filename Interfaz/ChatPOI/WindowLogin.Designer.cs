@@ -44,7 +44,7 @@
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(150, 17);
             this.textBoxUser.TabIndex = 1;
-            this.textBoxUser.Text = "Nombre de usuario";
+            this.textBoxUser.Text = "Correo electrónico";
             this.textBoxUser.Enter += new System.EventHandler(this.textBoxUser_Enter);
             this.textBoxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUser_KeyPress);
             this.textBoxUser.Leave += new System.EventHandler(this.textBoxUser_Leave);
@@ -104,9 +104,9 @@
             this.Controls.Add(this.linkLabelCreateAccount);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUser);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "WindowLogin";
-            this.Text = "Cheet-A-Chat";
+            this.Text = "Cheet-a-Chat";
             this.ResumeLayout(false);
             this.PerformLayout();
 

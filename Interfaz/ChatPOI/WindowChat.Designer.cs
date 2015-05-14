@@ -33,6 +33,14 @@
             this.richTextBoxChat = new System.Windows.Forms.RichTextBox();
             this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.groupBoxEmoticons = new System.Windows.Forms.GroupBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.labelClientReceiver = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.panelLeft = new System.Windows.Forms.Panel();
+            this.buttonBuzz = new System.Windows.Forms.Button();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.buttonEmoticon = new System.Windows.Forms.Button();
             this.buttonEmoti16 = new System.Windows.Forms.Button();
             this.buttonEmoti15 = new System.Windows.Forms.Button();
             this.buttonEmoti13 = new System.Windows.Forms.Button();
@@ -49,20 +57,12 @@
             this.buttonEmoti9 = new System.Windows.Forms.Button();
             this.buttonEmoti10 = new System.Windows.Forms.Button();
             this.buttonEmoti1 = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.labelClientReceiver = new System.Windows.Forms.Label();
-            this.labelUserName = new System.Windows.Forms.Label();
-            this.panelLeft = new System.Windows.Forms.Panel();
             this.buttonJugar = new System.Windows.Forms.Button();
             this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.pictureBoxContact = new System.Windows.Forms.PictureBox();
             this.buttonFile = new System.Windows.Forms.Button();
             this.buttonCall = new System.Windows.Forms.Button();
             this.buttonCamera = new System.Windows.Forms.Button();
-            this.buttonBuzz = new System.Windows.Forms.Button();
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.buttonEmoticon = new System.Windows.Forms.Button();
             this.groupBoxEmoticons.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
@@ -121,166 +121,6 @@
             this.groupBoxEmoticons.Text = "Emoticons";
             this.groupBoxEmoticons.Leave += new System.EventHandler(this.groupBoxEmoticons_Leave);
             // 
-            // buttonEmoti16
-            // 
-            this.buttonEmoti16.Image = global::ChatPOI.Properties.Resources.emoticons16;
-            this.buttonEmoti16.Location = new System.Drawing.Point(114, 126);
-            this.buttonEmoti16.Name = "buttonEmoti16";
-            this.buttonEmoti16.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti16.TabIndex = 15;
-            this.buttonEmoti16.UseVisualStyleBackColor = true;
-            this.buttonEmoti16.Click += new System.EventHandler(this.buttonEmoti16_Click);
-            // 
-            // buttonEmoti15
-            // 
-            this.buttonEmoti15.Image = global::ChatPOI.Properties.Resources.emoticons15;
-            this.buttonEmoti15.Location = new System.Drawing.Point(78, 126);
-            this.buttonEmoti15.Name = "buttonEmoti15";
-            this.buttonEmoti15.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti15.TabIndex = 14;
-            this.buttonEmoti15.UseVisualStyleBackColor = true;
-            this.buttonEmoti15.Click += new System.EventHandler(this.buttonEmoti15_Click);
-            // 
-            // buttonEmoti13
-            // 
-            this.buttonEmoti13.Image = global::ChatPOI.Properties.Resources.emoticons13;
-            this.buttonEmoti13.Location = new System.Drawing.Point(6, 126);
-            this.buttonEmoti13.Name = "buttonEmoti13";
-            this.buttonEmoti13.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti13.TabIndex = 13;
-            this.buttonEmoti13.UseVisualStyleBackColor = true;
-            this.buttonEmoti13.Click += new System.EventHandler(this.buttonEmoti13_Click);
-            // 
-            // buttonEmoti14
-            // 
-            this.buttonEmoti14.Image = global::ChatPOI.Properties.Resources.emoticons14;
-            this.buttonEmoti14.Location = new System.Drawing.Point(42, 126);
-            this.buttonEmoti14.Name = "buttonEmoti14";
-            this.buttonEmoti14.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti14.TabIndex = 12;
-            this.buttonEmoti14.UseVisualStyleBackColor = true;
-            this.buttonEmoti14.Click += new System.EventHandler(this.buttonEmoti14_Click);
-            // 
-            // buttonEmoti12
-            // 
-            this.buttonEmoti12.Image = global::ChatPOI.Properties.Resources.emoticons12;
-            this.buttonEmoti12.Location = new System.Drawing.Point(114, 91);
-            this.buttonEmoti12.Name = "buttonEmoti12";
-            this.buttonEmoti12.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti12.TabIndex = 11;
-            this.buttonEmoti12.UseVisualStyleBackColor = true;
-            this.buttonEmoti12.Click += new System.EventHandler(this.buttonEmoti12_Click);
-            // 
-            // buttonEmoti11
-            // 
-            this.buttonEmoti11.Image = global::ChatPOI.Properties.Resources.emoticons11;
-            this.buttonEmoti11.Location = new System.Drawing.Point(78, 91);
-            this.buttonEmoti11.Name = "buttonEmoti11";
-            this.buttonEmoti11.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti11.TabIndex = 10;
-            this.buttonEmoti11.UseVisualStyleBackColor = true;
-            this.buttonEmoti11.Click += new System.EventHandler(this.buttonEmoti11_Click);
-            // 
-            // buttonEmoti2
-            // 
-            this.buttonEmoti2.Image = global::ChatPOI.Properties.Resources.emoticons02;
-            this.buttonEmoti2.Location = new System.Drawing.Point(42, 19);
-            this.buttonEmoti2.Name = "buttonEmoti2";
-            this.buttonEmoti2.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti2.TabIndex = 9;
-            this.buttonEmoti2.UseVisualStyleBackColor = true;
-            this.buttonEmoti2.Click += new System.EventHandler(this.buttonEmoti2_Click);
-            // 
-            // buttonEmoti3
-            // 
-            this.buttonEmoti3.Image = global::ChatPOI.Properties.Resources.emoticons03;
-            this.buttonEmoti3.Location = new System.Drawing.Point(78, 19);
-            this.buttonEmoti3.Name = "buttonEmoti3";
-            this.buttonEmoti3.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti3.TabIndex = 8;
-            this.buttonEmoti3.UseVisualStyleBackColor = true;
-            this.buttonEmoti3.Click += new System.EventHandler(this.buttonEmoti3_Click);
-            // 
-            // buttonEmoti4
-            // 
-            this.buttonEmoti4.Image = global::ChatPOI.Properties.Resources.emoticons04;
-            this.buttonEmoti4.Location = new System.Drawing.Point(114, 19);
-            this.buttonEmoti4.Name = "buttonEmoti4";
-            this.buttonEmoti4.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti4.TabIndex = 7;
-            this.buttonEmoti4.UseVisualStyleBackColor = true;
-            this.buttonEmoti4.Click += new System.EventHandler(this.buttonEmoti4_Click);
-            // 
-            // buttonEmoti5
-            // 
-            this.buttonEmoti5.Image = global::ChatPOI.Properties.Resources.emoticons05;
-            this.buttonEmoti5.Location = new System.Drawing.Point(6, 55);
-            this.buttonEmoti5.Name = "buttonEmoti5";
-            this.buttonEmoti5.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti5.TabIndex = 6;
-            this.buttonEmoti5.UseVisualStyleBackColor = true;
-            this.buttonEmoti5.Click += new System.EventHandler(this.buttonEmoti5_Click);
-            // 
-            // buttonEmoti6
-            // 
-            this.buttonEmoti6.Image = global::ChatPOI.Properties.Resources.emoticons06;
-            this.buttonEmoti6.Location = new System.Drawing.Point(42, 55);
-            this.buttonEmoti6.Name = "buttonEmoti6";
-            this.buttonEmoti6.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti6.TabIndex = 5;
-            this.buttonEmoti6.UseVisualStyleBackColor = true;
-            this.buttonEmoti6.Click += new System.EventHandler(this.buttonEmoti6_Click);
-            // 
-            // buttonEmoti7
-            // 
-            this.buttonEmoti7.Image = global::ChatPOI.Properties.Resources.emoticons07;
-            this.buttonEmoti7.Location = new System.Drawing.Point(78, 55);
-            this.buttonEmoti7.Name = "buttonEmoti7";
-            this.buttonEmoti7.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti7.TabIndex = 4;
-            this.buttonEmoti7.UseVisualStyleBackColor = true;
-            this.buttonEmoti7.Click += new System.EventHandler(this.buttonEmoti7_Click);
-            // 
-            // buttonEmoti8
-            // 
-            this.buttonEmoti8.Image = global::ChatPOI.Properties.Resources.emoticons08;
-            this.buttonEmoti8.Location = new System.Drawing.Point(114, 55);
-            this.buttonEmoti8.Name = "buttonEmoti8";
-            this.buttonEmoti8.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti8.TabIndex = 3;
-            this.buttonEmoti8.UseVisualStyleBackColor = true;
-            this.buttonEmoti8.Click += new System.EventHandler(this.buttonEmoti8_Click);
-            // 
-            // buttonEmoti9
-            // 
-            this.buttonEmoti9.Image = global::ChatPOI.Properties.Resources.emoticons09;
-            this.buttonEmoti9.Location = new System.Drawing.Point(6, 91);
-            this.buttonEmoti9.Name = "buttonEmoti9";
-            this.buttonEmoti9.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti9.TabIndex = 2;
-            this.buttonEmoti9.UseVisualStyleBackColor = true;
-            this.buttonEmoti9.Click += new System.EventHandler(this.buttonEmoti9_Click);
-            // 
-            // buttonEmoti10
-            // 
-            this.buttonEmoti10.Image = global::ChatPOI.Properties.Resources.emoticons10;
-            this.buttonEmoti10.Location = new System.Drawing.Point(42, 91);
-            this.buttonEmoti10.Name = "buttonEmoti10";
-            this.buttonEmoti10.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti10.TabIndex = 1;
-            this.buttonEmoti10.UseVisualStyleBackColor = true;
-            this.buttonEmoti10.Click += new System.EventHandler(this.buttonEmoti10_Click);
-            // 
-            // buttonEmoti1
-            // 
-            this.buttonEmoti1.Image = global::ChatPOI.Properties.Resources.emoticons01;
-            this.buttonEmoti1.Location = new System.Drawing.Point(6, 19);
-            this.buttonEmoti1.Name = "buttonEmoti1";
-            this.buttonEmoti1.Size = new System.Drawing.Size(30, 30);
-            this.buttonEmoti1.TabIndex = 0;
-            this.buttonEmoti1.UseVisualStyleBackColor = true;
-            this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -307,9 +147,9 @@
             this.labelUserName.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.labelUserName.Location = new System.Drawing.Point(15, 416);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(113, 15);
+            this.labelUserName.Size = new System.Drawing.Size(107, 15);
             this.labelUserName.TabIndex = 2;
-            this.labelUserName.Text = "Nombre de usuario";
+            this.labelUserName.Text = "Correo electrónico";
             // 
             // panelLeft
             // 
@@ -326,6 +166,217 @@
             this.panelLeft.Size = new System.Drawing.Size(162, 438);
             this.panelLeft.TabIndex = 11;
             // 
+            // buttonBuzz
+            // 
+            this.buttonBuzz.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuzz.Image")));
+            this.buttonBuzz.Location = new System.Drawing.Point(501, 379);
+            this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonBuzz.Name = "buttonBuzz";
+            this.buttonBuzz.Size = new System.Drawing.Size(40, 40);
+            this.buttonBuzz.TabIndex = 3;
+            this.buttonBuzz.UseVisualStyleBackColor = true;
+            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
+            // 
+            // buttonSend
+            // 
+            this.buttonSend.AutoSize = true;
+            this.buttonSend.ForeColor = System.Drawing.Color.LightBlue;
+            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
+            this.buttonSend.Location = new System.Drawing.Point(545, 335);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(118, 91);
+            this.buttonSend.TabIndex = 1;
+            this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // buttonEmoticon
+            // 
+            this.buttonEmoticon.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoticon.Image")));
+            this.buttonEmoticon.Location = new System.Drawing.Point(501, 335);
+            this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEmoticon.Name = "buttonEmoticon";
+            this.buttonEmoticon.Size = new System.Drawing.Size(40, 40);
+            this.buttonEmoticon.TabIndex = 2;
+            this.buttonEmoticon.UseVisualStyleBackColor = true;
+            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
+            // 
+            // buttonEmoti16
+            // 
+            this.buttonEmoti16.Image = global::ChatPOI.Properties.Resources.emoticons16;
+            this.buttonEmoti16.Location = new System.Drawing.Point(114, 126);
+            this.buttonEmoti16.Name = "buttonEmoti16";
+            this.buttonEmoti16.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti16.TabIndex = 15;
+            this.buttonEmoti16.TabStop = false;
+            this.buttonEmoti16.UseVisualStyleBackColor = true;
+            this.buttonEmoti16.Click += new System.EventHandler(this.buttonEmoti16_Click);
+            // 
+            // buttonEmoti15
+            // 
+            this.buttonEmoti15.Image = global::ChatPOI.Properties.Resources.emoticons15;
+            this.buttonEmoti15.Location = new System.Drawing.Point(78, 126);
+            this.buttonEmoti15.Name = "buttonEmoti15";
+            this.buttonEmoti15.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti15.TabIndex = 14;
+            this.buttonEmoti15.TabStop = false;
+            this.buttonEmoti15.UseVisualStyleBackColor = true;
+            this.buttonEmoti15.Click += new System.EventHandler(this.buttonEmoti15_Click);
+            // 
+            // buttonEmoti13
+            // 
+            this.buttonEmoti13.Image = global::ChatPOI.Properties.Resources.emoticons13;
+            this.buttonEmoti13.Location = new System.Drawing.Point(6, 126);
+            this.buttonEmoti13.Name = "buttonEmoti13";
+            this.buttonEmoti13.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti13.TabIndex = 13;
+            this.buttonEmoti13.TabStop = false;
+            this.buttonEmoti13.UseVisualStyleBackColor = true;
+            this.buttonEmoti13.Click += new System.EventHandler(this.buttonEmoti13_Click);
+            // 
+            // buttonEmoti14
+            // 
+            this.buttonEmoti14.Image = global::ChatPOI.Properties.Resources.emoticons14;
+            this.buttonEmoti14.Location = new System.Drawing.Point(42, 126);
+            this.buttonEmoti14.Name = "buttonEmoti14";
+            this.buttonEmoti14.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti14.TabIndex = 12;
+            this.buttonEmoti14.TabStop = false;
+            this.buttonEmoti14.UseVisualStyleBackColor = true;
+            this.buttonEmoti14.Click += new System.EventHandler(this.buttonEmoti14_Click);
+            // 
+            // buttonEmoti12
+            // 
+            this.buttonEmoti12.Image = global::ChatPOI.Properties.Resources.emoticons12;
+            this.buttonEmoti12.Location = new System.Drawing.Point(114, 91);
+            this.buttonEmoti12.Name = "buttonEmoti12";
+            this.buttonEmoti12.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti12.TabIndex = 11;
+            this.buttonEmoti12.TabStop = false;
+            this.buttonEmoti12.UseVisualStyleBackColor = true;
+            this.buttonEmoti12.Click += new System.EventHandler(this.buttonEmoti12_Click);
+            // 
+            // buttonEmoti11
+            // 
+            this.buttonEmoti11.Image = global::ChatPOI.Properties.Resources.emoticons11;
+            this.buttonEmoti11.Location = new System.Drawing.Point(78, 91);
+            this.buttonEmoti11.Name = "buttonEmoti11";
+            this.buttonEmoti11.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti11.TabIndex = 10;
+            this.buttonEmoti11.TabStop = false;
+            this.buttonEmoti11.UseVisualStyleBackColor = true;
+            this.buttonEmoti11.Click += new System.EventHandler(this.buttonEmoti11_Click);
+            // 
+            // buttonEmoti2
+            // 
+            this.buttonEmoti2.Image = global::ChatPOI.Properties.Resources.emoticons02;
+            this.buttonEmoti2.Location = new System.Drawing.Point(42, 19);
+            this.buttonEmoti2.Name = "buttonEmoti2";
+            this.buttonEmoti2.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti2.TabIndex = 9;
+            this.buttonEmoti2.TabStop = false;
+            this.buttonEmoti2.UseVisualStyleBackColor = true;
+            this.buttonEmoti2.Click += new System.EventHandler(this.buttonEmoti2_Click);
+            // 
+            // buttonEmoti3
+            // 
+            this.buttonEmoti3.Image = global::ChatPOI.Properties.Resources.emoticons03;
+            this.buttonEmoti3.Location = new System.Drawing.Point(78, 19);
+            this.buttonEmoti3.Name = "buttonEmoti3";
+            this.buttonEmoti3.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti3.TabIndex = 8;
+            this.buttonEmoti3.TabStop = false;
+            this.buttonEmoti3.UseVisualStyleBackColor = true;
+            this.buttonEmoti3.Click += new System.EventHandler(this.buttonEmoti3_Click);
+            // 
+            // buttonEmoti4
+            // 
+            this.buttonEmoti4.Image = global::ChatPOI.Properties.Resources.emoticons04;
+            this.buttonEmoti4.Location = new System.Drawing.Point(114, 19);
+            this.buttonEmoti4.Name = "buttonEmoti4";
+            this.buttonEmoti4.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti4.TabIndex = 7;
+            this.buttonEmoti4.TabStop = false;
+            this.buttonEmoti4.UseVisualStyleBackColor = true;
+            this.buttonEmoti4.Click += new System.EventHandler(this.buttonEmoti4_Click);
+            // 
+            // buttonEmoti5
+            // 
+            this.buttonEmoti5.Image = global::ChatPOI.Properties.Resources.emoticons05;
+            this.buttonEmoti5.Location = new System.Drawing.Point(6, 55);
+            this.buttonEmoti5.Name = "buttonEmoti5";
+            this.buttonEmoti5.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti5.TabIndex = 6;
+            this.buttonEmoti5.TabStop = false;
+            this.buttonEmoti5.UseVisualStyleBackColor = true;
+            this.buttonEmoti5.Click += new System.EventHandler(this.buttonEmoti5_Click);
+            // 
+            // buttonEmoti6
+            // 
+            this.buttonEmoti6.Image = global::ChatPOI.Properties.Resources.emoticons06;
+            this.buttonEmoti6.Location = new System.Drawing.Point(42, 55);
+            this.buttonEmoti6.Name = "buttonEmoti6";
+            this.buttonEmoti6.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti6.TabIndex = 5;
+            this.buttonEmoti6.TabStop = false;
+            this.buttonEmoti6.UseVisualStyleBackColor = true;
+            this.buttonEmoti6.Click += new System.EventHandler(this.buttonEmoti6_Click);
+            // 
+            // buttonEmoti7
+            // 
+            this.buttonEmoti7.Image = global::ChatPOI.Properties.Resources.emoticons07;
+            this.buttonEmoti7.Location = new System.Drawing.Point(78, 55);
+            this.buttonEmoti7.Name = "buttonEmoti7";
+            this.buttonEmoti7.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti7.TabIndex = 4;
+            this.buttonEmoti7.TabStop = false;
+            this.buttonEmoti7.UseVisualStyleBackColor = true;
+            this.buttonEmoti7.Click += new System.EventHandler(this.buttonEmoti7_Click);
+            // 
+            // buttonEmoti8
+            // 
+            this.buttonEmoti8.Image = global::ChatPOI.Properties.Resources.emoticons08;
+            this.buttonEmoti8.Location = new System.Drawing.Point(114, 55);
+            this.buttonEmoti8.Name = "buttonEmoti8";
+            this.buttonEmoti8.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti8.TabIndex = 3;
+            this.buttonEmoti8.TabStop = false;
+            this.buttonEmoti8.UseVisualStyleBackColor = true;
+            this.buttonEmoti8.Click += new System.EventHandler(this.buttonEmoti8_Click);
+            // 
+            // buttonEmoti9
+            // 
+            this.buttonEmoti9.Image = global::ChatPOI.Properties.Resources.emoticons09;
+            this.buttonEmoti9.Location = new System.Drawing.Point(6, 91);
+            this.buttonEmoti9.Name = "buttonEmoti9";
+            this.buttonEmoti9.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti9.TabIndex = 2;
+            this.buttonEmoti9.TabStop = false;
+            this.buttonEmoti9.UseVisualStyleBackColor = true;
+            this.buttonEmoti9.Click += new System.EventHandler(this.buttonEmoti9_Click);
+            // 
+            // buttonEmoti10
+            // 
+            this.buttonEmoti10.Image = global::ChatPOI.Properties.Resources.emoticons10;
+            this.buttonEmoti10.Location = new System.Drawing.Point(42, 91);
+            this.buttonEmoti10.Name = "buttonEmoti10";
+            this.buttonEmoti10.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti10.TabIndex = 1;
+            this.buttonEmoti10.TabStop = false;
+            this.buttonEmoti10.UseVisualStyleBackColor = true;
+            this.buttonEmoti10.Click += new System.EventHandler(this.buttonEmoti10_Click);
+            // 
+            // buttonEmoti1
+            // 
+            this.buttonEmoti1.Image = global::ChatPOI.Properties.Resources.emoticons01;
+            this.buttonEmoti1.Location = new System.Drawing.Point(6, 19);
+            this.buttonEmoti1.Name = "buttonEmoti1";
+            this.buttonEmoti1.Size = new System.Drawing.Size(30, 30);
+            this.buttonEmoti1.TabIndex = 0;
+            this.buttonEmoti1.TabStop = false;
+            this.buttonEmoti1.UseVisualStyleBackColor = true;
+            this.buttonEmoti1.Click += new System.EventHandler(this.buttonEmoti1_Click);
+            // 
             // buttonJugar
             // 
             this.buttonJugar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -334,7 +385,7 @@
             this.buttonJugar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonJugar.Name = "buttonJugar";
             this.buttonJugar.Size = new System.Drawing.Size(45, 45);
-            this.buttonJugar.TabIndex = 13;
+            this.buttonJugar.TabIndex = 6;
             this.buttonJugar.UseVisualStyleBackColor = true;
             this.buttonJugar.Click += new System.EventHandler(this.buttonJugar_Click);
             // 
@@ -366,7 +417,7 @@
             this.buttonFile.Margin = new System.Windows.Forms.Padding(2);
             this.buttonFile.Name = "buttonFile";
             this.buttonFile.Size = new System.Drawing.Size(45, 45);
-            this.buttonFile.TabIndex = 5;
+            this.buttonFile.TabIndex = 4;
             this.buttonFile.UseVisualStyleBackColor = true;
             this.buttonFile.Click += new System.EventHandler(this.buttonFile_Click);
             // 
@@ -375,12 +426,12 @@
             this.buttonCall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCall.ForeColor = System.Drawing.Color.Transparent;
-            this.buttonCall.Image = ((System.Drawing.Image)(resources.GetObject("buttonCall.Image")));
+            this.buttonCall.Image = global::ChatPOI.Properties.Resources.phone1;
             this.buttonCall.Location = new System.Drawing.Point(83, 157);
             this.buttonCall.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCall.Name = "buttonCall";
             this.buttonCall.Size = new System.Drawing.Size(45, 45);
-            this.buttonCall.TabIndex = 7;
+            this.buttonCall.TabIndex = 5;
             this.buttonCall.Text = "Llamar";
             this.buttonCall.UseVisualStyleBackColor = true;
             this.buttonCall.Click += new System.EventHandler(this.buttonCall_Click);
@@ -395,45 +446,10 @@
             this.buttonCamera.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCamera.Name = "buttonCamera";
             this.buttonCamera.Size = new System.Drawing.Size(45, 45);
-            this.buttonCamera.TabIndex = 6;
+            this.buttonCamera.TabIndex = 7;
             this.buttonCamera.Text = "Video";
             this.buttonCamera.UseVisualStyleBackColor = true;
             this.buttonCamera.Click += new System.EventHandler(this.buttonCamera_Click);
-            // 
-            // buttonBuzz
-            // 
-            this.buttonBuzz.Image = ((System.Drawing.Image)(resources.GetObject("buttonBuzz.Image")));
-            this.buttonBuzz.Location = new System.Drawing.Point(501, 379);
-            this.buttonBuzz.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonBuzz.Name = "buttonBuzz";
-            this.buttonBuzz.Size = new System.Drawing.Size(40, 40);
-            this.buttonBuzz.TabIndex = 3;
-            this.buttonBuzz.UseVisualStyleBackColor = true;
-            this.buttonBuzz.Click += new System.EventHandler(this.buttonBuzz_Click);
-            // 
-            // buttonSend
-            // 
-            this.buttonSend.AutoSize = true;
-            this.buttonSend.ForeColor = System.Drawing.Color.LightBlue;
-            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
-            this.buttonSend.Location = new System.Drawing.Point(545, 335);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(118, 91);
-            this.buttonSend.TabIndex = 2;
-            this.buttonSend.UseVisualStyleBackColor = true;
-            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
-            // 
-            // buttonEmoticon
-            // 
-            this.buttonEmoticon.Image = ((System.Drawing.Image)(resources.GetObject("buttonEmoticon.Image")));
-            this.buttonEmoticon.Location = new System.Drawing.Point(501, 335);
-            this.buttonEmoticon.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonEmoticon.Name = "buttonEmoticon";
-            this.buttonEmoticon.Size = new System.Drawing.Size(40, 40);
-            this.buttonEmoticon.TabIndex = 4;
-            this.buttonEmoticon.UseVisualStyleBackColor = true;
-            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
             // 
             // WindowChat
             // 
@@ -448,7 +464,7 @@
             this.Controls.Add(this.richTextBoxMessage);
             this.Controls.Add(this.richTextBoxChat);
             this.Controls.Add(this.panelLeft);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WindowChat";
             this.Text = "Usuario";

@@ -19,7 +19,7 @@ namespace ChatPOI
 
         MailAddress vmail;
 
-        Dictionary<string, string> users  = new Dictionary<string, string>();
+        Dictionary<string, string> users = new Dictionary<string, string>();
 
         public WindowLogin()
         {
@@ -39,13 +39,13 @@ namespace ChatPOI
                 {
                     string[] s = temp.Split(',');
                     users.Add(s[0], s[1]);
-                }       
+                }
             }
         }
 
         private void textBoxUser_Enter(object sender, EventArgs e)
         {
-            if (textBoxUser.Text == "Nombre de usuario")
+            if (textBoxUser.Text == "Correo electrónico")
             {
                 textBoxUser.Text = "";
                 textBoxUser.Font = new Font(textBoxUser.Font, FontStyle.Regular);
@@ -59,7 +59,7 @@ namespace ChatPOI
             {
                 textBoxUser.Font = new Font(textBoxUser.Font, FontStyle.Italic);
                 textBoxUser.ForeColor = Color.Gray;
-                textBoxUser.Text = "Nombre de usuario";
+                textBoxUser.Text = "Correo electrónico";
             }
         }
 
@@ -87,38 +87,66 @@ namespace ChatPOI
 
         private void textBoxUser_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return && (textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+            if (e.KeyChar == (char)Keys.Return && (textBoxUser.Text != "" || textBoxUser.Text != "Correo electrónico"))
             {
-                if (users.ContainsKey(textBoxUser.Text))
+                try
                 {
-                    string s;
-                    if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                    vmail = new MailAddress(textBoxUser.Text);
+
+                    if ((textBoxUser.Text != "" || textBoxUser.Text != "Correo electrónico"))
                     {
-                        globals.username = textBoxUser.Text;
-                        this.DialogResult = DialogResult.OK;
+                        if (users.ContainsKey(textBoxUser.Text))
+                        {
+                            string s;
+                            if (users.TryGetValue(textBoxUser.Text, out s) && s == textBoxPassword.Text)
+                            {
+                                globals.username = textBoxUser.Text;
+                                this.DialogResult = DialogResult.OK;
+                            }
+                        }
+                        else
+                            MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                }
+                catch
+                {
+                    MessageBox.Show("Formato de correo no válido.");
                 }
             }
         }
 
         private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
+
+            if (!(textBoxUser.Text == "" || textBoxUser.Text == "Correo electrónico"
+                || textBoxPassword.Text == "" || textBoxPassword.Text == "Contraseña"))
             {
-                vmail = new MailAddress(textBoxUser.Text);
-                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario") &&
-                    (textBoxPassword.Text != "" || textBoxPassword.Text != "Contraseña"))
+                if (!users.Keys.Contains(textBoxUser.Text))
                 {
-                    using (StreamWriter writer = new StreamWriter("users.txt", true))
+                    try
                     {
-                        writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
+                        vmail = new MailAddress(textBoxUser.Text);
+                        using (StreamWriter writer = new StreamWriter("users.txt", true))
+                        {
+                            writer.WriteLine(textBoxUser.Text + "," + textBoxPassword.Text);
+                        }
+                        users.Add(textBoxUser.Text, textBoxPassword.Text);
+                        MessageBox.Show("Usuario " + textBoxUser.Text + " creado con éxito.", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    users.Add(textBoxUser.Text, textBoxPassword.Text);
+                    catch
+                    {
+                        MessageBox.Show("Formato de correo no válido.");
+                    }
                 }
+                else
+                    MessageBox.Show("El usuario proporcionado ya tiene una cuenta.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch {
-                MessageBox.Show("Formato de correo no válido.");
-            }
+            else
+                MessageBox.Show("Favor de proporcionar un correo y una contraseña válidos para registrarse.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -127,7 +155,7 @@ namespace ChatPOI
             {
                 vmail = new MailAddress(textBoxUser.Text);
 
-                if ((textBoxUser.Text != "" || textBoxUser.Text != "Nombre de usuario"))
+                if ((textBoxUser.Text != "" || textBoxUser.Text != "Correo electrónico"))
                 {
                     if (users.ContainsKey(textBoxUser.Text))
                     {
@@ -138,6 +166,9 @@ namespace ChatPOI
                             this.DialogResult = DialogResult.OK;
                         }
                     }
+                    else
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch

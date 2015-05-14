@@ -1367,6 +1367,7 @@ namespace ChatPOI
             // 
             this.player1Score.Location = new System.Drawing.Point(227, 24);
             this.player1Score.Name = "player1Score";
+            this.player1Score.ReadOnly = true;
             this.player1Score.Size = new System.Drawing.Size(67, 20);
             this.player1Score.TabIndex = 3;
             // 
@@ -1374,6 +1375,7 @@ namespace ChatPOI
             // 
             this.player2Score.Location = new System.Drawing.Point(227, 84);
             this.player2Score.Name = "player2Score";
+            this.player2Score.ReadOnly = true;
             this.player2Score.Size = new System.Drawing.Size(67, 20);
             this.player2Score.TabIndex = 3;
             // 
@@ -1381,6 +1383,7 @@ namespace ChatPOI
             // 
             this.player3Score.Location = new System.Drawing.Point(227, 144);
             this.player3Score.Name = "player3Score";
+            this.player3Score.ReadOnly = true;
             this.player3Score.Size = new System.Drawing.Size(67, 20);
             this.player3Score.TabIndex = 3;
             // 
@@ -1452,7 +1455,7 @@ namespace ChatPOI
             this.Controls.Add(this.player1Score);
             this.Controls.Add(this.shapeContainer1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "GameBoard";
             this.Text = "Timbiriche";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameBoard_FormClosing);

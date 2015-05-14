@@ -107,12 +107,6 @@
     <EmbeddedResource Include="GroupChat.resx">
       <DependentUpon>GroupChat.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="WindowVoice.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WindowVoice.Designer.cs">
-      <DependentUpon>WindowVoice.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="WindowContacts.resx">
       <DependentUpon>WindowContacts.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +198,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bg-page.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

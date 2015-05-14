@@ -653,125 +653,125 @@ namespace ChatPOI
         private void lineShape53_Click(object sender, EventArgs e) { if (playerTurn == contadorTurno) { this.turno(lineShape53.X1, lineShape53.X2, lineShape53.Y1, lineShape53.Y2, "lineShape53"); lineShape53.BorderColor = System.Drawing.Color.Black; } }
         private void lineShape50_Click(object sender, EventArgs e) { if (playerTurn == contadorTurno) { this.turno(lineShape50.X1, lineShape50.X2, lineShape50.Y1, lineShape50.Y2, "lineShape50"); lineShape50.BorderColor = System.Drawing.Color.Black; } }
 
-        private void lineShape1_MouseLeave(object sender, EventArgs e) { if (lineShape1.BorderColor != System.Drawing.Color.Black) { lineShape1.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape1_MouseLeave(object sender, EventArgs e) { if (lineShape1.BorderColor != System.Drawing.Color.Black) { lineShape1.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape2_MouseLeave(object sender, EventArgs e) { if (lineShape2.BorderColor != System.Drawing.Color.Black) { lineShape2.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape2_MouseLeave(object sender, EventArgs e) { if (lineShape2.BorderColor != System.Drawing.Color.Black) { lineShape2.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape3_MouseLeave(object sender, EventArgs e) { if (lineShape3.BorderColor != System.Drawing.Color.Black) { lineShape3.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape3_MouseLeave(object sender, EventArgs e) { if (lineShape3.BorderColor != System.Drawing.Color.Black) { lineShape3.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape4_MouseLeave(object sender, EventArgs e) { if (lineShape4.BorderColor != System.Drawing.Color.Black) { lineShape4.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape4_MouseLeave(object sender, EventArgs e) { if (lineShape4.BorderColor != System.Drawing.Color.Black) { lineShape4.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape5_MouseLeave(object sender, EventArgs e) { if (lineShape5.BorderColor != System.Drawing.Color.Black) { lineShape5.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape5_MouseLeave(object sender, EventArgs e) { if (lineShape5.BorderColor != System.Drawing.Color.Black) { lineShape5.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape6_MouseLeave(object sender, EventArgs e) { if (lineShape6.BorderColor != System.Drawing.Color.Black) { lineShape6.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape6_MouseLeave(object sender, EventArgs e) { if (lineShape6.BorderColor != System.Drawing.Color.Black) { lineShape6.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape7_MouseLeave(object sender, EventArgs e) { if (lineShape7.BorderColor != System.Drawing.Color.Black) { lineShape7.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape7_MouseLeave(object sender, EventArgs e) { if (lineShape7.BorderColor != System.Drawing.Color.Black) { lineShape7.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape9_MouseLeave(object sender, EventArgs e) { if (lineShape9.BorderColor != System.Drawing.Color.Black) { lineShape9.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape9_MouseLeave(object sender, EventArgs e) { if (lineShape9.BorderColor != System.Drawing.Color.Black) { lineShape9.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape10_MouseLeave(object sender, EventArgs e) { if (lineShape10.BorderColor != System.Drawing.Color.Black) { lineShape10.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape10_MouseLeave(object sender, EventArgs e) { if (lineShape10.BorderColor != System.Drawing.Color.Black) { lineShape10.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape11_MouseLeave(object sender, EventArgs e) { if (lineShape11.BorderColor != System.Drawing.Color.Black) { lineShape11.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape11_MouseLeave(object sender, EventArgs e) { if (lineShape11.BorderColor != System.Drawing.Color.Black) { lineShape11.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape12_MouseLeave(object sender, EventArgs e) { if (lineShape12.BorderColor != System.Drawing.Color.Black) { lineShape12.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape12_MouseLeave(object sender, EventArgs e) { if (lineShape12.BorderColor != System.Drawing.Color.Black) { lineShape12.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape18_MouseLeave(object sender, EventArgs e) { if (lineShape18.BorderColor != System.Drawing.Color.Black) { lineShape18.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape18_MouseLeave(object sender, EventArgs e) { if (lineShape18.BorderColor != System.Drawing.Color.Black) { lineShape18.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape22_MouseLeave(object sender, EventArgs e) { if (lineShape22.BorderColor != System.Drawing.Color.Black) { lineShape22.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape22_MouseLeave(object sender, EventArgs e) { if (lineShape22.BorderColor != System.Drawing.Color.Black) { lineShape22.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape13_MouseLeave(object sender, EventArgs e) { if (lineShape13.BorderColor != System.Drawing.Color.Black) { lineShape13.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape13_MouseLeave(object sender, EventArgs e) { if (lineShape13.BorderColor != System.Drawing.Color.Black) { lineShape13.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape8_MouseLeave(object sender, EventArgs e) { if (lineShape8.BorderColor != System.Drawing.Color.Black) { lineShape8.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape8_MouseLeave(object sender, EventArgs e) { if (lineShape8.BorderColor != System.Drawing.Color.Black) { lineShape8.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape14_MouseLeave(object sender, EventArgs e) { if (lineShape14.BorderColor != System.Drawing.Color.Black) { lineShape14.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape14_MouseLeave(object sender, EventArgs e) { if (lineShape14.BorderColor != System.Drawing.Color.Black) { lineShape14.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape19_MouseLeave(object sender, EventArgs e) { if (lineShape19.BorderColor != System.Drawing.Color.Black) { lineShape19.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape19_MouseLeave(object sender, EventArgs e) { if (lineShape19.BorderColor != System.Drawing.Color.Black) { lineShape19.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape20_MouseLeave(object sender, EventArgs e) { if (lineShape20.BorderColor != System.Drawing.Color.Black) { lineShape20.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape20_MouseLeave(object sender, EventArgs e) { if (lineShape20.BorderColor != System.Drawing.Color.Black) { lineShape20.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape21_MouseLeave(object sender, EventArgs e) { if (lineShape21.BorderColor != System.Drawing.Color.Black) { lineShape21.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape21_MouseLeave(object sender, EventArgs e) { if (lineShape21.BorderColor != System.Drawing.Color.Black) { lineShape21.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape15_MouseLeave(object sender, EventArgs e) { if (lineShape15.BorderColor != System.Drawing.Color.Black) { lineShape15.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape15_MouseLeave(object sender, EventArgs e) { if (lineShape15.BorderColor != System.Drawing.Color.Black) { lineShape15.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape16_MouseLeave(object sender, EventArgs e) { if (lineShape16.BorderColor != System.Drawing.Color.Black) { lineShape16.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape16_MouseLeave(object sender, EventArgs e) { if (lineShape16.BorderColor != System.Drawing.Color.Black) { lineShape16.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape17_MouseLeave(object sender, EventArgs e) { if (lineShape17.BorderColor != System.Drawing.Color.Black) { lineShape17.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape17_MouseLeave(object sender, EventArgs e) { if (lineShape17.BorderColor != System.Drawing.Color.Black) { lineShape17.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape29_MouseLeave(object sender, EventArgs e) { if (lineShape29.BorderColor != System.Drawing.Color.Black) { lineShape29.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape29_MouseLeave(object sender, EventArgs e) { if (lineShape29.BorderColor != System.Drawing.Color.Black) { lineShape29.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape33_MouseLeave(object sender, EventArgs e) { if (lineShape33.BorderColor != System.Drawing.Color.Black) { lineShape33.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape33_MouseLeave(object sender, EventArgs e) { if (lineShape33.BorderColor != System.Drawing.Color.Black) { lineShape33.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape24_MouseLeave(object sender, EventArgs e) { if (lineShape24.BorderColor != System.Drawing.Color.Black) { lineShape24.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape24_MouseLeave(object sender, EventArgs e) { if (lineShape24.BorderColor != System.Drawing.Color.Black) { lineShape24.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape23_MouseLeave(object sender, EventArgs e) { if (lineShape23.BorderColor != System.Drawing.Color.Black) { lineShape23.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape23_MouseLeave(object sender, EventArgs e) { if (lineShape23.BorderColor != System.Drawing.Color.Black) { lineShape23.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape25_MouseLeave(object sender, EventArgs e) { if (lineShape25.BorderColor != System.Drawing.Color.Black) { lineShape25.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape25_MouseLeave(object sender, EventArgs e) { if (lineShape25.BorderColor != System.Drawing.Color.Black) { lineShape25.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape30_MouseLeave(object sender, EventArgs e) { if (lineShape30.BorderColor != System.Drawing.Color.Black) { lineShape30.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape30_MouseLeave(object sender, EventArgs e) { if (lineShape30.BorderColor != System.Drawing.Color.Black) { lineShape30.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape31_MouseLeave(object sender, EventArgs e) { if (lineShape31.BorderColor != System.Drawing.Color.Black) { lineShape31.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape31_MouseLeave(object sender, EventArgs e) { if (lineShape31.BorderColor != System.Drawing.Color.Black) { lineShape31.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape32_MouseLeave(object sender, EventArgs e) { if (lineShape32.BorderColor != System.Drawing.Color.Black) { lineShape32.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape32_MouseLeave(object sender, EventArgs e) { if (lineShape32.BorderColor != System.Drawing.Color.Black) { lineShape32.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape26_MouseLeave(object sender, EventArgs e) { if (lineShape26.BorderColor != System.Drawing.Color.Black) { lineShape26.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape26_MouseLeave(object sender, EventArgs e) { if (lineShape26.BorderColor != System.Drawing.Color.Black) { lineShape26.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape27_MouseLeave(object sender, EventArgs e) { if (lineShape27.BorderColor != System.Drawing.Color.Black) { lineShape27.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape27_MouseLeave(object sender, EventArgs e) { if (lineShape27.BorderColor != System.Drawing.Color.Black) { lineShape27.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape28_MouseLeave(object sender, EventArgs e) { if (lineShape28.BorderColor != System.Drawing.Color.Black) { lineShape28.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape28_MouseLeave(object sender, EventArgs e) { if (lineShape28.BorderColor != System.Drawing.Color.Black) { lineShape28.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape41_MouseLeave(object sender, EventArgs e) { if (lineShape41.BorderColor != System.Drawing.Color.Black) { lineShape41.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape41_MouseLeave(object sender, EventArgs e) { if (lineShape41.BorderColor != System.Drawing.Color.Black) { lineShape41.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape42_MouseLeave(object sender, EventArgs e) { if (lineShape42.BorderColor != System.Drawing.Color.Black) { lineShape42.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape42_MouseLeave(object sender, EventArgs e) { if (lineShape42.BorderColor != System.Drawing.Color.Black) { lineShape42.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape43_MouseLeave(object sender, EventArgs e) { if (lineShape43.BorderColor != System.Drawing.Color.Black) { lineShape43.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape43_MouseLeave(object sender, EventArgs e) { if (lineShape43.BorderColor != System.Drawing.Color.Black) { lineShape43.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape37_MouseLeave(object sender, EventArgs e) { if (lineShape37.BorderColor != System.Drawing.Color.Black) { lineShape37.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape37_MouseLeave(object sender, EventArgs e) { if (lineShape37.BorderColor != System.Drawing.Color.Black) { lineShape37.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape38_MouseLeave(object sender, EventArgs e) { if (lineShape38.BorderColor != System.Drawing.Color.Black) { lineShape38.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape38_MouseLeave(object sender, EventArgs e) { if (lineShape38.BorderColor != System.Drawing.Color.Black) { lineShape38.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape39_MouseLeave(object sender, EventArgs e) { if (lineShape39.BorderColor != System.Drawing.Color.Black) { lineShape39.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape39_MouseLeave(object sender, EventArgs e) { if (lineShape39.BorderColor != System.Drawing.Color.Black) { lineShape39.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape51_MouseLeave(object sender, EventArgs e) { if (lineShape51.BorderColor != System.Drawing.Color.Black) { lineShape51.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape51_MouseLeave(object sender, EventArgs e) { if (lineShape51.BorderColor != System.Drawing.Color.Black) { lineShape51.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape55_MouseLeave(object sender, EventArgs e) { if (lineShape55.BorderColor != System.Drawing.Color.Black) { lineShape55.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape55_MouseLeave(object sender, EventArgs e) { if (lineShape55.BorderColor != System.Drawing.Color.Black) { lineShape55.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape46_MouseLeave(object sender, EventArgs e) { if (lineShape46.BorderColor != System.Drawing.Color.Black) { lineShape46.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape46_MouseLeave(object sender, EventArgs e) { if (lineShape46.BorderColor != System.Drawing.Color.Black) { lineShape46.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape45_MouseLeave(object sender, EventArgs e) { if (lineShape45.BorderColor != System.Drawing.Color.Black) { lineShape45.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape45_MouseLeave(object sender, EventArgs e) { if (lineShape45.BorderColor != System.Drawing.Color.Black) { lineShape45.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape47_MouseLeave(object sender, EventArgs e) { if (lineShape47.BorderColor != System.Drawing.Color.Black) { lineShape47.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape47_MouseLeave(object sender, EventArgs e) { if (lineShape47.BorderColor != System.Drawing.Color.Black) { lineShape47.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape40_MouseLeave(object sender, EventArgs e) { if (lineShape40.BorderColor != System.Drawing.Color.Black) { lineShape40.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape40_MouseLeave(object sender, EventArgs e) { if (lineShape40.BorderColor != System.Drawing.Color.Black) { lineShape40.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape44_MouseLeave(object sender, EventArgs e) { if (lineShape44.BorderColor != System.Drawing.Color.Black) { lineShape44.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape44_MouseLeave(object sender, EventArgs e) { if (lineShape44.BorderColor != System.Drawing.Color.Black) { lineShape44.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape35_MouseLeave(object sender, EventArgs e) { if (lineShape35.BorderColor != System.Drawing.Color.Black) { lineShape35.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape35_MouseLeave(object sender, EventArgs e) { if (lineShape35.BorderColor != System.Drawing.Color.Black) { lineShape35.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape34_MouseLeave(object sender, EventArgs e) { if (lineShape34.BorderColor != System.Drawing.Color.Black) { lineShape34.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape34_MouseLeave(object sender, EventArgs e) { if (lineShape34.BorderColor != System.Drawing.Color.Black) { lineShape34.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape36_MouseLeave(object sender, EventArgs e) { if (lineShape36.BorderColor != System.Drawing.Color.Black) { lineShape36.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape36_MouseLeave(object sender, EventArgs e) { if (lineShape36.BorderColor != System.Drawing.Color.Black) { lineShape36.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape49_MouseLeave(object sender, EventArgs e) { if (lineShape49.BorderColor != System.Drawing.Color.Black) { lineShape49.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape49_MouseLeave(object sender, EventArgs e) { if (lineShape49.BorderColor != System.Drawing.Color.Black) { lineShape49.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape57_MouseLeave(object sender, EventArgs e) { if (lineShape57.BorderColor != System.Drawing.Color.Black) { lineShape57.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape57_MouseLeave(object sender, EventArgs e) { if (lineShape57.BorderColor != System.Drawing.Color.Black) { lineShape57.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape56_MouseLeave(object sender, EventArgs e) { if (lineShape56.BorderColor != System.Drawing.Color.Black) { lineShape56.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape56_MouseLeave(object sender, EventArgs e) { if (lineShape56.BorderColor != System.Drawing.Color.Black) { lineShape56.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape54_MouseLeave(object sender, EventArgs e) { if (lineShape54.BorderColor != System.Drawing.Color.Black) { lineShape54.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape54_MouseLeave(object sender, EventArgs e) { if (lineShape54.BorderColor != System.Drawing.Color.Black) { lineShape54.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape60_MouseLeave(object sender, EventArgs e) { if (lineShape60.BorderColor != System.Drawing.Color.Black) { lineShape60.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape60_MouseLeave(object sender, EventArgs e) { if (lineShape60.BorderColor != System.Drawing.Color.Black) { lineShape60.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape59_MouseLeave(object sender, EventArgs e) { if (lineShape59.BorderColor != System.Drawing.Color.Black) { lineShape59.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape59_MouseLeave(object sender, EventArgs e) { if (lineShape59.BorderColor != System.Drawing.Color.Black) { lineShape59.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape58_MouseLeave(object sender, EventArgs e) { if (lineShape58.BorderColor != System.Drawing.Color.Black) { lineShape58.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape58_MouseLeave(object sender, EventArgs e) { if (lineShape58.BorderColor != System.Drawing.Color.Black) { lineShape58.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape48_MouseLeave(object sender, EventArgs e) { if (lineShape48.BorderColor != System.Drawing.Color.Black) { lineShape48.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape48_MouseLeave(object sender, EventArgs e) { if (lineShape48.BorderColor != System.Drawing.Color.Black) { lineShape48.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape52_MouseLeave(object sender, EventArgs e) { if (lineShape52.BorderColor != System.Drawing.Color.Black) { lineShape52.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape52_MouseLeave(object sender, EventArgs e) { if (lineShape52.BorderColor != System.Drawing.Color.Black) { lineShape52.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape53_MouseLeave(object sender, EventArgs e) { if (lineShape53.BorderColor != System.Drawing.Color.Black) { lineShape53.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape53_MouseLeave(object sender, EventArgs e) { if (lineShape53.BorderColor != System.Drawing.Color.Black) { lineShape53.BorderColor = System.Drawing.Color.Transparent; } }
 
-        private void lineShape50_MouseLeave(object sender, EventArgs e) { if (lineShape50.BorderColor != System.Drawing.Color.Black) { lineShape50.BorderColor = System.Drawing.SystemColors.Control; } }
+        private void lineShape50_MouseLeave(object sender, EventArgs e) { if (lineShape50.BorderColor != System.Drawing.Color.Black) { lineShape50.BorderColor = System.Drawing.Color.Transparent; } }
 
         private void GameBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
