@@ -20,27 +20,27 @@ namespace ChatPOI
         public static string cifrado(string cadena)
         {
 
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+            byte[] asciiBytes = Encoding.Unicode.GetBytes(cadena);
 
             for (int i = 0; i < asciiBytes.Length; i++)
             {
                 asciiBytes[i]++;
             }
 
-            return Encoding.ASCII.GetString(asciiBytes);
+            return Encoding.Unicode.GetString(asciiBytes);
         }
 
         public static string descifrado(string cadena)
         {
 
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+            byte[] asciiBytes = Encoding.Unicode.GetBytes(cadena);
 
             for (int i = 0; i < asciiBytes.Length; i++)
             {
                 asciiBytes[i]--;
             }
 
-            return Encoding.ASCII.GetString(asciiBytes);
+            return Encoding.Unicode.GetString(asciiBytes);
         }
     }
 }

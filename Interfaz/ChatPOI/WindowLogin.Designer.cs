@@ -31,7 +31,7 @@
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.linkLabelCreateAccount = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonLogIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxUser
@@ -77,21 +77,21 @@
             this.linkLabelCreateAccount.Text = "Crear nueva cuenta";
             this.linkLabelCreateAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCreateAccount_LinkClicked);
             // 
-            // button1
+            // buttonLogIn
             // 
-            this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Azure;
-            this.button1.Location = new System.Drawing.Point(50, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 24);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Iniciar Sesión";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonLogIn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonLogIn.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonLogIn.FlatAppearance.BorderSize = 0;
+            this.buttonLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLogIn.ForeColor = System.Drawing.Color.Azure;
+            this.buttonLogIn.Location = new System.Drawing.Point(50, 237);
+            this.buttonLogIn.Name = "buttonLogIn";
+            this.buttonLogIn.Size = new System.Drawing.Size(117, 24);
+            this.buttonLogIn.TabIndex = 8;
+            this.buttonLogIn.Text = "Iniciar Sesión";
+            this.buttonLogIn.UseVisualStyleBackColor = false;
+            this.buttonLogIn.Click += new System.EventHandler(this.button1_Click);
             // 
             // WindowLogin
             // 
@@ -100,7 +100,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::ChatPOI.Properties.Resources.bg_page;
             this.ClientSize = new System.Drawing.Size(218, 306);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonLogIn);
             this.Controls.Add(this.linkLabelCreateAccount);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUser);
@@ -117,7 +117,7 @@
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.LinkLabel linkLabelCreateAccount;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLogIn;
     }
 }
 

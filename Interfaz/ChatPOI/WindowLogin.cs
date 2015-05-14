@@ -101,11 +101,6 @@ namespace ChatPOI
             }
         }
 
-        private void linkLabelEnter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-        }
-
         private void linkLabelCreateAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try

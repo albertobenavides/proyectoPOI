@@ -615,5 +615,10 @@ namespace ChatPOI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void richTextBoxChat_Click(object sender, EventArgs e)
+        {
+            richTextBoxMessage.Focus();
+        }
     }
 }

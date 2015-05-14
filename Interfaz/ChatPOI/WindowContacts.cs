@@ -60,8 +60,9 @@ namespace ChatPOI
                 {
                     MessageBox.Show("Servidor fuera de línea.", "Error", MessageBoxButtons.OK);
 
-                    Application.Restart();
-                    Environment.Exit(0);
+                    Application.Exit();
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             }
 

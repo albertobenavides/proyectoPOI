@@ -94,7 +94,8 @@ namespace Servidor
                 foreach (DictionaryEntry client in clientList)
                 {
                     TcpClient senderSocket = (TcpClient)client.Value;
-                    senderSocket.Client.Send(senderBytes);
+                    if (senderSocket != null)
+                        senderSocket.Client.Send(senderBytes);
                 }
             }
         }
@@ -102,27 +103,27 @@ namespace Servidor
         public static string cifrado(string cadena)
         {
 
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+            byte[] asciiBytes = Encoding.Unicode.GetBytes(cadena);
 
             for (int i = 0; i < asciiBytes.Length; i++)
             {
                 asciiBytes[i]++;
             }
 
-            return Encoding.ASCII.GetString(asciiBytes);
+            return Encoding.Unicode.GetString(asciiBytes);
         }
 
         public static string descifrado(string cadena)
         {
 
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(cadena);
+            byte[] asciiBytes = Encoding.Unicode.GetBytes(cadena);
 
             for (int i = 0; i < asciiBytes.Length; i++)
             {
                 asciiBytes[i]--;
             }
 
-            return Encoding.ASCII.GetString(asciiBytes);
+            return Encoding.Unicode.GetString(asciiBytes);
         }
     }
 
@@ -173,7 +174,8 @@ namespace Servidor
                             if (!client.Key.ToString().Equals(userName))
                             {
                                 TcpClient senderSocket = (TcpClient)client.Value;
-                                senderSocket.Client.Send(data);
+                                if (senderSocket != null)
+                                    senderSocket.Client.Send(data);
                             }
                         }
                     }
@@ -198,7 +200,8 @@ namespace Servidor
                         senderBytes = Encoding.UTF8.GetBytes(dataToSend);
 
                         TcpClient senderSocket = (TcpClient)clientList[userName];
-                        senderSocket.Client.Send(senderBytes);
+                        if (senderSocket != null)
+                            senderSocket.Client.Send(senderBytes);
                     }
 
                     else if (ProgramaServidor.descifrado(dataFromClient.Substring(0, 4)) == "$sm$")
@@ -231,7 +234,8 @@ namespace Servidor
                         }
 
                         TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
-                        senderSocket.Client.Send(data);
+                        if (senderSocket != null)
+                            senderSocket.Client.Send(data);
                         Console.WriteLine("> " + userName + "-MESSAGE @ " + clientReceiver + ": " + messageToSend);
 
                         Console.WriteLine("");
@@ -251,7 +255,8 @@ namespace Servidor
                         byte[] data = Encoding.UTF8.GetBytes(messageToSend);
 
                         TcpClient senderSocket = (TcpClient)clientList[clientReceiver];
-                        senderSocket.Client.Send(data);
+                        if (senderSocket != null)
+                            senderSocket.Client.Send(data);
 
                         Console.WriteLine("");
                     }
@@ -292,7 +297,8 @@ namespace Servidor
                             if (!user.Equals(""))
                             {
                                 TcpClient senderSocket = (TcpClient)clientList[user];
-                                senderSocket.Client.Send(data);
+                                if (senderSocket != null)
+                                    senderSocket.Client.Send(data);
                             }
                         }
                         Console.WriteLine("");
@@ -332,7 +338,8 @@ namespace Servidor
                             if (!user.Equals("") && !user.Equals(userName))
                             {
                                 TcpClient senderSocket = (TcpClient)clientList[user];
-                                senderSocket.Client.Send(data);
+                                if (senderSocket != null)
+                                    senderSocket.Client.Send(data);
                             }
                         }
                         Console.WriteLine("");
@@ -360,7 +367,8 @@ namespace Servidor
                             if (client.Key.ToString().Equals(userName))
                             {
                                 TcpClient senderSocket = (TcpClient)client.Value;
-                                senderSocket.Client.Send(data);
+                                if (senderSocket != null)
+                                    senderSocket.Client.Send(data);
                             }
                         }
                     }
@@ -398,7 +406,8 @@ namespace Servidor
                             foreach (DictionaryEntry client in clientList)
                             {
                                 TcpClient tcpSocket = (TcpClient)client.Value;
-                                tcpSocket.Client.Send(data);
+                                if (senderSocket != null)
+                                    tcpSocket.Client.Send(data);
                             }
                             Console.WriteLine("");
                         }
