@@ -484,7 +484,6 @@ namespace ChatPOI
             {
                 isVideoStreaming = false;
                 buttonCamera.Text = "Video";
-                videoReceiverThread.Abort();
                 videoCaptureDevice.Stop();
                 timer1.Enabled = false;
             }

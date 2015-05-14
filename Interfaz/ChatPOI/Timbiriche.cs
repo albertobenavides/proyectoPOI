@@ -270,9 +270,12 @@ namespace ChatPOI
 
         void paintLine()
         {
-            Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
-            ls.BorderColor = System.Drawing.Color.Black;
-
+            try
+            {
+                Microsoft.VisualBasic.PowerPacks.LineShape ls = this.GetType().GetField(totalLineSelecter).GetValue(this) as Microsoft.VisualBasic.PowerPacks.LineShape;
+                ls.BorderColor = System.Drawing.Color.Black;
+            }
+            catch { }
             if (contadorTurno == playersCount)
             {
                 contadorTurno = 0;
